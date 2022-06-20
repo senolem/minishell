@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 16:24:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:48:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	main(int argc, char **argv)
 				ft_printf("%s\n", arr[i]);
 				i++;
 			}
-			process_input(data);
 			ft_arr_freer(arr);
 		}
+		process_input(data);
 		free(data->input);
 	}
 }

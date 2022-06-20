@@ -5,26 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 11:21:03 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 16:19:00 by albaur           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../../includes/minishell.h"
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_arrdup.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:22:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/16 16:49:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:46:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	ft_arrlen(char **array)
+{
+	int	i;
+
+	i = 0;
+	if (!array)
+		return (0);
+	while (array[i] != NULL)
+		++i;
+	return (i);
+}
 
 char	**ft_arrdup(char **arr)
 {
@@ -34,7 +32,7 @@ char	**ft_arrdup(char **arr)
 	dup = NULL;
 	if (!arr)
 		return (NULL);
-	arr_len = ft_strlen(*arr);
+	arr_len = ft_arrlen(arr);
 	if (!arr_len)
 		return (NULL);
 	dup = (char **)malloc(sizeof(char *) * (arr_len + 1));

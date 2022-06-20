@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 16:34:32 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:45:30 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void		sig_ignore(t_data *data, int sig);
 // utils
 void		throw_error(t_data *data, char *msg, int err);
 char		**ft_arrdup(char **arr);
+int			ft_arrlen(char **array);
 
 #endif

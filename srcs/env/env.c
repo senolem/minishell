@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 16:00:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:46:33 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**env_add(char *str, char ***env)
 
 	i = 0;
 	ptr = *env;
-	new = malloc(sizeof(char *) * (ft_strlen(*ptr) + 2));
+	new = malloc(sizeof(char *) * (ft_arrlen(ptr) + 2));
 	if (!new)
 		return (NULL);
 	while (ptr[i])
