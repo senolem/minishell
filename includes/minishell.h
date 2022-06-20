@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 16:32:33 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:34:32 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int			env_search(char *str, char **env);
 char		**env_read(char *path);
 
 // builtins
-char	**cd(t_data data);
-char	**export(t_data data);
-void	pwd();
+char		**cd(t_data data);
+char		**export(t_data data);
+void		pwd();
 
 // signals
 void		sig_ignore(t_data *data, int sig);
