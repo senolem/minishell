@@ -28,7 +28,6 @@
 # define ENV_FILE "/tmp/minishell_env"
 
 // main struct
-
 typedef struct s_data
 {
 	int			exit;
