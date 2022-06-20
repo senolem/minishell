@@ -20,11 +20,11 @@ SRCS_I = init.c
 SRCS_U = utils.c
 
 OBJS_M	= $(addprefix srcs/, ${SRCS_M:.c=.o})
-OBJS_P	= $(addprefix srcs/parsing/, ${SRCS_P:.c=.o})
-OBJS_B	= $(addprefix srcs/builtins/, ${SRCS_B:.c=.o})
+OBJS_I	= $(addprefix srcs/init/, ${SRCS_I:.c=.o})
 OBJS_E	= $(addprefix srcs/env/, ${SRCS_E:.c=.o})
 OBJS_S	= $(addprefix srcs/signal/, ${SRCS_S:.c=.o})
-OBJS_I	= $(addprefix srcs/init/, ${SRCS_I:.c=.o})
+OBJS_P	= $(addprefix srcs/parsing/, ${SRCS_P:.c=.o})
+OBJS_B	= $(addprefix srcs/builtins/, ${SRCS_B:.c=.o})
 OBJS_U	= $(addprefix srcs/utils/, ${SRCS_U:.c=.o})
 
 FLAGS = -Wall -Wextra -Werror
@@ -42,19 +42,19 @@ CURSIVE = \033[3m
 
 all: $(NAME)
 
-$(NAME): $(OBJS_P) $(OBJS_B) $(OBJS_E) $(OBJS_S) $(OBJS_I) $(OBJS_U) $(OBJS_M)
+$(NAME): $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_B) $(OBJS_U)
 	@$(MAKE) stacks -sC ./libft
 	@mv ./libft/libft.a .
-	@gcc $(FLAGS) $(OBJS_P) $(OBJS_B) $(OBJS_E) $(OBJS_S) $(OBJS_I) $(OBJS_U) $(OBJS_M) $(LINKS) libft.a -o $(NAME)
+	@gcc $(FLAGS) $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_B) $(OBJS_U) $(LINKS) libft.a -o $(NAME)
 	@echo "$(CURSIVE)$(HIBLUE)Parce qu'ouvrir une fenêtre,$(NONE)"
 	@echo "$(CURSIVE)$(HIGREEN)c'est surfait.$(NONE)"
-	@rm $(OBJS_P) $(OBJS_B) $(OBJS_E) $(OBJS_S) $(OBJS_I) $(OBJS_U) $(OBJS_M)
+	@rm $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_B) $(OBJS_U)
 
 .c.o:
 	gcc -Wall -Wextra -Werror -c -I./includes -I./libft/includes $< -o ${<:.c=.o}
 
 clean:
-	@$(RM) libft.a $(OBJS_P) $(OBJS_B) $(OBJS_E) $(OBJS_S) $(OBJS_I) $(OBJS_U) $(OBJS_M)
+	@$(RM) libft.a $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_B) $(OBJS_U)
 	@$(MAKE) clean -C ./libft
 
 fclean: clean
@@ -62,3 +62,5 @@ fclean: clean
 	@$(MAKE) fclean -C ./libft
 
 re: fclean all
+
+.phony: all clean fclean re

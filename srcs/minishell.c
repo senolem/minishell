@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	init_shell(data);
 	while (!data->exit)
 	{
-		data->input = readline("~$ ");
+		data->input = readline(ft_strjoin(data->pwd, " $ "));
 		if (quote_checker(data->input))
 		{
 			arr = ms_split(data->input);

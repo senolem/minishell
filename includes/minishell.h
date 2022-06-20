@@ -31,9 +31,10 @@
 
 typedef struct s_data
 {
-	char		*input;
 	int			exit;
 	int			mode;
+	char		*input;
+	char		*pwd;
 }		t_data;
 
 // init
