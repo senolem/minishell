@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:46:55 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 16:13:14 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:38:10 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	sig_handler_quit(void)
 		return ;
 	nb = env_get("?nb", env);
 	if (!ft_strcmp(nb, "1"))
-	write(1, "Quit\n", 5);
+		write(1, "Quit\n", 5);
 	free(nb);
 	free(env);
 }
 
-void	sig_handler(int	sig, siginfo_t *info, void *context)
+void	sig_handler(int sig, siginfo_t *info, void *context)
 {
 	(void)info;
 	(void)context;
@@ -53,7 +53,7 @@ void	sig_wait(t_data *data, int sig, void (*hdlr)(int, siginfo_t *, void *))
 
 void	sig_ignore(t_data *data, int sig)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	sa.sa_flags = 0;
 	sa.sa_handler = SIG_IGN;

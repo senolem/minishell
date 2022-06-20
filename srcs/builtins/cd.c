@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:28:56 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/20 15:55:34 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:35:59 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**cd(t_data data)
 		if (!ft_strstrbool(current->content, "OLDPWD"))
 		{
 			temp = current->content;
-			current->content = ft_strdupcat(temp, args[2]);	//apres CD
+			current->content = ft_strdupcat(temp, args[2]); //apres CD
 			free(temp);
 		}
 		if (ft_strnstrbool(current->content, "PWD=", 4))

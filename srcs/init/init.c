@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 16:43:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:34:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	init_ignore(t_data *data)
 static int	init_mode(t_data *data)
 {
 	struct termios	term;
+
 	if (isatty(STDIN_FILENO))
 	{
 		if (errno == EBADF)
@@ -63,7 +64,7 @@ int	init_env(void)
 {
 	char		**env;
 	char		*pwd;
-	extern char **environ;
+	extern char	**environ;
 
 	env = ft_arrdup(environ);
 	if (!env)
@@ -80,12 +81,15 @@ int	init_env(void)
 
 int	init_shell(t_data *data)
 {
-	int	i;
-	extern char **environ;
+	int		i;
+	char	**env;
 
 	i = 0;
 	init_ignore(data);
 	init_mode(data);
 	init_env();
+	env = env_read(ENV_FILE);
+	data->pwd = env_get("PWD", env);
+	free(env);
 	return (0);
 }

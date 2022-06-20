@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 13:54:45 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/20 15:56:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:35:23 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**export(t_data data)
 		ft_stackadd_bottom(new, ft_newnode(ft_strdup(data.env[i])));
 		i++;
 	}
-	if (data.av[1])	 //l'argument d'export
+	if (data.av[1]) //l'argument d'export
 		add_to_env(new, data.av[1]);
 //	ft_stack_remove_if(new, "_=", (void *)ft_strstrbool);
 //	ce serait mieux de creer une fonction display_if

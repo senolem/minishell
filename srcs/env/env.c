@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 16:46:33 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:36:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**env_read(char *path)
 	return (env);
 }
 
-char *env_get(char *str, char **env)
+char	*env_get(char *str, char **env)
 {
 	int		i;
 	char	*tmp;
@@ -103,7 +103,6 @@ void	env_set(char *str, char *value, char ***env)
 	else
 		*env = env_add(tmp, env);
 }
-
 
 void	env_write(char *path, char **env)
 {
