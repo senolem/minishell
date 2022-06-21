@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/21 13:53:19 by faventur         ###   ########.fr        #
+#    Updated: 2022/06/21 15:50:39 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,22 +34,24 @@ RM =	rm -f
 NAME = minishell
 
 NONE = \033[0m
+HIRED = \033[31m
 HIGREEN = \033[92m
 HIBLUE = \033[94m
 CURSIVE = \033[3m
 
 all: $(NAME)
 
-$(NAME): $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U)
+$(NAME): $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_B) $(OBJS_U)
+	@echo "$(HIRED)Compiling...$(NONE)"
 	@$(MAKE) stacks -sC ./libft
 	@mv ./libft/libft.a .
-	@gcc $(FLAGS) $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(LINKS) libft.a -o $(NAME)
-	@echo "$(CURSIVE)$(HIBLUE)Parce qu'ouvrir une fenêtre,$(NONE)"
-	@echo "$(CURSIVE)$(HIGREEN)c'est surfait.$(NONE)"
-	@rm $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U)
+	@gcc $(FLAGS) $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_B) $(OBJS_U) libft.a $(LINKS) -L${HOME}/goinfre/.brew/opt/readline/lib -o $(NAME)
+	@echo "$(CURSIVE)$(HIBLUE)Parce que taper une commande,$(NONE)"
+	@echo "$(CURSIVE)$(HIGREEN)c'est du pipi de chat.$(NONE)"
+	@rm $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_B) $(OBJS_U)
 
 .c.o:
-	gcc -Wall -Wextra -Werror -c -I./includes -I./libft/includes $< -o ${<:.c=.o}
+	@gcc -Wall -Wextra -Werror -c -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include $< -o ${<:.c=.o}
 
 clean:
 	@$(RM) libft.a $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U)
