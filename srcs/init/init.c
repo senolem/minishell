@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 20:34:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 10:55:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,10 @@ int	init_env(void)
 int	init_shell(t_data *data)
 {
 	int		i;
-	char	**env;
 
 	i = 0;
 	init_ignore(data);
 	init_mode(data);
 	init_env();
-	env = env_read(ENV_FILE);
-	data->pwd = env_get("PWD", env);
-	free(env);
 	return (0);
 }

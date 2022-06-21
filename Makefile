@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/20 16:22:01 by albaur           ###   ########.fr        #
+#    Updated: 2022/06/21 10:49:19 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SRCS_M = minishell.c
 SRCS_P = single_quotes.c double_quotes.c path_searcher.c pipe_counter.c \
 ms_split.c ms_quote_manager.c process_input.c
 SRCS_B = pwd.c #export.c cd.c
-SRCS_E = env.c env_search.c
+SRCS_E = env.c env_search.c env_get_pwd.c
 SRCS_S = signal.c
 SRCS_I = init.c
 SRCS_U = utils.c

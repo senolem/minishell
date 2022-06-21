@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 16:48:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 10:59:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	init_shell(data);
 	while (!data->exit)
 	{
-		data->input = readline(ft_strjoin(data->pwd, " $ "));
+		data->input = readline(ft_strjoin(env_get_pwd(ENV_FILE), " $ "));
 		if (quote_checker(data->input))
 		{
 			arr = ms_split(data->input);

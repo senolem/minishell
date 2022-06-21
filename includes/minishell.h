@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 20:33:57 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 11:05:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define MINISHELL_H
 
 # include "../libft/includes/libft.h"
+# include "tok_stacks.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <readline/readline.h>
@@ -33,7 +34,6 @@ typedef struct s_data
 	int			exit;
 	int			mode;
 	char		*input;
-	char		*pwd;
 }		t_data;
 
 // init
@@ -51,6 +51,7 @@ char		*ft_squote_pruner_index(char *quote, char *str, int *index, int	*j);
 int			between_dquotes(char *str, int *index);
 int			dquote_len_index(char *str, int *index);
 char		*ft_dquote_pruner_index(char *quote, char *str, int *index, int	*j);
+char		*env_get_pwd(char *path);
 
 // env
 char		*env_get(char *name, char **env);
