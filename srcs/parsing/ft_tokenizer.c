@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tok_stacknew.c                                  :+:      :+:    :+:   */
+/*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/09 20:06:06 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/21 10:58:30 by faventur         ###   ########.fr       */
+/*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
+/*   Updated: 2022/06/21 12:04:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** The ft_tok_stacknew() function allocates (with malloc(3)) and returns a
-** new "fresh" stack. The "top" and "bottom" variables are set to
-** NULL.
-*/
+#include <tok_stacks.h>
 
-#include "tok_stacks.h"
-
-t_tok_stack	*ft_tok_stacknew(void)
+t_token *ft_tokenizer(char c, int index)
 {
-	t_tok_stack	*new;
+    t_token *tok;
 
-	new = malloc(sizeof(*new));
-	if (new != NULL)
-	{
-		new->length = 0;
-		new->top = NULL;
-		new->bottom = NULL;
-	}
-	return (new);
+    tok->c = c;
+    tok->index = index;
+	if (ft_isalnum(c))
+        tok->type = char_type;
+    return (tok);
 }

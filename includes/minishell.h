@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 11:07:31 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 12:43:20 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 # define MINISHELL_H
 
-# include "../libft/includes/libft.h"
-# include "tok_stacks.h"
-# include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <errno.h>
 # include <signal.h>
 # include <termios.h>
-# include <unistd.h>
-# include <fcntl.h>
+# include "libft.h"
+# include "tok_stacks.h"
 
 # define ENV_FILE "/tmp/minishell_env"
 
