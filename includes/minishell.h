@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 15:50:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 16:25:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,18 @@ char		*ft_squote_pruner_index(char *quote, char *str, int *index, int	*j);
 int			between_dquotes(char *str, int *index);
 int			dquote_len_index(char *str, int *index);
 char		*ft_dquote_pruner_index(char *quote, char *str, int *index, int	*j);
-char		*env_get_pwd(char *path);
+char		*env_get_pwd(void);
 
 // env
 char		*env_get(char *name, char **env);
-void		env_write(char *path, char **env);
+void env_write(char *path, char **env);
 void		env_set(char *str, char *value, char ***env);
 char		**env_add(char *str, char ***env);
 char		*env_get(char *str, char **env);
 int			env_search(char *str, char **env);
-char		**env_read(char *path);
+char **env_read(char *path);
 
 // builtins
-char		**cd(t_data data);
-char		**export(t_data data);
 void		pwd(void);
 
 // signals

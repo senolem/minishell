@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 15:47:24 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 18:08:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int init_mode(t_data *data)
 			if (!tcgetattr(STDIN_FILENO, &term))
 			{
 				init_reset(&term);
-				term.c_lflag |= (ECHOCTL);
+				term.c_lflag &= ECHO;
 				if (tcsetattr(STDIN_FILENO, TCSANOW, &term))
 					throw_error(data, "Error: tcsetattr", 0);
 			}
