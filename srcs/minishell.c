@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 15:50:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 18:23:08 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int argc, char **argv)
 	{
 		data->input = readline(ft_strjoin(env_get_pwd(ENV_FILE), " $ "));
 		ft_tokenizer(data->input);
-		if (quote_checker(data->input))
-		{
+//		if (quote_checker(data->input))
+//		{
 			arr = ms_split(data->input);
 			while (arr[i])
 			{
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 			}
 			i = 0;
 			ft_arr_freer(arr);
-		}
+//		}
 		process_input(data);
 		free(data->input);
 	}
