@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 10:55:58 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:47:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ static void	init_ignore(t_data *data)
 	sig_ignore(data, SIGTTOU);
 	sig_ignore(data, SIGTERM);
 	sig_ignore(data, SIGHUP);
+	sig_wait(data, SIGINT, sig_handler);
 }
 
-static int	init_mode(t_data *data)
+static int init_mode(t_data *data)
 {
-	struct termios	term;
+	struct termios term;
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -81,9 +82,6 @@ int	init_env(void)
 
 int	init_shell(t_data *data)
 {
-	int		i;
-
-	i = 0;
 	init_ignore(data);
 	init_mode(data);
 	init_env();
