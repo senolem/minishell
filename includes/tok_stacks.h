@@ -6,14 +6,15 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:18:14 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/21 12:03:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/21 13:21:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOK_STACKS_H
 # define TOK_STACKS_H
 
-# include <minishell.h>
+# include "minishell.h"
+# include "stacks.h"
 
 typedef struct s_token
 {
@@ -31,9 +32,8 @@ enum e_lexer_type
 	smaller_than_type,
 	pipe_type,
 	char_type,
-	white_space_type,
+	whitespace_type,
 	newline_type,
-	tab_type,
 	backslash_type
 };
 
