@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:19:34 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/01 18:07:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/21 15:36:14 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		ft_power(int n, int power);
 char	ft_binary2char(char *binary);
 int		ft_strtolol(const char *str);
 int		ft_strstrbool(const char *haystack, const char *needle);
-void	ft_delete(void *as);
+void	ft_nodedel(void *as);
 void	ft_arr_freer(char **arr);
 
 #endif
