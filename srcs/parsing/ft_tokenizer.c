@@ -6,11 +6,44 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/21 13:39:47 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/21 18:21:38 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	subcategorize(t_token *token, int subtype)
+{
+	token->subtype = subtype;
+	printf("tok %c\nindex %d\n", token->c, token->index);
+}
+
+int	ft_tokcmp(t_token *token, int type)
+{
+	if (token->type == type)
+		return (0);
+	return (1);
+}
+
+void	token_manager(t_stack *stack)
+{
+	t_node	*current;
+
+	current = stack->top;
+	while (current && ft_tokcmp(current->content, squote_type))
+	{
+		if (!ft_tokcmp(current->content, whitespace_type))
+			ft_stackdelone(current, ft_nodedel);
+		current = current->next;
+	}
+	current = current->next;
+	while (current->next && ft_tokcmp(current->next->content, squote_type))
+	{
+		if (!ft_tokcmp(current->content, squote_type))
+			subcategorize((t_token *)current, squote_type);
+		current = current->next;
+	}
+}
 
 t_token	*ft_token_creator(char c, int index)
 {
@@ -41,7 +74,7 @@ t_token	*ft_token_creator(char c, int index)
 	return (token);
 }
 
-void	ft_tokenizer(char *line)
+t_stack	*ft_tokenizer(char *line)
 {
 	t_stack	*new;
 	int		i;
@@ -54,5 +87,7 @@ void	ft_tokenizer(char *line)
 		i++;
 	}
 	ft_stackiter(new, (void *)ft_putendl);
-	ft_stackclear(new, ft_delete);
+//	ft_stackclear(new, ft_delete);
+	token_manager(new);
+	return (new);
 }

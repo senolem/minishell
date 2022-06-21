@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:49:33 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/01 16:02:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/21 15:26:48 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	ft_stack_remove_if_pt2(t_stack *begin_list, void *data_ref,
 		{
 			tmp = current;
 			current = current->next;
+			current->prev = tmp->prev;
 			prev->next = current;
 			free(tmp);
 		}
@@ -55,6 +56,7 @@ void	ft_stack_remove_if(t_stack *begin_list, void *data_ref, int (*cmp)())
 	{
 		tmp = begin_list->top;
 		begin_list->top = begin_list->top->next;
+		begin_list->top->prev = NULL;
 		free(tmp);
 	}
 	ft_stack_remove_if_pt2(begin_list, data_ref,
