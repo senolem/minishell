@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 15:42:12 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:50:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 	while (!data->exit)
 	{
 		data->input = readline(ft_strjoin(env_get_pwd(ENV_FILE), " $ "));
+		ft_tokenizer(data->input);
 		if (quote_checker(data->input))
 		{
 			arr = ms_split(data->input);
@@ -34,6 +35,7 @@ int	main(int argc, char **argv)
 				ft_printf("%s\n", arr[i]);
 				i++;
 			}
+			i = 0;
 			ft_arr_freer(arr);
 		}
 		process_input(data);

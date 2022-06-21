@@ -6,25 +6,22 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 15:44:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:50:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-
 # define MINISHELL_H
 
-# include "../libft/includes/libft.h"
-# include "tok_stacks.h"
-# include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <errno.h>
 # include <signal.h>
 # include <termios.h>
-# include <unistd.h>
-# include <fcntl.h>
+# include "libft.h"
+# include "tok_stacks.h"
 
 # define ENV_FILE "/tmp/minishell_env"
 
@@ -41,6 +38,9 @@ int			init_shell(t_data *data);
 int			init_env(void);
 
 // parsing
+t_token		*ft_token_creator(char c, int index);
+void		ft_tokenizer(char *line);
+
 void		process_input(t_data *data);
 int			ms_check_charset(char c);
 int			quote_checker(char *line);
