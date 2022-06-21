@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tok_stacks.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:18:14 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/21 10:55:39 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/21 11:07:28 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ typedef struct s_token
 	struct s_token	*prev;
 	struct s_token	*next;
 }				t_token;
+
+// token types
+enum e_lexer_type
+{
+	squote_type,
+	dquote_type,
+	greater_than_type,
+	smaller_than_type,
+	pipe_type,
+	char_type,
+	white_space_type
+};
 
 // Doubly linked list functions
 t_tok_stack	*ft_tok_stacknew(void);
