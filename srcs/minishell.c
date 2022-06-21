@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 10:59:09 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:42:12 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	int		i;
-	char	**arr;
+	int i;
+	char **arr;
 	t_data	*data;
 
 	i = 0;

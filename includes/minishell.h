@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 11:07:31 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:44:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void		pwd(void);
 
 // signals
 void		sig_ignore(t_data *data, int sig);
+void		sig_wait(t_data *data, int sig, void (*hdlr)(int, siginfo_t *, void *));
+void		sig_handler(int sig, siginfo_t *info, void *context);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);

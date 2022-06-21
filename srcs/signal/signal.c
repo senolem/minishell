@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:46:55 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/20 20:38:10 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:35:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sig_handler_quit(void)
 	env = env_read(ENV_FILE);
 	if (!env)
 		return ;
-	nb = env_get("?nb", env);
+	nb = env_get("?NB", env);
 	if (!ft_strcmp(nb, "1"))
 		write(1, "Quit\n", 5);
 	free(nb);
@@ -34,9 +34,14 @@ void	sig_handler(int sig, siginfo_t *info, void *context)
 	if (sig == SIGINT)
 	{
 		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
 	else if (sig == SIGQUIT)
 		sig_handler_quit();
+	else if (sig == SIGABRT)
+		return ;
 }
 
 void	sig_wait(t_data *data, int sig, void (*hdlr)(int, siginfo_t *, void *))
