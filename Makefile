@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/21 17:30:55 by albaur           ###   ########.fr        #
+#    Updated: 2022/06/22 13:00:53 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_M = minishell.c
 SRCS_P = single_quotes.c double_quotes.c path_searcher.c pipe_counter.c \
-			ms_split.c ms_quote_manager.c process_input.c ft_tokenizer.c
+		ms_split.c ms_quote_manager.c process_input.c ft_tokenizer.c
 SRCS_E = env.c env_search.c env_get_pwd.c
 SRCS_S = signal.c
 SRCS_I = init.c
@@ -53,7 +53,7 @@ $(NAME): $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)
 	@rm $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)
 
 .c.o:
-	@gcc -Wall -Wextra -Werror -c -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include $< -o ${<:.c=.o}
+	@gcc -Wall -Wextra -Werror -c -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include -g3 $< -o ${<:.c=.o}
 
 clean:
 	@$(RM) libft.a $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)

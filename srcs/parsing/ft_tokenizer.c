@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/21 18:21:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:47:14 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	subcategorize(t_token *token, int subtype)
 {
 	token->subtype = subtype;
-	printf("tok %c\nindex %d\n", token->c, token->index);
 }
 
 int	ft_tokcmp(t_token *token, int type)
@@ -25,34 +24,39 @@ int	ft_tokcmp(t_token *token, int type)
 	return (1);
 }
 
-void	token_manager(t_stack *stack)
+t_node	*token_parser(t_stack *stack, int type)
 {
 	t_node	*current;
 
 	current = stack->top;
-	while (current && ft_tokcmp(current->content, squote_type))
+	while (current->next)
 	{
-		if (!ft_tokcmp(current->content, whitespace_type))
-			ft_stackdelone(current, ft_nodedel);
+		if (ft_tokcmp(current->content, type))
+			return (current);
 		current = current->next;
 	}
-	current = current->next;
-	while (current->next && ft_tokcmp(current->next->content, squote_type))
-	{
-		if (!ft_tokcmp(current->content, squote_type))
-			subcategorize((t_token *)current, squote_type);
-		current = current->next;
-	}
+	return (NULL);
 }
 
-t_token	*ft_token_creator(char c, int index)
+/*
+static void	ft_token_creator_pt2(t_token *token, char c)
+{
+	if (c == '\n')
+		token->type = newline_type;
+	else if (c == '~')
+		token->type = tilde_type;
+	else if (c == '/')
+		token->type = slash_type;
+}
+
+t_token	*ft_token_creator(char *line, int line_index)
 {
 	t_token	*token;
 
 	token = malloc(sizeof(*token));
 	ft_memset(token, 0, sizeof(*token));
-	token->c = c;
-	token->index = index;
+	token->word = ft_strdup(line);
+	token->index = line_index;
 	if (ft_isalnum(c))
 		token->type = char_type;
 	else if (c == '\\')
@@ -69,25 +73,36 @@ t_token	*ft_token_creator(char c, int index)
 		token->type = greater_than_type;
 	else if (c == ' ' || c == '\t' || c == '\r' || c == '\v' || c == '\f')
 		token->type = whitespace_type;
-	else if (c == '\n')
-		token->type = newline_type;
+	else
+		ft_token_creator_pt2(token, c);
+	return (token);
+}
+*/
+t_token	*ft_word_creator(char *line, int line_index)
+{
+	t_token	*token;
+
+	token = malloc(sizeof(*token));
+	ft_memset(token, 0, sizeof(*token));
+	token->str = ft_strdup(line);
+	token->index = line_index;
+	token->type = str_type;
 	return (token);
 }
 
-t_stack	*ft_tokenizer(char *line)
+t_stack	*ft_tokenizer(char *arr[])
 {
 	t_stack	*new;
 	int		i;
 
 	i = 0;
 	new = ft_stacknew();
-	while (line[i])
+	while (arr[i])
 	{
-		ft_stackadd_bottom(new, ft_newnode(ft_token_creator(line[i], i)));
+		ft_stackadd_bottom(new, ft_newnode(ft_word_creator(arr[i], i)));
 		i++;
 	}
-	ft_stackiter(new, (void *)ft_putendl);
-//	ft_stackclear(new, ft_delete);
 	token_manager(new);
+	ft_arr_freer(arr);
 	return (new);
 }

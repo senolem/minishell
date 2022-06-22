@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 18:30:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:33:21 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			init_env(void);
 
 // parsing
 t_token		*ft_token_creator(char c, int index);
-t_stack		*ft_tokenizer(char *line);
+t_stack		*ft_tokenizer(char *arr[]);
 
 void		process_input(t_data *data);
 int			ms_check_charset(char c);

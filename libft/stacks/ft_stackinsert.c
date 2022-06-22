@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:36:14 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/18 17:08:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:36:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,9 @@
 static void	ft_nodelinker(t_stack *stack, t_node *current, t_node *new)
 {
 	if (current->next == NULL)
-	{
 		stack = ft_stackadd_bottom(stack, new);
-	}
 	else if (current->prev == NULL)
-	{
 		stack = ft_stackadd_top(stack, new);
-	}
 	else
 	{
 		current->next->prev = new;

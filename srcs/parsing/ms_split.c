@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/18 18:26:16 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:33:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,9 @@ static char	*wordgroup_split(char *newstr, char *str, int *index)
 	while (str[*index] && !ms_check_charset(str[*index]))
 	{
 		if (str[*index] == '\'')
-		{
 			ft_squote_pruner_index(newstr, str, index, &j);
-		}
 		else if (str[*index] == '\"')
-		{
 			ft_dquote_pruner_index(newstr, str, index, &j);
-		}
 		else
 			newstr[j++] = str[(*index)++];
 	}
