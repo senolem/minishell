@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/22 16:33:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:39:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int			between_dquotes(char *str, int *index);
 int			dquote_len_index(char *str, int *index);
 char		*ft_dquote_pruner_index(char *quote, char *str, int *index, int	*j);
 char		*env_get_pwd(void);
+int			ft_isoper(char c);
+int			oper_len_index(char *str, char oper, int *index);
+char		*ft_oper_writer_index(char *quote, char *str, int *index, int *j);
 
 // env
 char		*env_get(char *name, char **env);

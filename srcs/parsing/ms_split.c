@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 13:19:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:51:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,25 @@ static int	wordgroup_counter(char *s)
 	while (s[i] != '\0')
 	{
 		if (s[i] == '\'')
+		{
 			counter += between_squotes(s, &i);
+			printf("count1 %i\n", counter);
+		}
 		else if (s[i] == '\"')
+		{
 			counter += between_dquotes(s, &i);
+			printf("count2 %i\n", counter);
+		}
 		else if (ft_isoper(s[i]) && !ft_isoper(s[i + 1]))
+		{
 			counter++;
-		else if (!ms_check_charset(s[i]) && (ms_check_charset(s[i + 1])
-				|| ft_isoper(s[i + 1])))
+			printf("count3 %i\n", counter);
+		}
+		else if (!ms_check_charset(s[i]) && (ms_check_charset(s[i + 1])))
+		{
 			counter++;
+			printf("count4 %c %i\n", s[i], counter);
+		}
 		i++;
 	}
 //	printf("wgcounter: %d\n", counter);

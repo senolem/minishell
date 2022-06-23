@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:46:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/18 18:23:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:52:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int	between_dquotes(char *str, int *index)
 		(*index)++;
 	while (str[*index])
 	{
-		if (str[*index] == '\"' && ms_check_charset(str[*index + 1]))
+		printf("betdquotes isoper %d\n", ft_isoper(str[*index + 1]));
+		if (str[*index] == '\"' && (ft_isoper(str[*index + 1])
+					|| ms_check_charset(str[*index + 1])))
 		{
 			counter++;
+			printf("betdquotes count %d\n", counter);
 			return (counter);
 		}
 		else if (str[*index] == '\"' && !ms_check_charset(str[*index + 1]))
