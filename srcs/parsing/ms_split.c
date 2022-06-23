@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 12:04:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:19:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,10 @@ static int	ms_let_count(char *str, int *index)
 	p_switch = 0;
 	while (ms_check_charset(str[*index]))
 		(*index)++;
-	if (ft_isoper(str[*index]))
+	if (ft_isoper(str[*index]) && ++p_switch)
 	{
 		oper = str[*index];
 		counter += oper_len_index(str, oper, index);
-		printf("lc_counter: %d\n", counter);
-		p_switch = 1;
 	}
 	while (str[*index] && !ms_check_charset(str[*index]) && !ft_isoper(str[*index]) && !p_switch)
 	{
@@ -124,12 +122,12 @@ static char	*wordgroup_split(char *newstr, char *str, int *index)
 	p_switch = 0;
 	while (ms_check_charset(str[*index]))
 		(*index)++;
-	if (ft_isoper(str[*index]))
+	if (ft_isoper(str[*index]) && ++p_switch)
 	{
 		ft_oper_writer_index(newstr, str, index, &j);
-		p_switch = 1;
 	}
-	while (str[*index] && !ms_check_charset(str[*index]) && !ft_isoper(str[*index]) && !p_switch)
+	while (str[*index] && !ms_check_charset(str[*index])
+		&& !ft_isoper(str[*index]) && !p_switch)
 	{
 		if (str[*index] == '\'')
 			ft_squote_pruner_index(newstr, str, index, &j);
