@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:58:49 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ static int	wordgroup_counter(char *s)
 		else if (s[i] == '\"')
 			counter += between_dquotes(s, &i);
 		else if (ft_isoper(s[i]) && !ft_isoper(s[i + 1]))
-			++counter;
-		else if (!ms_check_charset(s[i]) && (ms_check_charset(s[i + 1])))
-			++counter;
-		++i;
+			counter++;
+		else if (!ms_check_charset(s[i]) && (ms_check_charset(s[i + 1])
+				|| (ft_isoper(s[i + 1]))))
+			counter++;
+		i++;
 	}
 	return (counter);
 }
@@ -49,7 +50,7 @@ static int	ms_let_count(char *str, int *index)
 	counter = 0;
 	p_switch = 0;
 	while (ms_check_charset(str[*index]))
-		++(*index);
+		(*index)++;
 	if (ft_isoper(str[*index]) && ++p_switch)
 		counter += oper_len_index(str, index);
 	while (str[*index] && !ms_check_charset(str[*index])
@@ -61,8 +62,8 @@ static int	ms_let_count(char *str, int *index)
 			counter += dquote_len_index(str, index);
 		else
 		{
-			++(*index);
-			++counter;
+			(*index)++;
+			counter++;
 		}
 	}
 	return (counter);
@@ -76,7 +77,7 @@ static char	*wordgroup_split(char *newstr, char *str, int *index)
 	j = 0;
 	p_switch = 0;
 	while (ms_check_charset(str[*index]))
-		++(*index);
+		(*index)++;
 	if (ft_isoper(str[*index]) && ++p_switch)
 		ft_oper_writer_index(newstr, str, index, &j);
 	while (str[*index] && !ms_check_charset(str[*index])
