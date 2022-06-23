@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 15:24:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 21:49:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static int	wordgroup_counter(char *s)
 	while (s[i] != '\0')
 	{
 		if (s[i] == '\'')
-			counter += between_squotes(s, &i);
+			counter += between_squotes(s, &i);	// s'il n'y a rien entre guillemets on a un espace en plus
 		else if (s[i] == '\"')
-			counter += between_dquotes(s, &i);
-		else if (ft_isoper(s[i]) && !ft_isoper(s[i + 1]))
+			counter += between_dquotes(s, &i);	// s'il n'y a rien entre guillemets on a un espace en plus
+		else if (ft_isoper(s[i]) && (s[i] != s[i + 1] || !ft_isoper(s[i + 1])))
 			counter++;
 		else if (!ms_check_charset(s[i]) && (ms_check_charset(s[i + 1])))
 			counter++;
