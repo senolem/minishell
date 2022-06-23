@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_get_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:41:11 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/23 14:34:26 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 char	*env_get_pwd(void)
 {

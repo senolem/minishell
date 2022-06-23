@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 14:33:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	ms_check_charset(char c)
 {

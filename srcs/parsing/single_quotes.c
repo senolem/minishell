@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   single_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:38:55 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 14:03:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	between_squotes(char *str, int *index)
 {
