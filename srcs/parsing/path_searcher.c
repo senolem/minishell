@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_searcher.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:24:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/08 09:45:02 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:01:30 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,9 @@ char	*path_searcher(char *cmd)
 			ft_arr_freer(cmd_args);
 			return (exec_path);
 		}
-		i++;
+		++i;
 	}
 	ft_arr_freer(paths);
 	ft_arr_freer(cmd_args);
 	return (NULL);
 }
-/*
-int	main(int argc, char *argv[])
-{
-	char	*exec;
-
-	(void)argc;
-	(void)argv;
-	exec = path_searcher("ls");
-	ft_printf("%s\n", exec);
-}
-*/

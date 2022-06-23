@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/23 13:39:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:32:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,25 @@ int			dquote_len_index(char *str, int *index);
 char		*ft_dquote_pruner_index(char *quote, char *str, int *index, int	*j);
 char		*env_get_pwd(void);
 int			ft_isoper(char c);
-int			oper_len_index(char *str, char oper, int *index);
+int			oper_len_index(char *str, int *index);
 char		*ft_oper_writer_index(char *quote, char *str, int *index, int *j);
 
 // env
 char		*env_get(char *name, char **env);
-void env_write(char *path, char **env);
+void		env_write(char *path, char **env);
 void		env_set(char *str, char *value, char ***env);
 char		**env_add(char *str, char ***env);
 char		*env_get(char *str, char **env);
 int			env_search(char *str, char **env);
-char **env_read(char *path);
+char		**env_read(char *path);
 
 // builtins
 void		pwd(void);
 
 // signals
 void		sig_ignore(t_data *data, int sig);
-void		sig_wait(t_data *data, int sig, void (*hdlr)(int, siginfo_t *, void *));
+void		sig_wait(t_data *data, int sig,
+				void (*hdlr)(int, siginfo_t *, void *));
 void		sig_handler(int sig, siginfo_t *info, void *context);
 
 // utils

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/22 15:36:57 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:33:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		i;
 	char	**arr;

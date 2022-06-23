@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/21 18:08:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/23 14:35:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void	init_ignore(t_data *data)
 	sig_wait(data, SIGINT, sig_handler);
 }
 
-static int init_mode(t_data *data)
+static int	init_mode(t_data *data)
 {
-	struct termios term;
+	struct termios	term;
 
 	if (isatty(STDIN_FILENO))
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_counter.c                                     :+:      :+:    :+:   */
+/*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:48:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/05/31 11:13:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:26:49 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	pipe_counter(char *str)
 	while (str[i])
 	{
 		if (str[i] == '|' && str[i + 1] == '|')
-			i++;
+			++i;
 		else if (str[i] == '|')
-			counter++;
-		i++;
+			++counter;
+		++i;
 	}
 	return (counter);
 }
@@ -39,10 +39,10 @@ int	parg_size(char *str, int i)
 	{
 		if (str[i - 1] != '|' && str[i] == '|' && str[i + 1] != '|')
 			break ;
-		counter++;
-		i++;
+		++counter;
+		++i;
 	}
-	counter++;
+	++counter;
 	return (counter);
 }
 
@@ -56,15 +56,15 @@ char	*parg_writer(char *dst, char *src, int *i)
 		dst[j] = src[*i];
 		if (src[*i - 1] != '|' && src[*i] == '|' && src[*i + 1] != '|')
 			break ;
-		(*i)++;
-		j++;
+		++(*i);
+		++j;
 	}
-	(*i)++;
+	++(*i);
 	dst[j] = '\0';
 	return (dst);
 }
 
-char	**parg_decoupage(char *str)
+char	**parg_cut(char *str)
 {
 	char	**arr;
 	int		i;
@@ -77,29 +77,12 @@ char	**parg_decoupage(char *str)
 		return (NULL);
 	while (i < pipe_counter(str) + 1)
 	{
-		ft_printf("%d\n", parg_size(str, j));
 		arr[i] = malloc(sizeof(char) * (parg_size(str, j)));
 		if (!arr[i])
 			return (NULL);
 		arr[i] = parg_writer(arr[i], str, &j);
-		i++;
+		++i;
 	}
 	arr[i] = NULL;
 	return (arr);
 }
-/*
-int	main()
-{
-	char **arr;
-	int	i = 0;
-	char *str = "ajdlhlah | jldhlada' || |jds;lndldan |";
-	arr = parg_decoupage(str);
-	while (arr[i])
-	{
-		ft_printf("%s\n", arr[i]);
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-*/
