@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/25 13:42:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:19:50 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,30 @@ typedef struct s_data
 	char		*input;
 }		t_data;
 
+typedef struct s_check
+{
+	int		i;
+	int		j;
+	int		k;
+	int		squote;
+	int		dquote;
+	char	**split;
+}		t_check;
+
 // init
 int			init_shell(t_data *data);
 int			init_env(void);
 
-// parsing
+// sanity check
+int			check_quotes(t_data *data);
+int			check_quotes_end(int *str);
+void		check_quotes_count(char *str, int *squote, int *dquote);
+
+// token
 t_token		*ft_token_creator(char c, int index);
 t_stack		*ft_tokenizer(char *arr[]);
 
+// parsing
 void		process_input(t_data *data);
 int			ms_check_charset(char c);
 int			quote_checker(char *line);
@@ -55,10 +71,6 @@ char		*env_get_pwd(void);
 int			ft_isoper(char c);
 int			oper_len_index(char *str, int *index);
 char		*ft_oper_writer_index(char *quote, char *str, int *index, int *j);
-
-int			check_start(t_data *data);
-int			check_quotes(t_data *data);
-int			check_quotes_closed(char *str, int squote, int dquote);
 
 // env
 char		*env_get(char *name, char **env);

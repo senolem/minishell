@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/25 13:40:11 by faventur         ###   ########.fr        #
+#    Updated: 2022/06/25 18:20:17 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_M = minishell.c
 SRCS_P = single_quotes.c double_quotes.c path_searcher.c pipe_manager.c \
 	ms_split.c ms_quote_manager.c process_input.c ft_tokenizer.c \
-	ft_isoper.c check.c
+	ft_isoper.c check.c check_utils.c
 SRCS_E = env.c env_search.c env_get_pwd.c
 SRCS_S = signal.c
 SRCS_I = init.c
