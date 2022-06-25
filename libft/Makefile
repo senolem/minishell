@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/10 17:55:49 by faventur          #+#    #+#              #
-#    Updated: 2022/06/21 15:36:54 by faventur         ###   ########.fr        #
+#    Updated: 2022/06/25 17:12:45 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c \
 	ft_putendl_fd.c ft_putnbr_fd.c ft_putnbr_base.c ft_sort_int_tab.c \
 	ft_sort_chartab.c ft_chartab_len.c ft_power.c ft_binary2char.c \
-	ft_strtolol.c ft_strstrbool.c ft_puterror.c ft_nodedel.c \
-	ft_arr_freer.c ft_printf.c ft_printf_basic.c ft_printf_utils.c \
-	ft_fprintf.c ft_fprintf_basic.c ft_fprintf_utils.c get_next_line.c
+	ft_strtolol.c ft_strstrbool.c ft_puterror.c ft_arr_freer.c \
+	ft_printf.c ft_printf_basic.c ft_printf_utils.c ft_fprintf.c \
+	ft_fprintf_basic.c ft_fprintf_utils.c get_next_line.c
 
 SRCSB	= get_next_line_bonus.c
 
@@ -36,7 +36,8 @@ SRCS_L	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 SRCS_S	= ft_stacknew.c ft_newnode.c ft_stackadd_top.c \
 	ft_stackadd_bottom.c ft_stackdelone.c ft_stackclear.c \
 	ft_stackinsert.c ft_stackiter.c ft_stacksize.c ft_stacksort.c \
-	ft_stackiter_if.c ft_stack_remove_if.c ft_create_chartab.c
+	ft_stackiter_if.c ft_stack_remove_if.c ft_create_chartab.c \
+	ft_nodedel.c
 
 SRCS_Q	= ft_newqueue.c ft_newqelem.c ft_q_init.c ft_enqueue.c \
 	ft_dequeue.c ft_q_iter.c
