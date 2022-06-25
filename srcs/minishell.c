@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/23 14:33:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/25 18:23:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	int		i;
-	char	**arr;
 	t_data	*data;
 
-	i = 0;
 	data = malloc(sizeof(t_data));
 	if (argc > 1 && argv)
 		throw_error(data, "Error", E2BIG);
@@ -28,15 +25,6 @@ int	main(int argc, char **argv)
 		data->input = readline(ft_strjoin(env_get_pwd(), " $ "));
 		if (data->input == NULL)
 			break ;
-//		ft_tokenizer(data->input);
-		arr = ms_split(data->input);
-		int i = 0;
-		while (arr[i])
-		{
-			printf("%s\n", arr[i]);
-			i++;
-		}
-		i = 0;
 		process_input(data);
 		free(data->input);
 	}

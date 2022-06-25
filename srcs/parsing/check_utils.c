@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_input.c                                    :+:      :+:    :+:   */
+/*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/25 17:31:54 by albaur           ###   ########.fr       */
+/*   Created: 2022/06/25 18:17:17 by albaur            #+#    #+#             */
+/*   Updated: 2022/06/25 18:17:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	process_input(t_data *data)
+int	check_quotes_end(int *str)
 {
-	int		i;
-	char	**arr;
+	int	i;
 
 	i = 0;
-	if (data->input && data->input[0] != '\0' && data->mode)
-		add_history(data->input);
-	if (check_quotes(data) > 0)
+	while (str[i] != '\0')
 	{
-		ft_printf("\033[31mSyntax error : invalid quote sequence\033[0m\n");
-		return ;
+		if (str[i] != 3)
+			return (1);
+		++i;
 	}
-	//ft_tokenizer(data->input);
-	arr = ms_split(data->input);
-	while (arr[i])
+	return (0);
+}
+
+void	check_quotes_count(char *str, int *squote, int *dquote)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		printf("%s\n", arr[i]);
-		i++;
+		if (str[i] == '\'')
+			++*squote;
+		else if (str[i] == '\"')
+			++*dquote;
+		++i;
 	}
 }
