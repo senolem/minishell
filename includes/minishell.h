@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/23 14:32:16 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/25 13:42:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ char		*env_get_pwd(void);
 int			ft_isoper(char c);
 int			oper_len_index(char *str, int *index);
 char		*ft_oper_writer_index(char *quote, char *str, int *index, int *j);
+
+int			check_start(t_data *data);
+int			check_quotes(t_data *data);
+int			check_quotes_closed(char *str, int squote, int dquote);
 
 // env
 char		*env_get(char *name, char **env);
