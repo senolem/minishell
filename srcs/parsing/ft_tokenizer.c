@@ -6,16 +6,11 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/22 17:26:35 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:17:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	subcategorize(t_token *token, int subtype)
-{
-	token->subtype = subtype;
-}
 
 int	ft_tokcmp(t_token *token, int type)
 {
@@ -38,46 +33,34 @@ t_node	*token_parser(t_stack *stack, int type)
 	return (NULL);
 }
 
-/*
-static void	ft_token_creator_pt2(t_token *token, char c)
-{
-	if (c == '\n')
-		token->type = newline_type;
-	else if (c == '~')
-		token->type = tilde_type;
-	else if (c == '/')
-		token->type = slash_type;
-}
-
 t_token	*ft_token_creator(char *line, int line_index)
 {
 	t_token	*token;
 
 	token = malloc(sizeof(*token));
 	ft_memset(token, 0, sizeof(*token));
-	token->word = ft_strdup(line);
+	token->str = ft_strdup(line);
 	token->index = line_index;
-	if (ft_isalnum(c))
-		token->type = char_type;
-	else if (c == '\\')
-		token->type = backslash_type;
-	else if (c == '\'')
-		token->type = squote_type;
-	else if (c == '\"')
-		token->type = dquote_type;
-	else if (c == '|')
+	if (!ft_strstrbool(line, "&&"))
+		token->type = and_type;
+	else if (!ft_strstrbool(line, "||"))
+		token->type = or_type;
+	else if (!ft_strstrbool(line, "|"))
 		token->type = pipe_type;
-	else if (c == '<')
+	else if (!ft_strstrbool(line, "<<"))
+		token->type = d_smaller_than_type;
+	else if (!ft_strstrbool(line, "<"))
 		token->type = smaller_than_type;
-	else if (c == '>')
+	else if (!ft_strstrbool(line, ">>"))
+		token->type = d_greater_than_type;
+	else if (!ft_strstrbool(line, ">"))
 		token->type = greater_than_type;
-	else if (c == ' ' || c == '\t' || c == '\r' || c == '\v' || c == '\f')
-		token->type = whitespace_type;
+	else if (!ft_strstrbool(line, ""))
+		token->type = empty_type;
 	else
-		ft_token_creator_pt2(token, c);
+		token->type = word_type;
 	return (token);
 }
-*/
 /*
 // je cree une liste d'elements que je vais inserer dans ma liste chainee apres coup
 t_node	*ft_tokstr_parser(t_token *tok, char c)
@@ -123,17 +106,6 @@ void	ft_token_manager(t_stack *stack)
 	}
 }
 */
-t_token	*ft_word_creator(char *line, int line_index)
-{
-	t_token	*token;
-
-	token = malloc(sizeof(*token));
-	ft_memset(token, 0, sizeof(*token));
-	token->str = ft_strdup(line);
-	token->index = line_index;
-	token->type = str_type;
-	return (token);
-}
 
 t_stack	*ft_tokenizer(char *arr[])
 {
@@ -144,7 +116,7 @@ t_stack	*ft_tokenizer(char *arr[])
 	new = ft_stacknew();
 	while (arr[i])
 	{
-		ft_stackadd_bottom(new, ft_newnode(ft_word_creator(arr[i], i)));
+		ft_stackadd_bottom(new, ft_newnode(ft_token_creator(arr[i], i)));
 		i++;
 	}
 //	ft_token_manager(new);

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 16:00:52 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/10 11:21:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:05:08 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 ** Return Value: This function returns 0 if the substring is found, 1 if
 ** it's not found.
 **
-** Notice: I created the strstrbool() function for use with my 
-** ft_stack_remove_if() function, that's why it returns a 0 where it should
-** return a 1 and vice versa.
+** Notice: I created the strstrbool() function for use with my
+** ft_stack_remove_if() function, that's why it returns a 0 where it
+** should return a 1 and vice versa.
 */
 
 #include "libft.h"

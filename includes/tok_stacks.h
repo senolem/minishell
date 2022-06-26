@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:18:14 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/22 16:34:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:07:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,23 @@ typedef struct s_token
 {
 	char			*str;
 	int				type;
-	int				subtype;
 	int				index;
 }				t_token;
 
 // token types
 enum e_lexer_type
 {
-	str_type = 1,
-	squote_type,
-	dquote_type,
+	word_type = 1,
 	greater_than_type,
+	d_greater_than_type,
 	smaller_than_type,
+	d_smaller_than_type,
 	pipe_type,
-	whitespace_type,
-	newline_type,
-	backslash_type,
+	and_type,
+	or_type,
 	slash_type,
-	tilde_type
+	tilde_type,
+	empty_type
 };
 
 #endif
