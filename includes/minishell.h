@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/25 18:19:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/26 17:05:07 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <signal.h>
 # include <termios.h>
 # include "libft.h"
+# include "_functions.h"
 # include "tok_stacks.h"
 
 # define ENV_FILE "/tmp/minishell_env"
@@ -53,7 +54,7 @@ int			check_quotes_end(int *str);
 void		check_quotes_count(char *str, int *squote, int *dquote);
 
 // token
-t_token		*ft_token_creator(char c, int index);
+t_token		*ft_token_creator(char *line, int index);
 t_stack		*ft_tokenizer(char *arr[]);
 
 // parsing

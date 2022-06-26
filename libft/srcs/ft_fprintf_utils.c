@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_fprintf_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:56:39 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/16 15:11:49 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/26 16:10:35 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fprintf.h"
 
-int	ft_putchar_count(char c, t_tools var)
+int	fpf_putchar_count(char c, t_tools var)
 {
 	write(var.fd, &c, 1);
 	(*var.n_char)++;
 	return (*var.n_char);
 }
 
-int	ft_putstr_count(char *str, t_tools var)
+int	fpf_putstr_count(char *str, t_tools var)
 {
 	if (!str)
 	{
@@ -29,13 +29,13 @@ int	ft_putstr_count(char *str, t_tools var)
 	}
 	while (*str != '\0')
 	{
-		ft_putchar_count(*str, var);
+		fpf_putchar_count(*str, var);
 		str++;
 	}
 	return (*var.n_char);
 }
 
-int	ft_putnbr_count(int nbr, char *base, t_tools var)
+int	fpf_putnbr_count(int nbr, char *base, t_tools var)
 {
 	int			i;
 	int			ret[100];
@@ -44,11 +44,11 @@ int	ft_putnbr_count(int nbr, char *base, t_tools var)
 	i = 0;
 	x = nbr;
 	if (nbr == 0)
-		ft_putchar_count(0 + '0', var);
+		fpf_putchar_count(0 + '0', var);
 	if (x < 0)
 	{
 		x *= -1;
-		ft_putchar_count('-', var);
+		fpf_putchar_count('-', var);
 	}
 	while (x > 0)
 	{
@@ -57,11 +57,11 @@ int	ft_putnbr_count(int nbr, char *base, t_tools var)
 		i++;
 	}
 	while (--i >= 0)
-		ft_putchar_count(base[ret[i]], var);
+		fpf_putchar_count(base[ret[i]], var);
 	return (*var.n_char);
 }
 
-int	ft_put_unsigned(int nbr, char *base, t_tools var)
+int	fpf_put_unsigned(int nbr, char *base, t_tools var)
 {
 	int				i;
 	int				ret[100];
@@ -70,7 +70,7 @@ int	ft_put_unsigned(int nbr, char *base, t_tools var)
 	x = (unsigned int)nbr;
 	i = 0;
 	if (nbr == 0)
-		ft_putchar_count(0 + '0', var);
+		fpf_putchar_count(0 + '0', var);
 	while (x > 0)
 	{
 		ret[i] = x % 10;
@@ -78,6 +78,6 @@ int	ft_put_unsigned(int nbr, char *base, t_tools var)
 		i++;
 	}
 	while (--i >= 0)
-		ft_putchar_count(base[ret[i]], var);
+		fpf_putchar_count(base[ret[i]], var);
 	return (*var.n_char);
 }

@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/10 17:55:49 by faventur          #+#    #+#              #
-#    Updated: 2022/06/26 15:50:36 by faventur         ###   ########.fr        #
+#    Updated: 2022/06/26 17:18:30 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,14 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c \
 	ft_putendl_fd.c ft_putnbr_fd.c ft_putnbr_base.c ft_sort_int_tab.c \
 	ft_sort_chartab.c ft_chartab_len.c ft_power.c ft_binary2char.c \
-	ft_strtolol.c ft_strstrbool.c ft_arr_freer.c ft_puterror.c \
-	ft_printf.c ft_printf_basic.c ft_printf_utils.c ft_fprintf.c \
-	ft_fprintf_basic.c ft_fprintf_utils.c ft_printerror.c \
-	ft_map_reader.c get_next_line.c \
+	ft_strtolol.c ft_arr_freer.c ft_puterror.c ft_printf.c \
+	ft_printf_basic.c ft_printf_utils.c ft_fprintf.c ft_fprintf_basic.c \
+	ft_fprintf_utils.c get_next_line.c \
 
 SRCSB	= get_next_line_bonus.c
+
+SRCS_FT	= ft_strstrbool.c ft_strnstrbool.c ft_map_reader.c \
+	ft_printerror.c
 
 SRCS_L	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
@@ -51,6 +53,8 @@ OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
 
 OBJSB	= $(addprefix srcsb/, ${SRCSB:.c=.o})
 
+OBJS_FT	= $(addprefix _ft/, ${SRCS_FT:.c=.o})
+
 OBJS_L	= $(addprefix lists/, ${SRCS_L:.c=.o})
 
 OBJS_S	= $(addprefix stacks/, ${SRCS_S:.c=.o})
@@ -72,6 +76,9 @@ all:		${NAME}
 bonus:		${NAME} ${OBJSB}
 			ar -rcs ${NAME} ${OBJSB}
 
+_ft:		${NAME} ${OBJS_FT}
+			ar -rcs ${NAME} ${OBJS_FT}
+
 lists:		${NAME} ${OBJS_L}
 			ar -rcs ${NAME} ${OBJS_L}
 
@@ -85,7 +92,8 @@ btrees:		${NAME} ${OBJS_BT}
 			ar -rcs ${NAME} ${OBJS_BT}
 
 clean:
-			rm -f ${OBJS} ${OBJSB} ${OBJS_L} ${OBJS_S} ${OBJS_Q} ${OBJS_BT}
+			rm -f ${OBJS} ${OBJSB} ${OBJS_FT} ${OBJS_L} ${OBJS_S} \
+				${OBJS_Q} ${OBJS_BT}
 
 fclean:		clean
 			rm -f ${NAME}

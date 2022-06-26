@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nodedel.c                                       :+:      :+:    :+:   */
+/*   ft_map_reader.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:44:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 15:49:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/26 16:05:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ** of strings made up of the lines composing the file.
 */
 
-#include "libft.h"
+#include "_functions.h"
 
 char	**ft_map_reader(char *filename)
 {

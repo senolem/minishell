@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/25 18:20:17 by albaur           ###   ########.fr        #
+#    Updated: 2022/06/26 17:10:26 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ all: $(NAME)
 $(NAME): $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)
 	@echo "$(HIRED)Compiling...$(NONE)"
 	@$(MAKE) stacks -sC ./libft
+	@$(MAKE) _ft -sC ./libft
 	@mv ./libft/libft.a .
 	@gcc $(FLAGS) $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B) libft.a $(LINKS) -L${HOME}/goinfre/.brew/opt/readline/lib -o $(NAME)
 	@echo "$(CURSIVE)$(HIBLUE)Parce que taper une commande,$(NONE)"

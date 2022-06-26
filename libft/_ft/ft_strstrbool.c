@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 16:00:52 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 14:05:08 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/26 16:22:51 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** should return a 1 and vice versa.
 */
 
-#include "libft.h"
+#include "_functions.h"
 
 int	ft_strstrbool(const char *haystack, const char *needle)
 {
