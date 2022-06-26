@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/26 17:10:26 by faventur         ###   ########.fr        #
+#    Updated: 2022/06/26 22:47:32 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS_E = env.c env_search.c env_get_pwd.c
 SRCS_S = signal.c
 SRCS_I = init.c
 SRCS_U = utils.c
-SRCS_B = pwd.c
+SRCS_B = pwd.c cd.c export.c
 
 OBJS_M = $(addprefix srcs/, ${SRCS_M:.c=.o})
 OBJS_I = $(addprefix srcs/init/, ${SRCS_I:.c=.o})
