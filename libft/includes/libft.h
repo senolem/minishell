@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:19:34 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 15:39:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:51:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
 # include <errno.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
@@ -110,5 +111,6 @@ int		ft_strstrbool(const char *haystack, const char *needle);
 void	ft_arr_freer(char **arr);
 void	ft_puterror(const char *str);
 void	ft_printerror(char *program, char *pathname);
+char	**ft_map_reader(char *filename);
 
 #endif

@@ -6,17 +6,42 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:44:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/21 15:35:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/26 15:49:51 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** The ft_map_reader() function opens the .ber files and creates an array
+** of strings made up of the lines composing the file.
+*/
+
 #include "libft.h"
 
-void	ft_nodedel(void *as)
+char	**ft_map_reader(char *filename)
 {
-	if (as != NULL)
+	char	**arr;
+	char	*buffer;
+	char	*temp;
+	int		fd;
+	int		i;
+
+	fd = open(filename, O_RDONLY);
+	i = 0;
+	buffer = malloc(sizeof(char) * 1);
+	if (!buffer)
+		return (NULL);
+	buffer[0] = '\0';
+	temp = buffer;
+	while (42)
 	{
-		free(as);
-		as = NULL;
+		temp = get_next_line(fd);
+		if (temp == NULL)
+			break ;
+		buffer = ft_strjoin(buffer, temp);
+		free(temp);
 	}
+	arr = ft_split(buffer, '\n');
+	free(buffer);
+	close(fd);
+	return (arr);
 }
