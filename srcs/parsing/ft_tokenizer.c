@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 16:29:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/26 19:24:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_token	*ft_token_creator(char *line, int line_index)
 		token->type = d_greater_than_type;
 	else if (!ft_strstrbool(line, ">"))
 		token->type = greater_than_type;
-	else if (!ft_strnstrbool(line, "", 1))
+	else if (line[0] == '\0')
 		token->type = empty_type;
 	else
 		token->type = word_type;
