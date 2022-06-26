@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puterror.c                                      :+:      :+:    :+:   */
+/*   ft_printerror.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/29 14:07:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 15:38:57 by faventur         ###   ########.fr       */
+/*   Created: 2022/06/26 15:37:19 by faventur          #+#    #+#             */
+/*   Updated: 2022/06/26 15:38:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_puterror(const char *str)
+void	ft_printerror(char *program, char *pathname)
 {
-	ft_putendl_fd(str, 2);
+	ft_fprintf(2, "%s: %s: %s\n", program, pathname, strerror(errno));
 	exit(1);
 }

@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/10 17:55:49 by faventur          #+#    #+#              #
-#    Updated: 2022/06/25 17:15:34 by faventur         ###   ########.fr        #
+#    Updated: 2022/06/26 15:41:04 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c \
 	ft_putendl_fd.c ft_putnbr_fd.c ft_putnbr_base.c ft_sort_int_tab.c \
 	ft_sort_chartab.c ft_chartab_len.c ft_power.c ft_binary2char.c \
-	ft_strtolol.c ft_strstrbool.c ft_puterror.c ft_arr_freer.c \
+	ft_strtolol.c ft_strstrbool.c ft_arr_freer.c ft_puterror.c \
 	ft_printf.c ft_printf_basic.c ft_printf_utils.c ft_fprintf.c \
-	ft_fprintf_basic.c ft_fprintf_utils.c get_next_line.c
+	ft_fprintf_basic.c ft_fprintf_utils.c ft_printerror.c get_next_line.c \
 
 SRCSB	= get_next_line_bonus.c
 
