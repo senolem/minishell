@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 23:31:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/27 16:04:47 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:36:26 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static char	*ft_trim_and_copy(char *dest, char const *src)
 	i = 0;
 	j = 0;
 	len = ft_strlen(src) - 1;
-	while (src[i] && ft_isspace(src[i]))
+	while (src[i] && ft_isspace(src[i]) && i <= len)
 		i++;
-	while (src[len] && ft_isspace(src[len]))
+	while (src[len] && ft_isspace(src[len]) && i <= len)
 		len--;
 	while (i <= len)
 	{
@@ -60,9 +60,9 @@ static size_t	ft_trim_and_count(char const *s)
 	i = 0;
 	counter = 0;
 	len = ft_strlen(s) - 1;
-	while (s[i] && ft_isspace(s[i]))
+	while (s[i] && ft_isspace(s[i]) && i <= len)
 		i++;
-	while (s[len] && ft_isspace(s[len]))
+	while (s[len] && ft_isspace(s[len]) && i <= len)
 		len--;
 	while (i <= len)
 	{

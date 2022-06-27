@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:21:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/27 17:50:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:40:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,12 @@ char	**ft_split(char const *s, char c)
 	var.j = 0;
 	var.k = 0;
 	var.tab_size = ft_word_counter(s, c);
-	if (!var.tab_size)
-		return (NULL);
 	var.strtab = (char **)malloc(sizeof(char *) * (var.tab_size + 1));
 	if (!var.strtab)
 		return (NULL);
 	while (var.k < ft_word_counter(s, c))
 	{
 		var.str_len = let_count((char *)s, c, &var.i);
-		if (!var.str_len)
-			return (ft_arr_freer_index(var.strtab, &var.k));
 		var.strtab[var.k] = malloc(sizeof(char) * (var.str_len + 1));
 		if (!var.strtab[var.k])
 			return (ft_arr_freer_index(var.strtab, &var.k));
