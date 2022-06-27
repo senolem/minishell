@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 23:31:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/28 16:57:59 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:07:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 
 static int	ft_check_charset(char c, const char *set)
 {
-	int	i;
+	size_t	i;
 
+	if (!set)
+		return (NULL);
 	i = 0;
 	while (set[i] != 0)
 	{
@@ -39,10 +41,12 @@ static int	ft_check_charset(char c, const char *set)
 
 static char	*ft_trim_and_copy(char *dest, const char *src, const char *set)
 {
-	int	i;
-	int	j;
-	int	len;
+	size_t	i;
+	size_t	j;
+	size_t	len;
 
+	if (!dest || !src || !set)
+		return (NULL);
 	i = 0;
 	j = 0;
 	len = ft_strlen(src) - 1;
@@ -62,10 +66,12 @@ static char	*ft_trim_and_copy(char *dest, const char *src, const char *set)
 
 static size_t	ft_trim_and_count(const char *s, const char *set)
 {
-	int	i;
-	int	counter;
-	int	len;
+	size_t	i;
+	size_t	counter;
+	size_t	len;
 
+	if (!s || !set)
+		return (0);
 	i = 0;
 	counter = 0;
 	len = ft_strlen(s) - 1;
@@ -89,9 +95,13 @@ char	*ft_strtrim(const char *s, const char *set)
 	if (!s || !set)
 		return (NULL);
 	len = ft_trim_and_count(s, set);
+	if (!len)
+		return (NULL);
 	copy = (char *)malloc(sizeof(char) * (len + 1));
 	if (copy == NULL)
 		return (NULL);
 	ft_trim_and_copy(copy, s, set);
+	if (!copy)
+		return (NULL);
 	return (copy);
 }

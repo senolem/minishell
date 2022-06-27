@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_ft.c                                         :+:      :+:    :+:   */
+/*   ft_printf_basic.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:56:34 by faventur          #+#    #+#             */
-/*   Updated: 2022/03/12 14:27:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:28:02 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_putoctals_count(int nbr, char *base, int *n_char)
 {
-	int			i;
-	int			ret[100];
+	int	i;
+	int	ret[100];
 
 	i = 0;
 	if (nbr == 0)
@@ -38,8 +38,8 @@ int	ft_putoctals_count(int nbr, char *base, int *n_char)
 
 int	ft_puthexa(unsigned int nbr, char *base, int *n_char)
 {
-	int			i;
-	int			ret[100];
+	int	i;
+	int	ret[100];
 
 	i = 0;
 	if (nbr == 0)

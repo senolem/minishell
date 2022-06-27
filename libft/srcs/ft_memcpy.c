@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 12:18:18 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/26 12:04:47 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:26:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t size)
 {
-	unsigned int	i;
+	size_t	i;
 
-	i = 0;
-	if (!dst && !src)
+	if (!dst || !src || !size)
 		return (NULL);
+	i = 0;
 	while (size--)
 	{
 		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];

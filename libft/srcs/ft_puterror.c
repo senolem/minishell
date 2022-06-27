@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 14:07:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 15:38:57 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:16:26 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_puterror(const char *str)
 {
-	ft_putendl_fd(str, 2);
-	exit(1);
+	if (str)
+	{
+		ft_putendl_fd(str, 2);
+		exit(1);
+	}
 }

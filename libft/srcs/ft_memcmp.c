@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 18:26:26 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/26 11:23:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:26:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t	i;
 
-	i = 0;
-	if (!n)
+	if (!s1 || !s2 || !n)
 		return (0);
+	i = 0;
 	while (((unsigned char *)s1)[i] == ((unsigned char *)s2)[i] && i < n - 1)
 		i++;
 	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);

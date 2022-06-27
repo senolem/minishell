@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:21:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/28 16:26:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:03:35 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ static int	ft_check_charset(char c, char set)
 	return (0);
 }
 
-static int	ft_word_counter(const char *s, char set)
+static size_t	ft_word_counter(const char *s, char set)
 {
-	int		counter;
+	size_t	counter;
 	char	*str;
 
+	if (!s)
+		return (0);
 	counter = 0;
 	str = (char *)s;
 	while (*str != '\0')
@@ -43,10 +45,12 @@ static int	ft_word_counter(const char *s, char set)
 	return (counter);
 }
 
-static int	let_count(char *str, char set, int *index)
+static size_t	let_count(char *str, char set, size_t *index)
 {
-	int	j;
+	size_t	j;
 
+	if (!str)
+		return (NULL);
 	j = 0;
 	while (ft_check_charset(str[*index], set))
 		(*index)++;
@@ -58,10 +62,12 @@ static int	let_count(char *str, char set, int *index)
 	return (j);
 }
 
-static char	*ft_word_split(char	*newstr, char *str, char set, int *index)
+static char	*ft_word_split(char	*newstr, char *str, char set, size_t *index)
 {
-	int	j;
+	size_t	j;
 
+	if (!newstr || !str)
+		return (NULL);
 	j = 0;
 	while (ft_check_charset(str[*index], set))
 		(*index)++;
@@ -73,26 +79,29 @@ static char	*ft_word_split(char	*newstr, char *str, char set, int *index)
 
 char	**ft_split(char const *s, char c)
 {
-	char	**strtab;
-	int		i;
-	int		j;
-	int		k;
+	t_split	var;
 
 	if (!s)
 		return (NULL);
-	strtab = (char **)malloc(sizeof(char *) * (ft_word_counter(s, c) + 1));
-	if (!strtab)
+	var.i = 0;
+	var.j = 0;
+	var.k = 0;
+	var.tab_size = ft_word_counter(s, c);
+	if (!var.tab_size)
 		return (NULL);
-	i = 0;
-	j = 0;
-	k = 0;
-	while (k < ft_word_counter(s, c))
+	var.strtab = (char **)malloc(sizeof(char *) * (var.tab_size + 1));
+	if (!var.strtab)
+		return (NULL);
+	while (var.k < ft_word_counter(s, c))
 	{
-		strtab[k] = malloc(sizeof(char) * (let_count((char *)s, c, &i) + 1));
-		if (!strtab[k])
-			return (NULL);
-		ft_word_split(strtab[k++], (char *)s, c, &j);
+		var.str_len = let_count((char *)s, c, &var.i);
+		if (!var.str_len)
+			return (ft_arr_freer_index(var.strtab, &var.k));
+		var.strtab[var.k] = malloc(sizeof(char) * (var.str_len + 1));
+		if (!var.strtab[var.k])
+			return (ft_arr_freer_index(var.strtab, &var.k));
+		ft_word_split(var.strtab[var.k++], (char *)s, c, &var.j);
 	}
-	strtab[k] = NULL;
-	return (strtab);
+	var.strtab[var.k] = NULL;
+	return (var.strtab);
 }

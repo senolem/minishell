@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:56:34 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 16:11:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:23:29 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	fpf_putoctals_count(int nbr, char *base, t_tools var)
 {
-	int			i;
-	int			ret[100];
+	int	i;
+	int	ret[100];
 
 	i = 0;
 	if (nbr == 0)
@@ -38,8 +38,8 @@ int	fpf_putoctals_count(int nbr, char *base, t_tools var)
 
 int	fpf_puthexa(unsigned int nbr, char *base, t_tools var)
 {
-	int			i;
-	int			ret[100];
+	int	i;
+	int	ret[100];
 
 	i = 0;
 	if (nbr == 0)

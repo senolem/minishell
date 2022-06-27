@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 16:02:26 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/25 20:48:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:30:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
-	int	i;
+	size_t	i;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	while (((unsigned char *)s1)[i] != '\0' && ((unsigned char *)s2)[i] != '\0')
 	{

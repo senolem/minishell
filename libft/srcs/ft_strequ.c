@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 11:35:25 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/25 18:55:57 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:40:16 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@
 
 int	ft_strequ(const char *s1, const char *s2)
 {
-	int	i;
+	size_t	i;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	if (s1[i] == '\0' && s2[i] == '\0')
 		return (1);

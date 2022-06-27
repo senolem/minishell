@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:38:55 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 16:23:19 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:22:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_arr_freer(char **arr)
 {
-	int	i;
+	size_t	i;
 
+	if (!arr || *arr)
+		return (NULL);
 	i = 0;
 	while (arr[i])
 	{

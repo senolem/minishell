@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 18:13:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/26 13:52:01 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:35:50 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	if (!n)
 		return (0);

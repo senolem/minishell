@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 12:00:43 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/15 16:57:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:50:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	ft_strtolol(const char *str)
 {
-	int			i;
+	size_t		i;
 	long long	rt;
 	int			pm;
 
+	if (!str)
+		return (0);
 	rt = 0;
 	i = 0;
 	pm = 1;

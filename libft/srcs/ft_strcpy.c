@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 11:55:47 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/23 11:58:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:30:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*ft_strcpy(char *dest, const char *src)
 {
 	size_t	i;
 
+	if (!dest || !src)
+		return (NULL);
 	i = 0;
 	while (src[i] != '\0')
 	{

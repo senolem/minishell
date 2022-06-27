@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 18:13:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/03/02 11:11:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:24:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
+	if (!s || !n)
+		return (NULL);
 	while (n > 0 && *(unsigned char *)s != (unsigned char)c)
 	{
 		s++;

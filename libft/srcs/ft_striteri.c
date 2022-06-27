@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:04:52 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/28 10:49:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:41:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	unsigned int	i;
+	size_t	i;
 
-	i = 0;
 	if (!s || !f)
 		return ;
+	i = 0;
 	while (s[i] && s[i] != '\0')
 	{
 		f(i, &s[i]);
