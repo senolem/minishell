@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:19:34 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 16:24:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:04:07 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 # include <string.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
+
+typedef struct s_split
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	size_t	tab_size;
+	size_t	str_len;
+	char	**strtab;
+}					t_split;
 
 typedef struct s_list
 {
@@ -106,6 +116,7 @@ int		ft_power(int n, int power);
 char	ft_binary2char(char *binary);
 int		ft_strtolol(const char *str);
 void	ft_arr_freer(char **arr);
+char	**ft_arr_freer_index(char **arr, size_t *index);
 void	ft_puterror(const char *str);
 
 #endif

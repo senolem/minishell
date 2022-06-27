@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 11:29:35 by faventur          #+#    #+#             */
-/*   Updated: 2022/03/01 18:17:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:15:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	ft_putendl_fd(char const *s, int fd)
 {
-	if (fd >= 0)
+	if (fd >= 0 && s)
 	{
 		ft_putstr_fd(s, fd);
 		write(fd, "\n", 1);

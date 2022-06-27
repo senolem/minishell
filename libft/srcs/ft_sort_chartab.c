@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:20:58 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/01 15:21:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:05:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_sort_chartab(char **tab)
 	size_t	i;
 	size_t	size;
 
+	if (!tab)
+		return ;
 	i = 0;
 	size = ft_chartab_len(tab);
 	while (i < size - 1)

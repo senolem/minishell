@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 10:49:08 by faventur          #+#    #+#             */
-/*   Updated: 2022/02/25 18:44:08 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:06:11 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	ft_putstr(char const *str)
 {
-	while (*str != '\0')
+	if (str)
 	{
-		ft_putchar(*str);
-		str++;
+		while (*str != '\0')
+		{
+			ft_putchar(*str);
+			str++;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 23:31:36 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/04 16:14:10 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:04:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,18 @@
 
 static char	*ft_trim_and_copy(char *dest, char const *src)
 {
-	int	i;
-	int	j;
-	int	len;
+	size_t	i;
+	size_t	j;
+	size_t	len;
 
+	if (!dest || !src)
+		return (NULL);
 	i = 0;
 	j = 0;
 	len = ft_strlen(src) - 1;
-	while (src[i] && (src[i] == ' ' || src[i] == '\n' || src[i] == '\t'))
+	while (src[i] && ft_isspace(src[i]))
 		i++;
-	while (src[len] && (src[len] == ' '
-			|| src[len] == '\n' || src[len] == '\t'))
+	while (src[len] && ft_isspace(src[len]))
 		len--;
 	while (i <= len)
 	{
@@ -50,16 +51,18 @@ static char	*ft_trim_and_copy(char *dest, char const *src)
 
 static size_t	ft_trim_and_count(char const *s)
 {
-	int	i;
-	int	counter;
-	int	len;
+	size_t	i;
+	size_t	counter;
+	size_t	len;
 
+	if (!s)
+		return (0);
 	i = 0;
 	counter = 0;
 	len = ft_strlen(s) - 1;
-	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
+	while (s[i] && ft_isspace(s[i]))
 		i++;
-	while (s[len] && (s[len] == ' ' || s[len] == '\n' || s[len] == '\t'))
+	while (s[len] && ft_isspace(s[len]))
 		len--;
 	while (i <= len)
 	{
@@ -74,10 +77,16 @@ char	*ft_spacetrim(char const *s)
 	char	*copy;
 	size_t	len;
 
+	if (!s)
+		return (NULL);
 	len = ft_trim_and_count(s);
+	if (!len)
+		return (NULL);
 	copy = (char *)malloc(sizeof(char) * (len + 1));
 	if (copy == NULL)
 		return (NULL);
 	ft_trim_and_copy(copy, s);
+	if (!copy)
+		return (NULL);
 	return (copy);
 }

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:54:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/04 16:09:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:22:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_atoi(const char *nptr)
 	int		res;
 	char	*charptr;
 
+	if (!nptr)
+		return (-1);
 	counter = 0;
 	res = 0;
 	while (*nptr && ft_isspace(*nptr))

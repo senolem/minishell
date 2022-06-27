@@ -6,63 +6,62 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 20:24:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/05 14:06:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:29:18 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	check_base(char *base)
+int	check_base(char *base)
 {
 	int	i;
-	int	z;
+	int	j;
+	int	len;
 
 	i = 0;
-	z = 0;
-	if (base[0] == '\0' || base[1] == '\0')
+	len = ft_strlen(base);
+	if (len == 0 || len == 1)
 		return (0);
 	while (base[i])
 	{
-		z = i + 1;
-		if (base[i] == '+' || base[i] == '-')
+		j = i + 1;
+		if (base[i] == '-' || base[i] == '+' || base[i] < 32 || base[i] > 126)
 			return (0);
-		if (base[i] < 32 || base[i] > 126)
-			return (0);
-		while (base[z])
+		while (base[j])
 		{
-			if (base[i] == base[z])
+			if (base[i] == base[j])
 				return (0);
-			z++;
+			j++;
 		}
 		i++;
 	}
 	return (1);
 }
 
+void	convert_base(long int num, char *base)
+{
+	long int	len;
+
+	len = ft_strlen(base);
+	if (num >= len)
+		convert_base(num / len, base);
+	ft_putchar(base[num % len]);
+}
+
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int	size_base;
-	int	nbr_final[100];
-	int	i;
+	long int	nbr2;
 
-	i = 0;
-	size_base = 0;
+	if (!base)
+		return ;
+	nbr2 = nbr;
 	if (check_base(base))
 	{
 		if (nbr < 0)
 		{
-			nbr = -nbr;
-			ft_putchar('-');
+			write(1, "-", 1);
+			nbr2 = -nbr2;
 		}
-		while (base[size_base])
-			size_base++;
-		while (nbr)
-		{
-			nbr_final[i] = nbr % size_base;
-			nbr = nbr / size_base;
-			i++;
-		}
-		while (--i >= 0)
-			ft_putchar(base[nbr_final[i]]);
+		convert_base(nbr2, base);
 	}
 }

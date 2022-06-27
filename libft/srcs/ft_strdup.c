@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 12:38:44 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/04 16:39:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:30:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ char	*ft_strdup(const char *src)
 {
 	char	*dst;
 
+	if (!src)
+		return (NULL);
 	dst = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
-	if (dst == NULL)
+	if (!dst)
 		return (NULL);
 	ft_strcpy(dst, src);
 	return (dst);

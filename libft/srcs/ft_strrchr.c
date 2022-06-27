@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 14:42:55 by faventur          #+#    #+#             */
-/*   Updated: 2022/03/02 13:54:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:51:03 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*ft_strrchr(const char *str, int c)
 {
 	char	*charptr;
 
+	if (!str)
+		return (NULL);
 	charptr = NULL;
 	while (*str != '\0')
 	{
