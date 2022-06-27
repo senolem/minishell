@@ -6,13 +6,13 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:22:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 16:47:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 17:48:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_arrlen(char **array)
+size_t	ft_arrlen(char **array)
 {
 	size_t	i;
 
