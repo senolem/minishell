@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 17:47:07 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 17:58:59 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,28 @@ char	**env_read(char *path)
 	r.tmp[0] = 0;
 	r.fd = open(path, O_RDONLY, 0777);
 	if (r.fd < 0)
+	{
+		close(r.fd);
+		free(r.tmp);
 		return (NULL);
+	}
 	while (r.i > 0)
 	{
 		r.i = read(r.fd, r.buffer, 1);
 		if (r.i == -1)
+		{
+			close(r.fd);
+			free(r.tmp);
 			return (NULL);
+		}
 		r.buffer[r.i] = 0;
 		r.tmp = ft_strjoin(r.tmp, r.buffer);
 		if (!r.tmp)
+		{
+			close(r.fd);
+			free(r.tmp);
 			return (NULL);
+		}
 	}
 	r.env = ft_split(r.tmp, '\n');
 	close(r.fd);
@@ -55,15 +67,24 @@ char	*env_get(char *str, char **env)
 		return (NULL);
 	tmp = ft_strjoin(str, "=");
 	if (!tmp)
+	{
+		free(tmp);
 		return (NULL);
+	}
 	if (env_search(str, env))
 	{
 		i = env_search(str, env);
 		tmp2 = ft_strdup(env[i] + ft_strlen(tmp));
 		if (!tmp2)
+		{
+			free(tmp);
+			free(tmp2);
 			return (NULL);
+		}
 		return (tmp2);
 	}
+	free(tmp);
+	free(tmp2);
 	return (0);
 }
 
@@ -80,10 +101,7 @@ char	**env_add(char *str, char ***env)
 		return (NULL);
 	while (ptr[i])
 	{
-		new[i] = ft_strdup(ptr[i]);
-		if (!new[i])
-			return (NULL);
-//			return (ft_arr_freer_index(new, &i));
+		new[i] = ptr[i];
 		++i;
 	}
 	new[i] = ft_strdup(str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_get_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:41:11 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:54:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*env_get_pwd(void)
 
 	env = env_read(ENV_FILE);
 	pwd = env_get("PWD", env);
+	ft_arr_freer(env);
 	free(env);
 	return (pwd);
 }
