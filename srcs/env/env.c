@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 16:34:05 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 17:40:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	**env_read(char *path)
 		return (NULL);
 	r.i = 1;
 	r.tmp = malloc(sizeof(char) * 1);
+	if (!r.tmp)
+		return (NULL);
 	r.tmp[0] = 0;
 	r.fd = open(path, O_RDONLY, 0777);
 	if (r.fd < 0)
@@ -31,6 +33,8 @@ char	**env_read(char *path)
 			return (NULL);
 		r.buffer[r.i] = 0;
 		r.tmp = ft_strjoin(r.tmp, r.buffer);
+		if (!r.tmp)
+			return (NULL);
 	}
 	r.env = ft_split(r.tmp, '\n');
 	close(r.fd);
@@ -77,9 +81,14 @@ char	**env_add(char *str, char ***env)
 	while (ptr[i])
 	{
 		new[i] = ft_strdup(ptr[i]);
+		if (!new[i])
+			return (NULL);
+//			return (ft_arr_freer_index(new, &i));
 		++i;
 	}
 	new[i] = ft_strdup(str);
+//	if (!new[i])
+//		return (ft_arr_freer_index(new, &i));
 	new[i + 1] = 0;
 	free(*env);
 	return (new);
@@ -93,14 +102,22 @@ void	env_set(char *str, char *value, char ***env)
 
 	ptr = *env;
 	tmp = ft_strjoin(str, "=");
+	if (!tmp)
+		return ;
 	tmp = ft_strjoin(tmp, value);
+	if (!tmp)
+		return ;
 	if (env_search(str, *env) >= 0)
 	{
 		i = env_search(str, *env);
 		ptr[i] = tmp;
 	}
 	else
+	{
 		*env = env_add(tmp, env);
+		if (!*env)
+			return ;
+	}
 }
 
 void	env_write(char *path, char **env)
@@ -109,7 +126,7 @@ void	env_write(char *path, char **env)
 	int		fd;
 
 	i = 0;
-	if (!path || !env)
+	if (!path || !env || !*env)
 		return ;
 	fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 16:51:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 17:01:31 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_data
 	char		*input;
 }		t_data;
 
+// other structs
+
 typedef struct s_check
 {
 	size_t	i;
@@ -46,7 +48,7 @@ typedef struct s_check
 
 typedef struct	s_read
 {
-	int		i;
+	ssize_t	i;
 	int		fd;
 	char	buffer[2];
 	char	*tmp;

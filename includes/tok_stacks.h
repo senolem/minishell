@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tok_stacks.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:18:14 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 15:07:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:54:36 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 typedef struct s_token
 {
-	char			*str;
-	int				type;
-	int				index;
+	char	*str;
+	int		type;
+	size_t	index;
 }				t_token;
 
 // token types
