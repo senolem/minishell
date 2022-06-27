@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:21:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/27 17:03:35 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:50:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static size_t	let_count(char *str, char set, size_t *index)
 	size_t	j;
 
 	if (!str)
-		return (NULL);
+		return (0);
 	j = 0;
 	while (ft_check_charset(str[*index], set))
 		(*index)++;
