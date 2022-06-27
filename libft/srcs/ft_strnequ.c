@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:58:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/27 15:37:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:48:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int	ft_strnequ(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
-	if (!s1 || !s2)
-		return (NULL);
 	i = 0;
 	if (n <= 0)
 		return (0);
