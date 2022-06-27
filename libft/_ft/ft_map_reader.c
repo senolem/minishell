@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 17:44:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 16:05:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:31:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,29 @@
 
 char	**ft_map_reader(char *filename)
 {
-	char	**arr;
-	char	*buffer;
-	char	*temp;
-	int		fd;
-	int		i;
+	t_map_reader	var;
 
-	fd = open(filename, O_RDONLY);
-	i = 0;
-	buffer = malloc(sizeof(char) * 1);
-	if (!buffer)
+	var.fd = open(filename, O_RDONLY);
+	if (var.fd < 0)
 		return (NULL);
-	buffer[0] = '\0';
-	temp = buffer;
+	var.i = 0;
+	var.buffer = malloc(sizeof(char) * 1);
+	if (!var.buffer)
+		return (NULL);
+	var.buffer[0] = '\0';
+	var.temp = var.buffer;
 	while (42)
 	{
-		temp = get_next_line(fd);
-		if (temp == NULL)
+		var.temp = get_next_line(var.fd);
+		if (var.temp == NULL)
 			break ;
-		buffer = ft_strjoin(buffer, temp);
-		free(temp);
+		var.buffer = ft_strjoin(var.buffer, var.temp);
+		if (var.buffer == NULL)
+			return (NULL);
+		free(var.temp);
 	}
-	arr = ft_split(buffer, '\n');
-	free(buffer);
-	close(fd);
-	return (arr);
+	var.arr = ft_split(var.buffer, '\n');
+	free(var.buffer);
+	close(var.fd);
+	return (var.arr);
 }

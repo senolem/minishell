@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 16:02:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 16:40:58 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:19:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_fprintf.h"
+
+typedef struct s_map_reader
+{
+	char	**arr;
+	char	*buffer;
+	char	*temp;
+	int		fd;
+	int		i;
+}				t_map_reader;
 
 int		ft_strstrbool(const char *haystack, const char *needle);
 int		ft_strnstrbool(const char *haystack, const char *needle,
