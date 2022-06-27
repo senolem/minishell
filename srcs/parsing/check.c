@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 11:11:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 16:52:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 21:07:21 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int	check_quotes(t_data *data)
 {
 	t_check	c;
 
+	if (data->input[0] == '\0')
+		return (0);
 	c.i = -1;
 	c.j = 0;
 	c.split = ft_split(data->input, '|');
