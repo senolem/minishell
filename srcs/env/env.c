@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:09:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	**env_read(char *path)
 	char	**env;
 
 	i = 1;
+	tmp = malloc(sizeof(char) * 1);
+	tmp[0] = 0;
 	if (!path)
 		return (NULL);
 	fd = open(path, O_RDONLY, 0777);

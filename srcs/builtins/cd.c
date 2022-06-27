@@ -6,25 +6,25 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/26 22:47:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 12:08:57 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cd_tilde(char *path, char *tmp, char **env)
+int	cd_tilde(char *path, char *tmp, char ***env)
 {
 	int		i;
 	char	*ptmp;
 
 	i = 0;
 	++path;
-	ptmp = ft_strjoin(env_get("HOME", env), path);
+	ptmp = ft_strjoin(env_get("HOME", *env), path);
 	i = chdir(ptmp);
 	if (i == 0)
 	{
-		env_set("OLDPWD", tmp,&env);
-		env_set("PWD", ptmp, &env);
+		env_set("OLDPWD", tmp, env);
+		env_set("PWD", ptmp, env);
 	}
 	free(ptmp);
 	return (i);

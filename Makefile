@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/26 22:47:32 by albaur           ###   ########.fr        #
+#    Updated: 2022/06/27 14:02:51 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJS_P = $(addprefix srcs/parsing/, ${SRCS_P:.c=.o})
 OBJS_U = $(addprefix srcs/utils/, ${SRCS_U:.c=.o})
 OBJS_B = $(addprefix srcs/builtins/, ${SRCS_B:.c=.o})
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g3 -Wall -Wextra -Werror
 
 LINKS = -lreadline
 
@@ -55,7 +55,7 @@ $(NAME): $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)
 	@rm $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)
 
 .c.o:
-	@gcc -Wall -Wextra -Werror -c -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include -g3 $< -o ${<:.c=.o}
+	@gcc $(FLAGS) -c -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include $< -o ${<:.c=.o}
 
 clean:
 	@$(RM) libft.a $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)

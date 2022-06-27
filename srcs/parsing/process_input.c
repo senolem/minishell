@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/26 15:56:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:07:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	process_input(t_data *data)
 	}
 	arr = ms_split(data->input);
 	ft_tokenizer(arr);
+	export("aaaaa=000");
 	/*
 	while (arr[i])
 	{
