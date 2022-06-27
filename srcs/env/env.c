@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 18:14:28 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 18:23:10 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	env_write(char *path, char **env)
 	int		fd;
 
 	i = 0;
-	if (!path || !env || !*env)
+	if (!path || !env)
 		return ;
 	fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
