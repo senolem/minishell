@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/10 17:55:49 by faventur          #+#    #+#              #
-#    Updated: 2022/06/26 17:18:30 by faventur         ###   ########.fr        #
+#    Updated: 2022/06/27 14:40:14 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ OBJS_BT	= $(addprefix btrees/, ${SRCS_BT:.c=.o})
 NAME	= libft.a
 
 .c.o:
-		gcc -Wall -Wextra -Werror -c -I./includes $< -o ${<:.c=.o}
+		gcc -Wall -Wextra -Werror -g -c -I./includes $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
 			ar -rcs $@ $^

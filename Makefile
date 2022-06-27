@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/27 14:02:51 by albaur           ###   ########.fr        #
+#    Updated: 2022/06/27 14:37:34 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,10 +52,10 @@ $(NAME): $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)
 	@gcc $(FLAGS) $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B) libft.a $(LINKS) -L${HOME}/goinfre/.brew/opt/readline/lib -o $(NAME)
 	@echo "$(CURSIVE)$(HIBLUE)Parce que taper une commande,$(NONE)"
 	@echo "$(CURSIVE)$(HIGREEN)c'est du pipi de chat.$(NONE)"
-	@rm $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)
+#@rm $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)
 
 .c.o:
-	@gcc $(FLAGS) -c -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include $< -o ${<:.c=.o}
+	@gcc $(FLAGS) -c -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include $< -o ${<:.c=.o} 
 
 clean:
 	@$(RM) libft.a $(OBJS_M) $(OBJS_I) $(OBJS_E) $(OBJS_S) $(OBJS_P) $(OBJS_U) $(OBJS_B)
