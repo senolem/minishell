@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 11:58:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:50:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ms_check_charset(char c)
 static int	wordgroup_counter(char *s)
 {
 	int		counter;
-	int		i;
+	size_t	i;
 
 	counter = 0;
 	i = 0;
@@ -55,7 +55,7 @@ static int	wordgroup_counter(char *s)
 	return (counter);
 }
 
-static int	ms_let_count(char *str, int *index)
+static int ms_let_count(char *str, size_t *index)
 {
 	int		counter;
 	int		p_switch;
@@ -82,10 +82,10 @@ static int	ms_let_count(char *str, int *index)
 	return (counter);
 }
 
-static char	*wordgroup_split(char *newstr, char *str, int *index)
+static char *wordgroup_split(char *newstr, char *str, size_t *index)
 {
-	int	j;
-	int	p_switch;
+	size_t	j;
+	int		p_switch;
 
 	j = 0;
 	p_switch = 0;
@@ -110,10 +110,10 @@ static char	*wordgroup_split(char *newstr, char *str, int *index)
 char	**ms_split(char *s)
 {
 	char	**strtab;
-	int		size;
-	int		i;
-	int		j;
-	int		k;
+	size_t	size;
+	size_t	i;
+	size_t	j;
+	size_t	k;
 
 	if (!s)
 		return (NULL);

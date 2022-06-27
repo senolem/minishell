@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:22:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:47:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_arrlen(char **array)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (!array)
@@ -27,7 +27,7 @@ int	ft_arrlen(char **array)
 char	**ft_arrdup(char **arr)
 {
 	char	**dup;
-	int		arr_len;
+	size_t	arr_len;
 
 	dup = NULL;
 	if (!arr)

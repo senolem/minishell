@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/27 15:58:39 by albaur           ###   ########.fr        #
+#    Updated: 2022/06/27 16:40:22 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,9 @@ UTIL_PATH	=	utils/
 UTIL_FILES 	= 	utils
 SRCS_FILES	+=	$(addprefix $(UTIL_PATH), $(UTIL_FILES))
 
-BIN_PATH	=	builtins/
-BIN_FILES 	= 	pwd cd export
-SRCS_FILES	+=	$(addprefix $(BIN_PATH), $(BIN_FILES))
+BUI_PATH	=	builtins/
+BUI_FILES 	= 	pwd cd export
+SRCS_FILES	+=	$(addprefix $(BUI_PATH), $(BUI_FILES))
 
 SRCS_FILES_EXT 		+= 	$(addsuffix $(C_EXTENSION), $(SRCS_FILES))
 SRCS 				+= 	$(addprefix $(SRC_PATH), $(SRCS_FILES_EXT))
@@ -90,7 +90,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	${CC} ${CFLAGS} $(LIBLINKS) -c $< -o $@
 
 clean:
-	@$(RM) libft.a $(OBJS)
+	@$(RM) -r libft.a $(OBJ_PATH)
 	@$(MAKE) clean -C ./libft
 
 fclean: clean

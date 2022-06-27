@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:48:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:50:02 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	pipe_counter(char *str)
+size_t	pipe_counter(char *str)
 {
-	int	i;
-	int	counter;
+	size_t	i;
+	size_t	counter;
 
 	i = 0;
 	counter = 0;
@@ -30,7 +30,7 @@ int	pipe_counter(char *str)
 	return (counter);
 }
 
-int	parg_size(char *str, int i)
+int parg_size(char *str, size_t i)
 {
 	int	counter;
 
@@ -46,9 +46,9 @@ int	parg_size(char *str, int i)
 	return (counter);
 }
 
-char	*parg_writer(char *dst, char *src, int *i)
+char *parg_writer(char *dst, char *src, size_t *i)
 {
-	int	j;
+	size_t	j;
 
 	j = 0;
 	while (src[*i])
@@ -67,8 +67,8 @@ char	*parg_writer(char *dst, char *src, int *i)
 char	**parg_cut(char *str)
 {
 	char	**arr;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;

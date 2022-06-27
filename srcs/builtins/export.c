@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/26 22:21:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 16:34:54 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	export(char *str)
 {
-	int		i;
+	size_t	i;
 	char	**input;
 	char	**env;
 
