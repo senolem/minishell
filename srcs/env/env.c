@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 17:40:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 17:47:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ char	**env_add(char *str, char ***env)
 		++i;
 	}
 	new[i] = ft_strdup(str);
-//	if (!new[i])
-//		return (ft_arr_freer_index(new, &i));
+	if (!new[i])
+		return (NULL);
 	new[i + 1] = 0;
 	free(*env);
 	return (new);
