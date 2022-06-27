@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/26 19:33:18 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 14:19:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ typedef struct s_check
 	int		dquote;
 	char	**split;
 }		t_check;
+
+typedef struct	s_read
+{
+	int		i;
+	int		fd;
+	char	buffer[2];
+	char	*tmp;
+	char	**env;
+}		t_read;
 
 // init
 int			init_shell(t_data *data);

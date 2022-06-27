@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 14:09:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 14:39:54 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,30 @@
 
 char	**env_read(char *path)
 {
-	int		i;
-	int		fd;
-	char	buffer[2];
-	char	*tmp;
-	char	**env;
+	t_read	r;
 
-	i = 1;
-	tmp = malloc(sizeof(char) * 1);
-	tmp[0] = 0;
 	if (!path)
 		return (NULL);
-	fd = open(path, O_RDONLY, 0777);
-	if (fd < 0)
+	r.i = 1;
+	r.tmp = malloc(sizeof(char) * 1);
+	r.tmp[0] = 0;
+	r.fd = open(path, O_RDONLY, 0777);
+	if (r.fd < 0)
 		return (NULL);
-	while (i > 0)
+	while (r.i > 0)
 	{
-		i = read(fd, buffer, 1);
-		if (i == -1)
+		r.i = read(r.fd, r.buffer, 1);
+		if (r.i == -1)
 			return (NULL);
-		buffer[i] = 0;
-		tmp = ft_strjoin(tmp, buffer);
+		r.buffer[r.i] = 0;
+		r.tmp = ft_strjoin(r.tmp, r.buffer);
 	}
-	env = ft_split(tmp, '\n');
-	close(fd);
-	if (!env)
+	r.env = ft_split(r.tmp, '\n');
+	close(r.fd);
+	free(r.tmp);
+	if (!r.env)
 		return (NULL);
-	return (env);
+	return (r.env);
 }
 
 char	*env_get(char *str, char **env)
