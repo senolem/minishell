@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 17:58:59 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 18:14:28 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ char	*env_get(char *str, char **env)
 		return (tmp2);
 	}
 	free(tmp);
-	free(tmp2);
 	return (0);
 }
 
@@ -106,7 +105,10 @@ char	**env_add(char *str, char ***env)
 	}
 	new[i] = ft_strdup(str);
 	if (!new[i])
+	{
+		free(new);
 		return (NULL);
+	}
 	new[i + 1] = 0;
 	free(*env);
 	return (new);
@@ -116,26 +118,29 @@ void	env_set(char *str, char *value, char ***env)
 {
 	size_t	i;
 	char	*tmp;
+	char	*tmp2;
 	char	**ptr;
 
 	ptr = *env;
 	tmp = ft_strjoin(str, "=");
 	if (!tmp)
 		return ;
-	tmp = ft_strjoin(tmp, value);
-	if (!tmp)
+	tmp2 = ft_strjoin(tmp, value);
+	free(tmp);
+	if (!tmp2)
 		return ;
 	if (env_search(str, *env) >= 0)
 	{
 		i = env_search(str, *env);
-		ptr[i] = tmp;
+		ptr[i] = tmp2;
 	}
 	else
 	{
-		*env = env_add(tmp, env);
+		*env = env_add(tmp2, env);
 		if (!*env)
 			return ;
 	}
+	free(tmp2);
 }
 
 void	env_write(char *path, char **env)
