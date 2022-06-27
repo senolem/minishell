@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 19:24:54 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:44:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_node	*token_parser(t_stack *stack, int type)
 	return (NULL);
 }
 
-t_token	*ft_token_creator(char *line, int line_index)
+t_token *ft_token_creator(char *line, size_t line_index)
 {
 	t_token	*token;
 
@@ -115,7 +115,7 @@ void	ft_token_manager(t_stack *stack)
 t_stack	*ft_tokenizer(char *arr[])
 {
 	t_stack	*new;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	new = ft_stacknew();

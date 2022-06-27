@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   double_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:46:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/25 18:43:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:43:17 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	between_dquotes(char *str, int *index)
+int between_dquotes(char *str, size_t *index)
 {
 	int			counter;
 
@@ -34,7 +34,7 @@ int	between_dquotes(char *str, int *index)
 	return (counter);
 }
 
-int	dquote_len_index(char *str, int *index)
+int dquote_len_index(char *str, size_t *index)
 {
 	int	counter;
 
@@ -51,7 +51,7 @@ int	dquote_len_index(char *str, int *index)
 	return (counter);
 }
 
-char	*ft_dquote_pruner_index(char *quote, char *str, int *index, int	*j)
+char *ft_dquote_pruner_index(char *quote, char *str, size_t *index, size_t *j)
 {
 	if (str[*index] == '\"')
 		(*index)++;

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 18:17:17 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/25 18:17:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 16:41:30 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_quotes_end(int *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -28,7 +28,7 @@ int	check_quotes_end(int *str)
 
 void	check_quotes_count(char *str, int *squote, int *dquote)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])

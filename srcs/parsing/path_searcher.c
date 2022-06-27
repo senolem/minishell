@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_searcher.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:24:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:45:49 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*path_searcher(char *cmd)
 	char	*exec_path;
 	char	*env_path;
 	char	**cmd_args;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	cmd_args = ft_split(cmd, ' ');

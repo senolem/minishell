@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 11:11:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/25 18:27:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/27 16:52:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	check_quotes_populate(int *qtmp, char *str)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
@@ -36,9 +36,9 @@ void	check_quotes_populate(int *qtmp, char *str)
 	qtmp[j] = '\0';
 }
 
-void	check_quotes_siblings(int *str, int len)
+void	check_quotes_siblings(int *str, size_t len)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -54,7 +54,7 @@ void	check_quotes_siblings(int *str, int len)
 
 void	check_quotes_parallel(int *str, int len)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -82,7 +82,7 @@ void	check_quotes_parallel(int *str, int len)
 int	check_quotes_closed(char *str, int squote, int dquote)
 {
 	int		i;
-	int		len;
+	size_t	len;
 	int		*qtmp;
 
 	i = 0;

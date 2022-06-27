@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   env_search.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:16:11 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:34:31 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	env_search(char *str, char **env)
+size_t	env_search(char *str, char **env)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (env[i])
