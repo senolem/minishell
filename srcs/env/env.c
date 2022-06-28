@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/28 10:28:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:40:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,13 @@ char	**env_add(char *str, char ***env)
 
 void	env_set(char *str, char *value, char ***env)
 {
-	ssize_t	i;
+	int		i;
 	char	*tmp;
 	char	*tmp2;
 	char	**ptr;
 
+	if (!str || !value || !*env)
+		return ;
 	ptr = *env;
 	tmp = ft_strjoin(str, "=");
 	if (!tmp)
@@ -133,16 +135,16 @@ void	env_set(char *str, char *value, char ***env)
 	if (env_search(str, *env) >= 0)
 	{
 		i = env_search(str, *env);
-		ft_printf("%u\n", i);
-		ptr[i] = tmp2;	// On pourrait pas modifier directement env?
+		free(ptr[i]);
+		ptr[i] = tmp2;
 	}
 	else
 	{
 		*env = env_add(tmp2, env);
+		free(tmp2);
 		if (!*env)
 			return ;
 	}
-	free(tmp2);
 }
 
 void	env_write(char *path, char **env)
