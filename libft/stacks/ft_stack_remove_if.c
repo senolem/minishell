@@ -46,12 +46,10 @@ static void	ft_stack_remove_if_pt2(t_stack *begin_list, void *data_ref,
 
 void	ft_stack_remove_if(t_stack *begin_list, void *data_ref, int (*cmp)())
 {
-	t_node	*current;
 	t_node	*tmp;
 
 	if (begin_list == NULL)
 		return ;
-	current = begin_list->top;
 	while (!cmp(data_ref, begin_list->top->content))
 	{
 		tmp = begin_list->top;

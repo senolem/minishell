@@ -22,12 +22,12 @@ int	main(int argc, char **argv)
 	init_shell(data);
 	while (!data->exit)
 	{
-		data->input = readline(ft_strjoin(env_get_pwd(), " $ "));
+		data->input = readline(ft_concat(env_get_pwd(), " $ "));
 		if (data->input == NULL)
 			break ;
 		process_input(data);
-		free(data->input);
 	}
+	free(data);
 	unlink(ENV_FILE);
 	return (0);
 }

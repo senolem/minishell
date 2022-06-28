@@ -35,7 +35,7 @@ char	*ft_strncat(char *dest, const char *src, size_t n)
 		return (NULL);
 	i = 0;
 	j = ft_strlen(dest);
-	if (n < 0)
+	if (n == 0)
 		return (NULL);
 	while (i < n && src[i] != '\0')
 	{

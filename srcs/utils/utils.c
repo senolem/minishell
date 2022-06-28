@@ -12,6 +12,23 @@
 
 #include "minishell.h"
 
+char	*ft_concat(char *s1, char *s2)
+{
+	char	*dst;
+	size_t	len_s1;
+	size_t	len_s2;
+
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	dst = (char *)ft_calloc((len_s1 + len_s2 + 1), sizeof(*dst));
+	if (dst == NULL)
+		return (NULL);
+	ft_memcpy(dst, s1, len_s1);
+	ft_memcpy((dst + len_s1), s2, len_s2);
+	free((void *)s1);
+	return (dst);
+}
+
 size_t	ft_arrlen(char **array)
 {
 	size_t	i;

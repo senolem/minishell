@@ -14,7 +14,7 @@
 
 char	**ft_arr_freer_index(char **arr, size_t *index)
 {
-	size_t	i;
+	ssize_t	i;
 
 	if (!arr || !*arr)
 		return (NULL);

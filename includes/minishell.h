@@ -112,5 +112,6 @@ void		sig_handler(int sig, siginfo_t *info, void *context);
 void		throw_error(t_data *data, char *msg, int err);
 char		**ft_arrdup(char **arr);
 size_t		ft_arrlen(char **array);
+char		*ft_concat(char *s1, char *s2);
 
 #endif

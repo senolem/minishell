@@ -25,4 +25,5 @@ void	process_input(t_data *data)
 	}
 	arr = ms_split(data->input);
 	ft_tokenizer(arr);
+	free(data->input);
 }

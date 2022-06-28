@@ -78,6 +78,7 @@ int	init_env(void)
 	env_set("?NB", "0", &env);
 	env_set("?PWD", pwd, &env);
 	env_write(ENV_FILE, env);
+	ft_arr_freer(env);
 	free(tmp);
 	free(pwd);
 	return (1);

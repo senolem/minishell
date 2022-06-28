@@ -44,11 +44,6 @@ int	ft_puthexa(unsigned int nbr, char *base, int *n_char)
 	i = 0;
 	if (nbr == 0)
 		ft_putchar_count(0 + '0', n_char);
-	if (nbr < 0)
-	{
-		nbr *= -1;
-		ft_putchar_count('-', n_char);
-	}
 	while (nbr > 0)
 	{
 		ret[i] = nbr % 16;

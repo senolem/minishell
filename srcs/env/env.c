@@ -19,10 +19,7 @@ char	**env_read(char *path)
 	if (!path)
 		return (NULL);
 	r.i = 1;
-	r.tmp = malloc(sizeof(char) * 1);
-	if (!r.tmp)
-		return (NULL);
-	r.tmp[0] = 0;
+	r.tmp = NULL;
 	r.fd = open(path, O_RDONLY, 0777);
 	if (r.fd < 0)
 		return (env_read_clean(&r));
@@ -32,7 +29,7 @@ char	**env_read(char *path)
 		if (r.i == -1)
 			return (env_read_clean(&r));
 		r.buffer[r.i] = 0;
-		r.tmp = ft_strjoin(r.tmp, r.buffer);
+		r.tmp = ft_concat(r.tmp, r.buffer);
 		if (!r.tmp)
 			return (env_read_clean(&r));
 	}
