@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 11:11:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 21:07:21 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/28 23:28:38 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,11 @@ int	check_quotes(t_data *data)
 		if (c.squote % 2 == 0 && c.dquote % 2 == 0)
 			c.j += check_quotes_closed(c.split[c.i], c.squote, c.dquote);
 		else
+		{
+			ft_arr_freer(c.split);
 			return (1);
+		}
 	}
-	free(c.split);
+	ft_arr_freer(c.split);
 	return (c.j);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/28 16:52:39 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/28 23:36:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,15 @@ t_token	*ft_token_creator(char *line, size_t line_index)
 	t_token	*token;
 
 	token = malloc(sizeof(*token));
+	if (!token)
+		return (NULL);
 	ft_memset(token, 0, sizeof(*token));
 	token->str = ft_strdup(line);
+	if (!token->str)
+	{
+		free(token);
+		return (NULL);
+	}
 	token->index = line_index;
 	if (!ft_strstrbool(line, "&&"))
 		token->type = and_type;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/28 17:50:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/28 23:24:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ char		**env_add(char *str, char ***env);
 char		*env_get(char *str, char **env);
 ssize_t		env_search(char *str, char **env);
 char		**env_read(char *path);
+char		**env_read_clean(t_read *r);
 
 // builtins
 void		pwd(void);

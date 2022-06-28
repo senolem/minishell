@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/28 16:40:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/28 23:22:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,19 @@ char	**env_read(char *path)
 	r.tmp[0] = 0;
 	r.fd = open(path, O_RDONLY, 0777);
 	if (r.fd < 0)
-	{
-		close(r.fd);
-		free(r.tmp);
-		return (NULL);
-	}
+		return (env_read_clean(&r));
 	while (r.i > 0)
 	{
 		r.i = read(r.fd, r.buffer, 1);
 		if (r.i == -1)
-		{
-			close(r.fd);
-			free(r.tmp);
-			return (NULL);
-		}
+			return (env_read_clean(&r));
 		r.buffer[r.i] = 0;
 		r.tmp = ft_strjoin(r.tmp, r.buffer);
 		if (!r.tmp)
-		{
-			close(r.fd);
-			free(r.tmp);
-			return (NULL);
-		}
+			return (env_read_clean(&r));
 	}
 	r.env = ft_split(r.tmp, '\n');
-	close(r.fd);
-	free(r.tmp);
-	if (!r.env)
-		return (NULL);
-	return (r.env);
+	return (env_read_clean(&r));
 }
 
 char	*env_get(char *str, char **env)

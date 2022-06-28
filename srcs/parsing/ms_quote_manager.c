@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_quote_manager.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/28 18:13:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/28 23:21:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,12 @@ size_t	dquote_dollar_parser(char *line, size_t *index)
 	size_t	counter;
 
 	counter = 0;
-	while (line[*index] && (line != '$' || line[*index] != '\"'))
+	while (line[*index] && (line[*index] != '$' || line[*index] != '\"'))
 		(*index)++;
 	if (line[*index] == '$')
 	{
 		(*index)++;
 		counter++;
-		while (line[*index] && !ms_check_charset(line[*index]))
-		{
-			counter++;
-			(*index)++;
-		}
-	}
-	return (counter);
-}
-
-size_t	dquote_dollar_parser(char *line, size_t *index)
-{
-	size_t	counter;
-
-	counter = 0;
-	while (line[*index] && (line != '$' || line[*index] != '\"'))
-		(*index)++;
-	if (line[*index] == '$')
-	{
-		(*index)++;
 		while (line[*index] && !ms_check_charset(line[*index]))
 		{
 			counter++;
