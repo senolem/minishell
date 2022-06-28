@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:48:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/27 16:50:02 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/28 17:36:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int parg_size(char *str, size_t i)
 	return (counter);
 }
 
-char *parg_writer(char *dst, char *src, size_t *i)
+char	*parg_writer(char *dst, char *src, size_t *i)
 {
 	size_t	j;
 

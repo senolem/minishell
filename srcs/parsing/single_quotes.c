@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   single_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:38:55 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/27 16:47:02 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/28 17:35:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int between_squotes(char *str, size_t *index)
+int	between_squotes(char *str, size_t *index)
 {
 	int	counter;
 
@@ -34,7 +34,7 @@ int between_squotes(char *str, size_t *index)
 	return (counter);
 }
 
-int squote_len_index(char *str, size_t *index)
+int	squote_len_index(char *str, size_t *index)
 {
 	int	counter;
 
@@ -51,7 +51,8 @@ int squote_len_index(char *str, size_t *index)
 	return (counter);
 }
 
-char *ft_squote_pruner_index(char *quote, char *str, size_t *index, size_t *j)
+char	*ft_squote_pruner_index(char *quote, char *str, size_t *index,
+			size_t *j)
 {
 	if (str[*index] == '\'')
 		(*index)++;

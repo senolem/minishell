@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/28 10:24:54 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:50:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_stack		*ft_tokenizer(char *arr[]);
 // parsing
 void		process_input(t_data *data);
 int			ms_check_charset(char c);
-int			quote_checker(char *line);
+size_t		dquote_dollar_parser(char *line, size_t *index);
 char		**ms_split(char *s);
 int			between_squotes(char *str, size_t *index);
 int			squote_len_index(char *str, size_t *index);
