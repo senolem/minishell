@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:46:40 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 18:23:10 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/28 10:28:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*env_get(char *str, char **env)
 	char	*tmp2;
 
 	i = 0;
-	if (!str || !env)
+	if (!str || !env || !*env)
 		return (NULL);
 	tmp = ft_strjoin(str, "=");
 	if (!tmp)
@@ -81,10 +81,11 @@ char	*env_get(char *str, char **env)
 			free(tmp2);
 			return (NULL);
 		}
+		free(tmp);
 		return (tmp2);
 	}
 	free(tmp);
-	return (0);
+	return (NULL);
 }
 
 char	**env_add(char *str, char ***env)
@@ -116,7 +117,7 @@ char	**env_add(char *str, char ***env)
 
 void	env_set(char *str, char *value, char ***env)
 {
-	size_t	i;
+	ssize_t	i;
 	char	*tmp;
 	char	*tmp2;
 	char	**ptr;
@@ -132,7 +133,8 @@ void	env_set(char *str, char *value, char ***env)
 	if (env_search(str, *env) >= 0)
 	{
 		i = env_search(str, *env);
-		ptr[i] = tmp2;
+		ft_printf("%u\n", i);
+		ptr[i] = tmp2;	// On pourrait pas modifier directement env?
 	}
 	else
 	{

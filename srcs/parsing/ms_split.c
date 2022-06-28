@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/27 16:50:27 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/28 09:45:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ms_check_charset(char c)
 	return (0);
 }
 
-static int	wordgroup_counter(char *s)
+static size_t	wordgroup_counter(char *s)
 {
-	int		counter;
+	size_t	counter;
 	size_t	i;
 
 	counter = 0;
@@ -29,35 +29,22 @@ static int	wordgroup_counter(char *s)
 	while (s[i] != '\0')
 	{
 		if (s[i] == '\'')
-		{
 			counter += between_squotes(s, &i);
-			printf("count1 %d\n", counter);
-		}
 		else if (s[i] == '\"')
-		{
 			counter += between_dquotes(s, &i);
-			printf("count2 %d\n", counter);
-		}
 		else if (ft_isoper(s[i]) && !ft_isoper(s[i + 1]))
-		{
 			counter++;
-			printf("count3 %d\n", counter);
-		}
 		else if ((!ms_check_charset(s[i]) && !ft_isoper(s[i]))
 			&& (ft_isoper(s[i + 1]) || ms_check_charset(s[i + 1])))
-		{
 			counter++;
-			printf("count4 %c\n", s[i]);
-			printf("count4 %d\n", counter);
-		}
 		i++;
 	}
 	return (counter);
 }
 
-static int ms_let_count(char *str, size_t *index)
+static size_t	ms_let_count(char *str, size_t *index)
 {
-	int		counter;
+	size_t	counter;
 	int		p_switch;
 
 	counter = 0;
@@ -82,7 +69,7 @@ static int ms_let_count(char *str, size_t *index)
 	return (counter);
 }
 
-static char *wordgroup_split(char *newstr, char *str, size_t *index)
+static char	*wordgroup_split(char *newstr, char *str, size_t *index)
 {
 	size_t	j;
 	int		p_switch;
@@ -128,7 +115,7 @@ char	**ms_split(char *s)
 	{
 		strtab[k] = malloc(sizeof(char) * (ms_let_count((char *)s, &i) + 1));
 		if (!strtab[k])
-			return (NULL);
+			return (ft_arr_freer_index(strtab, &k));
 		wordgroup_split(strtab[k++], (char *)s, &j);
 	}
 	strtab[k] = NULL;

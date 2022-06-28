@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 18:15:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/28 10:24:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_check
 	char	**split;
 }		t_check;
 
-typedef struct	s_read
+typedef struct s_read
 {
 	ssize_t	i;
 	int		fd;
@@ -75,14 +75,17 @@ int			quote_checker(char *line);
 char		**ms_split(char *s);
 int			between_squotes(char *str, size_t *index);
 int			squote_len_index(char *str, size_t *index);
-char		*ft_squote_pruner_index(char *quote, char *str, size_t *index, size_t *j);
+char		*ft_squote_pruner_index(char *quote, char *str,
+				size_t *index, size_t *j);
 int			between_dquotes(char *str, size_t *index);
 int			dquote_len_index(char *str, size_t *index);
-char		*ft_dquote_pruner_index(char *quote, char *str, size_t *index, size_t *j);
+char		*ft_dquote_pruner_index(char *quote, char *str,
+				size_t *index, size_t *j);
 char		*env_get_pwd(void);
 int			ft_isoper(char c);
 int			oper_len_index(char *str, size_t *index);
-char		*ft_oper_writer_index(char *quote, char *str, size_t *index, size_t *j);
+char		*ft_oper_writer_index(char *quote, char *str,
+				size_t *index, size_t *j);
 
 // env
 char		*env_get(char *name, char **env);

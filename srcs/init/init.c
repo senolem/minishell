@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 14:54:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/28 09:54:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,20 @@ int	init_env(void)
 {
 	char		**env;
 	char		*pwd;
+	char		*tmp;
 	extern char	**environ;
 
 	env = ft_arrdup(environ);
 	if (!env)
 		return (0);
 	pwd = env_get("PWD", env);
-	pwd = ft_strjoin(pwd, "/minishell");
+	tmp = pwd;
+	pwd = ft_strjoin(tmp, "/minishell");
 	env_set("SHELL", "minishell", &env);
 	env_set("?NB", "0", &env);
 	env_set("?PWD", pwd, &env);
 	env_write(ENV_FILE, env);
+	free(tmp);
 	free(pwd);
 	return (1);
 }

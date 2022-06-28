@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_search.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:16:11 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 18:23:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/28 10:26:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ ssize_t	env_search(char *str, char **env)
 {
 	ssize_t	i;
 
-	if (!str || !env)
+	if (!str || !env || !*env)
 		return (-1);
 	i = 0;
 	while (env[i])
