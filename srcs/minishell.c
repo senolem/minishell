@@ -15,18 +15,23 @@
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-
+	char	*prompt;
+	
 	data = malloc(sizeof(t_data));
 	if (argc > 1 && argv)
 		throw_error(data, "Error", E2BIG);
 	init_shell(data);
 	while (!data->exit)
 	{
-		data->input = readline(ft_concat(env_get_pwd(), " $ "));
+		prompt = ft_concat(env_get_pwd(), " $ ");
+		data->input = readline(prompt);
 		if (data->input == NULL)
 			break ;
 		process_input(data);
+		free(prompt);
 	}
+	free(prompt);
+	free(data->input);
 	free(data);
 	unlink(ENV_FILE);
 	return (0);

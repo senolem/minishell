@@ -105,7 +105,7 @@ char	**ms_split(char *s)
 	if (!s)
 		return (NULL);
 	size = wordgroup_counter(s);
-	strtab = (char **)malloc(sizeof(char *) * (size + 1));
+	strtab = malloc(sizeof(char *) * (size + 1));
 	if (!strtab)
 		return (NULL);
 	i = 0;
