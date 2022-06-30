@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 12:08:57 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/30 15:56:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	cd(char	*path)
 	}
 	env_write(ENV_FILE, env);
 	free(tmp);
-	free(env);
+	ft_arr_freer(env);
 }

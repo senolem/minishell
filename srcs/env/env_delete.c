@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:32:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 14:18:32 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/30 15:53:17 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,27 @@
 
 char **env_delete(char *str, char ***env)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	char	**ptr;
-	char	**new;
+	t_delete	d;
 
-	i = 0;
-	j = 0;
-	k = env_search(str, *env);
-	ptr = *env;
-	new = malloc(sizeof(char *) * (ft_arrlen(ptr)));
-	if (!new)
+	d.i = 0;
+	d.j = 0;
+	d.k = env_search(str, *env);
+	d.ptr = *env;
+	d.new = malloc(sizeof(char *) * (ft_arrlen(d.ptr)));
+	if (!d.new)
 		return (NULL);
-
-	while (ptr[j])
+	while (d.ptr[d.j])
 	{
-		if (j == k)
-		{
-			free(ptr[j]);
-			++j;
-		}
+		if (d.j == d.k)
+			free(d.ptr[d.j]);
 		else
 		{
-			new[i] = ptr[j];
-			++i;
-			++j;
+			d.new[d.i] = d.ptr[d.j];
+			++d.i;
 		}
+		++d.j;
 	}
-	new[i] = 0;
+	d.new[d.i] = 0;
 	free(*env);
-	return (new);
+	return (d.new);
 }

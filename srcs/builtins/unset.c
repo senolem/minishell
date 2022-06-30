@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:22:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 14:35:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/30 14:46:23 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,16 @@ int	unset_min(char *str)
 
 void	unset(char *str)
 {
-	size_t	i;
+	ssize_t	i;
 	char	**env;
 	char	**arr;
 
-	if (!str)
-		return ;
-	if (unset_min(str) == -1)
+	if (!str || unset_min(str) == -1)
 	{
 		ft_printf("unset: not enough arguments\n");
 		return ;
 	}
-	i = 0;
+	i = -1;
 	env = env_read(ENV_FILE);
 	arr = ft_split(str, ' ');
 	if (!arr)
@@ -64,11 +62,10 @@ void	unset(char *str)
 		ft_arr_freer(env);
 		return ;
 	}
-	while (arr[i])
+	while (arr[++i])
 	{
 		if (unset_check(arr[i]) && env_search(arr[i], env) >= 0)
 			env = env_delete(arr[i], &env);
-		++i;
 	}
 	env_write(ENV_FILE, env);
 	ft_arr_freer(arr);
