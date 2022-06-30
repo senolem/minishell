@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 18:02:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:40:30 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,23 @@ typedef struct s_read
 	char	*tmp;
 	char	**env;
 }		t_read;
+
+typedef struct s_delete
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	char	**ptr;
+	char	**new;
+}		t_delete;
+
+typedef struct s_export
+{
+	ssize_t	i;
+	char	**env;
+	char	**arr;
+	char	**input;
+}		t_export;
 
 // init
 int			init_shell(t_data *data);
