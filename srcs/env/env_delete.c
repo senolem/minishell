@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_input.c                                    :+:      :+:    :+:   */
+/*   env_delete.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 12:41:02 by albaur           ###   ########.fr       */
+/*   Created: 2022/06/30 12:32:29 by albaur            #+#    #+#             */
+/*   Updated: 2022/06/30 13:47:33 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	process_input(t_data *data)
+char **env_delete(size_t k, char ***env)
 {
-	char	**arr;
+	size_t	i;
+	size_t	j;
+	char	**ptr;
+	char	**new;
 
-	if (data->input && data->input[0] != '\0' && data->mode)
-		add_history(data->input);
-	if (check_quotes(data) > 0)
+	i = 0;
+	j = 0;
+	ptr = *env;
+	new = malloc(sizeof(char *) * (ft_arrlen(ptr)));
+	if (!new)
+		return (NULL);
+	while (ptr[i])
 	{
-		ft_printf("\033[31mSyntax error : invalid quote sequence\033[0m\n");
-		return ;
+		if (i == k)
+			++i;
+		new[j] = ptr[i];
+		++i;
+		++j;
 	}
-	arr = ms_split(data->input);
-	ft_tokenizer(arr);
-	export("koko=1");
-	unset("koko=1");
-	unset("koko");
-	free(data->input);
+	if (!new[i])
+	{
+		free(new);
+		return (NULL);
+	}
+	new[i + 1] = 0;
+	free(*env);
+	return (new);
 }

@@ -1,41 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 13:51:56 by albaur           ###   ########.fr       */
+/*   Created: 2022/06/30 12:22:54 by albaur            #+#    #+#             */
+/*   Updated: 2022/06/30 13:48:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	export(char *str)
+int	unset_check(char *str)
 {
 	size_t	i;
-	char	**input;
-	char	**env;
 
 	i = 0;
-	env = env_read(ENV_FILE);
-	input = ft_split(str, '=');
-	if (!input)
-		return ;
-	while (input[0][i])
+	while (str[i])
 	{
-		if (ft_isalnum(input[0][i]) == 0)
+		if (ft_isalnum(str[i]) == 0)
 		{
-			printf("export: not valid in this context: %s\n", input[0]);
-			free(input);
-			ft_arr_freer(env);
-			return ;
+			printf("unset: %s: invalid parameter name\n", str);
+			return (-1);
 		}
 		++i;
 	}
-	env_set(input[0], input[1], &env);
-	env_write(ENV_FILE, env);
-	free(input);
-	ft_arr_freer(env);
+	return (1);
+}
+
+void	unset(char *str)
+{
+	size_t	i;
+	char	**env;
+	char	**arr;
+
+	i = 0;
+	env = env_read(ENV_FILE);
+	arr = ft_split(str, ' ');
+	if (!arr)
+	{
+		//ft_arr_freer(env);
+		return ;
+	}
+	while (arr[i])
+	{
+		if (unset_check(arr[i]) && env_search(arr[i], env) >= 0)
+		{
+			env = env_delete(env_search(arr[i], env), &env);
+			env_write(ENV_FILE, env);
+		}
+		++i;
+	}
+	printf("\n");
+	//ft_arr_freer(arr);
+	//ft_arr_freer(env);
 }

@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/28 23:37:57 by albaur           ###   ########.fr        #
+#    Updated: 2022/06/30 12:42:15 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ INIT_FILES 	= 	init
 SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 ENV_PATH	=	env/
-ENV_FILES 	= 	env env_search env_get_pwd env_read_clean
+ENV_FILES 	= 	env env_search env_get_pwd env_read_clean env_delete
 SRCS_FILES	+=	$(addprefix $(ENV_PATH), $(ENV_FILES))
 
 SIG_PATH	=	signal/
@@ -50,7 +50,7 @@ UTIL_FILES 	= 	utils
 SRCS_FILES	+=	$(addprefix $(UTIL_PATH), $(UTIL_FILES))
 
 BUI_PATH	=	builtins/
-BUI_FILES 	= 	pwd cd export
+BUI_FILES 	= 	pwd cd export unset
 SRCS_FILES	+=	$(addprefix $(BUI_PATH), $(BUI_FILES))
 
 SRCS_FILES_EXT 		+= 	$(addsuffix $(C_EXTENSION), $(SRCS_FILES))
