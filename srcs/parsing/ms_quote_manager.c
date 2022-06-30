@@ -6,15 +6,14 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/30 13:24:08 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:39:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
  * The dquote_dollar_parser() function counts the number of characters
  * occupied by the name of the environment variable introduced by the
- * dollar ($) symbol that will be subtracted from the size of the
- * string wrapped up in double quotes.
+ * dollar ($) symbol and creates a malloc(3) and returns .
  * 
  * The () function takes an environment variable name as a parameter
  * and returns its length.
@@ -25,47 +24,37 @@
 */
 
 #include "minishell.h"
-
-size_t	dquote_dollar_parser(char *line)
+/*
+char	*dquote_dollar_parser(char *quote, char *line, size_t *index)
 {
+	char	**arr;
+	char	*str;
 	size_t	counter;
 	size_t	i;
 
 	counter = 0;
 	i = 0;
-	if (line[i] == '$')
-	{
-		i++;
-		counter++;
-		while (line[i] && !ms_check_charset(line[i]))
-		{
-			counter++;
-			i++;
-		}
-	}
-	return (counter);
-}
-
-size_t	dquote_dollar_parser_index(char *line, size_t *index)
-{
-	size_t	counter;
-
-	counter = 0;
 	if (line[*index] == '$')
-	{
 		(*index)++;
+	while (line[*index] && !ms_check_charset(line[*index]))
+	{
 		counter++;
-		while (line[*index] && !ms_check_charset(line[*index]))
-		{
-			counter++;
-			(*index)++;
-		}
+		(*index)++;
 	}
-	return (counter);
+	str = malloc(sizeof(char) * (counter + 1));
+	*index -= counter;
+	while (line[*index] && !ms_check_charset(line[*index]))
+		str[i++] = line[(*index)++];
+	str[i] = '\0';
+	arr = env_read(ENV_FILE);
+	if (env_get(str, arr))
+		dquote_dollar_replacer()
+	free()
+	return (NULL);
 }
-/*
+
 void	dquote_dollar_replacer(char *varname, char *quote, char *line,
-			size_t *index, size_t *j)
+			size_t *index)
 {
 	char	**arr;
 	char	*newstr;
