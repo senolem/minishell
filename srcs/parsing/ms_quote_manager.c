@@ -15,9 +15,10 @@
  * characters of the name of the environment variable preceded by
  * the dollar ($) symbol in the string passed as a parameter.
  * 
- * The dquote_dollar_parser() function create, creates, with malloc(3),
- * a string with he name of the environment variable found in the
- * string passed as a parameter.
+ * The dquote_dollar_parser() function allocates (with malloc(3)) and
+ * returns a "fresh" null-terminated string representing the the name
+ * of the environment variable found in the string passed as a
+ * parameter.
  * 
  * The ft_get_env() function takes an environment variable name as a
  * parameter and returns its content.
