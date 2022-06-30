@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 18:40:30 by faventur         ###   ########.fr       */
+/*   Updated: 2022/06/30 21:36:43 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_data
 	int			exit;
 	int			mode;
 	char		*input;
-}		t_data;
+}				t_data;
 
 // other structs
 
@@ -44,7 +44,7 @@ typedef struct s_check
 	int		squote;
 	int		dquote;
 	char	**split;
-}		t_check;
+}				t_check;
 
 typedef struct s_read
 {
@@ -53,7 +53,7 @@ typedef struct s_read
 	char	buffer[2];
 	char	*tmp;
 	char	**env;
-}		t_read;
+}				t_read;
 
 typedef struct s_delete
 {
@@ -62,7 +62,7 @@ typedef struct s_delete
 	size_t	k;
 	char	**ptr;
 	char	**new;
-}		t_delete;
+}				t_delete;
 
 typedef struct s_export
 {
@@ -70,7 +70,21 @@ typedef struct s_export
 	char	**env;
 	char	**arr;
 	char	**input;
-}		t_export;
+}				t_export;
+
+typedef struct s_dollar
+{
+	char	*line;
+	char	*quote;
+	char	*varname;
+	char	*var;
+	size_t	index;
+	size_t	i;
+	size_t	j;
+	size_t	quotelen;
+	size_t	varname_len;
+	size_t	var_len;
+}				t_dollar;
 
 // init
 int			init_shell(t_data *data);
