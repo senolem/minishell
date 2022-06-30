@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/28 23:36:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/30 12:45:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_tokdel(t_token *tok)
+{
+	if (tok != NULL)
+	{
+		free(tok->str);
+		tok->str = NULL;
+		free(tok);
+		tok = NULL;
+	}
+}
 
 void	ft_tokdisplay(t_token *token)
 {
@@ -38,6 +49,20 @@ t_node	*token_parser(t_stack *stack, int type)
 	return (NULL);
 }
 
+static void	ft_token_creator_pt2(t_token *token, char *line)
+{
+	if (!ft_strstrbool(line, "<"))
+		token->type = smaller_than_type;
+	else if (!ft_strstrbool(line, ">>"))
+		token->type = d_greater_than_type;
+	else if (!ft_strstrbool(line, ">"))
+		token->type = greater_than_type;
+	else if (line[0] == '\0')
+		token->type = empty_type;
+	else
+		token->type = word_type;
+}
+
 t_token	*ft_token_creator(char *line, size_t line_index)
 {
 	t_token	*token;
@@ -61,16 +86,8 @@ t_token	*ft_token_creator(char *line, size_t line_index)
 		token->type = pipe_type;
 	else if (!ft_strstrbool(line, "<<"))
 		token->type = d_smaller_than_type;
-	else if (!ft_strstrbool(line, "<"))
-		token->type = smaller_than_type;
-	else if (!ft_strstrbool(line, ">>"))
-		token->type = d_greater_than_type;
-	else if (!ft_strstrbool(line, ">"))
-		token->type = greater_than_type;
-	else if (line[0] == '\0')
-		token->type = empty_type;
 	else
-		token->type = word_type;
+		ft_token_creator_pt2(token, line);
 	return (token);
 }
 /*
@@ -119,7 +136,7 @@ void	ft_token_manager(t_stack *stack)
 }
 */
 
-t_stack	*ft_tokenizer(char *arr[])
+void	ft_tokenizer(char *arr[])
 {
 	t_stack	*new;
 	size_t	i;
@@ -134,5 +151,5 @@ t_stack	*ft_tokenizer(char *arr[])
 	ft_stackiter(new, (void *)ft_tokdisplay);
 //	ft_token_manager(new);
 	ft_arr_freer(arr);
-	return (new);
+	ft_stackclear(new, ft_tokdel);
 }
