@@ -6,39 +6,43 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:32:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 13:47:33 by albaur           ###   ########.fr       */
+/*   Updated: 2022/06/30 14:18:32 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char **env_delete(size_t k, char ***env)
+char **env_delete(char *str, char ***env)
 {
 	size_t	i;
 	size_t	j;
+	size_t	k;
 	char	**ptr;
 	char	**new;
 
 	i = 0;
 	j = 0;
+	k = env_search(str, *env);
 	ptr = *env;
 	new = malloc(sizeof(char *) * (ft_arrlen(ptr)));
 	if (!new)
 		return (NULL);
-	while (ptr[i])
+
+	while (ptr[j])
 	{
-		if (i == k)
+		if (j == k)
+		{
+			free(ptr[j]);
+			++j;
+		}
+		else
+		{
+			new[i] = ptr[j];
 			++i;
-		new[j] = ptr[i];
-		++i;
-		++j;
+			++j;
+		}
 	}
-	if (!new[i])
-	{
-		free(new);
-		return (NULL);
-	}
-	new[i + 1] = 0;
+	new[i] = 0;
 	free(*env);
 	return (new);
 }
