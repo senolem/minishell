@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:21:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 10:34:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:37:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,15 @@ static int	ft_check_charset(char c, char set)
 static size_t	ft_word_counter(const char *s, char set)
 {
 	size_t	counter;
-	size_t	len;
 	size_t	i;
 
 	if (!s)
 		return (0);
 	counter = 0;
 	i = 0;
-	len = ft_strlen(s) - 1;
 	while (s[i] != '\0')
 	{
-		if (!ft_check_charset(s[i], set) && ft_check_charset(s[i + 1], set)
-			&& i < len)
+		if (!ft_check_charset(s[i], set) && ft_check_charset(s[i + 1], set))
 			counter++;
 		i++;
 	}
@@ -51,15 +48,13 @@ static size_t	ft_word_counter(const char *s, char set)
 static size_t	let_count(char *str, char set, size_t *index)
 {
 	size_t	j;
-	size_t	len;
 
 	if (!str)
 		return (0);
 	j = 0;
-	len = ft_strlen(str) - 1;
-	while (ft_check_charset(str[*index], set) && *index < len)
+	while (ft_check_charset(str[*index], set))
 		(*index)++;
-	while (str[*index] && !ft_check_charset(str[*index], set) && *index < len)
+	while (str[*index] && !ft_check_charset(str[*index], set))
 	{
 		j++;
 		(*index)++;
@@ -70,15 +65,13 @@ static size_t	let_count(char *str, char set, size_t *index)
 static char	*ft_word_split(char	*newstr, char *str, char set, size_t *index)
 {
 	size_t	j;
-	size_t	len;
 
 	if (!newstr || !str)
 		return (NULL);
 	j = 0;
-	len = ft_strlen(str) - 1;
-	while (ft_check_charset(str[*index], set) && *index < len)
+	while (ft_check_charset(str[*index], set))
 		(*index)++;
-	while (str[*index] && !ft_check_charset(str[*index], set) && *index < len)
+	while (str[*index] && !ft_check_charset(str[*index], set))
 		newstr[j++] = str[(*index)++];
 	newstr[j] = '\0';
 	return (newstr);
