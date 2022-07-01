@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 10:08:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 11:44:38 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ void		pwd(void);
 void		cd(char	*path);
 void		export(char *str);
 void		unset(char *str);
+void		env(void);
 
 // signals
 void		sig_ignore(t_data *data, int sig);

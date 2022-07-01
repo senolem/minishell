@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 10:45:38 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 14:06:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void export_print(char **env)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-
 	while (env[i])
 	{
-		ft_printf("%s\n", env[i]);
+		if (env[i][0] == '!')
+			ft_printf("%s\n", env[i] + 1);
+		else
+			ft_printf("%s\n", env[i]);
 		++i;
 	}
 }
@@ -44,14 +46,16 @@ int export_check(char **str)
 	size_t i;
 
 	i = 0;
+	if (ft_arrlen(str) == 1)
+		return (-2);
 	if (!str[0])
 	{
 		ft_printf("minishell: bad assignment\n");
 		return (-1);
 	}
-	if (ft_isdigit(str[0][0]) != 0)
+	if (ft_isdigit(str[0][0]) == 0)
 	{
-		ft_printf("export : not an identifier : %s\n", str[0]);
+		ft_printf("export : not a valid identifier : %s\n", str[0]);
 		return (-1);
 	}
 	while (str[0][i])
@@ -68,6 +72,10 @@ int export_check(char **str)
 
 void export_exec(t_export *e)
 {
+	int		i;
+	char	*tmp;
+
+	i = 0;
 	while (e->arr[++e->i])
 	{
 		e->input = ft_split(e->arr[e->i], '=');
@@ -76,8 +84,21 @@ void export_exec(t_export *e)
 			ft_printf("minishell: bad assignment\n");
 			return ;
 		}
-		else if (export_check(e->input) == 1)
-			env_set(e->input[0], e->input[1], &e->env);
+		i = export_check(e->input);
+		if (i == 1)
+		{
+			tmp = ft_strjoin("!", e->input[0]);
+			if (env_search(tmp, e->env) >= 0)
+				env_set(tmp, e->input[1], &e->env);
+			else
+				env_set(e->input[0], e->input[1], &e->env);
+		}
+		else if (i == -2)
+		{
+			tmp = ft_strjoin("!", e->input[0]);
+			env_set(tmp, "''", &e->env);
+			free(tmp);
+		}
 		ft_arr_freer(e->input);
 	}
 }
@@ -91,7 +112,6 @@ void export(char *str)
 	if (!str || export_min(str) == -1)
 	{
 		export_print(e.env); // il faudra trier dans l'ordre alphabetique
-		ft_arr_freer(e.arr);
 		ft_arr_freer(e.env);
 		return ;
 	}
