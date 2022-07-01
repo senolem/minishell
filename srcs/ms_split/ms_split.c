@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 15:08:10 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:31:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static size_t	wordgroup_counter(char *s)
 			counter += between_squotes(s, &i);
 		else if (s[i] == '\"')
 			counter += between_dquotes(s, &i);
-		else if (ft_isoper(s[i]) && !ft_isoper(s[i + 1]))
+		else if (ft_isoper(s[i]) && s[i] != s[i + 1])
 			counter++;
 		else if ((!ms_check_charset(s[i]) && !ft_isoper(s[i]))
 			&& (ft_isoper(s[i + 1]) || ms_check_charset(s[i + 1])))
