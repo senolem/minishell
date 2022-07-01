@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 14:25:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 15:47:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_get_env(char *varname)
 	ft_arr_freer(arr);
 	return (str);
 }
-
+/*
 void	dquote_dollar_counter(t_dollar *dollar, size_t *index)
 {
 	dollar->varname_len = 0;
@@ -66,8 +66,10 @@ char	*dquote_dollar_replacer(t_dollar *dollar)
 	if (dollar->var)
 	{
 		dollar->var_len = ft_strlen(dollar->var);
-		dollar->quotelen = ft_strlen(dollar->quote) - dollar->varname_len
-			+ dollar->var_len;
+		ft_printf("%d")
+		dollar->quotelen = ms_let_count(dollar->line, &dollar->index)
+			- dollar->varname_len + dollar->var_len;
+		ft_printf("count %d\n", dollar->quotelen);
 		newstr = malloc(sizeof(char) * (dollar->quotelen + 1));
 		if (!newstr)
 			return (NULL);
@@ -94,6 +96,7 @@ void	dquote_dollar_parser(char *quote, char *line, size_t *index,
 	dollar.quote = quote;
 	dollar.line = line;
 	dollar.j = *j;
+	dollar.index = *index;
 	dquote_dollar_counter(&dollar, index);
 	dollar.i = 0;
 	str = malloc(sizeof(char) * (dollar.varname_len + 1));
@@ -102,11 +105,12 @@ void	dquote_dollar_parser(char *quote, char *line, size_t *index,
 			&& line[*index] != '\"'))
 		str[dollar.i++] = line[(*index)++];
 	str[dollar.i] = '\0';
-	ft_printf("%s %d %c %d\n", str, dollar.i, line[*index], *index);
+//	ft_printf("%s %d %c %d\n", str, dollar.i, line[*index], *index);
 	dollar.varname = str;
-	ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
+//	ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
 	quote = dquote_dollar_replacer(&dollar);
-//	dollar.quote = NULL;
-	ft_printf("%d, %s\n", dollar.varname_len, quote);
+	dollar.quote = NULL;
+//	ft_printf("%d, %s\n", dollar.varname_len, quote);
 	*j = ft_strlen(quote) - 1;
 }
+*/

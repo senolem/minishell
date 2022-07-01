@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/28 09:45:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 15:08:10 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static size_t	wordgroup_counter(char *s)
 	return (counter);
 }
 
-static size_t	ms_let_count(char *str, size_t *index)
+size_t	ms_let_count(char *str, size_t *index)
 {
 	size_t	counter;
 	int		p_switch;

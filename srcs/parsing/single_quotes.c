@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:38:55 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/28 17:35:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:35:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	squote_len_index(char *str, size_t *index)
 	}
 	if (str[*index] == '\'' && str[*index + 1] != '\0')
 		(*index)++;
+	counter += 2;
 	return (counter);
 }
 
@@ -55,7 +56,11 @@ char	*ft_squote_pruner_index(char *quote, char *str, size_t *index,
 			size_t *j)
 {
 	if (str[*index] == '\'')
+	{
+		quote[*j] = str[*index];
 		(*index)++;
+		(*j)++;
+	}
 	while (str[*index] && str[*index] != '\'')
 	{
 		quote[*j] = str[*index];
@@ -63,7 +68,11 @@ char	*ft_squote_pruner_index(char *quote, char *str, size_t *index,
 		(*index)++;
 	}
 	if (str[*index] == '\'' && str[*index + 1] != '\0')
+	{
+		quote[*j] = str[*index];
 		(*index)++;
+		(*j)++;
+	}
 	quote[*j] = '\0';
 	return (quote);
 }
