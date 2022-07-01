@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 10:20:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 10:45:38 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void export_exec(t_export *e)
 		e->input = ft_split(e->arr[e->i], '=');
 		if (!e->input)
 		{
-			free(e->input);
+			ft_printf("minishell: bad assignment\n");
 			return ;
 		}
 		else if (export_check(e->input) == 1)
@@ -84,30 +84,25 @@ void export_exec(t_export *e)
 
 void export(char *str)
 {
-	t_export	*e;
+	t_export	e;
 
-	e = malloc(sizeof(t_export));
-	if (!e)
-		return ;
-	e->i = -1;
-	e->env = env_read(ENV_FILE);
+	e.i = -1;
+	e.env = env_read(ENV_FILE);
 	if (!str || export_min(str) == -1)
 	{
-		export_print(e->env); // il faudra trier dans l'ordre alphabetique
-		ft_arr_freer(e->arr);
-		ft_arr_freer(e->env);
-		free(e);
+		export_print(e.env); // il faudra trier dans l'ordre alphabetique
+		ft_arr_freer(e.arr);
+		ft_arr_freer(e.env);
 		return ;
 	}
-	e->arr = ft_split(str, ' ');
-	if (!e->arr)
+	e.arr = ft_split(str, ' ');
+	if (!e.arr)
 	{
-		ft_arr_freer(e->env);
-		free(e);
+		ft_arr_freer(e.env);
 		return ;
 	}
-	export_exec(e);
-	env_write(ENV_FILE, e->env);
-	ft_arr_freer(e->arr);
-	ft_arr_freer(e->env);
+	export_exec(&e);
+	env_write(ENV_FILE, e.env);
+	ft_arr_freer(e.arr);
+	ft_arr_freer(e.env);
 }
