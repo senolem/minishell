@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/06/30 12:42:15 by albaur           ###   ########.fr        #
+#    Updated: 2022/07/01 11:44:49 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ UTIL_FILES 	= 	utils
 SRCS_FILES	+=	$(addprefix $(UTIL_PATH), $(UTIL_FILES))
 
 BUI_PATH	=	builtins/
-BUI_FILES 	= 	pwd cd export unset
+BUI_FILES 	= 	pwd cd export unset env
 SRCS_FILES	+=	$(addprefix $(BUI_PATH), $(BUI_FILES))
 
 SRCS_FILES_EXT 		+= 	$(addsuffix $(C_EXTENSION), $(SRCS_FILES))

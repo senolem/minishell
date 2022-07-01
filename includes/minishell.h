@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 13:36:35 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 14:26:51 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ void		pwd(void);
 void		cd(char	*path);
 void		export(char *str);
 void		unset(char *str);
+void		env(void);
 
 // signals
 void		sig_ignore(t_data *data, int sig);

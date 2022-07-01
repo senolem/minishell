@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_input.c                                    :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 14:25:57 by albaur           ###   ########.fr       */
+/*   Created: 2022/07/01 11:38:25 by albaur            #+#    #+#             */
+/*   Updated: 2022/07/01 11:42:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	process_input(t_data *data)
+void	env(void)
 {
-	char	**arr;
+	char	**env;
+	size_t 	i;
 
-	if (data->input && data->input[0] != '\0' && data->mode)
-		add_history(data->input);
-	if (check_quotes(data) > 0)
+	env = env_read(ENV_FILE);
+	i = 0;
+	while (env[i])
 	{
-		ft_printf("\033[31mSyntax error : invalid quote sequence\033[0m\n");
-		return ;
+		if (env[i][0] == '!')
+			(NULL);
+		else
+			ft_printf("%s\n", env[i]);
+		++i;
 	}
-	arr = ms_split(data->input);
-	int i = 0;
-	while (arr[i])
-	{
-		ft_printf("%s\n", arr[i]);
-		i++;
-	}
-//	ft_tokenizer(arr);
-//	export("a=a   =       p=e=d");
-//	unset("a");
-	free(data->input);
+	ft_arr_freer(env);
 }
