@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 18:32:30 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 22:12:01 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,15 @@ char	*ft_get_env(char *varname)
 	return (str);
 }
 
-void	ms_dollar_manager(char *arr[])
+int	dquote_dollar_checker(char *line, size_t *index)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (arr[i])
+	while (line[*index])
 	{
-		j = 0;
-		while (arr[i][j])
-		{
-			if (arr[i][j] == '\"')
-				dquote_dollar_parser(arr[i], &j);
-			j++;
-		}
-		i++;
+		if (line[*index] == '$')
+			return (1);
+		(*index)++;
 	}
+	return (0);
 }
 
 void	dquote_dollar_counter(t_dollar *dollar, size_t *index)
@@ -79,10 +71,12 @@ void	dquote_dollar_counter(t_dollar *dollar, size_t *index)
 char	*dquote_dollar_replacer(t_dollar *dollar)
 {
 	char	*newstr;
+	size_t	i;
 
 	dollar->var = ft_get_env(dollar->varname);
 	if (dollar->var)
 	{
+		i = 0;
 		dollar->var_len = ft_strlen(dollar->var);
 		dollar->len = ft_strlen(dollar->line) - dollar->varname_len
 			+ dollar->var_len;
@@ -90,34 +84,63 @@ char	*dquote_dollar_replacer(t_dollar *dollar)
 		newstr = malloc(sizeof(char) * (dollar->len + 1));
 		if (!newstr)
 			return (NULL);
-		ft_strcpy(newstr, dollar->line);
-		if (!newstr)
-			return (NULL);
+		while (dollar->line[dollar->i] && dollar->line[dollar->i] != '$')
+			newstr[i++] = dollar->line[dollar->i++];
+		if (dollar->line[dollar->i] == '$')
+			newstr[i++] = '\0';
+		ft_printf("here we go %s\n", newstr);
 		ft_strcat(newstr, dollar->var);
-		if (!newstr)
-			return (NULL);
+		dollar->i += dollar->varname_len + 1;
+		i = ft_strlen(newstr);
+		newstr[i++] = dollar->line[dollar->i++];
+		dollar->i++;
+		ft_printf("here we go %s\n", newstr);
 		free(dollar->line);
+		ft_printf("here we go %s\n", newstr);
 		dollar->line = newstr;
 	}
 	ft_strdel(&dollar->varname);
-	ft_strdel(&dollar->var);
 	return (dollar->line);
 }
 
 void	dquote_dollar_parser(char *line, size_t *index)
 {
 	t_dollar	dollar;
-	
-	dquote_dollar_counter(&dollar, index);
-	dollar.i = 0;
-	dollar.varname = malloc(sizeof(char) * (dollar.varname_len + 1));
-	*index -= dollar.varname_len;
-	while (line[*index] && (!ms_check_charset(line[*index])
-			&& line[*index] != '\"'))
-		dollar.varname[dollar.i++] = line[(*index)++];
-	dollar.varname[dollar.i] = '\0';
-//	ft_printf("%s %d %c %d\n", dollar.varname, dollar.i, line[*index], *index);
-//	ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
-	line = dquote_dollar_replacer(&dollar);
-//	ft_printf("%d, %s\n", dollar.varname_len, quote);
+
+	if (dquote_dollar_checker(line, index))
+	{
+		dollar.line = line;
+		dquote_dollar_counter(&dollar, index);
+		ft_printf("%d\n", dollar.varname_len);
+		dollar.i = 0;
+		dollar.varname = malloc(sizeof(char) * (dollar.varname_len + 1));
+		*index -= dollar.varname_len;
+		while (line[*index] && (!ms_check_charset(line[*index])
+				&& line[*index] != '\"'))
+			dollar.varname[dollar.i++] = line[(*index)++];
+		dollar.varname[dollar.i] = '\0';
+		dollar.i = 0;
+		ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
+		line = dquote_dollar_replacer(&dollar);
+		ft_printf("%s\n", dollar.line);
+	}
+}
+
+void	ms_dollar_manager(char *arr[])
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (arr[i])
+	{
+		j = 0;
+		while (arr[i][j])
+		{
+			if (arr[i][j] == '\"')
+				dquote_dollar_parser(arr[i], &j);
+			j++;
+		}
+		i++;
+	}
 }
