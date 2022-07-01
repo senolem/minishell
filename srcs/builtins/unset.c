@@ -6,13 +6,13 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:22:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 14:46:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 15:54:18 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	unset_check(char *str)
+static int	unset_check(char *str)
 {
 	size_t	i;
 
@@ -29,7 +29,7 @@ int	unset_check(char *str)
 	return (1);
 }
 
-int	unset_min(char *str)
+static int	unset_min(char *str)
 {
 	size_t	i;
 
@@ -43,7 +43,7 @@ int	unset_min(char *str)
 	return (-1);
 }
 
-void	unset(char *str)
+void	builtin_unset(char *str)
 {
 	ssize_t	i;
 	char	**env;

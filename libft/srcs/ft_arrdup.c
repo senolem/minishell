@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_delete.c                                       :+:      :+:    :+:   */
+/*   ft_arrdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 12:32:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 15:55:01 by albaur           ###   ########.fr       */
+/*   Created: 2022/07/01 16:08:04 by albaur            #+#    #+#             */
+/*   Updated: 2022/07/01 16:08:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	**env_delete(char *str, char ***env)
+char	**ft_arrdup(char **arr)
 {
-	t_delete	d;
+	char	**dup;
+	size_t	arr_len;
 
-	d.i = 0;
-	d.j = 0;
-	d.k = env_search(str, *env);
-	d.ptr = *env;
-	d.new = malloc(sizeof(char *) * (ft_arrlen(d.ptr)));
-	if (!d.new)
+	dup = NULL;
+	if (!arr)
 		return (NULL);
-	while (d.ptr[d.j])
+	arr_len = ft_arrlen(arr);
+	if (!arr_len)
+		return (NULL);
+	dup = (char **)malloc(sizeof(char *) * (arr_len + 1));
+	if (!dup)
+		return (NULL);
+	dup[arr_len] = NULL;
+	while (arr_len--)
 	{
-		if (d.j == d.k)
-			free(d.ptr[d.j]);
-		else
+		dup[arr_len] = ft_strdup(arr[arr_len]);
+		if (!dup[arr_len])
 		{
-			d.new[d.i] = d.ptr[d.j];
-			++d.i;
+			free(dup);
+			return (NULL);
 		}
-		++d.j;
 	}
-	d.new[d.i] = 0;
-	free(*env);
-	return (d.new);
+	return (dup);
 }

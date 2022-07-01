@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 11:38:25 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 15:12:48 by albaur           ###   ########.fr       */
+/*   Created: 2022/07/01 14:55:20 by albaur            #+#    #+#             */
+/*   Updated: 2022/07/01 16:03:36 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtin_env(void)
+void	env_set(char *str, char *value, char ***env)
 {
-	char	**env;
-	size_t	i;
+	int		i;
+	char	*tmp;
+	char	**ptr;
 
-	env = env_read(ENV_FILE);
-	i = 0;
-	while (env[i])
+	if (!str || !value || !*env)
+		return ;
+	ptr = *env;
+	tmp = ft_strjoin(str, "=");
+	if (!tmp)
+		return ;
+	tmp = ft_concat(tmp, value);
+	if (!tmp)
+		return ;
+	if (env_search(str, *env) >= 0)
 	{
-		if (env[i][0] == '!')
-			continue ;
-		else
-			ft_printf("%s\n", env[i]);
-		++i;
+		i = env_search(str, *env);
+		free(ptr[i]);
+		ptr[i] = tmp;
 	}
-	ft_arr_freer(env);
+	else
+	{
+		*env = env_add(tmp, env);
+		free(tmp);
+	}
 }

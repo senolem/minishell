@@ -6,13 +6,13 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:52:22 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 15:55:58 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 14:50:32 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pwd(void)
+void	builtin_pwd(void)
 {
 	char	**env;
 

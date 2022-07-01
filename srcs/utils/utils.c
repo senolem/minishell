@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:22:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 17:48:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 16:11:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,43 +29,22 @@ char	*ft_concat(char *s1, char *s2)
 	return (dst);
 }
 
-size_t	ft_arrlen(char **array)
+int	throwback_error(char *str, char *str2, int i)
 {
-	size_t	i;
-
-	i = 0;
-	if (!array)
-		return (0);
-	while (array[i] != NULL)
-		++i;
+	if (str2)
+		ft_printf("%s %s\n", str, str2);
+	else
+		ft_printf("%s\n", str);
 	return (i);
 }
 
-char	**ft_arrdup(char **arr)
+void	thrownull_error(char *str, char *str2)
 {
-	char	**dup;
-	size_t	arr_len;
-
-	dup = NULL;
-	if (!arr)
-		return (NULL);
-	arr_len = ft_arrlen(arr);
-	if (!arr_len)
-		return (NULL);
-	dup = (char **)malloc(sizeof(char *) * (arr_len + 1));
-	if (!dup)
-		return (NULL);
-	dup[arr_len] = NULL;
-	while (arr_len--)
-	{
-		dup[arr_len] = ft_strdup(arr[arr_len]);
-		if (!dup[arr_len])
-		{
-			free(dup);
-			return (NULL);
-		}
-	}
-	return (dup);
+	if (str2)
+		ft_printf("%s %s\n", str, str2);
+	else
+		ft_printf("%s\n", str);
+	return ;
 }
 
 void	throw_error(t_data *data, char *msg, int err)

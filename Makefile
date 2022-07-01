@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/01 11:44:49 by albaur           ###   ########.fr        #
+#    Updated: 2022/07/01 15:01:04 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ INIT_FILES 	= 	init
 SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 ENV_PATH	=	env/
-ENV_FILES 	= 	env env_search env_get_pwd env_read_clean env_delete
+ENV_FILES 	= 	env_add env_delete env_get_pwd env_get env_read env_set \
+				env_search env_write
 SRCS_FILES	+=	$(addprefix $(ENV_PATH), $(ENV_FILES))
 
 SIG_PATH	=	signal/
@@ -59,7 +60,7 @@ OBJS 				= 	$(addprefix $(OBJ_PATH), $(SRCS_FILES_EXT:c=o))
 
 #		(҂◡_◡)			UTILS			(҂◡_◡)
 
-RM = rm -f
+RM = rm -rf
 
 #		(｡◕‿◕｡)			COLORS			(｡◕‿◕｡)
 
@@ -94,7 +95,7 @@ clean:
 	@$(MAKE) clean -C ./libft
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) minishell.dSYM
 	@$(MAKE) fclean -C ./libft
 
 re: fclean all

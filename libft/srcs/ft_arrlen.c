@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 11:38:25 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 15:12:48 by albaur           ###   ########.fr       */
+/*   Created: 2022/07/01 16:11:52 by albaur            #+#    #+#             */
+/*   Updated: 2022/07/01 16:12:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	builtin_env(void)
+size_t	ft_arrlen(char **array)
 {
-	char	**env;
 	size_t	i;
 
-	env = env_read(ENV_FILE);
 	i = 0;
-	while (env[i])
-	{
-		if (env[i][0] == '!')
-			continue ;
-		else
-			ft_printf("%s\n", env[i]);
+	if (!array)
+		return (0);
+	while (array[i] != NULL)
 		++i;
-	}
-	ft_arr_freer(env);
+	return (i);
 }
