@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_quote_manager.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/30 22:04:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:08:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ char	*ft_get_env(char *varname)
 
 void	dquote_dollar_counter(t_dollar dollar, size_t *index)
 {
-	t_dollar	dollar;
-
 	dollar.varname_len = 0;
 	while (dollar.line[*index] != '$')
 		(*index)++;
@@ -83,7 +81,7 @@ char	*dquote_dollar_replacer(t_dollar dollar)
 {
 	char	*newstr;
 
-	dollar.quote[*dollar.j] = '\0';
+	dollar.quote[dollar.j] = '\0';
 	dollar.var = ft_get_env(dollar.varname);
 	if (dollar.var)
 	{

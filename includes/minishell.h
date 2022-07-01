@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 21:36:43 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:08:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,9 @@ t_token		*ft_token_creator(char *line, size_t line_index);
 // parsing
 void		process_input(t_data *data);
 int			ms_check_charset(char c);
-size_t		dquote_dollar_parser(char *line, size_t *index);
+void dquote_dollar_parser(char *quote, char *line, size_t *index,
+				 size_t *j);
+char		*dquote_dollar_replacer(t_dollar dollar);
 char		**ms_split(char *s);
 int			between_squotes(char *str, size_t *index);
 int			squote_len_index(char *str, size_t *index);
