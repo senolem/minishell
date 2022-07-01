@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_quote_manager.c                                 :+:      :+:    :+:   */
+/*   ms_dollar_manager.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 17:11:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:32:30 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,26 @@ char	*ft_get_env(char *varname)
 	ft_arr_freer(arr);
 	return (str);
 }
-/*
+
+void	ms_dollar_manager(char *arr[])
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (arr[i])
+	{
+		j = 0;
+		while (arr[i][j])
+		{
+			if (arr[i][j] == '\"')
+				dquote_dollar_parser(arr[i], &j);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	dquote_dollar_counter(t_dollar *dollar, size_t *index)
 {
 	dollar->varname_len = 0;
@@ -61,56 +80,44 @@ char	*dquote_dollar_replacer(t_dollar *dollar)
 {
 	char	*newstr;
 
-	dollar->quote[dollar->j] = '\0';
 	dollar->var = ft_get_env(dollar->varname);
 	if (dollar->var)
 	{
 		dollar->var_len = ft_strlen(dollar->var);
-		ft_printf("%d")
-		dollar->quotelen = ms_let_count(dollar->line, &dollar->index)
-			- dollar->varname_len + dollar->var_len;
-		ft_printf("count %d\n", dollar->quotelen);
-		newstr = malloc(sizeof(char) * (dollar->quotelen + 1));
+		dollar->len = ft_strlen(dollar->line) - dollar->varname_len
+			+ dollar->var_len;
+		ft_printf("count %d\n", dollar->len);
+		newstr = malloc(sizeof(char) * (dollar->len + 1));
 		if (!newstr)
 			return (NULL);
-		ft_strcpy(newstr, dollar->quote);
+		ft_strcpy(newstr, dollar->line);
 		if (!newstr)
 			return (NULL);
 		ft_strcat(newstr, dollar->var);
 		if (!newstr)
 			return (NULL);
-		free(dollar->quote);
-		dollar->quote = newstr;
+		free(dollar->line);
+		dollar->line = newstr;
 	}
-//	ft_strdel(&dollar->varname);
-//	ft_strdel(&dollar->var);
-	return (dollar->quote);
+	ft_strdel(&dollar->varname);
+	ft_strdel(&dollar->var);
+	return (dollar->line);
 }
 
-void	dquote_dollar_parser(char *quote, char *line, size_t *index,
-			size_t *j)
+void	dquote_dollar_parser(char *line, size_t *index)
 {
 	t_dollar	dollar;
-	char		*str;
-
-	dollar.quote = quote;
-	dollar.line = line;
-	dollar.j = *j;
-	dollar.index = *index;
+	
 	dquote_dollar_counter(&dollar, index);
 	dollar.i = 0;
-	str = malloc(sizeof(char) * (dollar.varname_len + 1));
+	dollar.varname = malloc(sizeof(char) * (dollar.varname_len + 1));
 	*index -= dollar.varname_len;
 	while (line[*index] && (!ms_check_charset(line[*index])
 			&& line[*index] != '\"'))
-		str[dollar.i++] = line[(*index)++];
-	str[dollar.i] = '\0';
-//	ft_printf("%s %d %c %d\n", str, dollar.i, line[*index], *index);
-	dollar.varname = str;
+		dollar.varname[dollar.i++] = line[(*index)++];
+	dollar.varname[dollar.i] = '\0';
+//	ft_printf("%s %d %c %d\n", dollar.varname, dollar.i, line[*index], *index);
 //	ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
-	quote = dquote_dollar_replacer(&dollar);
-	dollar.quote = NULL;
+	line = dquote_dollar_replacer(&dollar);
 //	ft_printf("%d, %s\n", dollar.varname_len, quote);
-	*j = ft_strlen(quote) - 1;
 }
-*/

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 16:40:47 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:40:38 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,12 @@ typedef struct s_export
 typedef struct s_dollar
 {
 	char	*line;
-	char	*quote;
 	char	*varname;
 	char	*var;
-	size_t	index;
-	size_t	i;
-	size_t	j;
-	size_t	quotelen;
+	size_t	len;
 	size_t	varname_len;
 	size_t	var_len;
+	size_t	i;
 }				t_dollar;
 
 // init
@@ -95,13 +92,13 @@ int			check_quotes_end(int *str);
 void		check_quotes_count(char *str, int *squote, int *dquote);
 
 // token
+void		ms_dollar_manager(char *arr[]);
 void		ft_tokenizer(char *arr[]);
 t_token		*ft_token_creator(char *line, size_t line_index);
 
 // parsing
 void		process_input(t_data *data);
-void		dquote_dollar_parser(char *quote, char *line, size_t *index,
-				size_t *j);
+void		dquote_dollar_parser(char *line, size_t *index);
 char		*dquote_dollar_replacer(t_dollar *dollar);
 char		**ms_split(char *s);
 size_t		ms_let_count(char *str, size_t *index);
