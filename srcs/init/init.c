@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/28 09:54:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:05:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_reset(struct termios *terminal)
+static void	init_reset(struct termios *terminal)
 {
 	terminal->c_lflag &= ~terminal->c_lflag;
 	terminal->c_lflag |= (ISIG | ICANON | IEXTEN | ECHO | NOFLSH);
@@ -61,7 +61,7 @@ static int	init_mode(t_data *data)
 	return (0);
 }
 
-int	init_env(void)
+static int	init_env(void)
 {
 	char		**env;
 	char		*pwd;

@@ -6,13 +6,13 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/30 15:56:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 15:12:17 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cd_tilde(char *path, char *tmp, char ***env)
+static int	cd_tilde(char *path, char *tmp, char ***env)
 {
 	int		i;
 	char	*ptmp;
@@ -30,7 +30,15 @@ int	cd_tilde(char *path, char *tmp, char ***env)
 	return (i);
 }
 
-void	cd(char	*path)
+static void	cd_exit(char **tmp, char ***env)
+{
+	perror("cd");
+	free(tmp);
+	ft_arr_freer(*env);
+	return ;
+}
+
+void	builtin_cd(char	*path)
 {
 	int		i;
 	char	*tmp;
@@ -51,10 +59,7 @@ void	cd(char	*path)
 		}
 	}
 	if (i != 0)
-	{
-		perror("cd");
-		return ;
-	}
+		return (cd_exit(&tmp, &env));
 	env_write(ENV_FILE, env);
 	free(tmp);
 	ft_arr_freer(env);

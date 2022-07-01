@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/10 17:55:49 by faventur          #+#    #+#              #
-#    Updated: 2022/06/27 16:48:32 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/01 16:12:50 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_sort_chartab.c ft_chartab_len.c ft_power.c ft_binary2char.c \
 	ft_strtolol.c ft_arr_freer.c ft_arr_freer_index.c ft_puterror.c \
 	ft_printf.c ft_printf_basic.c ft_printf_utils.c ft_fprintf.c \
-	ft_fprintf_basic.c ft_fprintf_utils.c get_next_line.c
+	ft_fprintf_basic.c ft_fprintf_utils.c get_next_line.c ft_arrdup.c \
+	ft_arrlen.c
 
 SRCSB	= get_next_line_bonus.c
 

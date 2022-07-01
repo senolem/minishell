@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 14:26:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 15:40:10 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_dollar
 
 // init
 int			init_shell(t_data *data);
-int			init_env(void);
 
 // sanity check
 int			check_quotes(t_data *data);
@@ -129,14 +128,14 @@ char		**env_delete(char *str, char ***env);
 char		*env_get(char *str, char **env);
 ssize_t		env_search(char *str, char **env);
 char		**env_read(char *path);
-char		**env_read_clean(t_read *r);
 
 // builtins
-void		pwd(void);
-void		cd(char	*path);
-void		export(char *str);
-void		unset(char *str);
-void		env(void);
+void		builtin_pwd(void);
+void		builtin_cd(char	*path);
+void		builtin_export(char *str);
+void		builtin_unset(char *str);
+void		builtin_env(void);
+void		builtin_exit(int n, t_data *data);
 
 // signals
 void		sig_ignore(t_data *data, int sig);
@@ -146,6 +145,8 @@ void		sig_handler(int sig, siginfo_t *info, void *context);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);
+int			throwback_error(char *str, char *str2, int i);
+void		thrownull_error(char *str, char *str2);
 char		**ft_arrdup(char **arr);
 size_t		ft_arrlen(char **array);
 char		*ft_concat(char *s1, char *s2);

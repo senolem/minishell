@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 14:25:57 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 16:04:36 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,5 @@ void	process_input(t_data *data)
 		i++;
 	}
 //	ft_tokenizer(arr);
-//	export("a=a   =       p=e=d");
-//	unset("a");
 	free(data->input);
 }

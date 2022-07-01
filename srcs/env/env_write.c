@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_write.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 11:38:25 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 15:12:48 by albaur           ###   ########.fr       */
+/*   Created: 2022/07/01 10:04:12 by albaur            #+#    #+#             */
+/*   Updated: 2022/07/01 14:55:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtin_env(void)
+void	env_write(char *path, char **env)
 {
-	char	**env;
 	size_t	i;
+	int		fd;
 
-	env = env_read(ENV_FILE);
 	i = 0;
+	if (!path || !env)
+		return ;
+	fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (fd < 0)
+		return ;
 	while (env[i])
 	{
-		if (env[i][0] == '!')
-			continue ;
-		else
-			ft_printf("%s\n", env[i]);
+		ft_putendl_fd(env[i], fd);
 		++i;
 	}
-	ft_arr_freer(env);
+	close(fd);
 }
