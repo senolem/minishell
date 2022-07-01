@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:38:25 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 11:42:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 14:28:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	env(void)
 	while (env[i])
 	{
 		if (env[i][0] == '!')
-			(NULL);
+			continue ;
 		else
 			ft_printf("%s\n", env[i]);
 		++i;
