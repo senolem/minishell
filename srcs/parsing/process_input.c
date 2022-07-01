@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 10:10:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 10:56:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ void	process_input(t_data *data)
 		return ;
 	}
 	arr = ms_split(data->input);
-	ft_tokenizer(arr);
-	export("a=a   =       p=e=d");
-	unset("a");
+	int i = 0;
+	while (arr[i])
+	{
+		ft_printf("%s\n", arr[i]);
+		i++;
+	}
+//	ft_tokenizer(arr);
+//	export("a=a   =       p=e=d");
+//	unset("a");
 	free(data->input);
 }

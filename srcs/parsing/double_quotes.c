@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:46:13 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/28 17:35:30 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:47:10 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ char	*ft_dquote_pruner_index(char *quote, char *str, size_t *index,
 		(*index)++;
 	while (str[*index] && str[*index] != '\"')
 	{
+		if (str[*index] == '$')
+			dquote_dollar_parser(quote, str, index, j);
 		quote[*j] = str[*index];
 		(*j)++;
 		(*index)++;
