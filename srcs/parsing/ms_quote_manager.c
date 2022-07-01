@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ms_quote_manager.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 10:08:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/01 12:17:43 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * The dquote_dollar_counter() function counts the amount of
- * characters of the name of the environment variable preceded by
- * the dollar ($) symbol in the string passed as a parameter.
+ * The dquote_dollar_counter() function counts the amount of characters
+ * of the name of the environment variable preceded by the dollar ($)
+ * symbol in the string passed as a parameter.
  * 
  * The dquote_dollar_parser() function allocates (with malloc(3)) and
  * returns a "fresh" null-terminated string representing the the name
@@ -42,18 +42,43 @@ char	*ft_get_env(char *varname)
 	return (str);
 }
 
-void	dquote_dollar_counter(t_dollar dollar, size_t *index)
+void	dquote_dollar_counter(t_dollar *dollar, size_t *index)
 {
-	dollar.varname_len = 0;
-	while (dollar.line[*index] != '$')
+	dollar->varname_len = 0;
+	if (dollar->line[*index] == '$')
 		(*index)++;
-	if (dollar.line[*index] == '$')
-		(*index)++;
-	while (dollar.line[*index] && !ms_check_charset(dollar.line[*index]))
+	ft_printf("%d %d\n", *index, dollar->varname_len);
+	while (dollar->line[*index] && (!ms_check_charset(dollar->line[*index])
+			&& dollar->line[*index] != '\"'))
 	{
-		dollar.varname_len++;
+		ft_printf("boucle %d %d\n", *index, dollar->varname_len);
+		dollar->varname_len++;
 		(*index)++;
 	}
+}
+
+char	*dquote_dollar_replacer(t_dollar *dollar)
+{
+	char	*newstr;
+
+	dollar->quote[dollar->j] = '\0';
+	dollar->var = ft_get_env(dollar->varname);
+	if (dollar->var)
+	{
+		dollar->var_len = ft_strlen(dollar->var);
+		dollar->quotelen = ft_strlen(dollar->quote) - dollar->varname_len
+			+ dollar->var_len;
+		newstr = malloc(sizeof(char) * (dollar->quotelen + 1));
+		if (!newstr)
+			return (NULL);
+		ft_strcpy(newstr, dollar->quote);
+		ft_strcat(newstr, dollar->var);
+		free(dollar->quote);
+		dollar->quote = newstr;
+	}
+	ft_strdel(&dollar->varname);
+	ft_strdel(&dollar->var);
+	return (dollar->quote);
 }
 
 void	dquote_dollar_parser(char *quote, char *line, size_t *index,
@@ -64,40 +89,20 @@ void	dquote_dollar_parser(char *quote, char *line, size_t *index,
 
 	dollar.quote = quote;
 	dollar.line = line;
-	dollar.index = *index;
 	dollar.j = *j;
-	dquote_dollar_counter(dollar, &dollar.index);
+	dquote_dollar_counter(&dollar, index);
 	dollar.i = 0;
 	str = malloc(sizeof(char) * (dollar.varname_len + 1));
-	dollar.index -= dollar.varname_len;
-	while (line[dollar.index] && !ms_check_charset(line[dollar.index]))
-		str[dollar.i++] = line[dollar.index++];
+	*index -= dollar.varname_len;
+	while (line[*index] && (!ms_check_charset(line[*index])
+			&& line[*index] != '\"'))
+		str[dollar.i++] = line[(*index)++];
 	str[dollar.i] = '\0';
+	ft_printf("%s %d %c %d\n", str, dollar.i, line[*index], *index);
 	dollar.varname = str;
-	dquote_dollar_replacer(dollar);
-}
-
-char	*dquote_dollar_replacer(t_dollar dollar)
-{
-	char	*newstr;
-
-	dollar.quote[dollar.j] = '\0';
-	dollar.var = ft_get_env(dollar.varname);
-	if (dollar.var)
-	{
-		dollar.var_len = ft_strlen(dollar.var);
-		dollar.quotelen = ft_strlen(dollar.quote) - dollar.varname_len
-			+ dollar.var_len;
-		newstr = malloc(sizeof(char) * (dollar.quotelen + 1));
-		if (!newstr)
-			return (NULL);
-		ft_strcpy(newstr, dollar.quote);
-		ft_strcat(newstr, dollar.var);
-		free(dollar.quote);
-		dollar.quote = newstr;
-	}
-	free(dollar.line);
-	free(dollar.varname);
-	free(dollar.var);
-	return (dollar.quote);
+	ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
+	quote = dquote_dollar_replacer(&dollar);
+	ft_printf("%d, %s %s\n", dollar.varname_len, dollar.quote);
+	*index = dollar.index;
+	*j = dollar.j;
 }
