@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 12:17:43 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 14:25:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,16 @@ char	*dquote_dollar_replacer(t_dollar *dollar)
 		if (!newstr)
 			return (NULL);
 		ft_strcpy(newstr, dollar->quote);
+		if (!newstr)
+			return (NULL);
 		ft_strcat(newstr, dollar->var);
+		if (!newstr)
+			return (NULL);
 		free(dollar->quote);
 		dollar->quote = newstr;
 	}
-	ft_strdel(&dollar->varname);
-	ft_strdel(&dollar->var);
+//	ft_strdel(&dollar->varname);
+//	ft_strdel(&dollar->var);
 	return (dollar->quote);
 }
 
@@ -102,7 +106,7 @@ void	dquote_dollar_parser(char *quote, char *line, size_t *index,
 	dollar.varname = str;
 	ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
 	quote = dquote_dollar_replacer(&dollar);
-	ft_printf("%d, %s %s\n", dollar.varname_len, dollar.quote);
-	*index = dollar.index;
-	*j = dollar.j;
+//	dollar.quote = NULL;
+	ft_printf("%d, %s\n", dollar.varname_len, quote);
+	*j = ft_strlen(quote) - 1;
 }
