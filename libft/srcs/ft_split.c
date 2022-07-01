@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:21:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 10:37:23 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 10:41:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ char	**ft_split(char const *s, char c)
 	t_split	var;
 
 	if (!s)
+		return (NULL);
+	if (ft_strlen(s) == 1 && s[0] == c)
 		return (NULL);
 	var.i = 0;
 	var.j = 0;
