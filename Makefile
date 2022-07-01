@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/01 15:01:04 by albaur           ###   ########.fr        #
+#    Updated: 2022/07/01 17:18:15 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,18 @@ INIT_PATH	=	init/
 INIT_FILES 	= 	init
 SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
+LEX_PATH	=	lexing/
+LEX_FILES 	= 	ft_tokenizer
+SRCS_FILES	+=	$(addprefix $(LEX_PATH), $(LEX_FILES))
+
+SPL_PATH	=	ms_split/
+SPL_FILES 	= 	single_quotes double_quotes ms_split ms_quote_manager \
+				ft_isoper
+SRCS_FILES	+=	$(addprefix $(SPL_PATH), $(SPL_FILES))
+
 ENV_PATH	=	env/
-ENV_FILES 	= 	env_add env_delete env_get_pwd env_get env_read env_set \
-				env_search env_write
+ENV_FILES 	= 	env_add env_delete env_get_pwd env_get env_read \
+				env_set env_search env_write
 SRCS_FILES	+=	$(addprefix $(ENV_PATH), $(ENV_FILES))
 
 SIG_PATH	=	signal/
@@ -41,9 +50,8 @@ SIG_FILES 	= 	signal
 SRCS_FILES	+=	$(addprefix $(SIG_PATH), $(SIG_FILES))
 
 PARS_PATH	=	parsing/
-PARS_FILES 	= 	single_quotes double_quotes path_searcher pipe_manager \
-				ms_split ms_quote_manager process_input ft_tokenizer \
-				ft_isoper check check_utils
+PARS_FILES 	= 	path_searcher pipe_manager process_input check \
+				check_utils
 SRCS_FILES	+=	$(addprefix $(PARS_PATH), $(PARS_FILES))
 
 UTIL_PATH	=	utils/

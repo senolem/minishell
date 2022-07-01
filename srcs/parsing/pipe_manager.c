@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:48:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/28 17:36:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:13:08 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	pipe_counter(char *str)
 	return (counter);
 }
 
-int parg_size(char *str, size_t i)
+int	parg_size(char *str, size_t i)
 {
 	int	counter;
 
