@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 18:40:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 12:03:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ typedef struct s_dollar
 	size_t	varname_len;
 	size_t	var_len;
 	size_t	i;
+	size_t	sq;
+	size_t	dq;
 }				t_dollar;
 
 // init
@@ -91,10 +93,16 @@ int			check_quotes(t_data *data);
 int			check_quotes_end(int *str);
 void		check_quotes_count(char *str, int *squote, int *dquote);
 
-// token
-void		ms_dollar_manager(char *arr[]);
-void		ft_tokenizer(char *arr[]);
+// tokenizing
 t_token		*ft_token_creator(char *line, size_t line_index);
+void		ft_tokenizer(char *arr[]);
+void		ft_tokdel(t_token *tok);
+void		ft_tokdisplay(t_token *token);
+int			ft_tokcmp(t_token *token, int type);
+
+void		ms_dollar_manager(t_stack *stack);
+int			ms_quote_checker(t_token *token, size_t *index);
+int			ms_dollar_checker(t_token *token);
 
 // parsing
 void		process_input(t_data *data);

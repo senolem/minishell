@@ -6,34 +6,11 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/30 18:34:03 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 10:35:38 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_tokdel(t_token *tok)
-{
-	if (tok != NULL)
-	{
-		free(tok->str);
-		tok->str = NULL;
-		free(tok);
-		tok = NULL;
-	}
-}
-
-void	ft_tokdisplay(t_token *token)
-{
-	ft_printf("string: %s\ntype: %d\n", token->str, token->type);
-}
-
-int	ft_tokcmp(t_token *token, int type)
-{
-	if (token->type == type)
-		return (0);
-	return (1);
-}
 
 t_node	*token_parser(t_stack *stack, int type)
 {
@@ -148,6 +125,7 @@ void	ft_tokenizer(char *arr[])
 		ft_stackadd_bottom(new, ft_newnode(ft_token_creator(arr[i], i)));
 		i++;
 	}
+	
 	ft_stackiter(new, (void *)ft_tokdisplay);
 //	ft_token_manager(new);
 	ft_arr_freer(arr);
