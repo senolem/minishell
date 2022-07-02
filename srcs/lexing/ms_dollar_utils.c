@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:00:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 15:15:59 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:39:38 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	ms_quote_checker_pt2(t_dollar *dollar)
 		ret = 0;
 	else if (dollar->sq && !dollar->dq)
 		ret = 1;
-	else if (!dollar->sq && dollar->dq)
+	else
 		ret = 2;
 	return (ret);
 }
 
-int	ms_quote_checker(t_token *token, size_t *index)
+int	ms_quote_checker(t_token *token, ssize_t *index)
 {
 	t_dollar	dollar;
 
@@ -51,12 +51,12 @@ int	ms_quote_checker(t_token *token, size_t *index)
 	return (ms_quote_checker_pt2(&dollar));
 }
 
-int	ms_dollar_checker(t_token *token)
+ssize_t	ms_dollar_checker(t_token *token)
 {
-	size_t	i;
+	ssize_t	i;
 
 	i = 0;
-	while (token->str)
+	while (token->str[i])
 	{
 		if (token->str[i] == '$' && (ft_isalnum(token->str[i + 1])
 				|| token->str[i + 1] == '_'))
