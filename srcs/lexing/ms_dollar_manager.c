@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 12:05:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:03:30 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,6 @@
 
 #include "minishell.h"
 
-char	*ft_get_env(char *varname)
-{
-	char	**arr;
-	char	*str;
-
-	arr = env_read(ENV_FILE);
-	str = env_get(varname, arr);
-	ft_arr_freer(arr);
-	return (str);
-}
-
 void	dquote_dollar_counter(t_dollar *dollar, size_t *index)
 {
 	dollar->varname_len = 0;
@@ -57,7 +46,7 @@ void	dquote_dollar_counter(t_dollar *dollar, size_t *index)
 	}
 }
 
-char	*dquote_dollar_replacer(t_dollar *dollar)
+char	*ms_dollar_replacer(t_dollar *dollar)
 {
 	char	*newstr;
 	size_t	i;
@@ -91,8 +80,8 @@ char	*dquote_dollar_replacer(t_dollar *dollar)
 	ft_strdel(&dollar->varname);
 	return (dollar->line);
 }
-/*
-void	dquote_dollar_parser(t_token	*token, size_t *index)
+
+void	ms_dollar_parser(t_token *token, size_t *index)
 {
 	t_dollar	dollar;
 
@@ -114,7 +103,7 @@ void	dquote_dollar_parser(t_token	*token, size_t *index)
 		ft_printf("%s\n", dollar.line);
 	}
 }
-*/
+
 void	ms_dollar_manager(t_stack *stack)
 {
 	t_node	*current;
@@ -127,7 +116,7 @@ void	ms_dollar_manager(t_stack *stack)
 		index = ms_dollar_checker(current->content);
 		if (index >= 0 && (ms_quote_checker(current->content, &index) == 2
 				|| !ms_quote_checker(current->content, &index)))
-			dquote_dollar_parser();
+			ms_dollar_parser();
 		current = current->next;
 	}
 }

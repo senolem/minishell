@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 10:35:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 12:40:48 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ t_node	*token_parser(t_stack *stack, int type)
 
 static void	ft_token_creator_pt2(t_token *token, char *line)
 {
-	if (!ft_strstrbool(line, "<"))
+	if (!ft_strnstrbool(line, "<", 1))
 		token->type = smaller_than_type;
-	else if (!ft_strstrbool(line, ">>"))
+	else if (!ft_strnstrbool(line, ">>", 2))
 		token->type = d_greater_than_type;
-	else if (!ft_strstrbool(line, ">"))
+	else if (!ft_strnstrbool(line, ">", 1))
 		token->type = greater_than_type;
 	else if (line[0] == '\0')
 		token->type = empty_type;
@@ -55,13 +55,13 @@ t_token	*ft_token_creator(char *line, size_t line_index)
 		return (NULL);
 	}
 	token->index = line_index;
-	if (!ft_strstrbool(line, "&&"))
+	if (!ft_strnstrbool(line, "&&", 2))
 		token->type = and_type;
-	else if (!ft_strstrbool(line, "||"))
+	else if (!ft_strnstrbool(line, "||", 2))
 		token->type = or_type;
-	else if (!ft_strstrbool(line, "|"))
+	else if (!ft_strnstrbool(line, "|", 1))
 		token->type = pipe_type;
-	else if (!ft_strstrbool(line, "<<"))
+	else if (!ft_strnstrbool(line, "<<", 2))
 		token->type = d_smaller_than_type;
 	else
 		ft_token_creator_pt2(token, line);
@@ -125,7 +125,7 @@ void	ft_tokenizer(char *arr[])
 		ft_stackadd_bottom(new, ft_newnode(ft_token_creator(arr[i], i)));
 		i++;
 	}
-	
+	ms_dollar_manager(new);
 	ft_stackiter(new, (void *)ft_tokdisplay);
 //	ft_token_manager(new);
 	ft_arr_freer(arr);

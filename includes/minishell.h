@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/02 12:03:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:03:24 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,11 @@ int			ft_tokcmp(t_token *token, int type);
 void		ms_dollar_manager(t_stack *stack);
 int			ms_quote_checker(t_token *token, size_t *index);
 int			ms_dollar_checker(t_token *token);
+void		ms_dollar_parser(t_token *token, size_t *index);
+char		*ms_dollar_replacer(t_dollar *dollar);
 
 // parsing
 void		process_input(t_data *data);
-void		dquote_dollar_parser(char *line, size_t *index);
-char		*dquote_dollar_replacer(t_dollar *dollar);
 char		**ms_split(char *s);
 size_t		ms_let_count(char *str, size_t *index);
 int			ms_check_charset(char c);
@@ -126,6 +126,7 @@ char		*ft_oper_writer_index(char *quote, char *str,
 				size_t *index, size_t *j);
 
 // env
+char		*ft_get_env(char *varname);
 char		*env_get(char *name, char **env);
 void		env_write(char *path, char **env);
 void		env_set(char *str, char *value, char ***env);

@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/02 12:04:05 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/02 13:04:19 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,8 @@ SPL_FILES 	= 	single_quotes double_quotes ms_split ft_isoper
 SRCS_FILES	+=	$(addprefix $(SPL_PATH), $(SPL_FILES))
 
 ENV_PATH	=	env/
-ENV_FILES 	= 	env_add env_delete env_get_pwd env_get env_read \
-				env_set env_search env_write
+ENV_FILES 	= 	env_add env_delete env_get_pwd ft_get_env env_get \
+				env_read env_set env_search env_write
 SRCS_FILES	+=	$(addprefix $(ENV_PATH), $(ENV_FILES))
 
 SIG_PATH	=	signal/
