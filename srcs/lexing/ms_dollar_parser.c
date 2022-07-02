@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:16:18 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 20:29:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 21:22:29 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,31 @@
 
 #include "minishell.h"
 
+static void	ms_dollar_eraser(t_dollar *dollar)
+{
+	dollar->i = 0;
+	dollar->j = 0;
+	dollar->line_len = ft_strlen(dollar->line);
+	dollar->len = dollar->line_len - (dollar->varname_len + 1);
+	dollar->str = malloc(sizeof(char) * (dollar->len + 1));
+	if (!dollar->str)
+		return ;
+	while (dollar->line[dollar->i] && dollar->line[dollar->i] != '$')
+		dollar->str[dollar->j++] = dollar->line[dollar->i++];
+	if (dollar->line[dollar->i] == '$')
+		dollar->str[dollar->j] = '\0';
+	dollar->i += dollar->varname_len + 1;
+	dollar->j = ft_strlen(dollar->str);
+	while (dollar->line[dollar->i] && dollar->i < dollar->line_len)
+		dollar->str[dollar->j++] = dollar->line[dollar->i++];
+	dollar->str[dollar->j] = '\0';
+}
+
 static void	ms_dollar_measurer(t_dollar *dollar)
 {
 	dollar->line_len = ft_strlen(dollar->line);
 	dollar->var_len = ft_strlen(dollar->var);
-	dollar->len = ft_strlen(dollar->line) - (dollar->varname_len + 1)
+	dollar->len = dollar->line_len - (dollar->varname_len + 1)
 		+ dollar->var_len;
 }
 
@@ -41,7 +61,6 @@ static void	ms_dollar_tailor(t_dollar *dollar)
 	dollar->i = 0;
 	dollar->j = 0;
 	ms_dollar_measurer(dollar);
-	ft_printf("len %d %d %d %d\n", ft_strlen(dollar->line), dollar->var_len, dollar->varname_len, dollar->len);
 	dollar->str = malloc(sizeof(char) * (dollar->len + 1));
 	if (!dollar->str)
 		return ;
@@ -54,7 +73,6 @@ static void	ms_dollar_tailor(t_dollar *dollar)
 		return ;
 	dollar->i += dollar->varname_len + 1;
 	dollar->j = ft_strlen(dollar->str);
-	ft_printf("index %d %d %d %d\n", dollar->i, ft_strlen(dollar->line), dollar->j, dollar->len);
 	while (dollar->line[dollar->i] && dollar->i < dollar->line_len)
 		dollar->str[dollar->j++] = dollar->line[dollar->i++];
 	dollar->str[dollar->j] = '\0';
@@ -63,12 +81,20 @@ static void	ms_dollar_tailor(t_dollar *dollar)
 char	*ms_dollar_replacer(t_dollar *dollar)
 {
 	dollar->var = ft_get_env(dollar->varname);
+	ft_printf("%s\n", dollar->var);
 	if (dollar->var)
 	{
 		ms_dollar_tailor(dollar);
-		free(dollar->line);
+		ft_strdel(&dollar->line);
 		dollar->line = dollar->str;
-	}	// et si la var n'existe pas
+		ft_strdel(&dollar->var);
+	}
+	else if (!dollar->var && !*dollar->var)
+	{
+		ms_dollar_eraser(dollar);
+		ft_strdel(&dollar->line);
+		dollar->line = dollar->str;
+	}
 	ft_strdel(&dollar->varname);
 	return (dollar->line);
 }
@@ -81,7 +107,6 @@ void	ms_dollar_parser(t_token *token, ssize_t *index)
 	ms_dollar_counter(&dollar, index);
 	dollar.i = 0;
 	dollar.varname = malloc(sizeof(char) * (dollar.varname_len + 1));
-	ft_printf("%d %d\n", dollar.varname_len, *index);
 	*index -= dollar.varname_len;
 	while (dollar.line[*index] && !ms_dollar_check_charset(dollar.line[*index]))
 		dollar.varname[dollar.i++] = dollar.line[(*index)++];

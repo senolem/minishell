@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:54:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 15:57:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/02 21:35:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*env_get(char *str, char **env)
 	tmp = ft_strjoin(str, "=");
 	if (!tmp)
 		return (NULL);
-	if (env_search(str, env))
+	if (env_search(str, env) >= 0)
 	{
 		i = env_search(str, env);
 		tmp2 = ft_strdup(env[i] + ft_strlen(tmp));
