@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 13:03:30 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:45:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,6 @@
 */
 
 #include "minishell.h"
-
-void	dquote_dollar_counter(t_dollar *dollar, size_t *index)
-{
-	dollar->varname_len = 0;
-	if (dollar->line[*index] == '$')
-		(*index)++;
-	ft_printf("%d %d\n", *index, dollar->varname_len);
-	while (dollar->line[*index] && (!ms_check_charset(dollar->line[*index])
-			&& dollar->line[*index] != '\"'))
-	{
-		ft_printf("boucle %d %d\n", *index, dollar->varname_len);
-		dollar->varname_len++;
-		(*index)++;
-	}
-}
 
 char	*ms_dollar_replacer(t_dollar *dollar)
 {
@@ -81,27 +66,46 @@ char	*ms_dollar_replacer(t_dollar *dollar)
 	return (dollar->line);
 }
 
+int	ms_dollar_check_charset(char c)
+{
+	if (ft_isspace(c) || c == '\0' || c == '\'' || c == '\"')
+		return (1);
+	return (0);
+}
+
+void	ms_dollar_counter(t_dollar *dollar, size_t *index)
+{
+	dollar->varname_len = 0;
+	if (dollar->line[*index] == '$')
+		(*index)++;
+	ft_printf("%d %d\n", *index, dollar->varname_len);
+	while (dollar->line[*index]
+		&& !ms_dollar_check_charset(dollar->line[*index]))
+	{
+		ft_printf("boucle %d %d\n", *index, dollar->varname_len);
+		dollar->varname_len++;
+		(*index)++;
+	}
+}
+
 void	ms_dollar_parser(t_token *token, size_t *index)
 {
 	t_dollar	dollar;
 
-	if (dquote_dollar_checker(line, index))
-	{
-		dollar.line = line;
-		dquote_dollar_counter(&dollar, index);
-		ft_printf("%d\n", dollar.varname_len);
-		dollar.i = 0;
-		dollar.varname = malloc(sizeof(char) * (dollar.varname_len + 1));
-		*index -= dollar.varname_len;
-		while (line[*index] && (!ms_check_charset(line[*index])
-				&& line[*index] != '\"'))
-			dollar.varname[dollar.i++] = line[(*index)++];
-		dollar.varname[dollar.i] = '\0';
-		dollar.i = 0;
-		ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
-		line = dquote_dollar_replacer(&dollar);
-		ft_printf("%s\n", dollar.line);
-	}
+	dollar.line = token->str;
+	ms_dollar_counter(&dollar, index);
+	ft_printf("%d\n", dollar.varname_len);
+	dollar.i = 0;
+	dollar.varname = malloc(sizeof(char) * (dollar.varname_len + 1));
+	*index -= dollar.varname_len;
+	while (line[*index] && (!ms_check_charset(line[*index])
+			&& line[*index] != '\"'))
+		dollar.varname[dollar.i++] = line[(*index)++];
+	dollar.varname[dollar.i] = '\0';
+	dollar.i = 0;
+	ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
+	line = dquote_dollar_replacer(&dollar);
+	ft_printf("%s\n", dollar.line);
 }
 
 void	ms_dollar_manager(t_stack *stack)

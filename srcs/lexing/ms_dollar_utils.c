@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:00:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 13:02:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:41:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	ms_dollar_checker(t_token *token)
 	i = 0;
 	while (token->str)
 	{
-		if (token->str[i] == '$')
+		if (token->str[i] == '$' && (ft_isalnum(token->str[i + 1])
+				|| token->str[i + 1] == '_'))
 			return (i);
 		i++;
 	}
