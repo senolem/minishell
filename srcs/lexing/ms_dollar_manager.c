@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 14:28:26 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:17:38 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,60 +31,6 @@
 
 #include "minishell.h"
 
-char	*ms_dollar_replacer(t_dollar *dollar)
-{
-	char	*newstr;
-	size_t	i;
-
-	dollar->i = 0;
-	dollar->var = ft_get_env(dollar->varname);
-	if (dollar->var)
-	{
-		i = 0;
-		dollar->var_len = ft_strlen(dollar->var);
-		dollar->len = ft_strlen(dollar->line) - dollar->varname_len
-			+ dollar->var_len;
-		ft_printf("count %d\n", dollar->len);
-		newstr = malloc(sizeof(char) * (dollar->len + 1));
-		if (!newstr)
-			return (NULL);
-		while (dollar->line[dollar->i] && dollar->line[dollar->i] != '$')
-			newstr[i++] = dollar->line[dollar->i++];
-		if (dollar->line[dollar->i] == '$')
-			newstr[i++] = '\0';
-		ft_printf("here we go %s\n", newstr);
-		ft_strcat(newstr, dollar->var);
-		dollar->i += dollar->varname_len + 1;
-		i = ft_strlen(newstr);
-		newstr[i++] = dollar->line[dollar->i++];
-		dollar->i++;
-		ft_printf("here we go %s\n", newstr);
-		free(dollar->line);
-		ft_printf("here we go %s\n", newstr);
-		dollar->line = newstr;
-	}
-	ft_strdel(&dollar->varname);
-	return (dollar->line);
-}
-
-void	ms_dollar_parser(t_token *token, size_t *index)
-{
-	t_dollar	dollar;
-
-	dollar.line = token->str;
-	ms_dollar_counter(&dollar, index);
-	ft_printf("%d\n", dollar.varname_len);
-	dollar.i = 0;
-	dollar.varname = malloc(sizeof(char) * (dollar.varname_len + 1));
-	*index -= dollar.varname_len;
-	while (dollar.line[*index] && !ms_dollar_check_charset(dollar.line[*index]))
-		dollar.varname[dollar.i++] = dollar.line[(*index)++];
-	dollar.varname[dollar.i] = '\0';
-	ft_printf("%d, %s\n", dollar.varname_len, dollar.varname);
-	token->str = dquote_dollar_replacer(&dollar);
-	ft_printf("%s\n", dollar.line);
-}
-
 void	ms_dollar_manager(t_stack *stack)
 {
 	t_node	*current;
@@ -97,7 +43,7 @@ void	ms_dollar_manager(t_stack *stack)
 		index = ms_dollar_checker(current->content);
 		if (index >= 0 && (ms_quote_checker(current->content, &index) == 2
 				|| !ms_quote_checker(current->content, &index)))
-			ms_dollar_parser();
+			ms_dollar_parser(current->content, &index);
 		current = current->next;
 	}
 }

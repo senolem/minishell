@@ -6,33 +6,11 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:00:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 14:28:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:15:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ms_dollar_check_charset(char c)
-{
-	if (ft_isspace(c) || c == '\'' || c == '\"')
-		return (1);
-	return (0);
-}
-
-void	ms_dollar_counter(t_dollar *dollar, size_t *index)
-{
-	dollar->varname_len = 0;
-	if (dollar->line[*index] == '$')
-		(*index)++;
-	ft_printf("%d %d\n", *index, dollar->varname_len);
-	while (dollar->line[*index]
-		&& !ms_dollar_check_charset(dollar->line[*index]))
-	{
-		ft_printf("boucle %d %d\n", *index, dollar->varname_len);
-		dollar->varname_len++;
-		(*index)++;
-	}
-}
 
 int	ms_quote_checker_pt2(t_dollar *dollar)
 {
