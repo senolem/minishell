@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:16:18 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 20:02:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:28:45 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static void	ms_dollar_tailor(t_dollar *dollar)
 	ft_printf("index %d %d %d %d\n", dollar->i, ft_strlen(dollar->line), dollar->j, dollar->len);
 	while (dollar->line[dollar->i] && dollar->i < dollar->line_len)
 		dollar->str[dollar->j++] = dollar->line[dollar->i++];
-//	dollar->i++;
+	dollar->str[dollar->j++] = '\0';
+	dollar->i++;
 }
 
 char	*ms_dollar_replacer(t_dollar *dollar)
@@ -68,7 +69,7 @@ char	*ms_dollar_replacer(t_dollar *dollar)
 		ms_dollar_tailor(dollar);
 		free(dollar->line);
 		dollar->line = dollar->str;
-	}
+	}	// et si la var n'existe pas
 	ft_strdel(&dollar->varname);
 	return (dollar->line);
 }

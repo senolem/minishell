@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:00:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 17:30:50 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:20:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ void	ms_dollar_counter(t_dollar *dollar, ssize_t *index)
 	dollar->varname_len = 0;
 	if (dollar->line[*index] == '$')
 		(*index)++;
-	ft_printf("%d %d\n", *index, dollar->varname_len);
 	while (dollar->line[*index]
 		&& !ms_dollar_check_charset(dollar->line[*index]))
 	{
-		ft_printf("boucle %d %d\n", *index, dollar->varname_len);
 		dollar->varname_len++;
 		(*index)++;
 	}
