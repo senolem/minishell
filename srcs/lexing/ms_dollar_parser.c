@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:16:18 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 21:22:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:17:43 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static void	ms_dollar_tailor(t_dollar *dollar)
 char	*ms_dollar_replacer(t_dollar *dollar)
 {
 	dollar->var = ft_get_env(dollar->varname);
-	ft_printf("%s\n", dollar->var);
 	if (dollar->var)
 	{
 		ms_dollar_tailor(dollar);
@@ -89,7 +88,7 @@ char	*ms_dollar_replacer(t_dollar *dollar)
 		dollar->line = dollar->str;
 		ft_strdel(&dollar->var);
 	}
-	else if (!dollar->var && !*dollar->var)
+	else
 	{
 		ms_dollar_eraser(dollar);
 		ft_strdel(&dollar->line);
