@@ -6,11 +6,23 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:33:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 12:02:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:44:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+size_t	ft_tokstrlen(t_token *token)
+{
+	size_t	i;
+
+	i = 0;
+	if (!token || !token->str)
+		return (0);
+	while (token->str[i])
+		i++;
+	return (i);
+}
 
 void	ft_tokdel(t_token *tok)
 {

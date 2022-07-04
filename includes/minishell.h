@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/04 14:59:16 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:18:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,14 @@ typedef struct s_dollar
 int			init_shell(t_data *data);
 
 // sanity check
-int			check_quotes(char *str);
+int			ft_check_quotes(char *str);
 
 // tokenizing
 t_token		*ft_token_creator(char *line, size_t line_index);
 void		ft_tokenizer(char *arr[]);
-void		ft_tokdel(t_token *tok);
 void		ft_tokdisplay(t_token *token);
+void		ft_tokdel(t_token *tok);
+size_t		ft_tokstrlen(t_token *token);
 int			ft_tokcmp(t_token *token, int type);
 
 void		ms_dollar_manager(t_stack *stack);
@@ -106,7 +107,7 @@ void		ms_dollar_parser(t_token *token, ssize_t *index);
 void		ms_dollar_counter(t_dollar *dollar, ssize_t *index);
 char		*ms_dollar_replacer(t_dollar *dollar);
 ssize_t		ms_dollar_checker(t_token *token);
-int			ms_quote_checker(t_token *token, ssize_t *index);
+int			ms_usd_quote_checker(t_token *token, ssize_t *index);
 int			ms_dollar_check_charset(char c);
 
 // parsing

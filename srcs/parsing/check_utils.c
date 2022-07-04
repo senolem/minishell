@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 11:11:14 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/04 14:58:50 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:10:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	ft_quote_checker_pt2(int *sq, int *dq)
+static int	ft_str_quote_checker_pt2(int *sq, int *dq)
 {
 	int	ret;
 
@@ -25,7 +25,7 @@ static int	ft_quote_checker_pt2(int *sq, int *dq)
 	return (ret);
 }
 
-static int	ft_quote_checker(char *str, size_t *index)
+static int	ft_str_quote_checker(char *str, size_t *index)
 {
 	size_t	i;
 	int		sq;
@@ -46,15 +46,15 @@ static int	ft_quote_checker(char *str, size_t *index)
 			dq--;
 		i++;
 	}
-	return (ft_quote_checker_pt2(&sq, &dq));
+	return (ft_str_quote_checker_pt2(&sq, &dq));
 }
 
-int	check_quotes(char *str)
+int	ft_check_quotes(char *str)
 {
 	size_t	index;
 
 	index = ft_strlen(str);
 	if (index > 0)
-		return (ft_quote_checker(str, &index));
+		return (ft_str_quote_checker(str, &index));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:42 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 20:20:13 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:08:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ms_dollar_manager(t_stack *stack)
 	while (current)
 	{
 		index = ms_dollar_checker(current->content);
-		if (index >= 0 && (ms_quote_checker(current->content, &index) == 2
-				|| !ms_quote_checker(current->content, &index)))
+		if (index >= 0 && (ms_usd_quote_checker(current->content, &index) == 2
+				|| !ms_usd_quote_checker(current->content, &index)))
 			ms_dollar_parser(current->content, &index);
 		else
 			current = current->next;

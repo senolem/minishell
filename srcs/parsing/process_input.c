@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/04 14:53:40 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:11:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	process_input(t_data *data)
 
 	if (data->input && data->input[0] != '\0' && data->mode)
 		add_history(data->input);
-	if (check_quotes(data) > 0)
+	if (ft_check_quotes(data->input) > 0)
 	{
 		ft_printf("\033[31mSyntax error : invalid quote sequence\033[0m\n");
 		return ;
