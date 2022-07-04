@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 16:18:48 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:17:13 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,6 @@ void	ft_tokenizer(char *arr[])
 	ft_stackiter(new, (void *)ft_tokdisplay);
 //	ft_token_manager(new);
 	ft_arr_freer(arr);
-//	ft_stackclear(new, ft_tokdel);
+
+	ft_stackclear(new, (void *)ft_tokdel);
 }

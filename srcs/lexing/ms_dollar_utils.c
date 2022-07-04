@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:00:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 20:20:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:55:12 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ms_dollar_counter(t_dollar *dollar, ssize_t *index)
 	}
 }
 
-int	ms_quote_checker_pt2(t_dollar *dollar)
+static int	ms_quote_checker_pt2(t_dollar *dollar)
 {
 	int	ret;
 
@@ -56,14 +56,10 @@ int	ms_quote_checker(t_token *token, ssize_t *index)
 	{
 		if (token->str[dollar.i] == '\'' && !dollar.sq && !dollar.dq)
 			dollar.sq++;
-//		else if (token->str[dollar.i] == '\'' && !dollar.sq && dollar.dq)
-//			;
 		else if (token->str[dollar.i] == '\'' && dollar.sq && !dollar.dq)
 			dollar.sq--;
 		else if (token->str[dollar.i] == '\"' && !dollar.dq && !dollar.sq)
 			dollar.dq++;
-//		else if (token->str[dollar.i] == '\"' && !dollar.dq && dollar.sq)
-//			;
 		else if (token->str[dollar.i] == '\"' && !dollar.sq && dollar.dq)
 			dollar.dq--;
 		dollar.i++;

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 20:16:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/21 16:12:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:34:06 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ void	ft_stackdelone(t_node *node, void (*del)(void *))
 	if (!node || !del)
 		return ;
 	tmp = node;
-	node = node->next;
-	node->prev = tmp->prev;
+	if (node->next)
+	{
+		node = node->next;
+		if (tmp->prev)
+			node->prev = tmp->prev;
+		else
+			node->prev = NULL;
+	}
 	del(tmp->content);
 	free(tmp);
 }
