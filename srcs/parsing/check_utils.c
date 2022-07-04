@@ -1,42 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_utils.c                                      :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 18:17:17 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 16:41:30 by albaur           ###   ########.fr       */
+/*   Created: 2022/06/24 11:11:14 by albaur            #+#    #+#             */
+/*   Updated: 2022/07/04 14:58:50 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_quotes_end(int *str)
+static int	ft_quote_checker_pt2(int *sq, int *dq)
 {
-	size_t	i;
+	int	ret;
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != 3)
-			return (1);
-		++i;
-	}
-	return (0);
+	if (!*sq && !*dq)
+		ret = 0;
+	else if (*sq && !*dq)
+		ret = 1;
+	else
+		ret = 2;
+	return (ret);
 }
 
-void	check_quotes_count(char *str, int *squote, int *dquote)
+static int	ft_quote_checker(char *str, size_t *index)
 {
 	size_t	i;
+	int		sq;
+	int		dq;
 
 	i = 0;
-	while (str[i])
+	sq = 0;
+	dq = 0;
+	while (str[i] && i < *index)
 	{
-		if (str[i] == '\'')
-			++*squote;
-		else if (str[i] == '\"')
-			++*dquote;
-		++i;
+		if (str[i] == '\'' && !sq && !dq)
+			sq++;
+		else if (str[i] == '\'' && sq && !dq)
+			sq--;
+		else if (str[i] == '\"' && !dq && !sq)
+			dq++;
+		else if (str[i] == '\"' && !sq && dq)
+			dq--;
+		i++;
 	}
+	return (ft_quote_checker_pt2(&sq, &dq));
+}
+
+int	check_quotes(char *str)
+{
+	size_t	index;
+
+	index = ft_strlen(str);
+	if (index > 0)
+		return (ft_quote_checker(str, &index));
+	return (0);
 }
