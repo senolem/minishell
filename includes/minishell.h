@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/04 16:45:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/05 10:43:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int			ft_tokcmp(t_token *token, int type);
 
 void		ms_dollar_manager(t_stack *stack);
 void		ms_dollar_parser(t_token *token, ssize_t *index);
+void		ms_dollar_quote_eraser(t_stack *stack);
 void		ms_dollar_counter(t_dollar *dollar, ssize_t *index);
 char		*ms_dollar_replacer(t_dollar *dollar);
 ssize_t		ms_dollar_checker(t_token *token);

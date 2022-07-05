@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/10 17:55:49 by faventur          #+#    #+#              #
-#    Updated: 2022/07/01 16:12:50 by albaur           ###   ########.fr        #
+#    Updated: 2022/07/05 10:36:01 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 
 SRCSB	= get_next_line_bonus.c
 
-SRCS_FT	= ft_strstrbool.c ft_strnstrbool.c ft_map_reader.c \
-	ft_printerror.c
+SRCS_FT	= ft_strstrbool.c ft_strnstrbool.c void_star_cmp.c \
+	ft_map_reader.c ft_printerror.c 
 
 SRCS_L	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
@@ -39,9 +39,8 @@ SRCS_L	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 
 SRCS_S	= ft_stacknew.c ft_newnode.c ft_stackadd_top.c \
 	ft_stackadd_bottom.c ft_stackdelone.c ft_stackclear.c \
-	ft_nodedel.c ft_stackinsert.c ft_stackiter.c ft_stacksize.c \
-	ft_stacksort.c ft_stackiter_if.c ft_stack_remove_if.c \
-	ft_create_chartab.c
+	ft_stackinsert.c ft_stackiter.c ft_stacksize.c ft_stacksort.c \
+	ft_stackiter_if.c ft_stack_remove_if.c ft_create_chartab.c
 
 SRCS_Q	= ft_newqueue.c ft_newqelem.c ft_q_init.c ft_enqueue.c \
 	ft_dequeue.c ft_q_iter.c

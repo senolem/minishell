@@ -6,74 +6,89 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:18:19 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/04 16:01:57 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:06:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	ft_usd_quote_len(char *str, ssize_t *index, char quote)
+void	ft_usd_quote_counter(char *str, size_t *i, size_t *counter, char quote)
+{
+	if (str[*i] == quote)
+	{
+		(*counter)++;
+		(*i)++;
+	}
+	while (str[*i] != quote)
+		(*i)++;
+	if (str[*i] == quote)
+	{
+		(*counter)++;
+		(*i)++;
+	}
+}
+
+size_t	ft_usd_quote_len(char *str)
 {
 	size_t	counter;
+	size_t	i;
 
+	if (!str)
+		return (0);
 	counter = 0;
-	if (str[*index] == quote)
-		(*index)++;
-	while (str[*index] && str[*index] != quote)
+	i = 0;
+	while (str[i])
 	{
-		counter++;
-		(*index)++;
+		if (str[i] == '\'')
+			ft_usd_quote_counter(str, &i, &counter, '\'');
+		else if (str[i] == '\"')
+			ft_usd_quote_counter(str, &i, &counter, '\"');
+		else
+			i++;
 	}
-	if (str[*index] == quote)
-		(*index)++;
 	return (counter);
 }
 
-char	*ft_usd_quote_pruner(t_dollar *dollar, size_t *index,
-			size_t *j)
+void	ft_usd_quote_pruner(t_dollar *dollar, char quote)
 {
-	if (str[*index] == '\'')
+	if (dollar->line[dollar->i] == quote)
+		dollar->i++;
+	while (dollar->line[dollar->i] && dollar->line[dollar->i] != quote)
 	{
-		quote[*j] = str[*index];
-		(*index)++;
-		(*j)++;
+		dollar->str[dollar->j] = dollar->line[dollar->i];
+		dollar->j++;
+		dollar->i++;
 	}
-	while (str[*index] && str[*index] != '\'')
-	{
-		quote[*j] = str[*index];
-		(*j)++;
-		(*index)++;
-	}
-	if (str[*index] == '\'' && str[*index + 1] != '\0')
-	{
-		quote[*j] = str[*index];
-		(*index)++;
-		(*j)++;
-	}
-	quote[*j] = '\0';
-	return (quote);
+	if (dollar->line[dollar->i] == quote)
+		dollar->i++;
+	dollar->str[dollar->j] = '\0';
 }
 
-int	ms_usd_quote_replacer(t_token *token, ssize_t *index, char quote)
+void	ms_usd_quote_replacer(t_token *token)
 {
 	t_dollar	dollar;
 
 	dollar.i = 0;
 	dollar.j = 0;
 	dollar.line = token->str;
-//	dollar.len = ft_usd_quote_len(token->str, index, quote);
-//	dollar.str = malloc(sizeof(char) * (dollar.len + 1));
-	while (token->str[dollar.i] && dollar.i != '\0')
+	dollar.len = ft_strlen(dollar.line)
+		- ft_usd_quote_len(dollar.str);
+	dollar.str = malloc(sizeof(char) * (dollar.len + 1));
+	while (dollar.line[dollar.i])
 	{
-		if (dollar.line[dollar.i] == '\'' || token->str[dollar.i] == '\"')
+		if (dollar.line[dollar.i] == '\'')
+			ft_usd_quote_pruner(&dollar, '\'');
+		else if (dollar.line[dollar.i] == '\"')
+			ft_usd_quote_pruner(&dollar, '\"');
+		else
 		{
-			ft_usd_quote_len(char *str, ssize_t *index, char quote)
+			dollar.i++;
+			dollar.j++;
 		}
-		dollar.i++;
 	}
+	dollar.str[dollar.j] = '\0';
 	ft_strdel(&token->str);
 	token->str = dollar.str;
-	return (ms_usd_quote_checker_pt2(&dollar));
 }
 
 ssize_t	ms_dollar_quote_finder(t_token *token)
@@ -101,7 +116,7 @@ void	ms_dollar_quote_eraser(t_stack *stack)
 	{
 		index = ms_dollar_quote_finder(current->content);
 		if (index >= 0)
-			ms_usd_quote_replacer(current->content, &index);
+			ms_usd_quote_replacer(current->content);
 		current = current->next;
 	}
 }

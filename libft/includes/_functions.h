@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 16:02:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/27 20:19:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 10:35:02 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_map_reader
 int		ft_strstrbool(const char *haystack, const char *needle);
 int		ft_strnstrbool(const char *haystack, const char *needle,
 			size_t len);
+int		void_star_cmp(void *s1, void *s2);
+void	ft_nodedel(void *as);
 void	ft_printerror(char *program, char *pathname);
 char	**ft_map_reader(char *filename);
 

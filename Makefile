@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/04 15:00:08 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/05 10:23:46 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 LEX_PATH	=	lexing/
 LEX_FILES 	= 	ms_dollar_manager ms_dollar_parser ms_dollar_utils \
-				ft_tokenizer token_utils
+				ms_usd_quote_manager ft_tokenizer token_utils
 SRCS_FILES	+=	$(addprefix $(LEX_PATH), $(LEX_FILES))
 
 SPL_PATH	=	ms_split/
@@ -83,7 +83,7 @@ all: $(NAME)
 
 $(NAME):  $(OBJS)
 	@echo "$(HIRED)Compiling...$(NONE)"
-	@$(MAKE) stacks _ft -sC ./libft
+	@$(MAKE) stacks btrees _ft -sC ./libft
 	@mv ./libft/libft.a .
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft.a $(LINKS)
 	@echo "$(CURSIVE)$(HIBLUE)Parce que taper une commande,$(NONE)"
