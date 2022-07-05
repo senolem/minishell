@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 12:27:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:46:38 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 # include <errno.h>
 # include <signal.h>
 # include <termios.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
 # include "libft.h"
+# include "ft_fprintf.h"
 # include "_functions.h"
 # include "tok_stacks.h"
 
@@ -89,6 +92,16 @@ typedef struct s_dollar
 	int		dq;
 }				t_dollar;
 
+typedef struct s_var
+{
+	pid_t	pid;
+	int		fd[2];
+	int		end[2];
+	int		status;
+	int		ac;
+	char	**av;
+}			t_var;
+
 // init
 int			init_shell(t_data *data);
 
@@ -102,10 +115,6 @@ void		ft_tokdisplay(t_token *token);
 void		ft_tokdel(t_token *tok);
 size_t		ft_tokstrlen(t_token *token);
 int			ft_tokcmp(t_token *token, int type);
-int			ft_tok_classifier(t_token *token);
-
-t_btree		*ft_list_scroller(t_stack *stack);
-void		btree_data_inserter(t_btree **root, t_token *token);
 
 void		ms_dollar_manager(t_stack *stack);
 void		ms_dollar_parser(t_token *token, ssize_t *index);
@@ -159,6 +168,13 @@ void		sig_ignore(t_data *data, int sig);
 void		sig_wait(t_data *data, int sig,
 				void (*hdlr)(int, siginfo_t *, void *));
 void		sig_handler(int sig, siginfo_t *info, void *context);
+
+// pipex
+t_var		get_args(char ac, char *av[]);
+t_var		hd_managing(int ac, char *av[]);
+void		pipex(char *cmd, char *env[], int fdin);
+void		ft_exec(char *cmd, char *env[]);
+char		*ft_path_searcher(char *cmd, char *envp[]);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);

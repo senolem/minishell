@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:19:34 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 16:12:30 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/05 13:29:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,7 @@ char	**ft_arr_freer_index(char **arr, size_t *index);
 void	ft_puterror(const char *str);
 char	**ft_arrdup(char **arr);
 size_t	ft_arrlen(char **array);
+void	ft_arr_display(char **arr);
+void	ft_arr_display_size(char **arr, size_t size);
 
 #endif

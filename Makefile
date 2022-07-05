@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/05 12:16:55 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/05 15:51:59 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,7 @@ SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 LEX_PATH	=	lexing/
 LEX_FILES 	= 	ms_dollar_manager ms_dollar_parser ms_dollar_utils \
-				ms_usd_quote_manager ft_tokenizer token_utils \
-				about_asts
+				ms_usd_quote_manager ft_tokenizer token_utils
 SRCS_FILES	+=	$(addprefix $(LEX_PATH), $(LEX_FILES))
 
 SPL_PATH	=	ms_split/
@@ -49,6 +48,11 @@ SRCS_FILES	+=	$(addprefix $(ENV_PATH), $(ENV_FILES))
 SIG_PATH	=	signal/
 SIG_FILES 	= 	signal
 SRCS_FILES	+=	$(addprefix $(SIG_PATH), $(SIG_FILES))
+
+#PIP_PATH	=	pipex/
+#PIP_FILES 	= 	pipex
+#SRCS_FILES	+=	$(addprefix $(PIP_PATH), $(PIP_FILES))
+#SRCS = main.c ft_path_searcher.c pipex.c hd_managing.c
 
 PARS_PATH	=	parsing/
 PARS_FILES 	= 	path_searcher pipe_manager process_input check_utils
