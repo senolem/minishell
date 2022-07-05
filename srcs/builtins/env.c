@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:38:25 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/04 17:17:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/05 14:47:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	builtin_env(char **str)
 	i = 0;
 	while (env[i])
 	{
-		if (env[i][0] == '!')
+		if (env[i][0] == '!' || env[i][0] == '?')
 			;
 		else
 			ft_printf("%s\n", env[i]);

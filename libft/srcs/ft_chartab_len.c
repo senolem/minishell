@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_chartab_len.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:27:15 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/27 17:50:20 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:44:47 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_chartab_len(char **arr)
 	if (!arr || *arr)
 		return (0);
 	i = 0;
-	while (arr[i])
+	while (arr[i] != NULL)
 		i++;
 	return (i);
 }

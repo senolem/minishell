@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:22:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 11:10:08 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/05 14:29:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@ static int	unset_check(char *str)
 	size_t	i;
 
 	i = 0;
+	if (str[0] && ft_isdigit(str[0]) == 1)
+	{
+		ft_printf("minishell: unset: `%s': not a valid identifier\n", str);
+		return (-1);
+	}
 	while (str[i])
 	{
-		if (ft_isalnum(str[i]) == 0)
+		if (ft_isalnum(str[i]) == 0 && str[i] != '_')
 		{
 			ft_printf("minishell: unset: `%s': not a valid identifier\n", str);
 			return (-1);
