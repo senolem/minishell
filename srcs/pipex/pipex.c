@@ -6,18 +6,18 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 19:23:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 16:05:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
-void	ft_exec(char *cmd, char *env[])
+void	ft_exec(char *cmd)
 {
 	char	**cmd_args;
 
 	cmd_args = ft_split(cmd, ' ');
-	cmd = ft_path_searcher(cmd_args[0], env);
+	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
 		ft_puterror("Error: Impossible to find the binary file.");
 	if (execve(cmd, cmd_args, NULL))
@@ -32,18 +32,18 @@ static void	parent_process(t_var var)
 	waitpid(var.pid, NULL, 0);
 }
 
-static void	child_process(t_var var, char *cmd, char *env[], int fdin)
+static void	child_process(t_var var, char *cmd, int fdin)
 {
 	close(var.end[0]);
 	dup2(var.end[1], STDOUT_FILENO);
 	close(var.end[1]);
 	if (fdin == STDIN_FILENO)
 		exit(1);
-	ft_exec(cmd, env);
+	ft_exec(cmd);
 	exit(EXIT_FAILURE);
 }
 
-void	pipex(char *cmd, char *env[], int fdin)
+void	pipex(char *cmd, int fdin)
 {
 	t_var	var;
 
@@ -57,6 +57,6 @@ void	pipex(char *cmd, char *env[], int fdin)
 		ft_printerror("pipex", cmd);
 	}
 	if (var.pid == 0)
-		child_process(var, cmd, env, fdin);
+		child_process(var, cmd, fdin);
 	parent_process(var);
 }

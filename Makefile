@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/05 15:51:59 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/05 15:54:30 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ all: $(NAME)
 
 $(NAME):  $(OBJS)
 	@echo "$(HIRED)Compiling...$(NONE)"
-	@$(MAKE) stacks btrees _ft -sC ./libft
+	@$(MAKE) stacks _ft -sC ./libft
 	@mv ./libft/libft.a .
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft.a $(LINKS)
 	@echo "$(CURSIVE)$(HIBLUE)Parce que taper une commande,$(NONE)"

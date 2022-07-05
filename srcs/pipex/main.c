@@ -6,11 +6,11 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/23 19:28:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 16:05:26 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "minishell.h"
 
 void	ft_last_action(t_var var, int ac, char *av[])
 {
@@ -33,7 +33,7 @@ t_var	get_args(char ac, char *av[])
 	return (var);
 }
 
-int	main(int ac, char *av[], char *env[])
+int	main(int ac, char *av[])
 {
 	t_var	var;
 	int		i;
@@ -54,10 +54,10 @@ int	main(int ac, char *av[], char *env[])
 	close(var.fd[0]);
 	dup2(var.fd[1], STDOUT_FILENO);
 	close(var.fd[1]);
-	pipex(av[i++], env, var.fd[0]);
+	pipex(av[i++], var.fd[0]);
 	while (i < ac - 2)
-		pipex(av[i++], env, 1);
+		pipex(av[i++], 1);
 	ft_last_action(var, ac, av);
-	ft_exec(av[i], env);
+	ft_exec(av[i]);
 	return (0);
 }
