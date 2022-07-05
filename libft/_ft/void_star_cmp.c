@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nodedel.c                                       :+:      :+:    :+:   */
+/*   void_star_cmp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 17:44:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/21 15:35:28 by faventur         ###   ########.fr       */
+/*   Created: 2022/07/05 10:29:27 by faventur          #+#    #+#             */
+/*   Updated: 2022/07/05 10:31:50 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "_functions.h"
 
-void	ft_nodedel(void *as)
+int	void_star_cmp(void *s1, void *s2)
 {
-	if (as != NULL)
-	{
-		free(as);
-		as = NULL;
-	}
+	if (*(int *)s1 != *(int *)s2)
+		return (*(int *)s1 - *(int *)s2);
+	return (0);
 }
