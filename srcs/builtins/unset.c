@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:22:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/04 17:18:35 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/05 11:10:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	unset_check(char *str)
 	{
 		if (ft_isalnum(str[i]) == 0)
 		{
-			ft_printf("unset: %s: invalid parameter name\n", str);
+			ft_printf("minishell: unset: `%s': not a valid identifier\n", str);
 			return (-1);
 		}
 		++i;
@@ -56,10 +56,7 @@ int	builtin_unset(char **str)
 	char	**env;
 
 	if (!str || unset_min(str) == -1)
-	{
-		ft_printf("unset: not enough arguments\n");
 		return (1);
-	}
 	i = -1;
 	env = env_read(ENV_FILE);
 	while (str[++i])

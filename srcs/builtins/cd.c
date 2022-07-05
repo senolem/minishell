@@ -6,11 +6,25 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/04 16:50:58 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/05 11:28:00 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int cd_min(char **str)
+{
+	size_t i;
+
+	i = 0;
+	while (str[0][i])
+	{
+		if (ft_isalnum(str[0][i]) > 0)
+				return (1);
+		++i;
+	}
+	return (-1);
+}
 
 static int	cd_tilde(char *path, char *tmp, char ***env)
 {
@@ -44,11 +58,8 @@ int	builtin_cd(char	**path)
 	char	*tmp;
 	char	**env;
 
-	if (ft_arrlen(path) > 1)
-	{
-		ft_printf("cd: too many arguments\n");
+	if (!path || cd_min(path) == -1)
 		return (1);
-	}
 	i = 0;
 	env = env_read(ENV_FILE);
 	tmp = env_get("PWD", env);

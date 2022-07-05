@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 10:43:05 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/05 11:59:05 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ typedef struct s_delete
 
 typedef struct s_export
 {
-	ssize_t	i;
+	int		i;
+	ssize_t	j;
+	char	*tmp;
 	char	**env;
-	char	**arr;
 	char	**input;
 }				t_export;
 
