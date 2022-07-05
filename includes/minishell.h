@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 12:24:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:27:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ typedef struct s_delete
 
 typedef struct s_export
 {
-	ssize_t	i;
+	int		i;
+	ssize_t	j;
+	char	*tmp;
 	char	**env;
-	char	**arr;
 	char	**input;
 }				t_export;
 
@@ -146,12 +147,12 @@ ssize_t		env_search(char *str, char **env);
 char		**env_read(char *path);
 
 // builtins
-void		builtin_pwd(void);
-void		builtin_cd(char	*path);
-void		builtin_export(char *str);
-void		builtin_unset(char *str);
-void		builtin_env(void);
-void		builtin_exit(int n, t_data *data);
+int			builtin_pwd(char **str);
+int			builtin_cd(char **path);
+int			builtin_export(char **str);
+int			builtin_unset(char **str);
+int			builtin_env(char **str);
+int			builtin_exit(int n, t_data *data);
 
 // signals
 void		sig_ignore(t_data *data, int sig);

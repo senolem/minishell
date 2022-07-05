@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 16:04:47 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/05 12:25:23 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,40 @@
 
 static void	export_print(char **env)
 {
+	char	**tmp;
 	size_t	i;
 
 	i = 0;
 	while (env[i])
 	{
+		tmp = ft_split(env[i], '=');
+		if (!tmp)
+			return ;
 		if (env[i][0] == '!')
-			ft_printf("%s\n", env[i] + 1);
+			ft_printf("declare -x %s\n", tmp[0] + 1);
 		else
-			ft_printf("%s\n", env[i]);
+			ft_printf("declare -x %s=\"%s\"\n", tmp[0], tmp[1]);
+		ft_arr_freer(tmp);
 		++i;
 	}
 }
 
-static int	export_min(char *str)
+static int	export_min(char **str)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
+	j = 0;
 	while (str[i])
 	{
-		if (ft_isascii(str[i]) > 0)
-			return (1);
+		j = 0;
+		while (str[i][j])
+		{
+			if (ft_isalnum(str[i][j]) > 0)
+				return (1);
+			++j;
+		}
 		++i;
 	}
 	return (-1);
@@ -63,53 +75,49 @@ static int	export_check(char **str)
 	return (1);
 }
 
-static void	export_exec(t_export *e)
+static void	export_exec(t_export *e, char **str)
 {
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	while (e->arr[++e->i])
+	while (str[++e->i])
 	{
-		e->input = ft_split(e->arr[e->i], '=');
+		e->input = ft_split(str[e->i], '=');
 		if (!e->input)
 			return (thrownull_error("minishell: bad assignment", NULL));
-		i = export_check(e->input);
-		tmp = ft_strjoin("!", e->input[0]);
-		if (i == 1)
+		e->j = export_check(e->input);
+		e->tmp = ft_strjoin("!", e->input[0]);
+		if (e->j == 1)
 		{
-			if (env_search(tmp, e->env) >= 0)
-				env_set(tmp, e->input[1], &e->env);
+			if (env_search(e->tmp, e->env) >= 0)
+			{
+				e->env = env_delete(e->tmp, &e->env);
+				env_set(e->input[0], e->input[1], &e->env);
+			}
 			else
 				env_set(e->input[0], e->input[1], &e->env);
 		}
-		else if (i == -2)
-			env_set(tmp, "''", &e->env);
-		free(tmp);
+		else if (e->j == -2)
+			env_set(e->tmp, "''", &e->env);
+		free(e->tmp);
 		ft_arr_freer(e->input);
 	}
 }
 
-void	builtin_export(char *str)
+int	builtin_export(char **str)
 {
 	t_export	e;
 
 	e.i = -1;
 	e.env = env_read(ENV_FILE);
+	e.j = 0;
 	if (!str || export_min(str) == -1)
 	{
 		export_print(e.env);
 		ft_arr_freer(e.env);
-		return ;
+		return (0);
 	}
-	e.arr = ft_split(str, ' ');
-	if (!e.arr)
-	{
-		ft_arr_freer(e.env);
-		return ;
-	}
-	export_exec(&e);
+	export_exec(&e, str);
 	env_write(ENV_FILE, e.env);
-	ft_arr_freer(e.arr);
 	ft_arr_freer(e.env);
+	return (0);
 }
+
+//regler quand on envoie des espace + un truc valide (ca cree une variable vide :())
