@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 12:25:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/05 14:49:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ static void	export_print(char **env)
 	size_t	i;
 
 	i = 0;
+	ft_sort_chartab(env);
 	while (env[i])
 	{
 		tmp = ft_split(env[i], '=');
 		if (!tmp)
 			return ;
-		if (env[i][0] == '!')
+		if (env[i][0] == '?')
+			;
+		else if (env[i][0] == '!')
 			ft_printf("declare -x %s\n", tmp[0] + 1);
 		else
 			ft_printf("declare -x %s=\"%s\"\n", tmp[0], tmp[1]);
@@ -119,5 +122,3 @@ int	builtin_export(char **str)
 	ft_arr_freer(e.env);
 	return (0);
 }
-
-//regler quand on envoie des espace + un truc valide (ca cree une variable vide :())
