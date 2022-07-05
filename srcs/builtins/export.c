@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 16:04:47 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/04 17:29:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,22 @@ static void	export_print(char **env)
 	}
 }
 
-static int	export_min(char *str)
+static int	export_min(char **str)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
+	j = 0;
 	while (str[i])
 	{
-		if (ft_isascii(str[i]) > 0)
-			return (1);
+		j = 0;
+		while (str[i][j])
+		{
+			if (ft_isascii(str[i][j]) > 0)
+				return (1);
+			++j;
+		}
 		++i;
 	}
 	return (-1);
@@ -79,7 +86,10 @@ static void	export_exec(t_export *e)
 		if (i == 1)
 		{
 			if (env_search(tmp, e->env) >= 0)
-				env_set(tmp, e->input[1], &e->env);
+			{
+				e->env = env_delete(tmp, &e->env);
+				env_set(e->input[0], e->input[1], &e->env);
+			}
 			else
 				env_set(e->input[0], e->input[1], &e->env);
 		}
@@ -90,26 +100,21 @@ static void	export_exec(t_export *e)
 	}
 }
 
-void	builtin_export(char *str)
+int	builtin_export(char **str)
 {
 	t_export	e;
 
+	e.arr = str;
 	e.i = -1;
 	e.env = env_read(ENV_FILE);
 	if (!str || export_min(str) == -1)
 	{
 		export_print(e.env);
 		ft_arr_freer(e.env);
-		return ;
-	}
-	e.arr = ft_split(str, ' ');
-	if (!e.arr)
-	{
-		ft_arr_freer(e.env);
-		return ;
+		return (0);
 	}
 	export_exec(&e);
 	env_write(ENV_FILE, e.env);
-	ft_arr_freer(e.arr);
 	ft_arr_freer(e.env);
+	return (0);
 }

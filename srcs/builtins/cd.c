@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 15:12:17 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/04 16:50:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,37 @@ static int	cd_tilde(char *path, char *tmp, char ***env)
 	return (i);
 }
 
-static void	cd_exit(char **tmp, char ***env)
+static int	cd_exit(char **tmp, char ***env)
 {
 	perror("cd");
 	free(tmp);
 	ft_arr_freer(*env);
-	return ;
+	return (1);
 }
 
-void	builtin_cd(char	*path)
+int	builtin_cd(char	**path)
 {
 	int		i;
 	char	*tmp;
 	char	**env;
 
+	if (ft_arrlen(path) > 1)
+	{
+		ft_printf("cd: too many arguments\n");
+		return (1);
+	}
 	i = 0;
 	env = env_read(ENV_FILE);
 	tmp = env_get("PWD", env);
-	if (path[0] == '~')
-		i = cd_tilde(path, tmp, &env);
+	if (path[0][0] == '~')
+		i = cd_tilde(path[0], tmp, &env);
 	else
 	{
-		i = chdir(path);
+		i = chdir(path[0]);
 		if (i == 0)
 		{
 			env_set("OLDPWD", tmp, &env);
-			env_set("PWD", path, &env);
+			env_set("PWD", path[0], &env);
 		}
 	}
 	if (i != 0)
@@ -63,4 +68,5 @@ void	builtin_cd(char	*path)
 	env_write(ENV_FILE, env);
 	free(tmp);
 	ft_arr_freer(env);
+	return (0);
 }
