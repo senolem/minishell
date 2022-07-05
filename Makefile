@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/05 10:23:46 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/05 12:16:55 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRCS_FILES	+=	$(addprefix $(INIT_PATH), $(INIT_FILES))
 
 LEX_PATH	=	lexing/
 LEX_FILES 	= 	ms_dollar_manager ms_dollar_parser ms_dollar_utils \
-				ms_usd_quote_manager ft_tokenizer token_utils
+				ms_usd_quote_manager ft_tokenizer token_utils \
+				about_asts
 SRCS_FILES	+=	$(addprefix $(LEX_PATH), $(LEX_FILES))
 
 SPL_PATH	=	ms_split/

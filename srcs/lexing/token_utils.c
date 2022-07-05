@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:33:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/04 15:44:33 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:15:11 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,9 @@ int	ft_tokcmp(t_token *token, int type)
 	if (token->type == type)
 		return (0);
 	return (1);
+}
+
+int	ft_tok_classifier(t_token *token)
+{
+	return (token->type);
 }

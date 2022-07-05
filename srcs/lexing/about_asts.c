@@ -6,30 +6,60 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 10:23:02 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/05 10:28:23 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:22:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft(void *nb)
+/*
+int	from_stack_to_ast_converter(t_btree *root, void *item)
 {
-	*(int *)nb *= 5;
-//	printf("%d\n", *(int *)nb);
-}
+	t_btree *new;
 
-int	from_stack_to_ast_converter()
+	new = btree_create_node(item);
+}
+*/
+
+t_btree	*ft_list_scroller(t_stack *stack)
 {
 	t_btree	*tree;
-	
+	t_node	*current;
+
+	current = stack->top;
 	tree = NULL;
-	btree_insert_data(&tree, &a, cmp);
-	btree_insert_data(&tree, &b, cmp);
-	btree_insert_data(&tree, &c, cmp);
-	btree_insert_data(&tree, &d, cmp);
-	btree_insert_data(&tree, &f, cmp);
-	btree_insert_data(&tree, &g, cmp);
-	btree_insert_data(&tree, &l, cmp);
-	printf("%d %d %d %d\n", *(int *)tree->item, *(int *)tree->right->item, *(int *)tree->right->left->item, *(int *)tree->right->right->item);
-	printf("%d", btree_level_count(tree));
+	while (current)
+	{
+		btree_data_inserter(&tree, current->content);
+		current = current->next;
+	}
+	return (tree);
+}
+
+void	btree_data_inserter(t_btree **root, t_token *token)
+{
+	t_btree	*new;
+
+	new = btree_create_node(token);
+	if (root)
+	{
+		if (*root)
+		{
+			if (ft_tok_classifier(token) < 10)
+			{
+				if ((*root)->left)
+					btree_data_inserter(&(*root)->left, token);
+				else
+					(*root)->left = new;
+			}
+			else
+			{
+				if ((*root)->right)
+					btree_data_inserter(&(*root)->right, token);
+				else
+					(*root)->right = new;
+			}
+		}
+		else
+			*root = new;
+	}
 }

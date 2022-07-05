@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/04 17:54:01 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:26:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,34 @@ void	ft_token_manager(t_stack *stack)
 }
 */
 
+int	btree_level_count(t_btree *root)
+{
+	int	lheight;
+	int	rheight;
+
+	if (root)
+	{
+		ft_tokdisplay(root->item);
+		lheight = btree_level_count(root->left);
+		rheight = btree_level_count(root->right);
+		if (lheight > rheight)
+		{
+			printf("l %d\n", lheight);
+			return (lheight + 1);
+		}
+		else
+		{
+			printf("r %d\n", rheight);
+			return (rheight + 1);
+		}
+	}
+	return (0);
+}
+
 void	ft_tokenizer(char *arr[])
 {
 	t_stack	*new;
+	t_btree	*tree;
 	size_t	i;
 
 	i = 0;
@@ -127,7 +152,9 @@ void	ft_tokenizer(char *arr[])
 	}
 	ms_dollar_manager(new);
 	ms_dollar_quote_eraser(new);
-	ft_stackiter(new, (void *)ft_tokdisplay);
+//	ft_stackiter(new, (void *)ft_tokdisplay);
+	tree = ft_list_scroller(new);
+	btree_level_count(tree);
 //	ft_token_manager(new);
 	ft_arr_freer(arr);
 

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/04 17:51:03 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:24:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ void		ft_tokdisplay(t_token *token);
 void		ft_tokdel(t_token *tok);
 size_t		ft_tokstrlen(t_token *token);
 int			ft_tokcmp(t_token *token, int type);
+int			ft_tok_classifier(t_token *token);
+
+t_btree		*ft_list_scroller(t_stack *stack);
+void		btree_data_inserter(t_btree **root, t_token *token);
 
 void		ms_dollar_manager(t_stack *stack);
 void		ms_dollar_parser(t_token *token, ssize_t *index);
