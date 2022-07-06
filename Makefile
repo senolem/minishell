@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/06 11:40:50 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/06 11:53:30 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,13 +49,13 @@ SIG_PATH	=	signal/
 SIG_FILES 	= 	signal
 SRCS_FILES	+=	$(addprefix $(SIG_PATH), $(SIG_FILES))
 
-#PIP_PATH	=	pipex/
-#PIP_FILES 	= 	pipex
-#SRCS_FILES	+=	$(addprefix $(PIP_PATH), $(PIP_FILES))
-#SRCS = main.c ft_path_searcher.c pipex.c hd_managing.c
+PIP_PATH	=	pipex/
+PIP_FILES 	= 	pipe_manager ft_path_searcher hd_managing pipex \
+				pipe_utils
+SRCS_FILES	+=	$(addprefix $(PIP_PATH), $(PIP_FILES))
 
 PARS_PATH	=	parsing/
-PARS_FILES 	= 	pipe_manager process_input check_utils
+PARS_FILES 	= 	process_input check_utils
 SRCS_FILES	+=	$(addprefix $(PARS_PATH), $(PARS_FILES))
 
 UTIL_PATH	=	utils/

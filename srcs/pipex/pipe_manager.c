@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/06 11:39:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:51:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
+
 void	ft_last_action(t_var var, int ac, char *av[])
 {
 	close(var.fd[1]);
@@ -33,7 +33,7 @@ t_var	get_args(char ac, char *av[])
 	return (var);
 }
 
-int	main(int ac, char *av[])
+int	pipe_manager(int ac, char *av[])
 {
 	t_var	var;
 	int		i;
@@ -61,4 +61,3 @@ int	main(int ac, char *av[])
 	ft_exec(av[i]);
 	return (0);
 }
-*/
