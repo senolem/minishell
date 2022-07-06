@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/06 11:53:30 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/06 17:03:22 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ CURSIVE = \033[3m
 all: $(NAME)
 
 $(NAME):  $(OBJS)
-	@echo "$(HIRED)Compiling...$(NONE)"
+	@echo "$(HIRED)Compiling libft...$(NONE)"
 	@$(MAKE) stacks _ft -sC ./libft
 	@mv ./libft/libft.a .
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft.a $(LINKS)
