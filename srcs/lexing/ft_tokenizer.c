@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/05 15:29:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:38:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,30 +112,6 @@ void	ft_token_manager(t_stack *stack)
 	}
 }
 */
-
-int	btree_level_count(t_btree *root)
-{
-	int	lheight;
-	int	rheight;
-
-	if (root)
-	{
-		ft_tokdisplay(root->item);
-		lheight = btree_level_count(root->left);
-		rheight = btree_level_count(root->right);
-		if (lheight > rheight)
-		{
-			printf("l %d\n", lheight);
-			return (lheight + 1);
-		}
-		else
-		{
-			printf("r %d\n", rheight);
-			return (rheight + 1);
-		}
-	}
-	return (0);
-}
 
 void	ft_tokenizer(char *arr[])
 {

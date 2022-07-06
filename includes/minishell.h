@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 16:05:38 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:40:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ char		*ft_oper_writer_index(char *quote, char *str,
 				size_t *index, size_t *j);
 
 // env
-char		*ft_get_env(char *varname);
+char		*ft_getenv(char *varname);
 char		*env_get(char *name, char **env);
 void		env_write(char *path, char **env);
 void		env_set(char *str, char *value, char ***env);

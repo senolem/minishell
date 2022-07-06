@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_env.c                                       :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 13:03:51 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/02 17:35:42 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:40:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "minishell.h"
 
-char	*ft_get_env(char *varname)
+char	*ft_getenv(char *varname)
 {
 	char	**arr;
 	char	*str;

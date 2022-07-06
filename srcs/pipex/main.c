@@ -6,12 +6,12 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/05 16:05:26 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:39:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 void	ft_last_action(t_var var, int ac, char *av[])
 {
 	close(var.fd[1]);
@@ -61,3 +61,4 @@ int	main(int ac, char *av[])
 	ft_exec(av[i]);
 	return (0);
 }
+*/

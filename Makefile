@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/05 15:54:30 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/06 11:40:50 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ SPL_FILES 	= 	single_quotes double_quotes ms_split ft_isoper
 SRCS_FILES	+=	$(addprefix $(SPL_PATH), $(SPL_FILES))
 
 ENV_PATH	=	env/
-ENV_FILES 	= 	env_add env_delete env_get_pwd ft_get_env env_get \
+ENV_FILES 	= 	env_add env_delete env_get_pwd ft_getenv env_get \
 				env_read env_set env_search env_write
 SRCS_FILES	+=	$(addprefix $(ENV_PATH), $(ENV_FILES))
 
@@ -55,7 +55,7 @@ SRCS_FILES	+=	$(addprefix $(SIG_PATH), $(SIG_FILES))
 #SRCS = main.c ft_path_searcher.c pipex.c hd_managing.c
 
 PARS_PATH	=	parsing/
-PARS_FILES 	= 	path_searcher pipe_manager process_input check_utils
+PARS_FILES 	= 	pipe_manager process_input check_utils
 SRCS_FILES	+=	$(addprefix $(PARS_PATH), $(PARS_FILES))
 
 UTIL_PATH	=	utils/
