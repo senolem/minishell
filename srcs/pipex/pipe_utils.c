@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_manager.c                                     :+:      :+:    :+:   */
+/*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:48:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/01 17:13:08 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:41:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	pipe_counter(char *str)
+size_t	pipe_counter(t_stack *stack)
 {
 	size_t	i;
-	size_t	counter;
+	t_node	*node;
 
 	i = 0;
-	counter = 0;
-	while (str[i])
+	node = stack->top;
+	while (node)
 	{
-		if (str[i] == '|' && str[i + 1] == '|')
+		if (ft_tokcmp(node->content, pipe_type))
 			++i;
-		else if (str[i] == '|')
-			++counter;
-		++i;
+		node = node->next;
 	}
-	return (counter);
+	return (i);
 }
 
 int	parg_size(char *str, size_t i)
