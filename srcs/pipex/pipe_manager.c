@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/06 17:22:14 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 19:11:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ t_var	get_args(char ac, char *av[])
 
 int	pipe_manager(t_stack *stack)
 {
-	char	**av;
+	t_stack	**arr;
+	char	***av;
 	t_var	var;
-	int		i;
+	size_t	i;
+	size_t	j;
 
 	if (!ft_strstrbool(av[1], "here_doc"))
 	{
@@ -50,8 +52,14 @@ int	pipe_manager(t_stack *stack)
 		i = 2;
 	}
 	ft_redir_parser(stack);
-	av = ft_lst_to_arr(stack);
-	pipex(av[i++], var.fd[0]);
+	arr = ft_stack_splitter(stack);
+	while (arr[j])
+	{
+		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
+		pipex(av[j++], var.fd[0]);
+		ft_arr_freer(av);
+		j++;
+	}
 	while (i < ac - 2)
 		pipex(av[i++], 1);
 	ft_last_action(var, ac, av);
