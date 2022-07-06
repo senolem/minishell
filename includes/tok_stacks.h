@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:18:14 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/05 15:17:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:01:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_token
 {
 	char	*str;
 	int		type;
-	int		subtype;
 	size_t	index;
 }				t_token;
 

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/05 16:05:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:23:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	ft_exec(char *cmd)
 
 static void	parent_process(t_var var)
 {
+	dup2(var.fd[1], STDOUT_FILENO);
+	close(var.fd[1]);
 	close(var.end[1]);
 	dup2(var.end[0], STDIN_FILENO);
 	close(var.end[0]);
@@ -34,6 +36,8 @@ static void	parent_process(t_var var)
 
 static void	child_process(t_var var, char *cmd, int fdin)
 {
+	dup2(var.fd[0], STDIN_FILENO);
+	close(var.fd[0]);
 	close(var.end[0]);
 	dup2(var.end[1], STDOUT_FILENO);
 	close(var.end[1]);
