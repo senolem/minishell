@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/06 11:51:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 16:23:22 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ t_var	get_args(char ac, char *av[])
 	return (var);
 }
 
-int	pipe_manager(int ac, char *av[])
+int	pipe_manager(int ac, char **av)
 {
 	t_var	var;
 	int		i;
 
-	if (ac < 5)
-		ft_puterror("Error: The number of arguments is incorrect.");
+	ft_redir_parser(av);
 	if (!ft_strstrbool(av[1], "here_doc"))
 	{
 		var = hd_managing(ac, av);
