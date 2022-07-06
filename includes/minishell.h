@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/06 18:35:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/06 19:11:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ t_var		hd_managing(int ac, char *av[]);
 void		pipex(char *cmd, int fdin);
 void		ft_exec(char *cmd);
 char		*ft_path_searcher(char *cmd);
-size_t		pipe_counter(char *str);
+size_t		pipe_counter(t_stack *stack);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);
