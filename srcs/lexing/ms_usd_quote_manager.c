@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:18:19 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/04 18:06:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 16:10:30 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ void	ft_usd_quote_pruner(t_dollar *dollar, char quote)
 	while (dollar->line[dollar->i] && dollar->line[dollar->i] != quote)
 	{
 		dollar->str[dollar->j] = dollar->line[dollar->i];
+		printf("j %zu %c\n", dollar->j, dollar->str[dollar->j]);
 		dollar->j++;
 		dollar->i++;
 	}
 	if (dollar->line[dollar->i] == quote)
 		dollar->i++;
+	printf("j2 %zu\n", dollar->j);
 	dollar->str[dollar->j] = '\0';
 }
 
@@ -81,10 +83,7 @@ void	ms_usd_quote_replacer(t_token *token)
 		else if (dollar.line[dollar.i] == '\"')
 			ft_usd_quote_pruner(&dollar, '\"');
 		else
-		{
-			dollar.i++;
-			dollar.j++;
-		}
+			dollar.str[dollar.j++] = dollar.line[dollar.i++];
 	}
 	dollar.str[dollar.j] = '\0';
 	ft_strdel(&token->str);
