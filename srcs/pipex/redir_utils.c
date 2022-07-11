@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:22:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 15:14:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:38:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,17 @@ void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 			delenda = current;
 			current = current->next;
 			ft_stackdelone(delenda, ft_nodedel);
-			printf("%zu, aaaa\n", i);
 			ft_stackadd_bottom(arr[i], NULL);
 			i++;
 			arr[i] = ft_stacknew();
 			continue ;
 		}
 		ft_tokdisplay(current->content);
-		printf("zu %zu\n", i);
 		ft_stackadd_bottom(arr[i], current);
 		current = current->next;
 	}
-	printf("zu %zu\n", i);
 	ft_stackadd_bottom(arr[i], NULL);
 	arr[++i] = NULL;
-	printf("zu %zu\n", i);
 	free(stack);
 }
 
