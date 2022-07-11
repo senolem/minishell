@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/11 17:05:07 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/11 17:29:17 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ int			pipe_manager(t_stack *stack);
 t_stack		**ft_stack_splitter(t_stack *stack);
 char		**ft_lst_to_arr(t_stack *stack);
 char		*ft_lst_to_arrdup(t_token *token);
+void		ft_redir_parser(t_stack **av, t_var *var);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);

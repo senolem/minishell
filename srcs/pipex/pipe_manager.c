@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 16:36:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:30:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	pipe_manager(t_stack *stack)
 {
 	t_stack	**arr;
 //	char	**av;
-//	t_var	var;
-	size_t	i;
+	t_var	var;
+//	size_t	i;
 	size_t	j;
 
 	j = 0;
@@ -49,10 +49,10 @@ int	pipe_manager(t_stack *stack)
 		i = 3;
 	}
 	*/
-//	var = get_args(ac, av);
-	i = 2;
-//	ft_redir_parser(stack);
+//	i = 2;
 	arr = ft_stack_splitter(stack);
+	ft_redir_parser(arr, &var);
+	ft_printf("%i %i\n", var.fd[0], var.fd[1]);
 	while (arr[j])
 	{
 		ft_stackiter(arr[j], (void *)ft_tokdisplay);
