@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 15:19:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/04/18 17:09:01 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:11:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ t_stack	*ft_stackadd_bottom(t_stack *stack, t_node *new)
 		}
 		stack->length++;
 	}
+	else if (!new && stack->bottom != NULL)
+		stack->bottom->next = NULL;
 	return (stack);
 }

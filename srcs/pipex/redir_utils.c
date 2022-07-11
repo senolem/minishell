@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:22:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 14:53:15 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:14:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 			current = current->next;
 			ft_stackdelone(delenda, ft_nodedel);
 			printf("%zu, aaaa\n", i);
+			ft_stackadd_bottom(arr[i], NULL);
 			i++;
 			arr[i] = ft_stacknew();
 			continue ;
@@ -62,6 +63,7 @@ void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 		current = current->next;
 	}
 	printf("zu %zu\n", i);
+	ft_stackadd_bottom(arr[i], NULL);
 	arr[++i] = NULL;
 	printf("zu %zu\n", i);
 	free(stack);
