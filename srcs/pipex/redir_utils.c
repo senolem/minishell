@@ -6,13 +6,13 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:22:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 16:51:24 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 16:52:21 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-void	ft_dst_manager(char **av, size_t *index)
+
+void	ft_dst_manager(char **av, t_var *var, size_t *index)
 {
 	var->fd[0] = open(av[1], O_RDONLY);
 	if (var.fd[0] < 0)
@@ -35,8 +35,8 @@ void	ft_redir_parser(t_stack **av, t_var *var)
 	{
 		if (ft_strnstrbool(av[i], ">", 1))
 			ft_gt_manager(av, var, &i);
-//		else if (!ft_strnstrbool(av[i], "<", 1))
-//			ft_dst_manager(av, &i);
+		else if (!ft_strnstrbool(av[i], "<", 1))
+			ft_dst_manager(av, &i);
 //		else if (!ft_strnstrbool(av[i], ">>", 2))
 //			ft_dgt_manager(av, &i);
 //		else if (!ft_strnstrbool(av[i], "<<", 2))
@@ -44,4 +44,3 @@ void	ft_redir_parser(t_stack **av, t_var *var)
 		i++;
 	}
 }
-*/
