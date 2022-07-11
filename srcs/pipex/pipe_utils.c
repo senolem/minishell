@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:48:03 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 11:32:50 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 13:25:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	pipe_counter(t_stack *stack)
 	node = stack->top;
 	while (node)
 	{
-		if (ft_tokcmp(node->content, pipe_type))
+		if (!ft_tokcmp(node->content, pipe_type))
 			++i;
 		node = node->next;
 	}

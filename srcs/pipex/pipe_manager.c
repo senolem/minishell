@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 11:41:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/11 13:20:06 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_var	get_args(char ac, char *av[])
 int	pipe_manager(t_stack *stack)
 {
 	t_stack	**arr;
-	char	**av;
-	t_var	var;
+//	char	**av;
+//	t_var	var;
 	//size_t	i;
 	size_t	j;
 
@@ -58,9 +58,12 @@ int	pipe_manager(t_stack *stack)
 	arr = ft_stack_splitter(stack);
 	while (arr[j])
 	{
-		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
-		pipex(av[j], var.fd[0]);
-		ft_arr_freer(av);
+		ft_printf("boucle, %d\n", j);
+		ft_stackiter(arr[j], (void *)ft_tokdisplay);
+		ft_stackclear(arr[j], (void *)ft_tokdel);
+//		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
+//		pipex(av[j], var.fd[0]);
+//		ft_arr_freer(av);
 		j++;
 	}
 	/*

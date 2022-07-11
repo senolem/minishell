@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:22:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 11:43:28 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/11 14:53:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,35 @@ void	ft_redir_parser(char **av)
 	}
 }
 */
-void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr, size_t counter)
+void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 {
 	t_node	*current;
+	t_node	*delenda;
 	size_t	i;
 
 	current = stack->top;
 	i = 0;
-	while (current && counter)
+	arr[i] = ft_stacknew();
+	while (current)
 	{
-		arr[i] = ft_stacknew();
-		if (ft_tokcmp(current->content, pipe_type))
+		if (!ft_tokcmp(current->content, pipe_type))
 		{
-			ft_stackdelone(current, ft_nodedel);
-			counter--;
+			delenda = current;
+			current = current->next;
+			ft_stackdelone(delenda, ft_nodedel);
+			printf("%zu, aaaa\n", i);
 			i++;
+			arr[i] = ft_stacknew();
+			continue ;
 		}
+		ft_tokdisplay(current->content);
+		printf("zu %zu\n", i);
 		ft_stackadd_bottom(arr[i], current);
 		current = current->next;
 	}
-	arr[i] = NULL;
+	printf("zu %zu\n", i);
+	arr[++i] = NULL;
+	printf("zu %zu\n", i);
 	free(stack);
 }
 
@@ -66,7 +75,7 @@ t_stack	**ft_stack_splitter(t_stack *stack)
 	counter = pipe_counter(stack);
 	arr = malloc(sizeof(*arr) * (counter + 2));
 	if (counter)
-		ft_stack_splitter_pt2(stack, arr, counter);
+		ft_stack_splitter_pt2(stack, arr);
 	else
 	{
 		arr[0] = stack;
