@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 13:24:50 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:49:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,51 +67,6 @@ t_token	*ft_token_creator(char *line, size_t line_index)
 		ft_token_creator_pt2(token, line);
 	return (token);
 }
-/*
-// je cree une liste d'elements que je vais inserer dans ma liste chainee apres coup
-t_node	*ft_tokstr_parser(t_token *tok, char c)
-{
-	char	*str;
-	int		count;
-	int		i;
-
-	i = 0;
-	count = 0;
-	str = malloc(sizeof(char) * count);
-	while (tok->str && ft_isalnum(tok->str))
-		i++;
-	while (tok->str && !ft_isalnum(tok->str))
-	{
-		if (tok->str[i] == '>')
-		{
-			count++;
-			i++;
-			if (tok->str[i] == '>')
-			{
-				count++;
-				break ;
-			}
-		}
-		i++;
-	}
-	str = malloc(sizeof(char) * (count + 1));
-	while (count--)
-		str[count] = '>';
-}
-
-void	ft_token_manager(t_stack *stack)
-{
-	t_node	*current;
-	t_token	*temp;
-
-	current = stack->top;
-	while (current)
-	{
-		temp = (t_token *)current->content;
-		if ()	// function for parsing a token->str
-	}
-}
-*/
 
 void	ft_tokenizer(char *arr[])
 {
@@ -128,7 +83,6 @@ void	ft_tokenizer(char *arr[])
 	ms_dollar_manager(new);
 	ms_dollar_quote_eraser(new);
 	ft_stackiter(new, (void *)ft_tokdisplay);
-//	ft_token_manager(new);
 	ft_arr_freer(arr);
 	pipe_manager(new);
 }
