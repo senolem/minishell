@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/06 11:42:23 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/11 11:44:00 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	process_input(t_data *data)
 		return ;
 	}
 	arr = ms_split(data->input);
-	builtin_export(arr);
 	ft_tokenizer(arr);
 	free(data->input);
 }

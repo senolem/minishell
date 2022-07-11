@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:50:10 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/06 17:05:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:36:35 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ char	**ft_lst_to_arr(t_stack *stack)
 		tmp = tmp->next;
 		++i;
 	}
+	return (arr);
 }

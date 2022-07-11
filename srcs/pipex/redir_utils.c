@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:22:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/10 16:41:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:43:28 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_redir_parser(char **av)
 	}
 }
 */
-void	ft_stack_splitter_pt2(t_stack *stack, char **arr, size_t counter)
+void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr, size_t counter)
 {
 	t_node	*current;
 	size_t	i;
@@ -44,7 +44,7 @@ void	ft_stack_splitter_pt2(t_stack *stack, char **arr, size_t counter)
 	i = 0;
 	while (current && counter)
 	{
-		arr[i] = ft_stacknew;
+		arr[i] = ft_stacknew();
 		if (ft_tokcmp(current->content, pipe_type))
 		{
 			ft_stackdelone(current, ft_nodedel);

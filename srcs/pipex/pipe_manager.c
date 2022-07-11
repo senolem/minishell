@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 11:30:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:41:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,17 @@ t_var	get_args(char ac, char *av[])
 		ft_printerror("pipex", av[ac - 1]);
 	return (var);
 }
-/*
+
 int	pipe_manager(t_stack *stack)
 {
 	t_stack	**arr;
-	char	***av;
+	char	**av;
 	t_var	var;
-	size_t	i;
+	//size_t	i;
 	size_t	j;
 
+	j = 0;
+	/*
 	if (!ft_strstrbool(av[1], "here_doc"))
 	{
 		var = hd_managing(ac, av);
@@ -52,18 +54,20 @@ int	pipe_manager(t_stack *stack)
 		i = 2;
 	}
 	ft_redir_parser(stack);
+	*/
 	arr = ft_stack_splitter(stack);
 	while (arr[j])
 	{
 		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
-		pipex(av[j++], var.fd[0]);
+		pipex(av[j], var.fd[0]);
 		ft_arr_freer(av);
 		j++;
 	}
+	/*
 	while (i < ac - 2)
 		pipex(av[i++], 1);
 	ft_last_action(var, ac, av);
 	ft_exec(av[i]);
+	*/
 	return (0);
 }
-*/

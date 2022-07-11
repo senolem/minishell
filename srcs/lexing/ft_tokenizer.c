@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/06 11:48:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:45:53 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,6 @@ void	ft_tokenizer(char *arr[])
 	ft_stackiter(new, (void *)ft_tokdisplay);
 //	ft_token_manager(new);
 	ft_arr_freer(arr);
-
+	pipe_manager(new);
 	ft_stackclear(new, (void *)ft_tokdel);
 }
