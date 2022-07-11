@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:22:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 17:25:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/11 17:40:18 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void ft_dgt_manager(t_stack *av, t_var *var)
 	t_node *node;
 	t_node *tmp;
 	char *tmp2;
+
 	node = av->top;
 	while (node)
 	{
@@ -37,9 +38,11 @@ void ft_dgt_manager(t_stack *av, t_var *var)
 			var->fd[1] = open(tmp2, O_WRONLY | O_CREAT | O_APPEND, 0644);
 			if (var->fd[1] < 0)
 				throwback_error(strerror(errno), NULL, 0);
-			ft_stackdelone(node, ft_nodedel);
+			tmp = node;
+			node = node->next;
+			ft_stackdelone(tmp, ft_nodedel);
 			free(tmp2);
-			break;
+			break ;
 		}
 		node = node->next;
 	}
@@ -50,6 +53,7 @@ void	ft_st_manager(t_stack *av, t_var *var)
 	t_node *node;
 	t_node *tmp;
 	char *tmp2;
+
 	node = av->top;
 	while (node)
 	{
@@ -62,9 +66,11 @@ void	ft_st_manager(t_stack *av, t_var *var)
 			var->fd[0] = open(tmp2, O_RDONLY);
 			if (var->fd[1] < 0)
 				throwback_error(strerror(errno), NULL, 0);
-			ft_stackdelone(node, ft_nodedel);
+			tmp = node;
+			node = node->next;
+			ft_stackdelone(tmp, ft_nodedel);
 			free(tmp2);
-			break;
+			break ;
 		}
 		node = node->next;
 	}
@@ -75,6 +81,7 @@ void	ft_gt_manager(t_stack *av, t_var *var)
 	t_node	*node;
 	t_node	*tmp;
 	char	*tmp2;
+
 	node = av->top;
 	while (node)
 	{
@@ -87,7 +94,9 @@ void	ft_gt_manager(t_stack *av, t_var *var)
 			var->fd[1] = open(tmp2, O_WRONLY | O_CREAT, 0644);
 			if (var->fd[1] < 0)
 				throwback_error(strerror(errno), NULL, 0);
-			ft_stackdelone(node, ft_nodedel);
+			tmp = node;
+			node = node->next;
+			ft_stackdelone(tmp, ft_nodedel);
 			free(tmp2);
 			break ;
 		}
@@ -109,14 +118,14 @@ void	ft_redir_parser(t_stack **av, t_var *var)
 		while (node)
 		{
 			tmp = node->content;
-			if (ft_strnstrbool(tmp->str, ">", 1))
+			if (!ft_strnstrbool(tmp->str, ">", 1))
 				ft_gt_manager(*av, var);
 			else if (!ft_strnstrbool(tmp->str, "<", 1))
 				ft_st_manager(*av, var);
 			else if (!ft_strnstrbool(tmp->str, ">>", 2))
 				ft_dgt_manager(*av, var);
-			// else if (!ft_strnstrbool(tmp->str, "<<", 2))
-			//	ft_dst_manager(av, var);
+//			else if (!ft_strnstrbool(tmp->str, "<<", 2))
+//				ft_dst_manager(av, var);
 			node = node->next;
 		}
 		i++;
