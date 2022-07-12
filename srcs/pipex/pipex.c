@@ -6,22 +6,23 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 16:42:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/12 17:33:54 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_exec(char *cmd)
+int	ft_exec(char *cmd)
 {
 	char **cmd_args;
 
 	cmd_args = ft_split(cmd, ' ');
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
-		ft_puterror("Error: Impossible to find the binary file.");
+		return (0);
 	if (execve(cmd, cmd_args, NULL))
-		ft_printerror("pipex", cmd);
+		return	(0);
+	return (1);
 }
 
 static void	parent_process(t_var var)
@@ -43,8 +44,7 @@ static void	child_process(t_var var, char *cmd, int fdin)
 	close(var.end[1]);
 	if (fdin == STDIN_FILENO)
 		exit(1);
-	ft_exec(cmd);
-	exit(EXIT_FAILURE);
+	return (ft_exec(cmd));
 }
 
 void	pipex(char *cmd, int fdin)
@@ -61,6 +61,9 @@ void	pipex(char *cmd, int fdin)
 		ft_printerror("pipex", cmd);
 	}
 	if (var.pid == 0)
-		child_process(var, cmd, fdin);
+	{
+		if (child_process(var, cmd, fdin) == 0)
+			return ;
+	}
 	parent_process(var);
 }

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 16:42:08 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/12 17:21:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	pipe_manager(t_stack *stack)
 	t_stack	**arr;
 	char	**av;
 	t_var	var;
-//	size_t	i;
+	size_t	i;
 	size_t	j;
 
 	j = 0;
@@ -49,17 +49,19 @@ int	pipe_manager(t_stack *stack)
 		i = 3;
 	}
 	*/
-//	i = 2;
 	arr = ft_stack_splitter(stack);
 	ft_redir_parser(arr, &var);
 //	ft_redir_del(arr);
 	while (arr[j])
 	{
+		i = 0;
 		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
 		ft_stackclear(arr[j], (void *)ft_tokdel);
-		if (av[j][0] != '<' && (av[j][0] != '<' && av[j][1] != '<')
-				&& av[j][0] != '>' && (av[j][0] != '>' && av[j][1] != '>'))
-			pipex(av[j], var.fd[0]);
+		while(av[i])
+		{
+			pipex(av[i], 1);
+			++i;
+		}
 		ft_arr_freer(av);
 		j++;
 	}
