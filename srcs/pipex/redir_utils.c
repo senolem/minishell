@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/12 15:51:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/12 16:54:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
 			if (node->next)
 				node = node->next;
 			path = ft_lst_to_arrdup(node->content);
-			printf("path = %s\n", path);
 			var->fd[fd] = open(path, mode, 0644);
 			if (var->fd[fd] < 0)
 				throwback_error(strerror(errno), NULL, 0);

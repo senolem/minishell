@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/06 17:23:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:42:55 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exec(char *cmd)
+void ft_exec(char *cmd)
 {
-	char	**cmd_args;
+	char **cmd_args;
 
 	cmd_args = ft_split(cmd, ' ');
 	cmd = ft_path_searcher(cmd_args[0]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 15:33:16 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:42:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_var	get_args(char ac, char *av[])
 int	pipe_manager(t_stack *stack)
 {
 	t_stack	**arr;
-//	char	**av;
+	char	**av;
 	t_var	var;
 //	size_t	i;
 	size_t	j;
@@ -52,15 +52,15 @@ int	pipe_manager(t_stack *stack)
 //	i = 2;
 	arr = ft_stack_splitter(stack);
 	ft_redir_parser(arr, &var);
-	ft_printf("%i %i\n", var.fd[0], var.fd[1]);
 //	ft_redir_del(arr);
 	while (arr[j])
 	{
-		ft_stackiter(arr[j], (void *)ft_tokdisplay);
+		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
 		ft_stackclear(arr[j], (void *)ft_tokdel);
-//		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
-//		pipex(av[j], var.fd[0]);
-//		ft_arr_freer(av);
+		if (av[j][0] != '<' && (av[j][0] != '<' && av[j][1] != '<')
+				&& av[j][0] != '>' && (av[j][0] != '>' && av[j][1] != '>'))
+			pipex(av[j], var.fd[0]);
+		ft_arr_freer(av);
 		j++;
 	}
 	/*
