@@ -3,14 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/12 15:49:33 by albaur           ###   ########.fr       */
+=======
+/*   Updated: 2022/07/12 15:31:39 by faventur         ###   ########.fr       */
+>>>>>>> 453755a1eaf6bb8520673324ca4e0ca97b956e8e
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_redir_del(t_stack **av)
+{
+	size_t	i;
+	t_node	*node;
+
+	i = 0;
+	while (av[i])
+	{
+		node = av[i]->top;
+		while (node)
+		{
+			if (!ft_tokcmp(node->content, greater_than_type)
+				|| !ft_tokcmp(node->content, smaller_than_type)
+				|| !ft_tokcmp(node->content, d_greater_than_type))
+//				|| !ft_tokcmp(node->content, d_smaller_than_type))
+			{
+				ft_stackdelone(node, (void *)ft_tokdel);
+				if (node->next)
+					ft_stackdelone(node->next, (void *)ft_tokdel);
+			}
+			node = node->next;
+		}
+		i++;
+	}
+}
 
 void redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
 {
@@ -30,7 +60,7 @@ void redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
 			if (var->fd[fd] < 0)
 				throwback_error(strerror(errno), NULL, 0);
 			free(path);
-			return;
+			return ;
 		}
 		if (node->next)
 			node = node->next;
@@ -39,9 +69,8 @@ void redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
 
 void ft_redir_parser(t_stack **av, t_var *var)
 {
-	size_t i;
-	t_node *node;
-	t_token *tmp;
+	size_t	i;
+	t_node	*node;
 
 	i = 0;
 	var->fd[0] = -1;
@@ -51,15 +80,14 @@ void ft_redir_parser(t_stack **av, t_var *var)
 		node = av[i]->top;
 		while (node && node->content)
 		{
-			tmp = (t_token *)node->content;
-			if (!ft_strnstrbool(tmp->str, ">>", 2))
-				redir_manager(&av[i], var, O_WRONLY | O_CREAT | O_APPEND, d_greater_than_type, 1);
-			else if (!ft_strnstrbool(tmp->str, ">", 1))
+			if (!ft_tokcmp(node->content, greater_than_type))
 				redir_manager(&av[i], var, O_WRONLY | O_CREAT, greater_than_type, 1);
-			else if (!ft_strnstrbool(tmp->str, "<", 1))
+			else if (!ft_tokcmp(node->content, smaller_than_type))
 				redir_manager(&av[i], var, O_RDONLY, smaller_than_type, 0);
-			//			else if (!ft_strnstrbool(tmp->str, "<<", 2))
-			//				ft_dst_manager(av, var);
+			else if (!ft_tokcmp(node->content, d_greater_than_type))
+				redir_manager(&av[i], var, O_WRONLY | O_CREAT | O_APPEND, d_greater_than_type, 1);
+//			else if (!ft_tokcmp(node->content, d_smaller_than_type))
+//				ft_dst_manager(av, var);
 			node = node->next;
 		}
 		i++;
