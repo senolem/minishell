@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:33:31 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 14:45:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:15:10 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_tokdel(t_token *tok)
 
 void	ft_tokdisplay(t_token *token)
 {
-	if (token)
+	if (token && token->str)
 		ft_printf("%s\ntype: %d\n", token->str, token->type);
 }
 
