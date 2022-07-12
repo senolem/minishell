@@ -6,11 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/07/12 15:49:33 by albaur           ###   ########.fr       */
-=======
-/*   Updated: 2022/07/12 15:31:39 by faventur         ###   ########.fr       */
->>>>>>> 453755a1eaf6bb8520673324ca4e0ca97b956e8e
+/*   Updated: 2022/07/12 16:19:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +38,7 @@ void	ft_redir_del(t_stack **av)
 	}
 }
 
-void redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
+void	redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
 {
 	t_node	*node;
 	char	*path;
@@ -67,7 +63,32 @@ void redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
 	}
 }
 
-void ft_redir_parser(t_stack **av, t_var *var)
+void	redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
+{
+	t_node	*node;
+	char	*path;
+
+	node = (*av)->top;
+	while (node)
+	{
+		if (!ft_tokcmp(node->content, type))
+		{
+			if (node->next)
+				node = node->next;
+			path = ft_lst_to_arrdup(node->content);
+			printf("path = %s\n", path);
+			var->fd[fd] = open(path, mode, 0644);
+			if (var->fd[fd] < 0)
+				throwback_error(strerror(errno), NULL, 0);
+			free(path);
+			return ;
+		}
+		if (node->next)
+			node = node->next;
+	}
+}
+
+void	ft_redir_parser(t_stack **av, t_var *var)
 {
 	size_t	i;
 	t_node	*node;
@@ -81,11 +102,14 @@ void ft_redir_parser(t_stack **av, t_var *var)
 		while (node && node->content)
 		{
 			if (!ft_tokcmp(node->content, greater_than_type))
-				redir_manager(&av[i], var, O_WRONLY | O_CREAT, greater_than_type, 1);
+				redir_manager(&av[i], var, O_WRONLY | O_CREAT,
+					greater_than_type, 1);
 			else if (!ft_tokcmp(node->content, smaller_than_type))
-				redir_manager(&av[i], var, O_RDONLY, smaller_than_type, 0);
+				redir_manager(&av[i], var, O_RDONLY,
+					smaller_than_type, 0);
 			else if (!ft_tokcmp(node->content, d_greater_than_type))
-				redir_manager(&av[i], var, O_WRONLY | O_CREAT | O_APPEND, d_greater_than_type, 1);
+				redir_manager(&av[i], var, O_WRONLY | O_CREAT | O_APPEND,
+					d_greater_than_type, 1);
 //			else if (!ft_tokcmp(node->content, d_smaller_than_type))
 //				ft_dst_manager(av, var);
 			node = node->next;

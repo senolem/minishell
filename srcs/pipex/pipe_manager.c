@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 15:33:16 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:46:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,8 @@ t_var	get_args(char ac, char *av[])
 int	pipe_manager(t_stack *stack)
 {
 	t_stack	**arr;
-//	char	**av;
 	t_var	var;
-//	size_t	i;
-	size_t	j;
-
-	j = 0;
+	size_t	i;
 	/*
 	if (!ft_strstrbool(av[1], "here_doc"))
 	{
@@ -49,25 +45,25 @@ int	pipe_manager(t_stack *stack)
 		i = 3;
 	}
 	*/
-//	i = 2;
+	i = 0;
 	arr = ft_stack_splitter(stack);
 	ft_redir_parser(arr, &var);
-	ft_printf("%i %i\n", var.fd[0], var.fd[1]);
-//	ft_redir_del(arr);
-	while (arr[j])
+	var.av = ft_lst_to_arr(arr[i]);
+	pipex(var.av, var.fd[0]);
+	ft_arr_freer(var.av);
+	i = 1;
+	while (arr[i])
 	{
-		ft_stackiter(arr[j], (void *)ft_tokdisplay);
-		ft_stackclear(arr[j], (void *)ft_tokdel);
-//		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
-//		pipex(av[j], var.fd[0]);
-//		ft_arr_freer(av);
-		j++;
+		var.av = ft_lst_to_arr(arr[i]);
+		pipex(var.av, 1);
+		ft_arr_freer(var.av);
+		i++;
 	}
 	/*
 	while (i < ac - 2)
 		pipex(av[i++], 1);
 	ft_last_action(var, ac, av);
-	ft_exec(av[i]);
 	*/
+	ft_exec(var.av[i]);
 	return (0);
 }

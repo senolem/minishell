@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/12 15:50:57 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/12 16:42:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ typedef struct s_var
 	int		status;
 	int		ac;
 	char	**av;
-	int		mode;
+	int		op_mode;
 	int		type;
-	int		fr;
+	int		d;
 }			t_var;
 
 // init
@@ -175,8 +175,8 @@ void		sig_handler(int sig, siginfo_t *info, void *context);
 // pipex
 t_var		get_args(char ac, char *av[]);
 t_var		hd_managing(int ac, char *av[]);
-void		pipex(char *cmd, int fdin);
-void		ft_exec(char *cmd);
+void		pipex(char **cmd_args, int fdin);
+void		ft_exec(char **cmd_args);
 char		*ft_path_searcher(char *cmd);
 size_t		pipe_counter(t_stack *stack);
 int			pipe_manager(t_stack *stack);
