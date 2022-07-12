@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_utils2.c                                      :+:      :+:    :+:   */
+/*   ft_lst_to_arr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:50:10 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/11 11:36:35 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/12 17:22:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*ft_lst_to_arrdup(t_token *token)
 
 char	**ft_lst_to_arr(t_stack *stack)
 {
+	if (!stack)
+		return (NULL);
 	size_t	i;
 	t_node	*tmp;
 	char	**arr;
