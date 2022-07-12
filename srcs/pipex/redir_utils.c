@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/12 14:21:21 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/12 15:49:33 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ void ft_redir_parser(t_stack **av, t_var *var)
 		while (node && node->content)
 		{
 			tmp = (t_token *)node->content;
-			if (!ft_strnstrbool(tmp->str, ">", 1))
+			if (!ft_strnstrbool(tmp->str, ">>", 2))
+				redir_manager(&av[i], var, O_WRONLY | O_CREAT | O_APPEND, d_greater_than_type, 1);
+			else if (!ft_strnstrbool(tmp->str, ">", 1))
 				redir_manager(&av[i], var, O_WRONLY | O_CREAT, greater_than_type, 1);
 			else if (!ft_strnstrbool(tmp->str, "<", 1))
 				redir_manager(&av[i], var, O_RDONLY, smaller_than_type, 0);
-			else if (!ft_strnstrbool(tmp->str, ">>", 2))
-				redir_manager(&av[i], var, O_WRONLY | O_CREAT | O_APPEND, d_greater_than_type, 1);
 			//			else if (!ft_strnstrbool(tmp->str, "<<", 2))
 			//				ft_dst_manager(av, var);
 			node = node->next;

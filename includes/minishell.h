@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/11 17:29:17 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/12 15:23:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ typedef struct s_var
 	int		status;
 	int		ac;
 	char	**av;
+	int		mode;
+	int		type;
+	int		fr;
 }			t_var;
 
 // init
