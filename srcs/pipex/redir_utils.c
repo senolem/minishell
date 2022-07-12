@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/12 12:20:02 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/12 14:21:21 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
 {
-	t_node *node;
-	char *path;
+	t_node	*node;
+	char	*path;
 
 	node = (*av)->top;
 	while (node)
@@ -23,10 +23,11 @@ void redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
 		if (!ft_tokcmp(node->content, type))
 		{
 			if (node->next)
-				ft_stack_swap();
+				node = node->next;
 			path = ft_lst_to_arrdup(node->content);
+			printf("path = %s\n", path);
 			var->fd[fd] = open(path, mode, 0644);
-			if (var->fd[1] < 0)
+			if (var->fd[fd] < 0)
 				throwback_error(strerror(errno), NULL, 0);
 			free(path);
 			return;
