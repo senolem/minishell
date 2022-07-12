@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:22:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/11 17:40:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/12 10:28:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void ft_dst_manager(char **av, t_var *var)
 		ft_printerror("pipex", av[1]);
 }
 */
-void ft_dgt_manager(t_stack *av, t_var *var)
+void	ft_dgt_manager(t_stack *av, t_var *var)
 {
-	t_node *node;
-	t_node *tmp;
-	char *tmp2;
+	t_node	*node;
+	t_node	*tmp;
+	char	*tmp2;
 
 	node = av->top;
 	while (node)
@@ -50,9 +50,9 @@ void ft_dgt_manager(t_stack *av, t_var *var)
 
 void	ft_st_manager(t_stack *av, t_var *var)
 {
-	t_node *node;
-	t_node *tmp;
-	char *tmp2;
+	t_node	*node;
+	t_node	*tmp;
+	char	*tmp2;
 
 	node = av->top;
 	while (node)
@@ -64,7 +64,7 @@ void	ft_st_manager(t_stack *av, t_var *var)
 			ft_stackdelone(tmp, ft_nodedel);
 			tmp2 = ft_lst_to_arrdup(node->content);
 			var->fd[0] = open(tmp2, O_RDONLY);
-			if (var->fd[1] < 0)
+			if (var->fd[0] < 0)
 				throwback_error(strerror(errno), NULL, 0);
 			tmp = node;
 			node = node->next;
@@ -111,14 +111,15 @@ void	ft_redir_parser(t_stack **av, t_var *var)
 	t_token	*tmp;
 
 	i = 0;
-	node = (*av)->top;
+	var->fd[0] = -1;
+	var->fd[1] = -1;
 	while (av[i])
 	{
-
-		while (node)
+		node = av[i]->top;
+		while (node && node->content)
 		{
-			tmp = node->content;
-			if (!ft_strnstrbool(tmp->str, ">", 1))
+			tmp = (t_token *)node->content;
+ 			if (!ft_strnstrbool(tmp->str, ">", 1))
 				ft_gt_manager(*av, var);
 			else if (!ft_strnstrbool(tmp->str, "<", 1))
 				ft_st_manager(*av, var);
