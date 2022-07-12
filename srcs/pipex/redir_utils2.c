@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:22:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 10:28:47 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:06:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,88 +20,100 @@ void ft_dst_manager(char **av, t_var *var)
 		ft_printerror("pipex", av[1]);
 }
 */
-void	ft_dgt_manager(t_stack *av, t_var *var)
+t_node	*ft_stack_swap(t_node *node)
+{
+	t_node	*delenda;
+
+	if (node && node->next)
+	{
+		delenda = node;
+		node = node->next;
+		ft_stackdelone(delenda, ft_nodedel);
+		return (node);
+	}
+	else
+	{
+		ft_stackdelone(node, ft_nodedel);
+		return (NULL);
+	}
+}
+
+t_stack	*ft_dgt_manager(t_stack *av, t_var *var)
 {
 	t_node	*node;
-	t_node	*tmp;
-	char	*tmp2;
+	char	*tmp;
 
 	node = av->top;
-	while (node)
+	while (node && node->content)
 	{
 		if (!ft_tokcmp(node->content, d_greater_than_type))
 		{
-			tmp = node;
-			node = node->next;
-			ft_stackdelone(tmp, ft_nodedel);
-			tmp2 = ft_lst_to_arrdup(node->content);
-			var->fd[1] = open(tmp2, O_WRONLY | O_CREAT | O_APPEND, 0644);
+			node = ft_stack_swap(node);
+			tmp = ft_lst_to_arrdup(node->content);
+			if (!tmp)
+				break ;
+			var->fd[1] = open(tmp, O_WRONLY | O_CREAT | O_APPEND, 0644);
 			if (var->fd[1] < 0)
 				throwback_error(strerror(errno), NULL, 0);
-			tmp = node;
-			node = node->next;
-			ft_stackdelone(tmp, ft_nodedel);
-			free(tmp2);
+			node = ft_stack_swap(node);
+			free(tmp);
 			break ;
 		}
 		node = node->next;
 	}
+	return (av);
 }
 
-void	ft_st_manager(t_stack *av, t_var *var)
+t_stack	*ft_st_manager(t_stack *av, t_var *var)
 {
 	t_node	*node;
-	t_node	*tmp;
-	char	*tmp2;
+	char	*tmp;
 
 	node = av->top;
-	while (node)
+	while (node && node->content)
 	{
 		if (!ft_tokcmp(node->content, smaller_than_type))
 		{
-			tmp = node;
-			node = node->next;
-			ft_stackdelone(tmp, ft_nodedel);
-			tmp2 = ft_lst_to_arrdup(node->content);
-			var->fd[0] = open(tmp2, O_RDONLY);
+			node = ft_stack_swap(node);
+			tmp = ft_lst_to_arrdup(node->content);
+			if (!tmp)
+				break ;
+			var->fd[0] = open(tmp, O_RDONLY);
 			if (var->fd[0] < 0)
 				throwback_error(strerror(errno), NULL, 0);
-			tmp = node;
-			node = node->next;
-			ft_stackdelone(tmp, ft_nodedel);
-			free(tmp2);
+			node = ft_stack_swap(node);
+			free(tmp);
 			break ;
 		}
 		node = node->next;
 	}
+	return (av);
 }
 
-void	ft_gt_manager(t_stack *av, t_var *var)
+t_stack	*ft_gt_manager(t_stack *av, t_var *var)
 {
 	t_node	*node;
-	t_node	*tmp;
-	char	*tmp2;
+	char	*tmp;
 
 	node = av->top;
-	while (node)
+	while (node && node->content)
 	{
 		if (!ft_tokcmp(node->content, greater_than_type))
 		{
-			tmp = node;
-			node = node->next;
-			ft_stackdelone(tmp, ft_nodedel);
-			tmp2 = ft_lst_to_arrdup(node->content);
-			var->fd[1] = open(tmp2, O_WRONLY | O_CREAT, 0644);
+			node = ft_stack_swap(node);
+			tmp = ft_lst_to_arrdup(node->content);
+			if (!tmp)
+				break ;
+			var->fd[1] = open(tmp, O_WRONLY | O_CREAT, 0644);
 			if (var->fd[1] < 0)
 				throwback_error(strerror(errno), NULL, 0);
-			tmp = node;
-			node = node->next;
-			ft_stackdelone(tmp, ft_nodedel);
-			free(tmp2);
+			node = ft_stack_swap(node);
+			free(tmp);
 			break ;
 		}
 		node = node->next;
 	}
+	return (av);
 }
 
 void	ft_redir_parser(t_stack **av, t_var *var)
@@ -119,14 +131,22 @@ void	ft_redir_parser(t_stack **av, t_var *var)
 		while (node && node->content)
 		{
 			tmp = (t_token *)node->content;
- 			if (!ft_strnstrbool(tmp->str, ">", 1))
-				ft_gt_manager(*av, var);
-			else if (!ft_strnstrbool(tmp->str, "<", 1))
-				ft_st_manager(*av, var);
-			else if (!ft_strnstrbool(tmp->str, ">>", 2))
-				ft_dgt_manager(*av, var);
-//			else if (!ft_strnstrbool(tmp->str, "<<", 2))
-//				ft_dst_manager(av, var);
+			if (!ft_strnstrbool(tmp->str, ">", 1))
+			{
+				av[i] = ft_gt_manager(*av, var);
+				ft_printf("%d\n", 1);
+				ft_tokdisplay(tmp);
+			}
+			if (!ft_strnstrbool(tmp->str, "<", 1))
+			{
+				av[i] = ft_st_manager(*av, var);
+				ft_printf("%d\n", 1);
+				ft_tokdisplay(tmp);
+			}
+			if (!ft_strnstrbool(tmp->str, ">>", 2))
+				av[i] = ft_dgt_manager(*av, var);
+//			if (!ft_strnstrbool(tmp->str, "<<", 2))
+//				av[i] = ft_dst_manager(av, var);
 			node = node->next;
 		}
 		i++;
