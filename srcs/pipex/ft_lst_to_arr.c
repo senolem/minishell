@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:50:10 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/12 17:22:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:00:06 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,18 @@ char	*ft_lst_to_arrdup(t_token *token)
 
 char	**ft_lst_to_arr(t_stack *stack)
 {
-	if (!stack)
-		return (NULL);
 	size_t	i;
 	t_node	*tmp;
 	char	**arr;
-	int		len;
 
+	if (!stack)
+		return (NULL);
 	i = 0;
-	len = ft_stacksize(stack);
 	tmp = stack->top;
-	arr = malloc(sizeof(char *) * (len + 1));
+	arr = malloc(sizeof(char *) * (ft_stacksize(stack) + 1));
 	if (!arr)
 		return (NULL);
-	arr[len] = 0;
+	arr[ft_stacksize(stack)] = 0;
 	while (tmp)
 	{
 		arr[i] = ft_lst_to_arrdup(tmp->content);
