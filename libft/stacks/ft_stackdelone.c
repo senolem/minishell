@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 20:16:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 17:13:49 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 09:40:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,26 @@
 
 void	ft_stackdelone(t_stack *stack, t_node *node, void (*del)(void *))
 {
-	t_node	*current;
-
 	if (node != NULL)
 	{
-		current = stack->top;
-		if (current->next == NULL)
+		if (node->next == NULL)
 		{
-			stack->bottom = current->prev;
-			stack->bottom->next = NULL;
+			stack->bottom = node->prev;
+			if (stack->bottom)
+				stack->bottom->next = NULL;
 		}
-		else if (current->prev == NULL)
+		else if (node->prev == NULL)
 		{
-			stack->top = current->next;
-			stack->top->prev = NULL;
+			stack->top = node->next;
+			if (stack->top)
+				stack->top->prev = NULL;
 		}
 		else
 		{
-			current->next->prev = current->prev;
-			current->prev->next = current->next;
+			node->next->prev = node->prev;
+			node->prev->next = node->next;
 		}
-		del(current->content);
-		free(current);
+		del(node->content);
+		free(node);
 	}
 }

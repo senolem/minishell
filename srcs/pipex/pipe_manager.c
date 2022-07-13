@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 17:26:10 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 09:45:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	pipe_manager(t_stack *stack)
 	i = 0;
 	arr = ft_stack_splitter(stack);
 	ft_redir_parser(arr, &var);
+	ft_redir_del(arr);
 	var.av = ft_lst_to_arr(arr[i]);
 	pipex(var.av, var.fd[0]);
 	ft_arr_freer(var.av);
