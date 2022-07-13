@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 18:38:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 18:43:02 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int cd_min(char **str)
 	{
 		if (ft_isalnum(str[1][i]) > 0 || str[1][i] == '.'
 				|| str[1][i] == '/' || str[1][i] == '~')
-				return (1);
+			return (1);
 		++i;
 	}
 	return (-1);
