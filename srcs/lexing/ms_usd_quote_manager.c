@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_usd_quote_manager.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:18:19 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 11:34:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 13:13:18 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,10 @@ void	ms_usd_quote_replacer(t_token *token)
 	dollar.j = 0;
 	dollar.line = token->str;
 	dollar.len = ft_strlen(dollar.line)
-		- ft_usd_quote_len(dollar.str);
+		- ft_usd_quote_len(dollar.line);
 	dollar.str = malloc(sizeof(char) * (dollar.len + 1));
+	if (!dollar.str)
+		perror(strerror(errno));
 	while (dollar.line[dollar.i])
 	{
 		if (dollar.line[dollar.i] == '\'')
@@ -109,7 +111,7 @@ void	ms_dollar_quote_eraser(t_stack *stack)
 
 	index = 0;
 	current = stack->top;
-	while (current)
+	while (current && current->content)
 	{
 		index = ms_dollar_quote_finder(current->content);
 		if (index >= 0)
