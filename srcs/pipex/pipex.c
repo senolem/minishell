@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 17:33:54 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 09:58:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ft_exec(char *cmd)
 {
-	char **cmd_args;
+	char	**cmd_args;
 
 	cmd_args = ft_split(cmd, ' ');
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
 		return (0);
 	if (execve(cmd, cmd_args, NULL))
-		return	(0);
+		return (0);
 	return (1);
 }
 
@@ -35,7 +35,7 @@ static void	parent_process(t_var var)
 	waitpid(var.pid, NULL, 0);
 }
 
-static void	child_process(t_var var, char *cmd, int fdin)
+static int	child_process(t_var var, char *cmd, int fdin)
 {
 	dup2(var.fd[0], STDIN_FILENO);
 	close(var.fd[0]);
@@ -47,7 +47,7 @@ static void	child_process(t_var var, char *cmd, int fdin)
 	return (ft_exec(cmd));
 }
 
-void	pipex(char *cmd, int fdin)
+int	pipex(char *cmd, int fdin)
 {
 	t_var	var;
 
@@ -62,8 +62,8 @@ void	pipex(char *cmd, int fdin)
 	}
 	if (var.pid == 0)
 	{
-		if (child_process(var, cmd, fdin) == 0)
-			return ;
+		if (child_process(var, cmd, fdin) != 0)
+			return (1);
 	}
 	parent_process(var);
 }
