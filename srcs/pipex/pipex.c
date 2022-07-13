@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 16:46:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:02:47 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_exec(char **cmd_args)
 	char	*cmd;
 	char	**env;
 
-	if (builtin_launch(cmd_args) == 1)
+	if (builtin_launch(cmd_args) != -99)
 		return (1);
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)

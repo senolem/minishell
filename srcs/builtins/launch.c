@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:07:23 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 16:51:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:02:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	builtin_launch(char **cmd_args)
 {
 	int	i;
 
-	i = -1;
+	i = -99;
 	if (cmd_args)
 		{
 			if (ft_strncmp("cd\0", cmd_args[0], 3) == 0)

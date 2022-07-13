@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 14:49:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:11:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ static int	export_min(char **str)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
+	i = 1;
 	j = 0;
+	if (ft_arrlen(str) == 1)
+		return (-1);
 	while (str[i])
 	{
 		j = 0;
@@ -108,9 +110,9 @@ int	builtin_export(char **str)
 {
 	t_export	e;
 
-	e.i = -1;
-	e.env = env_read(ENV_FILE);
+	e.i = 0;
 	e.j = 0;
+	e.env = env_read(ENV_FILE);
 	if (!str || export_min(str) == -1)
 	{
 		export_print(e.env);
