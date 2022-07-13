@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 11:28:00 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 16:36:28 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ static int	cd_tilde(char *path, char *tmp, char ***env)
 	return (i);
 }
 
-static int	cd_exit(char **tmp, char ***env)
+static int	cd_exit(char *tmp, char ***env)
 {
 	perror("cd");
+	(void)tmp;
 	free(tmp);
 	ft_arr_freer(*env);
 	return (1);
@@ -75,7 +76,7 @@ int	builtin_cd(char	**path)
 		}
 	}
 	if (i != 0)
-		return (cd_exit(&tmp, &env));
+		return (cd_exit(tmp, &env));
 	env_write(ENV_FILE, env);
 	free(tmp);
 	ft_arr_freer(env);

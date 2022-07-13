@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 12:47:08 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 16:10:59 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ ssize_t		env_search(char *str, char **env);
 char		**env_read(char *path);
 
 // builtins
+int			builtin_launch(char **cmd_args);
 int			builtin_pwd(char **str);
 int			builtin_cd(char **path);
 int			builtin_export(char **str);

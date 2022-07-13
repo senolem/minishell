@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:38:25 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 14:47:42 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 16:52:59 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	builtin_env(char **str)
 	char	**env;
 	size_t	i;
 
-	if (str)
+	if (ft_arrlen(str) > 1)
 	{
 		ft_printf("env: too many arguments\n");
 		return (1);
