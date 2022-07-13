@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 11:46:34 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 14:13:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ int	ft_exec(char **cmd_args)
 
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
+	{
+		ft_printf("%s: command not found\n", cmd_args[0]);
 		return (0);
+	}
 	pid = fork();
 	if (pid == 0)
-	{
 		execve(cmd, cmd_args, NULL);
-	}
 	waitpid(pid, NULL, 0);
 	return (1);
 }
