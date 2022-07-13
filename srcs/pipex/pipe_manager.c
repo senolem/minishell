@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 10:10:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 10:55:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,32 @@ int	pipe_manager(t_stack *stack)
 	arr = ft_stack_splitter(stack);
 	ft_redir_parser(arr, &var);
 	ft_redir_del(arr);
-	while (arr[j])
+	if (arr[1] == NULL)
 	{
-		i = 0;
-		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
-		ft_stackclear(arr[j], (void *)ft_tokdel);
+		av = ft_lst_to_arr(arr[0]);
+		ft_stackclear(arr[0], (void *)ft_tokdel);
 		pipex(av);
 		ft_arr_freer(av);
-		j++;
 	}
-	/*
-	while (i < ac - 2)
-		pipex(av[i++], 1);
-	ft_last_action(var, ac, av);
-	*/
-//	var.av = ft_lst_to_arr(arr[i]);
-//	ft_exec(var.av);
-//	ft_arr_freer(var.av);
+	else
+	{
+		while (arr[j])
+		{
+			i = 0;
+			av = ft_lst_to_arr(arr[j]);
+			ft_stackclear(arr[j], (void *)ft_tokdel);
+			pipex(av);
+			ft_arr_freer(av);
+			j++;
+		}
+		/*
+		while (i < ac - 2)
+			pipex(av[i++], 1);
+		ft_last_action(var, ac, av);
+		*/
+//		var.av = ft_lst_to_arr(arr[i]);
+//		ft_exec(var.av);
+//		ft_arr_freer(var.av);
+	}
 	return (0);
 }
