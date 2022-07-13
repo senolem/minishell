@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_searcher.c                                    :+:      :+:    :+:   */
+/*   ft_path_searcher.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:24:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/05 16:00:23 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 15:27:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_path_searcher(char *cmd)
 
 	i = 0;
 	cmd_args = ft_split(cmd, ' ');
-	env_path = ft_getenv("PATH");
+	env_path = ft_strjoin(ft_getenv("PATH"), ft_strjoin(":", env_get_pwd()));
 	paths = ft_split(env_path, ':');
 	i = 0;
 	while (paths[i])
