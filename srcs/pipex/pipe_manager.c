@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 09:48:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 10:10:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,13 @@ int	pipe_manager(t_stack *stack)
 	*/
 	arr = ft_stack_splitter(stack);
 	ft_redir_parser(arr, &var);
-//	ft_redir_del(arr);
+	ft_redir_del(arr);
 	while (arr[j])
 	{
 		i = 0;
 		av = ft_lst_to_arr(arr[j]); // on peut retravailler pour avoir un char**
 		ft_stackclear(arr[j], (void *)ft_tokdel);
-		while(av[i])
-		{
-			pipex(av[i], 1);
-			++i;
-		}
+		pipex(av);
 		ft_arr_freer(av);
 		j++;
 	}
