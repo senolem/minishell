@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 10:18:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 11:46:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 int	ft_exec(char **cmd_args)
 {
+	pid_t	pid;
 	char	*cmd;
 
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
 		return (0);
-	if (execve(cmd, cmd_args, NULL))
-		return (0);
+	pid = fork();
+	if (pid == 0)
+	{
+		execve(cmd, cmd_args, NULL);
+	}
+	waitpid(pid, NULL, 0);
 	return (1);
 }
 
