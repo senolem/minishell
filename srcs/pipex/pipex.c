@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 15:51:47 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 16:56:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_exec(char **cmd_args)
 	char	*cmd;
 	char	**env;
 
+	if (builtin_launch(cmd_args) == 1)
+		return (1);
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
 	{
