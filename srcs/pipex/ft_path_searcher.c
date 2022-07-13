@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:24:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 15:27:16 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 15:47:01 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_path_searcher(char *cmd)
 
 	i = 0;
 	cmd_args = ft_split(cmd, ' ');
+	if (!cmd_args)
+		return (NULL);
 	env_path = ft_strjoin(ft_getenv("PATH"), ft_strjoin(":", env_get_pwd()));
 	paths = ft_split(env_path, ':');
 	i = 0;
