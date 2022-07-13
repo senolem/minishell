@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:18:19 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 13:10:44 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 13:43:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	ms_usd_quote_replacer(t_token *token)
 	dollar.len = ft_strlen(dollar.line)
 		- ft_usd_quote_len(dollar.line);
 	dollar.str = malloc(sizeof(char) * (dollar.len + 1));
+	if (!dollar.str)
+		perror(strerror(errno));
 	while (dollar.line[dollar.i])
 	{
 		if (dollar.line[dollar.i] == '\'')
@@ -109,7 +111,7 @@ void	ms_dollar_quote_eraser(t_stack *stack)
 
 	index = 0;
 	current = stack->top;
-	while (current)
+	while (current && current->content)
 	{
 		index = ms_dollar_quote_finder(current->content);
 		if (index >= 0)
