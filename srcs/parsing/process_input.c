@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 12:49:34 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 15:27:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ void	process_input(t_data *data)
 		ft_printf("\033[31mSyntax error : invalid quote sequence\033[0m\n");
 		return ;
 	}
-	arr = ms_split(data->input);
-	if (arr)
-		ft_tokenizer(arr);
-	free(data->input);
+	if (data->input && data->input[0] != '\0')
+	{
+		arr = ms_split(data->input);
+		if (arr)
+			ft_tokenizer(arr);
+		free(data->input);
+	}
 }
