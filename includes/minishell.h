@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 16:10:59 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:15:57 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int			builtin_cd(char **path);
 int			builtin_export(char **str);
 int			builtin_unset(char **str);
 int			builtin_env(char **str);
-int			builtin_exit(int n, t_data *data);
+int			builtin_exit(int n);
 
 // signals
 void		sig_ignore(t_data *data, int sig);

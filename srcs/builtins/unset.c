@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:22:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 14:29:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:32:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ static int	unset_min(char **str)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
+	i = 1;
 	j = 0;
+	if (ft_arrlen(str) == 1)
+		return (-1);
 	while (str[i])
 	{
 		j = 0;
@@ -58,16 +60,21 @@ static int	unset_min(char **str)
 int	builtin_unset(char **str)
 {
 	ssize_t	i;
+	char	*tmp;
 	char	**env;
 
 	if (!str || unset_min(str) == -1)
 		return (1);
-	i = -1;
+	i = 0;
 	env = env_read(ENV_FILE);
 	while (str[++i])
 	{
-		if (unset_check(str[i]) && env_search(str[i], env) >= 0)
+		tmp = ft_strjoin("!", str[i]);
+		if (unset_check(str[i]) && env_search(tmp, env) >= 0)
+			env = env_delete(tmp, &env);
+		else if (unset_check(str[i]) && env_search(str[i], env) >= 0)
 			env = env_delete(str[i], &env);
+		free(tmp);
 	}
 	env_write(ENV_FILE, env);
 	ft_arr_freer(env);

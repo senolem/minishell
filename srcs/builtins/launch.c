@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:07:23 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 17:02:40 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:16:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	builtin_launch(char **cmd_args)
 			else if (ft_strncmp("env\0", cmd_args[0], 4) == 0)
 				i = builtin_env(cmd_args);
 			else if (ft_strncmp("exit\0", cmd_args[0], 5) == 0)
-				i = builtin_exit(1, NULL);
+				i = builtin_exit(1);
 			else if (ft_strncmp("export\0", cmd_args[0], 7) == 0)
 				i = builtin_export(cmd_args);
 			else if (ft_strncmp("pwd\0", cmd_args[0], 4) == 0)
