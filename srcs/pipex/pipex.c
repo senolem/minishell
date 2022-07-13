@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 17:02:47 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:13:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_exec(char **cmd_args)
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
 	{
-		ft_printf("%s: command not found\n", cmd_args[0]);
+		ft_printf("minishell: command not found: %s\n", cmd_args[0]);
 		return (0);
 	}
 	env = env_read(ENV_FILE);
