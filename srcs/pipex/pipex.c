@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 14:23:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 15:51:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_exec(char **cmd_args)
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
 	{
-		ft_printf("%s: command not found\n", cmd_args[0]);
+		ft_printf("minishell: command not found: %s\n", cmd_args[0]);
 		return (0);
 	}
 	env = env_read(ENV_FILE);
