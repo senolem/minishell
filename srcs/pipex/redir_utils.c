@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 09:50:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 23:00:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	redir_manager(t_stack **av, t_var *var, int mode, int type, int fd)
 			path = ft_lst_to_arrdup(node->content);
 			var->fd[fd] = open(path, mode, 0644);
 			if (var->fd[fd] < 0)
-				throwback_error(strerror(errno), NULL, 0);
+				throwback_err(strerror(errno), NULL, 0);
 			free(path);
 			return ;
 		}

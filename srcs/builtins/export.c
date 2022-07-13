@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 17:11:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 23:00:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ static int	export_check(char **str)
 	if (ft_arrlen(str) == 1)
 		return (-2);
 	if (!str[0])
-		return (throwback_error("minishell: bad assignment", NULL, -1));
+		return (throwback_err("minishell: bad assignment", NULL, -1));
 	if (ft_isdigit(str[0][0]) != 0)
-		return (throwback_error("export : not a valid identifier :",
+		return (throwback_err("export : not a valid identifier :",
 				str[0], -1));
 	while (str[0][i])
 	{
 		if (ft_isalnum(str[0][i]) == 0 && str[0][i] != '_')
-			return (throwback_error("export : not valid in this context:",
+			return (throwback_err("export : not valid in this context:",
 					str[0], -1));
 		++i;
 	}

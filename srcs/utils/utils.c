@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:22:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 16:11:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 23:00:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_concat(char *s1, char *s2)
 	return (dst);
 }
 
-int	throwback_error(char *str, char *str2, int i)
+int	throwback_err(char *str, char *str2, int i)
 {
 	if (str2)
 		ft_printf("%s %s\n", str, str2);

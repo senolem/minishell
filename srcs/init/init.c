@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/01 16:05:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 00:59:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ static void	init_reset(struct termios *terminal)
 	terminal->c_cflag |= (CREAD | CS8);
 }
 
-static void	init_ignore(t_data *data)
+static void	init_ignore(void)
 {
-	sig_ignore(data, SIGQUIT);
-	sig_ignore(data, SIGTSTP);
-	sig_ignore(data, SIGTTIN);
-	sig_ignore(data, SIGTTOU);
-	sig_ignore(data, SIGTERM);
-	sig_ignore(data, SIGHUP);
-	sig_wait(data, SIGINT, sig_handler);
+	sig_ignore(SIGQUIT);
+	sig_ignore(SIGTSTP);
+	sig_ignore(SIGTTIN);
+	sig_ignore(SIGTTOU);
+	sig_ignore(SIGTERM);
+	sig_ignore(SIGHUP);
+	sig_toggle(0);
 }
 
-static int	init_mode(t_data *data)
+int	init_mode(int n)
 {
 	struct termios	term;
 
@@ -45,16 +45,16 @@ static int	init_mode(t_data *data)
 			printf("/!\\ Failed to setup interactive mode\n");
 		else
 		{
-			data->mode = 1;
 			if (!tcgetattr(STDIN_FILENO, &term))
 			{
 				init_reset(&term);
-				term.c_lflag &= ECHO;
+				if (n == 1)
+					term.c_lflag |= (ECHOCTL);
 				if (tcsetattr(STDIN_FILENO, TCSANOW, &term))
-					throw_error(data, "Error: tcsetattr", 0);
+					perror("tcsetattr");
 			}
 			else
-				throw_error(data, "Error: tcgetattr", 0);
+				perror("tcgetattr");
 		}
 		return (1);
 	}
@@ -65,29 +65,26 @@ static int	init_env(void)
 {
 	char		**env;
 	char		*pwd;
-	char		*tmp;
 	extern char	**environ;
 
 	env = ft_arrdup(environ);
 	if (!env)
 		return (0);
 	pwd = env_get("PWD", env);
-	tmp = pwd;
-	pwd = ft_strjoin(tmp, "/minishell");
+	pwd = ft_concat(pwd, "/minishell");
 	env_set("SHELL", "minishell", &env);
 	env_set("?NB", "0", &env);
 	env_set("?PWD", pwd, &env);
 	env_write(ENV_FILE, env);
 	ft_arr_freer(env);
-	free(tmp);
 	free(pwd);
 	return (1);
 }
 
 int	init_shell(t_data *data)
 {
-	init_ignore(data);
-	init_mode(data);
+	init_ignore();
+	init_mode(0);
 	init_env();
 	data->exit = 0;
 	return (0);

@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:46:55 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/23 14:38:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 23:58:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	sig_handler_quit(void)
-{
-	char	**env;
-	char	*nb;
-
-	env = env_read(ENV_FILE);
-	if (!env)
-		return ;
-	nb = env_get("?NB", env);
-	if (!ft_strcmp(nb, "1"))
-		write(1, "Quit\n", 5);
-	free(nb);
-	free(env);
-}
 
 void	sig_handler(int sig, siginfo_t *info, void *context)
 {
@@ -33,18 +18,39 @@ void	sig_handler(int sig, siginfo_t *info, void *context)
 	(void)context;
 	if (sig == SIGINT)
 	{
-		write(1, "\n", 1);
+		ft_putendl("");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 	else if (sig == SIGQUIT)
-		sig_handler_quit();
-	else if (sig == SIGABRT)
-		return ;
+		ft_putendl_fd("minishell: quit", 2);
 }
 
-void	sig_wait(t_data *data, int sig, void (*hdlr)(int, siginfo_t *, void *))
+void	sig_int_nl(int sig, siginfo_t *info, void *context)
+{
+	(void)sig;
+	(void)info;
+	(void)context;
+	ft_putendl("");
+}
+
+void	sig_toggle(int n)
+{
+	if (n == 1)
+	{
+		sig_wait(SIGINT, sig_int_nl);
+		sig_wait(SIGQUIT, sig_handler);
+	}
+	else if (n == 0)
+	{
+		sig_wait(SIGINT, sig_handler);
+		sig_ignore(SIGQUIT);
+	}
+	init_mode(n);
+}
+
+void	sig_wait(int sig, void (*hdlr)(int, siginfo_t *, void *))
 {
 	struct sigaction	sa;
 
@@ -53,10 +59,10 @@ void	sig_wait(t_data *data, int sig, void (*hdlr)(int, siginfo_t *, void *))
 	sigemptyset(&sa.sa_mask);
 	sigaddset(&sa.sa_mask, sig);
 	if (sigaction(sig, &sa, NULL))
-		throw_error(data, strerror(sig), 0);
+		perror("sigaction");
 }
 
-void	sig_ignore(t_data *data, int sig)
+void	sig_ignore(int sig)
 {
 	struct sigaction	sa;
 
@@ -65,5 +71,5 @@ void	sig_ignore(t_data *data, int sig)
 	sigemptyset(&sa.sa_mask);
 	sigaddset(&sa.sa_mask, sig);
 	if (sigaction(sig, &sa, NULL))
-		throw_error(data, strerror(sig), 0);
+		perror("sigaction");
 }

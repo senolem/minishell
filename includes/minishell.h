@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 17:40:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 23:00:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 typedef struct s_data
 {
 	int			exit;
-	int			mode;
 	char		*input;
 }				t_data;
 
@@ -107,6 +106,7 @@ typedef struct s_var
 
 // init
 int			init_shell(t_data *data);
+int			init_mode(int n);
 
 // sanity check
 int			ft_check_quotes(char *str);
@@ -168,10 +168,10 @@ int			builtin_env(char **str);
 int			builtin_exit(char **str);
 
 // signals
-void		sig_ignore(t_data *data, int sig);
-void		sig_wait(t_data *data, int sig,
-				void (*hdlr)(int, siginfo_t *, void *));
+void		sig_ignore(int sig);
+void		sig_wait(int sig, void (*hdlr)(int, siginfo_t *, void *));
 void		sig_handler(int sig, siginfo_t *info, void *context);
+void		sig_toggle(int n);
 
 // pipex
 t_var		get_args(char ac, char *av[]);
@@ -189,7 +189,7 @@ void		ft_redir_del(t_stack **av);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);
-int			throwback_error(char *str, char *str2, int i);
+int			throwback_err(char *str, char *str2, int i);
 void		thrownull_error(char *str, char *str2);
 char		**ft_arrdup(char **arr);
 size_t		ft_arrlen(char **array);
