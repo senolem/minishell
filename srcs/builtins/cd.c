@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 18:53:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 18:55:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static void	cd_exec(char *tmp, char ***env)
 
 static int cd_min(char **str)
 {
-	size_t i;
+	size_t	i;
 	char	*tmp[3];
+
 	tmp[0] = "cd";
 	tmp[1] = "~";
 	tmp[2] = 0;
-
 	i = 0;
 	if (ft_arrlen(str) == 1)
 	{
