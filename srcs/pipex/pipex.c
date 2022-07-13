@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 14:13:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 14:23:43 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_exec(char **cmd_args)
 {
 	pid_t	pid;
 	char	*cmd;
+	char	**env;
 
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
@@ -23,10 +24,12 @@ int	ft_exec(char **cmd_args)
 		ft_printf("%s: command not found\n", cmd_args[0]);
 		return (0);
 	}
+	env = env_read(ENV_FILE);
 	pid = fork();
 	if (pid == 0)
-		execve(cmd, cmd_args, NULL);
+		execve(cmd, cmd_args, env);
 	waitpid(pid, NULL, 0);
+	ft_arr_freer(env);
 	return (1);
 }
 
