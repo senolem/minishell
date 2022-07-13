@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 10:55:23 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 11:09:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	pipe_manager(t_stack *stack)
 	{
 		av = ft_lst_to_arr(arr[0]);
 		ft_stackclear(arr[0], (void *)ft_tokdel);
-		pipex(av);
+		ft_exec(av);
 		ft_arr_freer(av);
 	}
 	else
 	{
-		while (arr[j])
+		while (arr[j + 1])
 		{
 			i = 0;
 			av = ft_lst_to_arr(arr[j]);
@@ -71,13 +71,11 @@ int	pipe_manager(t_stack *stack)
 			j++;
 		}
 		/*
-		while (i < ac - 2)
-			pipex(av[i++], 1);
 		ft_last_action(var, ac, av);
 		*/
-//		var.av = ft_lst_to_arr(arr[i]);
-//		ft_exec(var.av);
-//		ft_arr_freer(var.av);
+		var.av = ft_lst_to_arr(arr[i]);
+		ft_exec(av);
+		ft_arr_freer(av);
 	}
 	return (0);
 }
