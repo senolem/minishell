@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 17:21:20 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/13 09:48:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int	pipe_manager(t_stack *stack)
 	while (i < ac - 2)
 		pipex(av[i++], 1);
 	ft_last_action(var, ac, av);
-	ft_exec(av[i]);
 	*/
+//	var.av = ft_lst_to_arr(arr[i]);
+//	ft_exec(var.av);
+//	ft_arr_freer(var.av);
 	return (0);
 }

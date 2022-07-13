@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:39:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/12 10:48:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/13 09:34:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 		{
 			delenda = current;
 			current = current->next;
-			ft_stackdelone(delenda, ft_nodedel);
-//			ft_stackadd_bottom(arr[i], NULL);
+			ft_stackdelone(stack, delenda, ft_nodedel);
 			i++;
 			arr[i] = ft_stacknew();
 			continue ;
@@ -37,7 +36,6 @@ static void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 		ft_stackadd_bottom(arr[i], current);
 		current = current->next;
 	}
-	ft_stackadd_bottom(arr[i], NULL);
 	arr[++i] = NULL;
 	free(stack);
 }
