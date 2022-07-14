@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/14 01:33:36 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 10:21:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,30 @@ int	ft_exec(char **cmd_args)
 	sig_toggle(1);
 	if (builtin_launch(cmd_args) != -99)
 		return (1);
+	env = env_read(ENV_FILE);
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
-		return (throwback_err("minishell: command not found:", cmd_args[0], 0));
-	env = env_read(ENV_FILE);
+	{
+		char	*insidepwd = ft_strjoin(ft_strjoin(ft_getenv("PWD"), "/"), cmd_args[0]);
+		char	*args[3];
+		args[0] = insidepwd;
+		args[1] = "bash";
+		args[2] = 0;
+		printf("%s\n", insidepwd);
+		ft_arr_display(args);
+		if (!access(insidepwd, R_OK))
+		{
+			pid = fork();
+			if (pid == 0)
+				execve(insidepwd, args, env);
+			waitpid(pid, NULL, 0);
+			ft_arr_freer(env);
+			sig_toggle(0);
+			return (1);
+		}
+		else
+			return (throwback_err("minishell: command not found:", cmd_args[0], 0));
+	}
 	pid = fork();
 	if (pid == 0)
 		execve(cmd, cmd_args, env);
