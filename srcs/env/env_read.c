@@ -14,7 +14,8 @@
 
 static char	**env_read_clean(t_read *r)
 {
-	close(r->fd);
+	if (r->fd >= 0)
+		close(r->fd);
 	free(r->tmp);
 	if (!r->env)
 		return (NULL);
@@ -31,6 +32,7 @@ char	**env_read(char *path)
 	r.i = 1;
 	r.tmp = NULL;
 	r.fd = open(path, O_RDONLY, 0777);
+	r.env = 0;
 	if (r.fd < 0)
 		return (env_read_clean(&r));
 	while (r.i > 0)

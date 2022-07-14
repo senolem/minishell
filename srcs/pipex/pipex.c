@@ -19,8 +19,11 @@ int	ft_exec(char **cmd_args)
 	char	**env;
 
 	sig_toggle(1);
-	if (builtin_launch(cmd_args) != -99)
+	if (builtin_launch(cmd_args) != -99 || !cmd_args || !cmd_args[0])
+	{
+		sig_toggle(0);
 		return (1);
+	}
 	env = env_read(ENV_FILE);
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (!cmd)
