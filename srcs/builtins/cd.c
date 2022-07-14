@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 18:55:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 15:27:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	cd_exec(char *tmp, char ***env)
 	env_set("PWD", cwd, env);
 }
 
-static int cd_min(char **str)
+static int	cd_min(char **str)
 {
 	size_t	i;
 	char	*tmp[3];

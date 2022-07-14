@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isoper.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:57:36 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/05 16:02:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:25:01 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ char	*ft_oper_writer_index(char *quote, char *str, size_t *index, size_t *j)
 	quote[*j] = '\0';
 	return (quote);
 }
-

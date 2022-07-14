@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 12:33:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 15:29:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ typedef struct s_searcher
 	size_t	i;
 }			t_searcher;
 
-
 // init
 int			init_shell(t_data *data);
 int			init_mode(int n);
@@ -137,6 +136,8 @@ char		*ms_dollar_replacer(t_dollar *dollar);
 ssize_t		ms_dollar_checker(t_token *token);
 int			ms_usd_quote_checker(t_token *token, ssize_t *index);
 int			ms_dollar_check_charset(char c);
+void		ft_usd_quote_counter(char *str, size_t *i, size_t *counter, char quote);
+size_t		ft_usd_quote_len(char *str);
 
 // parsing
 void		process_input(t_data *data);
@@ -197,6 +198,7 @@ char		**ft_lst_to_arr(t_stack *stack);
 char		*ft_lst_to_arrdup(t_token *token);
 void		ft_redir_parser(t_stack **av, t_var *var);
 void		ft_redir_del(t_stack **av);
+int			ft_exec_min(char *cmd);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);

@@ -3,51 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_usd_quote_manager.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:18:19 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 13:43:32 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:28:36 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_usd_quote_counter(char *str, size_t *i, size_t *counter, char quote)
-{
-	if (str[*i] == quote)
-	{
-		(*counter)++;
-		(*i)++;
-	}
-	while (str[*i] != quote)
-		(*i)++;
-	if (str[*i] == quote)
-	{
-		(*counter)++;
-		(*i)++;
-	}
-}
-
-size_t	ft_usd_quote_len(char *str)
-{
-	size_t	counter;
-	size_t	i;
-
-	if (!str)
-		return (0);
-	counter = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'')
-			ft_usd_quote_counter(str, &i, &counter, '\'');
-		else if (str[i] == '\"')
-			ft_usd_quote_counter(str, &i, &counter, '\"');
-		else
-			i++;
-	}
-	return (counter);
-}
 
 void	ft_usd_quote_pruner(t_dollar *dollar, char quote)
 {

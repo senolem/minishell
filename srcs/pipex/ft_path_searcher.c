@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:24:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/14 14:15:09 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 15:15:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_path_searcher(char *cmd)
 	while (s.paths[s.i])
 	{
 		s.exec_path = ft_strjoin(s.paths[s.i], ft_strjoin("/", s.cmd_args[0]));
-		if (!access(s.exec_path, X_OK))
+		if (!access(s.exec_path, R_OK) && ft_exec_min(cmd) != 1)
 		{
 			ft_arr_freer(s.paths);
 			ft_arr_freer(s.cmd_args);
