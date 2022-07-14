@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 20:03:54 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:19:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,12 @@ int	ft_exec_min(char *cmd)
 
 int	ft_exec_found(char **env, char **cmd_args, char *cmd, t_var *var)
 {
-	pid_t	pid;
+	pid_t		pid;
+	struct stat	stats;
 
+	stat(cmd_args[0], &stats);
+	if (S_ISDIR(stats.st_mode))
+		return (3);
 	errno = 0;
 	pid = fork();
 	if (pid == 0)
@@ -98,7 +102,7 @@ int	ft_exec(char **cmd_args, t_var *var)
 	if (!cmd)
 	{
 		if (!access(cmd_args[0], X_OK) && ft_exec_min(cmd_args[0]) > 0)
-			i = ft_exec_found(env, cmd_args, cmd_args[0], var);
+			i = ft_exec_found(env, cmd_args, "/bin/bash", var);
 		else
 			i = ft_exec_not_found(env, cmd_args);
 	}
@@ -108,6 +112,8 @@ int	ft_exec(char **cmd_args, t_var *var)
 		ft_printf("minishell: %s: %s\n", cmd_args[0], strerror(errno));
 	else if (i == 2)
 		ft_printf("minishell: %s: command not found\n", cmd_args[0]);
+	else if (i == 3)
+		ft_printf("minishell: %s: is directory\n", cmd_args[0]);
 	sig_toggle(0);
 	return (0);
 }
