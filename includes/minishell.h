@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 15:29:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 16:39:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,8 +202,8 @@ int			ft_exec_min(char *cmd);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);
-int			throwback_err(char *str, char *str2, int i);
-void		thrownull_error(char *str, char *str2);
+int			ret_err(char *str, char *str2, int i);
+void		ret_null(char *str, char *str2);
 char		**ft_arrdup(char **arr);
 size_t		ft_arrlen(char **array);
 char		*ft_concat(char *s1, char *s2);

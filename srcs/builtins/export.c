@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 16:27:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 16:39:19 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ static int	export_check(char **str)
 
 	i = 0;
 	if (!str[0])
-		return (throwback_err("minishell: bad assignment", NULL, -1));
+		return (ret_err("minishell: bad assignment", NULL, -1));
 	if (ft_isdigit(str[0][0]) != 0)
-		return (throwback_err("minishell: export: not a valid identifier :",
+		return (ret_err("minishell: export: not a valid identifier :",
 				str[0], -1));
 	while (str[0][i])
 	{
 		if (ft_isalnum(str[0][i]) == 0 && str[0][i] != '_')
-			return (throwback_err("minishell: export: not valid in this context:",
+			return (ret_err("minishell: export: not valid in this context:",
 					str[0], -1));
 		++i;
 	}
@@ -89,7 +89,7 @@ static void	export_exec(t_export *e, char **str)
 	{
 		e->input = ft_split(str[e->i], '=');
 		if (!e->input)
-			return (thrownull_error("minishell: bad assignment", NULL));
+			return (ret_null("minishell: bad assignment", NULL));
 		e->j = export_check(e->input);
 		e->tmp = ft_strjoin("!", e->input[0]);
 		if (e->j == 1)

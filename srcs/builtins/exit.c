@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:43:28 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 23:03:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 16:38:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	builtin_exit(char **s)
 	if (ft_arrlen(s) == 1)
 		exit(1);
 	else if (ft_arrlen(s) > 2)
-		return (throwback_err("minishell: exit: too many arguments", NULL, 1));
+		return (ret_err("minishell: exit: too many arguments", NULL, 1));
 	while (s[1][i])
 	{
 		if (ft_isdigit(s[1][i]) == 0)
