@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 15:20:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 20:03:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_dup_and_run(t_var *var)
+{
+	if (var->fd[0] && var->fd[0] != -1)
+	{
+		dup2(var->fd[0], STDIN_FILENO);
+		close(var->fd[0]);
+	}
+	if (var->fd[1] != 1 && var->fd[1] != -1)
+	{
+		dup2(var->fd[1], STDOUT_FILENO);
+		close(var->fd[1]);
+	}
+}
 
 int	ft_exec_min(char *cmd)
 {
@@ -40,14 +54,17 @@ int	ft_exec_min(char *cmd)
 	return (4);
 }
 
-int	ft_exec_found(char **env, char **cmd_args, char *cmd)
+int	ft_exec_found(char **env, char **cmd_args, char *cmd, t_var *var)
 {
 	pid_t	pid;
 
 	errno = 0;
 	pid = fork();
 	if (pid == 0)
+	{
+		ft_dup_and_run(var);
 		execve(cmd, cmd_args, env);
+	}
 	waitpid(pid, NULL, 0);
 	ft_arr_freer(env);
 	return (0);
@@ -67,7 +84,7 @@ int	ft_exec_not_found(char **env, char **cmd_args)
 	return (0);
 }
 
-int	ft_exec(char **cmd_args)
+int	ft_exec(char **cmd_args, t_var *var)
 {
 	int		i;
 	char	*cmd;
@@ -81,12 +98,12 @@ int	ft_exec(char **cmd_args)
 	if (!cmd)
 	{
 		if (!access(cmd_args[0], X_OK) && ft_exec_min(cmd_args[0]) > 0)
-			i = ft_exec_found(env, cmd_args, cmd_args[0]);
+			i = ft_exec_found(env, cmd_args, cmd_args[0], var);
 		else
 			i = ft_exec_not_found(env, cmd_args);
 	}
 	else
-		i = ft_exec_found(env, cmd_args, cmd);
+		i = ft_exec_found(env, cmd_args, cmd, var);
 	if (i == 1)
 		ft_printf("minishell: %s: %s\n", cmd_args[0], strerror(errno));
 	else if (i == 2)

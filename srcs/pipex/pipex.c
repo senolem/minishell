@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/14 15:17:53 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 20:02:24 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	child_process(t_var var, char **cmd_args)
 	close(var.end[0]);
 	dup2(var.end[1], STDOUT_FILENO);
 	close(var.end[1]);
-	return (ft_exec(cmd_args));
+	return (ft_exec(cmd_args, &var));
 }
 
 void	pipex(char **cmd_args)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 16:39:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 19:48:05 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,8 @@ char		*ms_dollar_replacer(t_dollar *dollar);
 ssize_t		ms_dollar_checker(t_token *token);
 int			ms_usd_quote_checker(t_token *token, ssize_t *index);
 int			ms_dollar_check_charset(char c);
-void		ft_usd_quote_counter(char *str, size_t *i, size_t *counter, char quote);
+void		ft_usd_quote_counter(char *str, size_t *i, size_t *counter,
+				char quote);
 size_t		ft_usd_quote_len(char *str);
 
 // parsing
@@ -188,7 +189,7 @@ int			sig_toggle(int n);
 t_var		get_args(char ac, char *av[]);
 t_var		hd_managing(int ac, char *av[]);
 void		pipex(char **cmd_args);
-int			ft_exec(char **cmd_args);
+int			ft_exec(char **cmd_args, t_var *var);
 char		*ft_path_searcher(char *cmd);
 int			ft_self_searcher(char **env, char **cmd_args);
 size_t		pipe_counter(t_stack *stack);
