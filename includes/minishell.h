@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 23:00:58 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 12:33:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,16 @@ typedef struct s_var
 	int		fr;
 }			t_var;
 
+typedef struct s_searcher
+{
+	char	**paths;
+	char	*exec_path;
+	char	*env_path;
+	char	**cmd_args;
+	size_t	i;
+}			t_searcher;
+
+
 // init
 int			init_shell(t_data *data);
 int			init_mode(int n);
@@ -171,7 +181,7 @@ int			builtin_exit(char **str);
 void		sig_ignore(int sig);
 void		sig_wait(int sig, void (*hdlr)(int, siginfo_t *, void *));
 void		sig_handler(int sig, siginfo_t *info, void *context);
-void		sig_toggle(int n);
+int			sig_toggle(int n);
 
 // pipex
 t_var		get_args(char ac, char *av[]);
@@ -179,6 +189,7 @@ t_var		hd_managing(int ac, char *av[]);
 void		pipex(char **cmd_args);
 int			ft_exec(char **cmd_args);
 char		*ft_path_searcher(char *cmd);
+int			ft_self_searcher(char **env, char **cmd_args);
 size_t		pipe_counter(t_stack *stack);
 int			pipe_manager(t_stack *stack);
 t_stack		**ft_stack_splitter(t_stack *stack);

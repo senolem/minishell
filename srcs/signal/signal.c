@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:46:55 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 23:58:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/14 12:09:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	sig_int_nl(int sig, siginfo_t *info, void *context)
 	ft_putendl("");
 }
 
-void	sig_toggle(int n)
+int	sig_toggle(int n)
 {
 	if (n == 1)
 	{
@@ -48,6 +48,7 @@ void	sig_toggle(int n)
 		sig_ignore(SIGQUIT);
 	}
 	init_mode(n);
+	return (1);
 }
 
 void	sig_wait(int sig, void (*hdlr)(int, siginfo_t *, void *))
