@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 01:19:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 01:32:18 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	ft_exec(char **cmd_args, t_var *var)
 	char	*cmd;
 	char	**env;
 
+	i = 0;
 	sig_toggle(1);
 	if (builtin_launch(cmd_args) != -99 || !cmd_args || !cmd_args[0])
 		return (sig_toggle(0));
