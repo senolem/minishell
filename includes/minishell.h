@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 12:41:24 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 13:27:34 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <termios.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
+# include <dirent.h>
 # include "libft.h"
 # include "ft_fprintf.h"
 # include "_functions.h"
