@@ -6,13 +6,13 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 21:57:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 22:00:49 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 22:45:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		tilde_searcher(char	**path)
+int	tilde_searcher(char	**path)
 {
 	size_t	i;
 

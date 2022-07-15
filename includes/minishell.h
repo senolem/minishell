@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 22:01:04 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 22:47:54 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);
 
 // utils
+char		*ft_concat(char *s1, char *s2);
 void		throw_error(t_data *data, char *msg, int err);
 int			ret_err(char *str, char *str2, int i);
 void		ret_null(char *str, char *str2);
