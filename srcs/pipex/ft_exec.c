@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 21:06:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 22:00:36 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int	ft_exec(char **cmd_args, t_var *var)
 
 	i = 0;
 	sig_toggle(1);
+	if (cmd_args && tilde_searcher(cmd_args))
+		tilde_replacer(cmd_args);
 	if (builtin_launch(cmd_args) != -99 || !cmd_args || !cmd_args[0])
 		return (sig_toggle(0));
 	env = env_read(ENV_FILE);

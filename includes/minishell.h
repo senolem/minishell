@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 19:31:54 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 22:01:04 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,13 +205,12 @@ char		**ft_lst_to_arr(t_stack *stack);
 char		*ft_lst_to_arrdup(t_token *token);
 void		ft_redir_parser(t_stack **av, t_var *var);
 void		ft_redir_del(t_stack **av);
+void		tilde_replacer(char **path);
+int			tilde_searcher(char	**path);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);
 int			ret_err(char *str, char *str2, int i);
 void		ret_null(char *str, char *str2);
-char		**ft_arrdup(char **arr);
-size_t		ft_arrlen(char **array);
-char		*ft_concat(char *s1, char *s2);
 
 #endif
