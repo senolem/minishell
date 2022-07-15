@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 01:32:18 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 12:47:46 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,18 +103,13 @@ int	ft_exec(char **cmd_args, t_var *var)
 	if (!cmd)
 	{
 		if (!access(cmd_args[0], X_OK) && ft_exec_min(cmd_args[0]) > 0)
-			i = ft_exec_found(env, cmd_args, "/bin/bash", var);
+			i = ft_exec_found(env, ft_exec_args(cmd_args), "/bin/bash", var);
 		else
 			i = ft_exec_not_found(env, cmd_args);
 	}
 	else
 		i = ft_exec_found(env, cmd_args, cmd, var);
-	if (i == 1)
-		ft_printf("minishell: %s: %s\n", cmd_args[0], strerror(errno));
-	else if (i == 2)
-		ft_printf("minishell: %s: command not found\n", cmd_args[0]);
-	else if (i == 3)
-		ft_printf("minishell: %s: is directory\n", cmd_args[0]);
+	ft_exec_error(i, cmd_args);
 	sig_toggle(0);
 	return (0);
 }

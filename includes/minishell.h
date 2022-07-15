@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 10:00:18 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/15 12:41:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,9 @@ t_var		get_args(char ac, char *av[]);
 t_var		hd_managing(int ac, char *av[]);
 void		pipex(char **cmd_args, t_var *var, int fdin);
 int			ft_exec(char **cmd_args, t_var *var);
+void		ft_exec_error(int i, char **cmd_args);
+int			ft_exec_min(char *cmd);
+char		**ft_exec_args(char **cmd_args);
 char		*ft_path_searcher(char *cmd);
 int			ft_self_searcher(char **env, char **cmd_args);
 size_t		pipe_counter(t_stack *stack);
@@ -199,7 +202,6 @@ char		**ft_lst_to_arr(t_stack *stack);
 char		*ft_lst_to_arrdup(t_token *token);
 void		ft_redir_parser(t_stack **av, t_var *var);
 void		ft_redir_del(t_stack **av);
-int			ft_exec_min(char *cmd);
 
 // utils
 void		throw_error(t_data *data, char *msg, int err);
