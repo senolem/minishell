@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 13:27:34 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 19:31:54 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ int			between_dquotes(char *str, size_t *index);
 int			dquote_len_index(char *str, size_t *index);
 char		*ft_dquote_pruner_index(char *quote, char *str,
 				size_t *index, size_t *j);
-char		*env_get_pwd(void);
 int			ft_isoper(char c);
 int			oper_len_index(char *str, size_t *index);
 char		*ft_oper_writer_index(char *quote, char *str,
@@ -163,8 +162,11 @@ char		*ft_oper_writer_index(char *quote, char *str,
 // env
 char		*ft_getenv(char *varname);
 char		*env_get(char *name, char **env);
+char		*env_get_arg(char *var);
+char		*env_get_pwd(void);
 void		env_write(char *path, char **env);
 void		env_set(char *str, char *value, char ***env);
+void		env_set_arg(char *var, char *value);
 char		**env_add(char *str, char ***env);
 char		**env_delete(char *str, char ***env);
 char		*env_get(char *str, char **env);

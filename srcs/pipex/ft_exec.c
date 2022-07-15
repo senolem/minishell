@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 18:07:31 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 18:30:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,21 +105,12 @@ int	ft_exec(char **cmd_args, t_var *var)
 	if (!cmd)
 	{
 		if (!access(cmd_args[0], X_OK) && ft_exec_min(cmd_args[0]) > 0)
-		{
-			printf("1\n");
 			i = ft_exec_found(env, ft_exec_args(cmd_args), "/bin/bash", var);
-		}
 		else
-		{
-			printf("3\n");
 			i = ft_exec_not_found(env, cmd_args);
-		}
 	}
 	else
-	{
-		printf("4\n");
 		i = ft_exec_found(env, cmd_args, cmd, var);
-	}
 	ft_exec_error(i, cmd_args);
 	sig_toggle(0);
 	return (0);

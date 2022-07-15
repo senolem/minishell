@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/02 16:25:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/15 19:35:31 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ int	main(int argc, char **argv)
 		process_input(data);
 		free(prompt);
 	}
+	if (ft_atoi(env_get_arg("SHLVL")) == 2)
+		unlink(ENV_FILE);
+	env_set_arg("SHLVL", ft_itoa(ft_atoi(env_get_arg("SHLVL")) - 1));
 	free(prompt);
 	free(data->input);
 	free(data);
-	unlink(ENV_FILE);
 	return (0);
 }

@@ -1,16 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_get_pwd.c                                      :+:      :+:    :+:   */
+/*   env_arg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:41:11 by albaur            #+#    #+#             */
-/*   Updated: 2022/06/27 18:05:46 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 19:33:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	env_set_arg(char *var, char *value)
+{
+	char	**env;
+
+	env = env_read(ENV_FILE);
+	env_set(var, value, &env);
+	env_write(ENV_FILE, env);
+	ft_arr_freer(env);
+}
+
+char	*env_get_arg(char *var)
+{
+	char	*pwd;
+	char	**env;
+
+	env = env_read(ENV_FILE);
+	pwd = env_get(var, env);
+	ft_arr_freer(env);
+	return (pwd);
+}
 
 char	*env_get_pwd(void)
 {
