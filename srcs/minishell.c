@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 19:35:31 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 19:54:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		process_input(data);
 		free(prompt);
 	}
-	if (ft_atoi(env_get_arg("SHLVL")) == 2)
+	if (ft_atoi(env_get_arg("SHLVL")) == 1)
 		unlink(ENV_FILE);
 	env_set_arg("SHLVL", ft_itoa(ft_atoi(env_get_arg("SHLVL")) - 1));
 	free(prompt);

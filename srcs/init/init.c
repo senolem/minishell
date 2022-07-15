@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 19:27:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/15 19:54:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ static int	init_env(void)
 	pwd = env_get("PWD", env);
 	pwd = ft_concat(pwd, "/minishell");
 	env_set("SHELL", "minishell", &env);
-	if (ft_atoi(env_get("SHLVL", env)) == 1)
-		env_set("SHLVL", ft_itoa(ft_atoi(env_get("SHLVL", env)) + 1), &env);
 	env_write(ENV_FILE, env);
 	ft_arr_freer(env);
 	free(pwd);
