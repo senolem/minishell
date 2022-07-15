@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 19:48:05 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/15 10:00:18 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ int			sig_toggle(int n);
 // pipex
 t_var		get_args(char ac, char *av[]);
 t_var		hd_managing(int ac, char *av[]);
-void		pipex(char **cmd_args);
+void		pipex(char **cmd_args, t_var *var, int fdin);
 int			ft_exec(char **cmd_args, t_var *var);
 char		*ft_path_searcher(char *cmd);
 int			ft_self_searcher(char **env, char **cmd_args);

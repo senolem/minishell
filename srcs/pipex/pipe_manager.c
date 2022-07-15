@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/14 19:48:26 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/15 09:57:03 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,34 +53,30 @@ int	pipe_manager(t_stack *stack)
 	ft_redir_del(arr);
 	if (arr[1] == NULL)
 	{
-		/*
-		if (var.fd[0] && var.fd[0] != -1)
-		{
-			ft_printf("%d\n", var.fd[0]);
-			dup2(var.fd[0], STDIN_FILENO);
-			close(var.fd[0]);
-		}
-		*/
 		av = ft_lst_to_arr(arr[0]);
 		ft_stackclear(arr[0], (void *)ft_tokdel);
-//		ft_dup_and_run(&var);
 		ft_exec(av, &var);
 		ft_arr_freer(av);
 	}
-	else
+	else if (arr[1] != NULL)
 	{
+		av = ft_lst_to_arr(arr[j]);
+		ft_stackclear(arr[j], (void *)ft_tokdel);
+		pipex(av, &var, var.fd[0]);
+		ft_arr_freer(av);
+		j++;
 		while (arr[j + 1])
 		{
 			av = ft_lst_to_arr(arr[j]);
 			ft_stackclear(arr[j], (void *)ft_tokdel);
-			pipex(av);
+			pipex(av, &var, 1);
 			ft_arr_freer(av);
 			j++;
 		}
 	/*
 		ft_last_action(var, ac, av);
 	*/
-		av = ft_lst_to_arr(arr[j]);
+		av = ft_lst_to_arr(arr[++j]);
 		ft_stackclear(arr[j], (void *)ft_tokdel);
 		ft_exec(av, &var);
 		ft_arr_freer(av);
