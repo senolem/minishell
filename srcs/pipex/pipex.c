@@ -3,53 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/15 10:03:02 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/16 16:46:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	parent_process(t_var *var)
+int	pipex_open(t_stack **stack, size_t i, t_var *var)
 {
-	//dup2(var->fd[1], STDOUT_FILENO);
-	//close(var->fd[1]);
-	close(var->end[1]);
-	dup2(var->end[0], STDIN_FILENO);
-	close(var->end[0]);
-	waitpid(var->pid, NULL, 0);
+	if (stack[i + 1])
+	{
+		if (pipe(var->fd) == -1)
+		{
+			perror("minishell: pipe");
+			return (1);
+		}
+	}
+	return (0);
 }
 
-static int	child_process(char **cmd_args, t_var *var, int fdin)
+int	pipex_close(t_stack **stack, size_t i, t_var *var)
 {
-	(void)fdin;
-	//dup2(var->fd[0], STDIN_FILENO);
-	//close(var->fd[0]);
-	close(var->end[0]);
-	dup2(var->end[1], STDOUT_FILENO);
-	close(var->end[1]);
-//	if (fdin == STDIN_FILENO)
-//		exit(1);
-	return (ft_exec(cmd_args, var));
+	if (stack[i + 1])
+		close(var->pipes[1]);
+	if (i != 0 && stack[i - 1])
+		close(var->pipes[0]);
+	return (0);
 }
 
-void	pipex(char **cmd_args, t_var *var, int fdin)
+int	child_process(t_stack **stack, size_t i, t_var *var)
 {
-	if (pipe(var->end) == -1)
-		ft_printerror("pipex", cmd_args[0]);
-	var->pid = fork();
-	if (var->pid < 0)
+	pid_t	pid;
+	char	**args;
+
+	pid = fork();
+	if (pid)
+		var->pid = pid;
+	if (pid < 0)
 	{
-		close(var->end[0]);
-		close(var->end[1]);
-		ft_printerror("pipex", cmd_args[0]);
+		perror("minishell: fork:");
+		return (1);
 	}
-	if (var->pid == 0)
+	if (pid == 0)
 	{
-		if (child_process(cmd_args, var, fdin) != 0)
-			return ;
+		args = ft_lst_to_arr(stack[i]);
+		pipex(stack, i, var);
+		ft_exec(args, var);
+		ft_arr_freer(args);
 	}
-	parent_process(var);
+	return (0);
+}
+
+void	pipex(t_stack **stack, size_t i, t_var *var)
+{
+	dup2(var->fd[0], STDOUT_FILENO);
+	dup2(var->fd[1], STDIN_FILENO);
+	if (stack[i + 1])
+	{
+		close(var->pipes[0]);
+		dup2(var->pipes[1], var->fd[0]);
+		close (var->pipes[1]);
+	}
+	if (i != 0 && stack[i - 1])
+	{
+		dup2(var->pipes[0], var->fd[1]);
+		close(var->pipes[0]);
+	}
 }

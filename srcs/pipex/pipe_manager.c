@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/15 09:57:03 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/16 18:25:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,45 +39,40 @@ int	pipe_manager(t_stack *stack)
 	char	**av;
 	t_var	var;
 	size_t	j;
+	size_t	len;
 
 	j = 0;
-	/*
-	if (!ft_strstrbool(av[1], "here_doc"))
-	{
-		var = hd_managing(ac, av);
-		i = 3;
-	}
-	*/
 	arr = ft_stack_splitter(stack);
+	len = 0;
+	var.fd[0] = 0;
+	var.fd[1] = 0;
+	var.pipes[0] = 0;
+	var.pipes[1] = 0;
+	while (arr[len])
+		++len;
 	ft_redir_parser(arr, &var);
 	ft_redir_del(arr);
-	if (arr[1] == NULL)
+	if (len == 1)
 	{
 		av = ft_lst_to_arr(arr[0]);
 		ft_stackclear(arr[0], (void *)ft_tokdel);
 		ft_exec(av, &var);
 		ft_arr_freer(av);
 	}
-	else if (arr[1] != NULL)
+	else if (len > 1) 
 	{
-		av = ft_lst_to_arr(arr[j]);
-		ft_stackclear(arr[j], (void *)ft_tokdel);
-		pipex(av, &var, var.fd[0]);
-		ft_arr_freer(av);
-		j++;
-		while (arr[j + 1])
+		while (arr[j])
 		{
-			av = ft_lst_to_arr(arr[j]);
-			ft_stackclear(arr[j], (void *)ft_tokdel);
-			pipex(av, &var, 1);
-			ft_arr_freer(av);
-			j++;
+			//ft_stackclear(arr[j], (void *)ft_tokdel);
+			if (pipex_open(arr, j, &var) && child_process(arr, j, &var))
+				return (1);
+			pipex_close(arr, j, &var);
+			if (arr[j + 1] && !arr[j + 2])
+				break ;
+			++j;
 		}
-	/*
-		ft_last_action(var, ac, av);
-	*/
 		av = ft_lst_to_arr(arr[++j]);
-		ft_stackclear(arr[j], (void *)ft_tokdel);
+		//ft_stackclear(arr[0], (void *)ft_tokdel);
 		ft_exec(av, &var);
 		ft_arr_freer(av);
 	}
