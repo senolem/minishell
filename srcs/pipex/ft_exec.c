@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/16 14:53:32 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/16 22:25:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,11 @@ int	ft_exec_found(char **env, char **cmd_args, char *cmd, t_var *var)
 		if (S_ISDIR(stats.st_mode))
 			return (3);
 	}
+	(void)var;
 	errno = 0;
 	pid = fork();
 	if (pid == 0)
-	{
-		ft_dup_and_run(var);
 		execve(cmd, cmd_args, env);
-	}
 	waitpid(pid, NULL, 0);
 	ft_arr_freer(env);
 	return (0);
@@ -96,6 +94,9 @@ int	ft_exec(char **cmd_args, t_var *var)
 	char	*cmd;
 	char	**env;
 
+	printf("_________^^^^^^^^_______\n");
+	ft_arr_display(cmd_args);
+	printf("______vvvvvvvvv______\n");
 	i = 0;
 	sig_toggle(1);
 	if (cmd_args && tilde_searcher(cmd_args))

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/16 16:42:27 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/16 23:00:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ typedef struct s_var
 {
 	pid_t	pid;
 	int		fd[2];
-	int		prev[2];
 	int		pipes[2];
 	int		status;
 	int		ac;

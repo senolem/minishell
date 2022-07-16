@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/16 16:46:08 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/16 23:00:48 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	pipex_open(t_stack **stack, size_t i, t_var *var)
 {
 	if (stack[i + 1])
 	{
-		if (pipe(var->fd) == -1)
+		if (pipe(var->pipes) == -1)
 		{
 			perror("minishell: pipe");
 			return (1);
