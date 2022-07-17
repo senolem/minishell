@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/17 15:27:53 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/17 19:27:11 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,17 @@ int	ft_exec_min(char *cmd)
 
 int	ft_exec_found(char **env, char **cmd_args, char *cmd, t_var *var)
 {
-	pid_t		pid;
+//	pid_t		pid;
 	struct stat	stats;
 
+	(void)var;
 	if (stat(cmd_args[0], &stats) == 0)
 	{
 		if (S_ISDIR(stats.st_mode))
 			return (3);
 	}
 	errno = 0;
+/*
 	pid = fork();
 	if (pid < 0)
 	{
@@ -79,6 +81,9 @@ int	ft_exec_found(char **env, char **cmd_args, char *cmd, t_var *var)
 	}
 	ft_fprintf(2, "raviolo\n");
 	waitpid(pid, NULL, 0);
+*/
+	execve(cmd, cmd_args, env);
+
 	ft_arr_freer(env);
 	return (0);
 }

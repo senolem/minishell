@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/17 15:13:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/17 19:16:08 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ void		ft_redir_parser(t_stack **av, t_var *var);
 void		ft_redir_del(t_stack **av);
 void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);
+void		ft_dup_and_run(t_var *var);
 
 // utils
 char		*ft_concat(char *s1, char *s2);

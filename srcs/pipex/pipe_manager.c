@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/17 15:14:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/17 19:30:42 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,41 @@ int	pipe_manager(t_stack *stack)
 	{
 		av = ft_lst_to_arr(arr[0]);
 		ft_stackclear(arr[0], (void *)ft_tokdel);
+		ft_dup_and_run(&var);
 		ft_exec(av, &var);
 		ft_arr_freer(av);
 	}
 	else if (arr[1] != NULL)
 	{
 		av = ft_lst_to_arr(arr[j]);
+
+
+		int i = 0;
+		while (av[i])
+		{
+			ft_printf("val1 %s\n", av[i++]);
+		}
+		ft_stackiter(arr[j], (void *)ft_tokdisplay);
+
+
 		ft_stackclear(arr[j], (void *)ft_tokdel);
+		ft_dup_and_run(&var);
 		pipex(av, &var, var.fd[0]);
 		ft_arr_freer(av);
 		j++;
 		while (arr[j + 1])
 		{
 			av = ft_lst_to_arr(arr[j]);
+
+
+			i = 0;
+			while (av[i])
+			{
+				ft_printf("val2 %s\n", av[i++]);
+			}
+			ft_stackiter(arr[j], (void *)ft_tokdisplay);
+
+
 			ft_stackclear(arr[j], (void *)ft_tokdel);
 			pipex(av, &var, 1);
 			ft_arr_freer(av);

@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/17 15:28:22 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:57:58 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	parent_process(t_var *var)
 {
-	dup2(var->fd[1], STDOUT_FILENO);
-	close(var->fd[1]);
+//	dup2(var->fd[1], STDOUT_FILENO);
+//	close(var->fd[1]);
 	close(var->end[1]);
 	dup2(var->end[0], STDIN_FILENO);
 	close(var->end[0]);
@@ -25,8 +25,8 @@ static void	parent_process(t_var *var)
 static int	child_process(char **cmd_args, t_var *var, int fdin)
 {
 	(void)fdin;
-	dup2(var->fd[0], STDIN_FILENO);
-	close(var->fd[0]);
+//	dup2(var->fd[0], STDIN_FILENO);
+//	close(var->fd[0]);
 	close(var->end[0]);
 	dup2(var->end[1], STDOUT_FILENO);
 	close(var->end[1]);
@@ -50,7 +50,7 @@ void	pipex(char **cmd_args, t_var *var, int fdin)
 	}
 	if (var->pid == 0)
 	{
-		ft_fprintf(2, "miao");
+		ft_fprintf(2, "miao pipe");
 		if (child_process(cmd_args, var, fdin) != 0)
 			return ;
 	}
