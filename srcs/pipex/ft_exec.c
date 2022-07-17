@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 22:00:36 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/17 15:27:53 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,18 @@ int	ft_exec_found(char **env, char **cmd_args, char *cmd, t_var *var)
 	}
 	errno = 0;
 	pid = fork();
+	if (pid < 0)
+	{
+		close(var->end[0]);
+		close(var->end[1]);
+		ft_puterror("T'as tout cassé");
+	}
 	if (pid == 0)
 	{
 		ft_dup_and_run(var);
 		execve(cmd, cmd_args, env);
 	}
+	ft_fprintf(2, "raviolo\n");
 	waitpid(pid, NULL, 0);
 	ft_arr_freer(env);
 	return (0);
