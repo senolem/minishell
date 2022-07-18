@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
+#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/18 19:00:22 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/18 21:07:08 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ UTIL_FILES 	= 	utils ft_stacktab_clear
 SRCS_FILES	+=	$(addprefix $(UTIL_PATH), $(UTIL_FILES))
 
 BUI_PATH	=	builtins/
-BUI_FILES 	= 	launch pwd cd export unset exit env
+BUI_FILES 	= 	launch pwd cd export unset exit env cd_utils
 SRCS_FILES	+=	$(addprefix $(BUI_PATH), $(BUI_FILES))
 
 SRCS_FILES_EXT 		+= 	$(addsuffix $(C_EXTENSION), $(SRCS_FILES))
