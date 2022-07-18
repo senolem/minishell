@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 16:57:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:01:31 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ int	pipe_manager(t_stack *stack)
 	len = 0;
 	arr = ft_stack_splitter(stack);
 	len = 0;
-	//ft_redir_parser(arr, &var);
-	//ft_redir_del(arr);
-	var.fd[0] = 0;
-	var.fd[1] = 1;
+	ft_redir_parser(arr, &var);
+	ft_redir_del(arr);
+	ft_printf("fd ante boucle: %d %d\n", var.fd[0], var.fd[1]);
+	//var.fd[0] = 0;
+	//var.fd[1] = 1;
 	while (arr[len])
 		++len;
 	if (len == 1)

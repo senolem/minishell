@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 16:15:26 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:11:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	pipex_open(t_stack **stack, size_t i, t_var *var)
 			perror("minishell: pipe");
 			return (1);
 		}
+		ft_printf("fd popen: %d %d pipe %d %d\n", var->fd[0], var->fd[1], var->pipes[i][0], var->pipes[i][1]);
 	}
 	return (0);
 }
@@ -45,11 +46,11 @@ int	pipex_close(t_stack **stack, size_t i, t_var *var)
 {
 	if (stack[i + 1])
 	{
-			close(var->pipes[i][1]);
+		close(var->pipes[i][1]);
 	}
 	if (i != 0 && stack[i - 1])
 	{
-			close(var->pipes[i - 1][0]);
+		close(var->pipes[i - 1][0]);
 	}
 	return (0);
 }
@@ -71,9 +72,11 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 	{
 		args = ft_lst_to_arr(stack[i]);
 		pipex(stack, i, var);
+		ft_printf("fd popen: %d %d pipe %d %d\n", var->fd[0], var->fd[1], var->pipes[i][0], var->pipes[i][1]);
 		ft_exec(args, var);
 		ft_arr_freer(args);
 	}
+	waitpid(var->pid, NULL, 0);
 	return (0);
 }
 
