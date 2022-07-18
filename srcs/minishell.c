@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:45:37 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 11:22:24 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 13:34:03 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		data->input = readline(prompt);
 		if (data->input == NULL)
 			break ;
+		ft_fprintf(2, "message avant le process input\n");
 		process_input(data);
 		free(prompt);
 	}
