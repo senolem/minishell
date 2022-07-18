@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/18 18:26:21 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/18 19:00:22 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ PARS_FILES 	= 	process_input check_utils
 SRCS_FILES	+=	$(addprefix $(PARS_PATH), $(PARS_FILES))
 
 UTIL_PATH	=	utils/
-UTIL_FILES 	= 	utils
+UTIL_FILES 	= 	utils ft_stacktab_clear
 SRCS_FILES	+=	$(addprefix $(UTIL_PATH), $(UTIL_FILES))
 
 BUI_PATH	=	builtins/

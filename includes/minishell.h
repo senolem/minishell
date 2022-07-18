@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 17:15:33 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 19:10:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,5 +219,6 @@ char		*ft_concat(char *s1, char *s2);
 void		throw_error(t_data *data, char *msg, int err);
 int			ret_err(char *str, char *str2, int i);
 void		ret_null(char *str, char *str2);
+void		ft_stacktab_clear(t_stack **tab);
 
 #endif
