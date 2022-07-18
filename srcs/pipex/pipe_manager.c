@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 16:57:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:09:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,10 @@ int	pipe_manager(t_stack *stack)
 	{
 		av = ft_lst_to_arr(arr[0]);
 		ft_stackclear(arr[0], (void *)ft_tokdel);
-		var.pid = fork();
-		if (var.pid < 0)
-		{
-			perror("minishell: fork");
-			exit(EXIT_FAILURE);
-		}
-		else if (var.pid == 0)
-		{
-			ft_exec(av, &var);
-			ft_arr_freer(av);
-		}
-		else
-		{
-			close(0);
-			close(1);
-			waitpid(var.pid, NULL, 0);
-		}
+		ft_exec_one(av, &var);
+		ft_arr_freer(av);
 	}
-	else if (len > 1) 
+	else if (len > 1)
 	{
 		pipex_pipes(len, &var);
 		while (arr[j])

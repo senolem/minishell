@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 13:34:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 17:15:33 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ int			child_process(t_stack **stack, size_t i, t_var *var);
 t_var		get_args(char ac, char *av[]);
 t_var		hd_managing(int ac, char *av[]);
 int			ft_exec(char **cmd_args, t_var *var);
+int			ft_exec_one(char **cmd_args, t_var *var);
 void		ft_exec_error(int i, char **cmd_args);
 int			ft_exec_min(char *cmd);
 char		**ft_exec_args(char **cmd_args);
