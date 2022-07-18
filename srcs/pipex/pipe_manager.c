@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 15:45:34 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:02:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,23 @@ int	pipe_manager(t_stack *stack)
 	{
 		av = ft_lst_to_arr(arr[0]);
 		ft_stackclear(arr[0], (void *)ft_tokdel);
-		ft_exec(av, &var);
-		ft_arr_freer(av);
+		var.pid = fork();
+		if (var.pid < 0)
+		{
+			perror("minishell: fork");
+			exit(EXIT_FAILURE);
+		}
+		else if (var.pid == 0)
+		{
+			ft_exec(av, &var);
+			ft_arr_freer(av);
+		}
+		else
+		{
+			close(0);
+			close(1);
+			waitpid(var.pid, NULL, 0);
+		}
 	}
 	else if (len > 1) 
 	{
