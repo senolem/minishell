@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 13:34:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:54:31 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	ft_redir_parser(t_stack **av, t_var *var)
 	t_node	*node;
 
 	i = 0;
-	var->fd[0] = -1;
-	var->fd[1] = -1;
+	var->fd[0] = 0;
+	var->fd[1] = 1;
 	while (av[i])
 	{
 		node = av[i]->top;

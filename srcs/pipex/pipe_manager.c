@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 15:45:34 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 16:55:59 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	pipe_manager(t_stack *stack)
 	len = 0;
 	arr = ft_stack_splitter(stack);
 	len = 0;
+	//ft_redir_parser(arr, &var);
+	//ft_redir_del(arr);
 	var.fd[0] = 0;
 	var.fd[1] = 1;
 	while (arr[len])
@@ -48,8 +50,10 @@ int	pipe_manager(t_stack *stack)
 		pipex_pipes(len, &var);
 		while (arr[j])
 		{
-			if (pipex_open(arr, j, &var) == 1 || child_process(arr, j, &var) == 1)
+			if (pipex_open(arr, j, &var) == 1
+				|| child_process(arr, j, &var) == 1)
 				return (1);
+			ft_printf("fd: %d %d pipe %d %d\n", var.fd[0], var.fd[1], var.pipes[j][0], var.pipes[j][1]);
 			waitpid(var.pid, NULL, 0);
 			pipex_close(arr, j, &var);
 			++j;
