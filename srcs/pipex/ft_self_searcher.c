@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:32:58 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 13:11:27 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 13:16:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_self_searcher(char **env, char **cmd_args)
 {
-	pid_t		pid;
 	char		*args[3];
 	char		*insidepwd;
 
@@ -26,10 +25,7 @@ int	ft_self_searcher(char **env, char **cmd_args)
 	args[2] = 0;
 	if (!access(insidepwd, X_OK))
 	{
-		pid = fork();
-		if (pid == 0)
-			execve("/bin/bash", args, env);
-		waitpid(pid, NULL, 0);
+		execve("/bin/bash", args, env);
 		ft_arr_freer(env);
 		sig_toggle(0);
 		return (1);

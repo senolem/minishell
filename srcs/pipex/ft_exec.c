@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 11:44:26 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 13:16:34 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	ft_exec_min(char *cmd)
 
 int	ft_exec_found(char **env, char **cmd_args, char *cmd, t_var *var)
 {
-	pid_t		pid;
 	struct stat	stats;
 
 	if (stat(cmd_args[0], &stats) == 0)
@@ -66,10 +65,7 @@ int	ft_exec_found(char **env, char **cmd_args, char *cmd, t_var *var)
 	}
 	(void)var;
 	errno = 0;
-	pid = fork();
-	if (pid == 0)
-		execve(cmd, cmd_args, env);
-	waitpid(pid, NULL, 0);
+	execve(cmd, cmd_args, env);
 	ft_arr_freer(env);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 11:50:46 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 13:24:21 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ int	pipex_close(t_stack **stack, size_t i, t_var *var)
 {
 	if (stack[i + 1])
 	{
-		close(var->pipes[i][1]);
+			close(var->pipes[i][1]);
 	}
 	if (i != 0 && stack[i - 1])
 	{
-		close(var->pipes[i - 1][0]);
+			close(var->pipes[i - 1][0]);
 	}
 	return (0);
 }
@@ -85,7 +85,7 @@ void	pipex(t_stack **stack, size_t i, t_var *var)
 	{
 		close(var->pipes[i][0]);
 		dup2(var->pipes[i][1], var->fd[1]);
-		close (var->pipes[i][1]);
+		close(var->pipes[i][1]);
 	}
 	if (i != 0 && stack[i - 1])
 	{
