@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stack_splitter.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:39:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/15 09:42:45 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:46:15 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ static void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 			delenda = current;
 			current = current->next;
 			ft_stackdelone(stack, delenda, ft_nodedel);
+			// pas sûr que ça ne fasse pas crasher au cas où il y aurait un pipe sans rien derrière
+			current->prev->next = NULL;
 			i++;
-			arr[i] = ft_stacknew();
-			continue ;
+			if (current && ft_tokcmp(current->content, pipe_type))
+				arr[i] = ft_stacknew();
+			continue;
 		}
 		ft_stackadd_bottom(arr[i], current);
 		current = current->next;
