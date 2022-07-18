@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 13:34:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 15:33:24 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	ft_exec_found(char **env, char **cmd_args, char *cmd, t_var *var)
 		if (S_ISDIR(stats.st_mode))
 			return (3);
 	}
-	(void)var;
 	errno = 0;
 	execve(cmd, cmd_args, env);
 	ft_arr_freer(env);
@@ -91,7 +90,7 @@ int	ft_exec(char **cmd_args, t_var *var)
 		tilde_replacer(cmd_args);
 	if (builtin_launch(cmd_args) != -99 || !cmd_args || !cmd_args[0])
 	{
-		sig_toggle(1);
+		sig_toggle(0);
 		return (0);
 	}
 	env = env_read(ENV_FILE);

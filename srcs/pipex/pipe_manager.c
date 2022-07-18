@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 13:34:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 15:45:34 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,6 @@ void	ft_last_action(t_var var, int ac, char *av[])
 	var.fd[1] = open(av[ac - 1], O_WRONLY | O_TRUNC, 0644);
 	if (var.fd[1] < 0)
 		ft_puterror("Error: Impossible to open the file.");
-}
-
-t_var	get_args(char ac, char *av[])
-{
-	t_var	var;
-
-	var.fd[0] = open(av[1], O_RDONLY);
-	if (var.fd[0] < 0)
-		ft_printerror("pipex", av[1]);
-	var.fd[1] = open(av[ac - 1], O_WRONLY | O_CREAT, 0644);
-	if (var.fd[1] < 0)
-		ft_printerror("pipex", av[ac - 1]);
-	return (var);
 }
 
 int	pipe_manager(t_stack *stack)
@@ -53,21 +40,14 @@ int	pipe_manager(t_stack *stack)
 	{
 		av = ft_lst_to_arr(arr[0]);
 		ft_stackclear(arr[0], (void *)ft_tokdel);
-		var.pid = fork();
-		if (var.pid == 0)
-		{
-			ft_exec(av, &var);
-			ft_arr_freer(av);
-		}
-		else
-			waitpid(var.pid, NULL, 0);
+		ft_exec(av, &var);
+		ft_arr_freer(av);
 	}
 	else if (len > 1) 
 	{
 		pipex_pipes(len, &var);
 		while (arr[j])
 		{
-			//ft_stackclear(arr[j], (void *)ft_tokdel);
 			if (pipex_open(arr, j, &var) == 1 || child_process(arr, j, &var) == 1)
 				return (1);
 			waitpid(var.pid, NULL, 0);
