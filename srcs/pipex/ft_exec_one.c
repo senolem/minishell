@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_one.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 17:06:59 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 17:16:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 18:06:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//on pourrait enlever le fichier
 int	ft_self_searcher_one(char **env, char **cmd_args)
 {
 	char		*args[3];
