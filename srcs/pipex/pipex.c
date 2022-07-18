@@ -6,17 +6,33 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/16 23:00:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 11:50:46 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	pipex_pipes(size_t len, t_var *var)
+{
+	size_t	i;
+
+	i = 0;
+	var->pipes = malloc(sizeof(int *) * (len + 1));
+	while (i < len)
+	{
+		var->pipes[i] = malloc(sizeof(int) * 2);
+		//var->pipes[i][0] = -1;
+		//var->pipes[i][1] = -1;
+		++i;
+	}
+	var->pipes[i] = 0;
+}
+
 int	pipex_open(t_stack **stack, size_t i, t_var *var)
 {
 	if (stack[i + 1])
 	{
-		if (pipe(var->pipes) == -1)
+		if (pipe(var->pipes[i]) == -1)
 		{
 			perror("minishell: pipe");
 			return (1);
@@ -28,9 +44,13 @@ int	pipex_open(t_stack **stack, size_t i, t_var *var)
 int	pipex_close(t_stack **stack, size_t i, t_var *var)
 {
 	if (stack[i + 1])
-		close(var->pipes[1]);
+	{
+		close(var->pipes[i][1]);
+	}
 	if (i != 0 && stack[i - 1])
-		close(var->pipes[0]);
+	{
+		close(var->pipes[i - 1][0]);
+	}
 	return (0);
 }
 
@@ -59,17 +79,17 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 
 void	pipex(t_stack **stack, size_t i, t_var *var)
 {
-	dup2(var->fd[0], STDOUT_FILENO);
-	dup2(var->fd[1], STDIN_FILENO);
+	dup2(var->fd[1], STDOUT_FILENO);
+	dup2(var->fd[0], STDIN_FILENO);
 	if (stack[i + 1])
 	{
-		close(var->pipes[0]);
-		dup2(var->pipes[1], var->fd[0]);
-		close (var->pipes[1]);
+		close(var->pipes[i][0]);
+		dup2(var->pipes[i][1], var->fd[1]);
+		close (var->pipes[i][1]);
 	}
 	if (i != 0 && stack[i - 1])
 	{
-		dup2(var->pipes[0], var->fd[1]);
-		close(var->pipes[0]);
+		dup2(var->pipes[i - 1][0], var->fd[0]);
+		close(var->pipes[i - 1][0]);
 	}
 }

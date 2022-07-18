@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/16 23:00:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 10:57:36 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_var
 {
 	pid_t	pid;
 	int		fd[2];
-	int		pipes[2];
+	int		**pipes;
 	int		status;
 	int		ac;
 	char	**av;
@@ -192,6 +192,7 @@ int			sig_toggle(int n);
 void		pipex(t_stack **stack, size_t i, t_var *var);
 int			pipex_open(t_stack **stack, size_t i, t_var *var);
 int			pipex_close(t_stack **stack, size_t i, t_var *var);
+void		pipex_pipes(size_t len, t_var *var);
 int			child_process(t_stack **stack, size_t i, t_var *var);
 t_var		get_args(char ac, char *av[]);
 t_var		hd_managing(int ac, char *av[]);

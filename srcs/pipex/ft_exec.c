@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/16 22:25:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 11:44:26 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,6 @@ int	ft_exec(char **cmd_args, t_var *var)
 	char	*cmd;
 	char	**env;
 
-	printf("_________^^^^^^^^_______\n");
-	ft_arr_display(cmd_args);
-	printf("______vvvvvvvvv______\n");
 	i = 0;
 	sig_toggle(1);
 	if (cmd_args && tilde_searcher(cmd_args))

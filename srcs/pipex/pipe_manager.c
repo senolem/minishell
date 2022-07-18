@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/16 22:30:30 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 12:00:02 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,9 @@ int	pipe_manager(t_stack *stack)
 	arr = ft_stack_splitter(stack);
 	len = 0;
 	var.fd[0] = 0;
-	var.fd[1] = 0;
-	var.pipes[0] = 0;
-	var.pipes[1] = 0;
+	var.fd[1] = 1;
 	while (arr[len])
 		++len;
-	ft_redir_parser(arr, &var);
-	ft_redir_del(arr);
 	if (len == 1)
 	{
 		av = ft_lst_to_arr(arr[0]);
@@ -62,6 +58,7 @@ int	pipe_manager(t_stack *stack)
 	}
 	else if (len > 1) 
 	{
+		pipex_pipes(len, &var);
 		while (arr[j])
 		{
 			//ft_stackclear(arr[j], (void *)ft_tokdel);
