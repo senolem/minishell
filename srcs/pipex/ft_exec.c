@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/17 19:27:11 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:09:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,10 @@
 
 void	ft_dup_and_run(t_var *var)
 {
-	if (var->fd[0] && var->fd[0] != -1)
-	{
-		dup2(var->fd[0], STDIN_FILENO);
-		close(var->fd[0]);
-	}
-	if (var->fd[1] != 1 && var->fd[1] != -1)
-	{
-		dup2(var->fd[1], STDOUT_FILENO);
-		close(var->fd[1]);
-	}
+	dup2(var->fd[0], STDIN_FILENO);
+	close(var->fd[0]);
+	dup2(var->fd[1], STDOUT_FILENO);
+	close(var->fd[1]);
 }
 
 int	ft_exec_min(char *cmd)
