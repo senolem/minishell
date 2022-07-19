@@ -89,7 +89,10 @@ int	ft_exec(char **cmd_args, t_var *var)
 	if (cmd_args && tilde_searcher(cmd_args))
 		tilde_replacer(cmd_args);
 	if (builtin_launch(cmd_args) != -99 || !cmd_args || !cmd_args[0])
+	{
+		sig_toggle(0);
 		return (0);
+	}
 	env = env_read(ENV_FILE);
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (cmd)
