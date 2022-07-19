@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 14:38:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:31:20 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,13 @@ typedef struct s_searcher
 	char	*append;
 	size_t	i;
 }			t_searcher;
+
+typedef struct s_redir
+{
+	int	mode;
+	int	type;
+	int	fd;
+}			t_redir;
 
 // init
 int			init_shell(t_data *data);

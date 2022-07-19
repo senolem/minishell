@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 14:07:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 15:31:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 	pid_t	pid;
 	char	**args;
 
+	sig_toggle(1);
 	pid = fork();
 	if (pid)
 		var->pid = pid;
@@ -75,6 +76,7 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 	}
 	else
 		waitpid(var->pid, NULL, 0);
+	sig_toggle(0);
 	return (0);
 }
 
