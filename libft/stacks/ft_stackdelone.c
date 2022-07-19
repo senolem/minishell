@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 20:16:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 10:45:10 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:01:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,25 @@
 
 void	ft_stackdelone(t_stack *stack, t_node *node, void (*del)(void *))
 {
-	if (!stack || !node || !stack->top || del)
+	if (!node || !stack || !stack->top || !del)
 		return ;
-	if (node != NULL)
+	if (node->next == NULL)
 	{
-		if (node->next == NULL)
-		{
-			stack->bottom = node->prev;
-			if (stack->bottom)
-				stack->bottom->next = NULL;
-		}
-		else
-		{
-			if (node->prev == NULL)
-			{
-				stack->top = node->next;
-				if (stack->top)
-					stack->top->prev = NULL;
-			}
-			else
-			{
-				node->next->prev = node->prev;
-				node->prev->next = node->next;
-			}
-		}
-		del(node->content);
-		node->content = NULL;
-		free(node);
-		node = NULL;
+		stack->bottom = node->prev;
+		if (stack->bottom)
+			stack->bottom->next = NULL;
 	}
+	else if (node->prev == NULL)
+	{
+		stack->top = node->next;
+		if (stack->top)
+			stack->top->prev = NULL;
+	}
+	else
+	{
+		node->next->prev = node->prev;
+		node->prev->next = node->next;
+	}
+	del(node->content);
+	free(node);
 }
