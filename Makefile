@@ -6,7 +6,7 @@
 #    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/18 19:24:34 by faventur         ###   ########.fr        #
+#    Updated: 2022/07/19 08:46:00 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = minishell
 CC = gcc
-CFLAGS = -g3 -Wall -Wextra -Werror # -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
+CFLAGS = -g3 -Wall -Wextra -Werror -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 LINKS = -lreadline -L${HOME}/goinfre/.brew/opt/readline/lib
 LIBLINKS = -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include
 SRC_PATH = srcs/
@@ -65,7 +65,7 @@ UTIL_FILES 	= 	utils ft_stacktab_clear
 SRCS_FILES	+=	$(addprefix $(UTIL_PATH), $(UTIL_FILES))
 
 BUI_PATH	=	builtins/
-BUI_FILES 	= 	launch pwd cd export unset exit env
+BUI_FILES 	= 	launch pwd cd export unset exit env cd_utils
 SRCS_FILES	+=	$(addprefix $(BUI_PATH), $(BUI_FILES))
 
 SRCS_FILES_EXT 		+= 	$(addsuffix $(C_EXTENSION), $(SRCS_FILES))

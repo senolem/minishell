@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 16:20:12 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 15:36:31 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/18 21:08:13 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	process_input(t_data *data)
 		arr = ms_split(data->input);
 		if (arr)
 			ft_tokenizer(arr);
-		free(data->input);
 	}
+	free(data->input);
+	builtin_cd_chdir();
 }

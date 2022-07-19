@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 18:05:23 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:20:53 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	pipe_manager(t_stack *stack)
 			|| child_process(arr, j, &var) == 1)
 			return (1);
 		ft_printf("fd: %d %d pipe %d %d\n", var.fd[0], var.fd[1], var.pipes[j][0], var.pipes[j][1]);
-		waitpid(var.pid, NULL, 0);
 		pipex_close(arr, j, &var);
 		++j;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 19:10:46 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/18 21:07:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ char		**env_read(char *path);
 int			builtin_launch(char **cmd_args);
 int			builtin_pwd(char **str);
 int			builtin_cd(char **path);
+void		builtin_cd_chdir(void);
 int			builtin_export(char **str);
 int			builtin_unset(char **str);
 int			builtin_env(char **str);
