@@ -35,6 +35,9 @@ typedef struct s_data
 {
 	int			exit;
 	char		*input;
+	char		*prompt;
+	int			shlvl;
+	char		*tmp;
 }				t_data;
 
 // other structs
@@ -164,6 +167,7 @@ char		*ft_getenv(char *varname);
 char		*env_get(char *name, char **env);
 char		*env_get_arg(char *var);
 char		*env_get_pwd(void);
+int			env_get_shlvl(void);
 void		env_write(char *path, char **env);
 void		env_set(char *str, char *value, char ***env);
 void		env_set_arg(char *var, char *value);

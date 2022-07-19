@@ -15,6 +15,7 @@
 char	*ft_path_searcher(char *cmd)
 {
 	t_searcher	s;
+	char		*append;
 
 	s.i = 0;
 	s.cmd_args = ft_split(cmd, ' ');
@@ -22,17 +23,21 @@ char	*ft_path_searcher(char *cmd)
 		return (NULL);
 	s.env_path = ft_getenv("PATH");
 	s.paths = ft_split(s.env_path, ':');
+	free(s.env_path);
 	if (!s.paths)
 		return (NULL);
 	while (s.paths[s.i])
 	{
-		s.exec_path = ft_strjoin(s.paths[s.i], ft_strjoin("/", s.cmd_args[0]));
+		append = ft_strjoin("/", s.cmd_args[0]);
+		s.exec_path = ft_strjoin(s.paths[s.i], append);
+		free(append);
 		if (!access(s.exec_path, R_OK) && ft_exec_min(cmd) != 1)
 		{
 			ft_arr_freer(s.paths);
 			ft_arr_freer(s.cmd_args);
 			return (s.exec_path);
 		}
+		free(s.exec_path);
 		++s.i;
 	}
 	ft_arr_freer(s.paths);

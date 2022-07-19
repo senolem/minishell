@@ -92,16 +92,20 @@ int	ft_exec(char **cmd_args, t_var *var)
 		return (0);
 	env = env_read(ENV_FILE);
 	cmd = ft_path_searcher(cmd_args[0]);
-	if (!cmd)
+	if (cmd)
+	{
+		i = ft_exec_found(env, cmd_args, cmd, var);
+		free(cmd);
+	}
+	else
 	{
 		if (!access(cmd_args[0], X_OK) && ft_exec_min(cmd_args[0]) > 0)
 			i = ft_exec_found(env, ft_exec_args(cmd_args), "/bin/bash", var);
 		else
 			i = ft_exec_not_found(env, cmd_args);
 	}
-	else
-		i = ft_exec_found(env, cmd_args, cmd, var);
 	ft_exec_error(i, cmd_args);
 	sig_toggle(0);
+	ft_arr_freer(env);
 	return (0);
 }

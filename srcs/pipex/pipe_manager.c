@@ -46,5 +46,6 @@ int	pipe_manager(t_stack *stack)
 		++j;
 	}
 	ft_stacktab_clear(arr);
+	ft_intarr_freer(var.pipes);
 	return (0);
 }

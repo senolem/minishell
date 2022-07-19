@@ -122,5 +122,6 @@ char	**ft_arrdup(char **arr);
 size_t	ft_arrlen(char **array);
 void	ft_arr_display(char **arr);
 void	ft_arr_display_size(char **arr, size_t size);
+void	ft_intarr_freer(int **arr);
 
 #endif

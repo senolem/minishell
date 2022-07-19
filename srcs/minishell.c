@@ -15,7 +15,6 @@
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	char	*prompt;
 
 	data = malloc(sizeof(t_data));
 	if (argc > 1 && argv)
@@ -23,17 +22,20 @@ int	main(int argc, char **argv)
 	init_shell(data);
 	while (!data->exit)
 	{
-		prompt = ft_concat(env_get_pwd(), " $ ");
-		data->input = readline(prompt);
+		data->prompt = ft_concat(env_get_pwd(), " $ ");
+		data->input = readline(data->prompt);
 		if (data->input == NULL)
 			break ;
 		process_input(data);
-		free(prompt);
+		free(data->prompt);
 	}
-	if (ft_atoi(env_get_arg("SHLVL")) == 1)
+	data->shlvl = env_get_shlvl();
+	data->tmp = ft_itoa(data->shlvl - 1);
+	if (data->shlvl == 1)
 		unlink(ENV_FILE);
-	env_set_arg("SHLVL", ft_itoa(ft_atoi(env_get_arg("SHLVL")) - 1));
-	free(prompt);
+	env_set_arg("SHLVL", data->tmp);
+	free(data->tmp);
+	free(data->prompt);
 	free(data->input);
 	free(data);
 	return (0);

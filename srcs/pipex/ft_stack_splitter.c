@@ -39,7 +39,6 @@ static void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 		current = current->next;
 	}
 	arr[++i] = NULL;
-	free(stack);
 }
 
 t_stack	**ft_stack_splitter(t_stack *stack)

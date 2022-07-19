@@ -43,3 +43,17 @@ char	*env_get_pwd(void)
 	ft_arr_freer(env);
 	return (pwd);
 }
+
+int	env_get_shlvl(void)
+{
+	char	*pwd;
+	char	**env;
+	int		shlvl;
+
+	env = env_read(ENV_FILE);
+	pwd = env_get("SHLVL", env);
+	shlvl = ft_atoi(pwd);
+	ft_arr_freer(env);
+	free(pwd);
+	return (shlvl);
+}
