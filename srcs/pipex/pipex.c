@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 22:20:28 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 10:03:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	pipex_open(t_stack **stack, size_t i, t_var *var)
 			perror("minishell: pipe");
 			return (1);
 		}
-		ft_printf("fd popen: %d %d pipe %d %d\n", var->fd[0], var->fd[1], var->pipes[i][0], var->pipes[i][1]);
 	}
 	return (0);
 }
@@ -72,7 +71,6 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 	{
 		args = ft_lst_to_arr(stack[i]);
 		pipex(stack, i, var);
-		ft_printf("fd popen: %d %d pipe %d %d\n", var->fd[0], var->fd[1], var->pipes[i][0], var->pipes[i][1]);
 		ft_exec(args, var);
 		ft_arr_freer(args);
 		exit(0);

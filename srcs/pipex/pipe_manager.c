@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/18 22:20:53 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 10:03:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	pipe_manager(t_stack *stack)
 	arr = ft_stack_splitter(stack);
 	ft_redir_parser(arr, &var);
 	ft_redir_del(arr);
-	ft_printf("fd ante boucle: %d %d\n", var.fd[0], var.fd[1]);
 	//var.fd[0] = 0;
 	//var.fd[1] = 1;
 	while (arr[len])
@@ -43,7 +42,6 @@ int	pipe_manager(t_stack *stack)
 		if (pipex_open(arr, j, &var) == 1
 			|| child_process(arr, j, &var) == 1)
 			return (1);
-		ft_printf("fd: %d %d pipe %d %d\n", var.fd[0], var.fd[1], var.pipes[j][0], var.pipes[j][1]);
 		pipex_close(arr, j, &var);
 		++j;
 	}
