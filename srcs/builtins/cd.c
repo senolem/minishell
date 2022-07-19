@@ -49,10 +49,13 @@ static int	cd_tilde(char *path, char *tmp, char ***env)
 {
 	int		i;
 	char	*ptmp;
+	char	*home;
 
 	i = 0;
 	++path;
-	ptmp = ft_strjoin(env_get("HOME", *env), path);
+	home = env_get("HOME", *env);
+	ptmp = ft_strjoin(home, path);
+	free(home);
 	i = chdir(ptmp);
 	if (i == 0)
 	{

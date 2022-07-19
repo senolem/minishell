@@ -16,10 +16,13 @@ int	ft_self_searcher(char **env, char **cmd_args)
 {
 	char		*args[3];
 	char		*insidepwd;
+	char		*pwd;
 
 	if (cmd_args[0][0] != '.')
 		return (0);
-	insidepwd = ft_strjoin(ft_strjoin(ft_getenv("PWD"), "/"), cmd_args[0]);
+	pwd = ft_getenv("PWD");
+	insidepwd = ft_concat(ft_strjoin(pwd, "/"), cmd_args[0]);
+	free(pwd);
 	args[0] = cmd_args[0];
 	args[1] = insidepwd;
 	args[2] = 0;
@@ -28,6 +31,7 @@ int	ft_self_searcher(char **env, char **cmd_args)
 		execve("/bin/bash", args, env);
 		ft_arr_freer(env);
 		sig_toggle(0);
+		free(insidepwd);
 		return (1);
 	}
 	free(insidepwd);
