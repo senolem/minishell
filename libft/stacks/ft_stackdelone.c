@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 20:16:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 09:07:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/19 10:45:10 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,6 @@
 */
 
 #include "stacks.h"
-
-static void	ft_stackdelone_pt2(t_stack *stack, t_node *node)
-{
-	if (node->prev == NULL)
-	{
-		stack->top = node->next;
-		if (stack->top)
-			stack->top->prev = NULL;
-	}
-	else
-	{
-		node->next->prev = node->prev;
-		node->prev->next = node->next;
-	}
-}
 
 void	ft_stackdelone(t_stack *stack, t_node *node, void (*del)(void *))
 {
@@ -46,11 +31,22 @@ void	ft_stackdelone(t_stack *stack, t_node *node, void (*del)(void *))
 				stack->bottom->next = NULL;
 		}
 		else
-			ft_stackdelone_pt2(stack, node);
+		{
+			if (node->prev == NULL)
+			{
+				stack->top = node->next;
+				if (stack->top)
+					stack->top->prev = NULL;
+			}
+			else
+			{
+				node->next->prev = node->prev;
+				node->prev->next = node->next;
+			}
+		}
 		del(node->content);
 		node->content = NULL;
 		free(node);
 		node = NULL;
-		node->next = NULL;
 	}
 }
