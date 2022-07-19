@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 08:44:40 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/19 09:22:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,40 @@ void	ft_redir_del(t_stack **av)
 {
 	size_t	i;
 	t_node	*node;
+	t_node	*delenda;
 
 	i = 0;
 	while (av[i])
 	{
 		node = av[i]->top;
-		while (node)
+		while (node && node->next)
 		{
 			if (!ft_tokcmp(node->content, greater_than_type)
 				|| !ft_tokcmp(node->content, smaller_than_type)
 				|| !ft_tokcmp(node->content, d_greater_than_type))
 //				|| !ft_tokcmp(node->content, d_smaller_than_type))
 			{
-				ft_stackdelone(av[i], node, (void *)ft_tokdel);
+				ft_printf(" 1 \n");
+				ft_tokdisplay(node->content);
+				delenda = node;
+				node = node->next;
+				ft_stackdelone(av[i], delenda, (void *)ft_tokdel);
+				ft_tokdisplay(node->content);
 				if (node)
-					ft_stackdelone(av[i], node, (void *)ft_tokdel);
+				{
+					ft_printf(" 2 \n");
+					ft_tokdisplay(node->content);
+					delenda = node;
+					if (node->next)
+						node = node->next;
+					ft_stackdelone(av[i], delenda, (void *)ft_tokdel);
+				}
 				break ;
 			}
 			else
 				node = node->next;
 		}
+		ft_stackiter(av[i], (void *)ft_tokdisplay);
 		i++;
 	}
 }

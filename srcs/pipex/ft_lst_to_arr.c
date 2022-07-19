@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:50:10 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 12:00:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/19 09:20:06 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ char	*ft_lst_to_arrdup(t_token *token)
 {
 	char	*tmp;
 
-	tmp = ft_strdup(token->str);
-	if (!tmp)
-		return (NULL);
-	return (tmp);
+	if (token)
+	{
+		tmp = ft_strdup(token->str);
+		if (!tmp)
+			return (NULL);
+		return (tmp);
+	}
+	return (NULL);
 }
 
 char	**ft_lst_to_arr(t_stack *stack)
@@ -28,7 +32,7 @@ char	**ft_lst_to_arr(t_stack *stack)
 	t_node	*tmp;
 	char	**arr;
 
-	if (!stack)
+	if (!stack || !stack->top)
 		return (NULL);
 	i = 0;
 	tmp = stack->top;
@@ -36,7 +40,7 @@ char	**ft_lst_to_arr(t_stack *stack)
 	if (!arr)
 		return (NULL);
 	arr[ft_stacksize(stack)] = 0;
-	while (tmp)
+	while (tmp && tmp->content)
 	{
 		arr[i] = ft_lst_to_arrdup(tmp->content);
 		if (!arr[i])
