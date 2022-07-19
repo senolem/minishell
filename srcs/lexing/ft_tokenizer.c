@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/13 12:46:54 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 13:04:41 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ void	ft_tokenizer(char **arr)
 	ms_dollar_quote_eraser(new);
 	ft_arr_freer(arr);
 	pipe_manager(new);
-	ft_stackiter(new, ft_nodedel);
 	free(new);
 }
