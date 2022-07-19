@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 09:22:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/19 10:02:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ void	ft_redir_del(t_stack **av)
 				|| !ft_tokcmp(node->content, d_greater_than_type))
 //				|| !ft_tokcmp(node->content, d_smaller_than_type))
 			{
-				ft_printf(" 1 \n");
-				ft_tokdisplay(node->content);
+				//ft_tokdisplay(node->content);
 				delenda = node;
 				node = node->next;
 				ft_stackdelone(av[i], delenda, (void *)ft_tokdel);
 				ft_tokdisplay(node->content);
 				if (node)
 				{
-					ft_printf(" 2 \n");
 					ft_tokdisplay(node->content);
 					delenda = node;
 					if (node->next)
