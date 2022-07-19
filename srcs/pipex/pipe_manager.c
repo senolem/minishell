@@ -45,5 +45,6 @@ int	pipe_manager(t_stack *stack)
 		pipex_close(arr, j, &var);
 		++j;
 	}
+	ft_stacktab_clear(arr);
 	return (0);
 }
