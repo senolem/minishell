@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 14:37:31 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:38:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_searcher
 	char	*exec_path;
 	char	*env_path;
 	char	**cmd_args;
+	char	*append;
 	size_t	i;
 }			t_searcher;
 
@@ -215,7 +216,6 @@ char		*ft_lst_to_arrdup(t_token *token);
 void		ft_redir_parser(t_stack *av, t_var *var);
 void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);
-void		ft_dup_and_run(t_var *var);
 
 // utils
 char		*ft_concat(char *s1, char *s2);
