@@ -6,11 +6,37 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 15:32:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 18:00:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	redir_clear(t_node *node)
+{
+	t_node	*next;
+	t_node	*prev;
+
+	next = NULL;
+	prev = NULL;
+	if (node->next && node->next->next)
+		next = node->next->next;
+	if (node->prev)
+		prev = node->prev;
+	if (next)
+	{
+		if (prev)
+		{
+			next->prev = prev;
+			prev->next = next;
+		}
+		else
+			next->prev = NULL;
+	}
+	else if (prev)
+		prev->next = NULL;
+	node = NULL;
+}
 
 static t_redir	ft_redir_data(int mode, int type, int fd)
 {
@@ -34,6 +60,8 @@ void	redir_manager(t_stack **av, t_var *var, t_redir i)
 		{
 			if (node->next)
 				node = node->next;
+			//faut remplacer ici dans le cas ou next existe pas
+			//on est censé stop l'execution (parsing error)
 			path = ft_lst_to_arrdup(node->content);
 			var->fd[i.fd] = open(path, i.mode, 0644);
 			if (var->fd[i.fd] < 0)
