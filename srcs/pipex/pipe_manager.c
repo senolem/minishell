@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 20:05:38 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 22:11:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,15 @@ int	pipe_manager(t_stack *stack)
 	j = 0;
 	len = 0;
 	arr = ft_stack_splitter(stack);
-	var.fd[0] = 0;
-	var.fd[1] = 1;
 	while (arr[len])
 		++len;
 	pipex_pipes(len, &var);
 	while (arr[j])
 	{
+		var.fd[0] = 0;
+		var.fd[1] = 1;
 		if (ft_redir_parser(arr[j], &var) == 1)
 			break;
-		t_node	*n = arr[j]->top;
-		printf("_____DISPLAY______\n");
-		while(n)
-		{
-			ft_tokdisplay((t_token *)n->content);
-			n = n->next;
-		}
-		printf("_____end______\n");
 		if (pipex_open(arr, j, &var) == 1
 			|| child_process(arr, j, &var) == 1)
 			return (1);
