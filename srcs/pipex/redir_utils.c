@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 17:17:01 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/19 08:44:40 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ void	ft_redir_del(t_stack **av)
 //				|| !ft_tokcmp(node->content, d_smaller_than_type))
 			{
 				ft_stackdelone(av[i], node, (void *)ft_tokdel);
-				if (node->next)
-					ft_stackdelone(av[i], node->next, (void *)ft_tokdel);
+				if (node)
+					ft_stackdelone(av[i], node, (void *)ft_tokdel);
+				break ;
 			}
-			node = node->next;
+			else
+				node = node->next;
 		}
 		i++;
 	}
