@@ -6,18 +6,24 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:24:11 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/15 21:10:31 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 13:49:07 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static char	*ft_path_searcher_free(t_searcher *s)
+{
+	ft_arr_freer(s->paths);
+	ft_arr_freer(s->cmd_args);
+	return (NULL);
+}
+
 char	*ft_path_searcher(char *cmd)
 {
 	t_searcher	s;
-	char		*append;
 
-	s.i = 0;
+	s.i = -1;
 	s.cmd_args = ft_split(cmd, ' ');
 	if (!s.cmd_args)
 		return (NULL);
@@ -26,21 +32,17 @@ char	*ft_path_searcher(char *cmd)
 	free(s.env_path);
 	if (!s.paths)
 		return (NULL);
-	while (s.paths[s.i])
+	while (s.paths[++s.i])
 	{
-		append = ft_strjoin("/", s.cmd_args[0]);
-		s.exec_path = ft_strjoin(s.paths[s.i], append);
-		free(append);
+		s.append = ft_strjoin("/", s.cmd_args[0]);
+		s.exec_path = ft_strjoin(s.paths[s.i], s.append);
 		if (!access(s.exec_path, R_OK) && ft_exec_min(cmd) != 1)
 		{
-			ft_arr_freer(s.paths);
-			ft_arr_freer(s.cmd_args);
+			ft_path_searcher_free(&s);
 			return (s.exec_path);
 		}
+		free(s.append);
 		free(s.exec_path);
-		++s.i;
 	}
-	ft_arr_freer(s.paths);
-	ft_arr_freer(s.cmd_args);
-	return (NULL);
+	return (ft_path_searcher_free(&s));
 }

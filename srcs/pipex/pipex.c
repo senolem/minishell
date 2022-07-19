@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 10:03:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:07:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	pipex_pipes(size_t len, t_var *var)
 	while (i < len)
 	{
 		var->pipes[i] = malloc(sizeof(int) * 2);
-		//var->pipes[i][0] = -1;
-		//var->pipes[i][1] = -1;
 		++i;
 	}
 	var->pipes[i] = 0;

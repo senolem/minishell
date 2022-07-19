@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 21:07:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 13:50:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_searcher
 	char	*exec_path;
 	char	*env_path;
 	char	**cmd_args;
+	char	*append;
 	size_t	i;
 }			t_searcher;
 
@@ -217,7 +218,6 @@ void		ft_redir_parser(t_stack **av, t_var *var);
 void		ft_redir_del(t_stack **av);
 void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);
-void		ft_dup_and_run(t_var *var);
 
 // utils
 char		*ft_concat(char *s1, char *s2);

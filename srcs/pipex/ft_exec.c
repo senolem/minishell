@@ -6,18 +6,18 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 22:52:26 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 13:55:35 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_dup_and_run(t_var *var)
+static int	ft_exec_free(char ***env, char **tmp)
 {
-	dup2(var->fd[0], STDIN_FILENO);
-	close(var->fd[0]);
-	dup2(var->fd[1], STDOUT_FILENO);
-	close(var->fd[1]);
+	ft_arr_freer(*env);
+	if (*tmp)
+		free(*tmp);
+	return (0);
 }
 
 int	ft_exec_min(char *cmd)
@@ -89,17 +89,11 @@ int	ft_exec(char **cmd_args, t_var *var)
 	if (cmd_args && tilde_searcher(cmd_args))
 		tilde_replacer(cmd_args);
 	if (builtin_launch(cmd_args) != -99 || !cmd_args || !cmd_args[0])
-	{
-		sig_toggle(0);
-		return (0);
-	}
+		return (sig_toggle(0));
 	env = env_read(ENV_FILE);
 	cmd = ft_path_searcher(cmd_args[0]);
 	if (cmd)
-	{
 		i = ft_exec_found(env, cmd_args, cmd, var);
-		free(cmd);
-	}
 	else
 	{
 		if (!access(cmd_args[0], X_OK) && ft_exec_min(cmd_args[0]) > 0)
@@ -109,6 +103,5 @@ int	ft_exec(char **cmd_args, t_var *var)
 	}
 	ft_exec_error(i, cmd_args);
 	sig_toggle(0);
-	ft_arr_freer(env);
-	return (0);
+	return (ft_exec_free(&env, &cmd));
 }
