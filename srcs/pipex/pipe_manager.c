@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 10:03:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:37:51 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ int	pipe_manager(t_stack *stack)
 	j = 0;
 	len = 0;
 	arr = ft_stack_splitter(stack);
-	ft_redir_parser(arr, &var);
-	ft_redir_del(arr);
-	//var.fd[0] = 0;
-	//var.fd[1] = 1;
+	var.fd[0] = 0;
+	var.fd[1] = 1;
 	while (arr[len])
 		++len;
 	pipex_pipes(len, &var);
 	while (arr[j])
 	{
+		ft_redir_parser(arr[j], &var);
 		if (pipex_open(arr, j, &var) == 1
 			|| child_process(arr, j, &var) == 1)
 			return (1);

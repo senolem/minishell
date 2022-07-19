@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 21:07:25 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/19 14:37:31 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,6 @@ int			child_process(t_stack **stack, size_t i, t_var *var);
 t_var		get_args(char ac, char *av[]);
 t_var		hd_managing(int ac, char *av[]);
 int			ft_exec(char **cmd_args, t_var *var);
-int			ft_exec_one(char **cmd_args, t_var *var);
 void		ft_exec_error(int i, char **cmd_args);
 int			ft_exec_min(char *cmd);
 char		**ft_exec_args(char **cmd_args);
@@ -213,8 +212,7 @@ int			pipe_manager(t_stack *stack);
 t_stack		**ft_stack_splitter(t_stack *stack);
 char		**ft_lst_to_arr(t_stack *stack);
 char		*ft_lst_to_arrdup(t_token *token);
-void		ft_redir_parser(t_stack **av, t_var *var);
-void		ft_redir_del(t_stack **av);
+void		ft_redir_parser(t_stack *av, t_var *var);
 void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);
 void		ft_dup_and_run(t_var *var);

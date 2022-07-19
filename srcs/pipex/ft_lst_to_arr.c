@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:50:10 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 09:20:06 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:53:03 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_lst_to_arrdup(t_token *token)
 {
 	char	*tmp;
 
-	if (token)
+	if (token && token->str)
 	{
 		tmp = ft_strdup(token->str);
 		if (!tmp)
