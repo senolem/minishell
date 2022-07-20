@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 14:42:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:35:23 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static t_redir	rdata(int mode, int type, int fd)
-{
-	t_redir	redir;
-
-	redir.mode = mode;
-	redir.type = type;
-	redir.fd = fd;
-	return (redir);
-}
 
 int	redir_fd(t_stack **av, t_var *var, t_redir i)
 {
@@ -51,6 +41,16 @@ int	redir_fd(t_stack **av, t_var *var, t_redir i)
 	return (1);
 }
 
+static t_redir	rdata(int mode, int type, int fd)
+{
+	t_redir	redir;
+
+	redir.mode = mode;
+	redir.type = type;
+	redir.fd = fd;
+	return (redir);
+}
+
 int	ft_redir_parser(t_stack *av, t_var *var)
 {
 	size_t	i;
@@ -69,7 +69,7 @@ int	ft_redir_parser(t_stack *av, t_var *var)
 		else if (!ft_tokcmp(node->content, d_greater_than_type))
 			i = redir_fd(&av, var, rdata(521, d_greater_than_type, 1));
 		else if (!ft_tokcmp(node->content, d_smaller_than_type))
-			NULL;
+			i = here_doc_redir_fd(&av, var);
 		if (i == 0)
 			node = av->top;
 		if (i == 1)

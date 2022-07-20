@@ -6,12 +6,22 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 15:55:43 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:56:51 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+void	ft_last_action(t_var var, int ac, char *av[])
+{
+	close(var.fd[1]);
+	var.fd[1] = open(av[ac - 1], O_WRONLY | O_TRUNC, 0644);
+	if (var.fd[1] < 0)
+		ft_puterror("Error: Impossible to open the file.");
+	unlink("temporary.txt");
+}
+*/
 static void	init_fd(t_var *var)
 {
 	var->fd[0] = 0;
