@@ -6,11 +6,35 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 23:37:15 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 14:49:49 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+int	ft_stacktablen(t_stack **stack)
+{
+	size_t	len;
+
+	len = 0;
+	while (stack[len])
+		++len;
+	return (len);
+}
+
+int	ft_stacklen(t_stack *stack)
+{
+	size_t	len;
+	t_node	*node;
+
+	node = stack->top;
+	len = 0;
+	while (node)
+	{
+		node = node->next;
+		++len;
+	}
+	return (len);
+}
 
 void	ft_last_action(t_var var, int ac, char *av[])
 {
@@ -28,17 +52,18 @@ int	pipe_manager(t_stack *stack)
 	size_t	len;
 
 	j = 0;
-	len = 0;
+	var.fd[0] = 0;
+	var.fd[1] = 1;
 	arr = ft_stack_splitter(stack);
-	while (arr[len])
-		++len;
+	len = ft_stacktablen(arr);
 	pipex_pipes(len, &var);
 	while (arr[j])
 	{
-		var.fd[0] = 0;
-		var.fd[1] = 1;
 		if (ft_redir_parser(arr[j], &var) == 1)
 			break ;
+		if (j != 0 && arr[j - 1] && ft_stacklen(arr[j - 1]) != 0)
+			var.fd[0] = 0;
+		var.fd[1] = 1;
 		if (pipex_open(arr, j, &var) || child_process(arr, j, &var))
 			return (1);
 		pipex_close(arr, j, &var);
