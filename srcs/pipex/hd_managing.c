@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 18:46:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:55:21 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*ft_add_backslash_en(char *line)
 	free(line);
 	return (str);
 }
-
+// je dois gérér sigint et interactive mode
 static void	ft_hd_performer(char *path, t_hd *hd)
 {
 	hd->buffer = readline("heredoc> ");
