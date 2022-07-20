@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:43:28 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 11:34:38 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 12:16:36 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	builtin_exit(char **s)
 	int		code;
 
 	code = 0;
-	if (!s)
+	if (ft_arrlen(s) == 1)
 	{
-		env_set_arg("?EXIT", "1");
+		env_set_arg("?EXIT", "126");
 		exit(126);
 	}
 	else if (ft_arrlen(s) > 2)
@@ -59,6 +59,6 @@ int	builtin_exit(char **s)
 	else if (ft_arrlen(s) == 2)
 		code = ft_atoi(s[1]);
 	builtin_exit_print();
-	env_set_arg("?EXIT", "1");
+	env_set_arg("?EXIT", ft_itoa(code));
 	exit(code);
 }
