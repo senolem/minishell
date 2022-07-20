@@ -6,11 +6,26 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/05 15:59:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:53:52 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	ft_hd_performer(char *av[], t_hd *hd)
+{
+	hd->buffer = readline("heredoc> ");
+	hd->cmp = ft_strncmp(hd->buffer, av[2], ft_strlen(hd->buffer) - 1);
+	hd->temp = ft_strjoin(hd->temp, hd->buffer);
+	free(hd->buffer);
+	while (hd->cmp && hd->buffer)
+	{
+		hd->buffer = readline("heredoc> ");
+		hd->cmp = ft_strncmp(hd->buffer, av[2], ft_strlen(hd->buffer) - 1);
+		hd->temp = ft_strjoin(hd->temp, hd->buffer);
+		free(hd->buffer);
+	}
+}
 
 static int	ope_and_write(char **arr, char *av[])
 {
@@ -21,7 +36,7 @@ static int	ope_and_write(char **arr, char *av[])
 	fd = open("temporary.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 		ft_printerror("pipex", "temporary.txt");
-	while (ft_strstrbool(arr[i], av[2]))
+	while (arr[i] && ft_strncmp(arr[i], av[2], ft_strlen(av[2])))
 	{
 		write(fd, arr[i], ft_strlen(arr[i]));
 		write(fd, "\n", 1);
@@ -35,22 +50,13 @@ static int	ope_and_write(char **arr, char *av[])
 t_var	hd_managing(int ac, char *av[])
 {
 	t_var	var;
-	char	**arr;
-	char	*buffer;
-	char	*temp;
+	t_hd	hd;
 
-	temp = malloc(sizeof(char) * 1);
-	temp[0] = '\0';
-	while (ft_strstrbool(temp, av[2]))
-	{
-		ft_fprintf(1, "heredoc> ");
-		buffer = get_next_line(0);
-		buffer[ft_strlen(buffer)] = '\0';
-		temp = ft_strjoin(temp, buffer);
-		free(buffer);
-	}
-	arr = ft_split(temp, '\n');
-	var.fd[0] = ope_and_write(arr, av);
+	hd.temp = malloc(sizeof(char) * 1);
+	hd.temp[0] = '\0';
+	ft_hd_performer(av, &hd);
+	hd.arr = ft_split(hd.temp, '\n');
+	var.fd[0] = ope_and_write(hd.arr, av);
 	var.fd[0] = open("temporary.txt", O_RDONLY);
 	if (var.fd[0] < 0)
 		ft_printerror("pipex", "temporary.txt");

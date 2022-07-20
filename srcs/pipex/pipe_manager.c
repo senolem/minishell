@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 23:37:15 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 15:52:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_last_action(t_var var, int ac, char *av[])
 	var.fd[1] = open(av[ac - 1], O_WRONLY | O_TRUNC, 0644);
 	if (var.fd[1] < 0)
 		ft_puterror("Error: Impossible to open the file.");
+	unlink("temporary.txt");
 }
 
 int	pipe_manager(t_stack *stack)

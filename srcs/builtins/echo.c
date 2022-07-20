@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 09:41:15 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 11:06:14 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:25:41 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	builtin_echo(char **av)
 		echo_arr_display(av, 1);
 		ft_putchar('\n');
 	}
+	ft_arr_freer(av);
 	return (0);
 }

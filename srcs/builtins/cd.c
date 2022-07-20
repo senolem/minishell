@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 11:00:40 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 11:25:30 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	cd_tilde(char *path, char *tmp, char ***env)
 static int	cd_exit(char *tmp, char ***env, char **path)
 {
 	perror(ft_strjoin("minishell: cd: ", path[1]));
-	(void)tmp;
+	(void)tmp;	// void ?
 	free(tmp);
 	ft_arr_freer(*env);
 	return (1);

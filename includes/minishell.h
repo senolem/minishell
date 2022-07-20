@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 11:15:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:51:46 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,15 @@ typedef struct s_redir
 	int	type;
 	int	fd;
 }			t_redir;
+
+typedef struct s_hd
+{
+	char	**arr;
+	char	*buffer;
+	char	*temp;
+	int		cmp;
+	int		bytes_read;
+}				t_hd;
 
 // init
 int			init_shell(t_data *data);
