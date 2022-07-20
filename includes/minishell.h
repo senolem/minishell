@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 11:32:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 11:37:27 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ int			builtin_export(char **str);
 int			builtin_unset(char **str);
 int			builtin_env(char **str);
 int			builtin_exit(char **str);
+int			builtin_echo(char **av);
 
 // signals
 void		sig_ignore(int sig);
