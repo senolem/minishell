@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 23:25:30 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 11:10:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ typedef struct s_var
 	char	**av;
 	int		mode;
 	int		type;
-	int		fr;
 }			t_var;
 
 typedef struct s_searcher

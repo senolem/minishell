@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_dollar_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:00:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/04 15:11:37 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:29:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ ssize_t	ms_dollar_checker(t_token *token)
 	while (token->str[i])
 	{
 		if (token->str[i] == '$' && (ft_isalnum(token->str[i + 1])
-				|| token->str[i + 1] == '_'))
+				|| token->str[i + 1] == '_' || token->str[i + 1] == '?'))
 			return (i);
 		i++;
 	}

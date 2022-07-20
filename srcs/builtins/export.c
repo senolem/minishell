@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:20:06 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 16:39:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 10:43:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ static int	export_check(char **str)
 		return (1);
 }
 
-static void	export_exec(t_export *e, char **str)
+static int	export_exec(t_export *e, char **str)
 {
 	while (str[++e->i])
 	{
 		e->input = ft_split(str[e->i], '=');
 		if (!e->input)
-			return (ret_null("minishell: bad assignment", NULL));
+			return (ret_err("minishell: bad assignment", NULL, 1));
 		e->j = export_check(e->input);
 		e->tmp = ft_strjoin("!", e->input[0]);
 		if (e->j == 1)
@@ -107,6 +107,9 @@ static void	export_exec(t_export *e, char **str)
 		free(e->tmp);
 		ft_arr_freer(e->input);
 	}
+	if (e->j == -2)
+		return (1);
+	return (0);
 }
 
 int	builtin_export(char **str)
@@ -122,8 +125,8 @@ int	builtin_export(char **str)
 		ft_arr_freer(e.env);
 		return (0);
 	}
-	export_exec(&e, str);
+	e.j = export_exec(&e, str);
 	env_write(ENV_FILE, e.env);
 	ft_arr_freer(e.env);
-	return (0);
+	return (e.j);
 }

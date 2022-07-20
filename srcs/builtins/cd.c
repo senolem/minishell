@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:46:09 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 15:27:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 11:00:40 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	builtin_cd(char	**path)
 	char	**env;
 
 	if (!path || cd_min(path) == -1)
-		return (1);
+		return (0);
 	i = 0;
 	env = env_read(ENV_FILE);
 	tmp = env_get("PWD", env);
