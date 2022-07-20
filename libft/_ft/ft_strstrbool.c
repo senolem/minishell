@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 16:00:52 by faventur          #+#    #+#             */
-/*   Updated: 2022/06/26 16:22:51 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 14:37:15 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,28 @@
 
 int	ft_strstrbool(const char *haystack, const char *needle)
 {
-	size_t	str_len;
-	size_t	tofind_len;
-	size_t	i;
-	size_t	j;
+	t_cmp	var;
 
-	str_len = ft_strlen(haystack);
-	tofind_len = ft_strlen(needle);
-	i = 0;
-	if (str_len < tofind_len)
+	if (!haystack || !needle)
+		return (0);
+	var.str_len = ft_strlen(haystack);
+	var.tofind_len = ft_strlen(needle);
+	var.i = 0;
+	if (var.str_len < var.tofind_len)
 		return (1);
-	while (i <= str_len - tofind_len)
+	while (var.i <= var.str_len - var.tofind_len)
 	{
-		j = 0;
-		while (j < tofind_len)
+		var.j = 0;
+		while (var.j < var.tofind_len)
 		{
-			if (*(char *)(haystack + i + j) != *(char *)(needle + j))
+			if (*(char *)(haystack + var.i + var.j)
+				!= *(char *)(needle + var.j))
 				break ;
-			j++;
+			var.j++;
 		}
-		if (j == tofind_len)
+		if (var.j == var.tofind_len)
 			return (0);
-		i++;
+		var.i++;
 	}
 	return (1);
 }

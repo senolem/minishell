@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 16:02:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/05 10:35:02 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 14:39:32 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ typedef struct s_map_reader
 	int		fd;
 	int		i;
 }				t_map_reader;
+
+typedef struct s_cmp
+{
+	size_t	str_len;
+	size_t	tofind_len;
+	size_t	i;
+	size_t	j;
+}				t_cmp;
 
 int		ft_strstrbool(const char *haystack, const char *needle);
 int		ft_strnstrbool(const char *haystack, const char *needle,
