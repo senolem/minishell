@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 00:09:35 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 14:42:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	ft_redir_parser(t_stack *av, t_var *var)
 	size_t	i;
 	t_node	*node;
 
-	i = -1;
 	if (!av || !av->top || !var)
 		return (1);
 	node = av->top;
 	while (node && node->content)
 	{
+		i = -1;
 		if (!ft_tokcmp(node->content, greater_than_type))
 			i = redir_fd(&av, var, rdata(513, greater_than_type, 1));
 		else if (!ft_tokcmp(node->content, smaller_than_type))
@@ -74,7 +74,7 @@ int	ft_redir_parser(t_stack *av, t_var *var)
 			node = av->top;
 		if (i == 1)
 			return (1);
-		if (node)
+		if (node && i != 0)
 			node = node->next;
 	}
 	return (0);

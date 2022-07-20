@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 11:07:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 15:23:56 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	pipex_close(t_stack **stack, size_t i, t_var *var)
 		close(var->pipes[i][1]);
 	if (i != 0 && stack[i - 1])
 		close(var->pipes[i - 1][0]);
-	if (var->fd[0] != 0)
-		close(var->fd[0]);
 	return (0);
 }
 
@@ -56,15 +54,13 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 	pid_t	pid;
 	char	**args;
 
+	code = 0;
 	sig_toggle(1);
 	pid = fork();
 	if (pid)
 		var->pid = pid;
 	if (pid < 0)
-	{
-		perror("minishell: fork:");
-		return (1);
-	}
+		return (ret_err("minishell: fork: error", NULL, 1));
 	if (pid == 0)
 	{
 		args = ft_lst_to_arr(stack[i]);
@@ -74,8 +70,8 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 	}
 	else
 		waitpid(var->pid, &code, 0);
-	env_set_arg("?", ft_itoa(WEXITSTATUS(code)));
 	sig_toggle(0);
+	child_process_exit(code);
 	return (0);
 }
 

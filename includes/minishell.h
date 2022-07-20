@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 15:51:46 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:54:57 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,14 +124,12 @@ typedef struct s_redir
 	int	fd;
 }			t_redir;
 
-typedef struct s_hd
+typedef struct s_exec
 {
-	char	**arr;
-	char	*buffer;
-	char	*temp;
-	int		cmp;
-	int		bytes_read;
-}				t_hd;
+	int		i;
+	char	*cmd;
+	char	**env;
+}			t_exec;
 
 // init
 int			init_shell(t_data *data);
@@ -216,6 +214,7 @@ int			pipex_open(t_stack **stack, size_t i, t_var *var);
 int			pipex_close(t_stack **stack, size_t i, t_var *var);
 void		pipex_pipes(size_t len, t_var *var);
 int			child_process(t_stack **stack, size_t i, t_var *var);
+void		child_process_exit(int code);
 t_var		get_args(char ac, char *av[]);
 t_var		hd_managing(int ac, char *av[]);
 int			ft_exec(char **cmd_args, t_var *var);
