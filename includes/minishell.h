@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 17:23:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:46:04 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "tok_stacks.h"
 
 # define ENV_FILE "/tmp/minishell_env"
+# define TMP_FILE "/tmp/temporary"
 
 // main struct
 typedef struct s_data

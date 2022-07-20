@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 18:21:24 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:46:55 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	ope_and_write(char **arr, char *path)
 	int	i;
 
 	i = 0;
-	fd = open("temporary.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(TMP_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
-		ft_printerror("pipex", "temporary.txt");
+		ft_printerror("pipex", TMP_FILE);
 	while (arr[i] && ft_strncmp(arr[i], path, ft_strlen(arr[i])))
 	{
 		write(fd, arr[i], ft_strlen(arr[i]));
@@ -88,7 +88,7 @@ static void	hd_managing(char *path, t_var *var)
 	if (!hd.arr)
 		ret_err(strerror(errno), NULL, 0);
 	var->fd[0] = ope_and_write(hd.arr, path);
-	var->fd[0] = open("temporary.txt", O_RDONLY);
+	var->fd[0] = open(TMP_FILE, O_RDONLY);
 	if (var->fd[0] < 0)
 		ret_err(strerror(errno), NULL, 0);
 }
