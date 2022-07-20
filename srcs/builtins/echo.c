@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arr_display.c                                   :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 13:24:33 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 10:20:37 by faventur         ###   ########.fr       */
+/*   Created: 2022/07/20 09:41:15 by faventur          #+#    #+#             */
+/*   Updated: 2022/07/20 11:06:14 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_arr_display(char **arr)
+static void	echo_arr_display(char **arr, size_t i)
 {
-	size_t	i;
-
-	if (!arr || !*arr)
-		return ;
-	i = 0;
-	while (arr[i])
+	while (arr[i + 1])
 	{
-		ft_printf("%s\n", arr[i]);
+		ft_printf("%s ", arr[i]);
 		i++;
 	}
+	ft_printf("%s", arr[i]);
+}
+
+int	builtin_echo(char **av)
+{
+	if (!av || !*av)
+		return (-1);
+	if (!ft_strcmp(av[1], "-n"))
+		echo_arr_display(av, 2);
+	else
+	{
+		echo_arr_display(av, 1);
+		ft_putchar('\n');
+	}
+	return (0);
 }

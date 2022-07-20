@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 23:25:30 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 11:05:07 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ int			builtin_export(char **str);
 int			builtin_unset(char **str);
 int			builtin_env(char **str);
 int			builtin_exit(char **str);
+int			builtin_echo(char **av);
 
 // signals
 void		sig_ignore(int sig);

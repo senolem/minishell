@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 13:04:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 09:50:09 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_tokenizer(char **arr)
 	t_stack	*new;
 	size_t	i;
 
-	if (!arr)
+	if (!arr || !*arr)
 		return ;
 	i = 0;
 	new = ft_stacknew();
