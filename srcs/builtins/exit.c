@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:43:28 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 14:07:01 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 11:34:38 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ int	builtin_exit(char **s)
 
 	code = 0;
 	if (!s)
+	{
+		env_set_arg("?EXIT", "1");
 		exit(126);
+	}
 	else if (ft_arrlen(s) > 2)
 		return (ret_err("minishell: exit: too many arguments", NULL, 1));
 	code = builtin_exit_num(s);
@@ -56,5 +59,6 @@ int	builtin_exit(char **s)
 	else if (ft_arrlen(s) == 2)
 		code = ft_atoi(s[1]);
 	builtin_exit_print();
-	return (code);
+	env_set_arg("?EXIT", "1");
+	exit(code);
 }
