@@ -6,15 +6,54 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 17:21:29 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:21:24 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static int	ope_and_write(char **arr, char *path)
+{
+	int	fd;
+	int	i;
+
+	i = 0;
+	fd = open("temporary.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd < 0)
+		ft_printerror("pipex", "temporary.txt");
+	while (arr[i] && ft_strncmp(arr[i], path, ft_strlen(arr[i])))
+	{
+		write(fd, arr[i], ft_strlen(arr[i]));
+		write(fd, "\n", 1);
+		i++;
+	}
+	close(fd);
+	ft_arr_freer(arr);
+	return (fd);
+}
+
+static char	*ft_add_backslash_en(char *line)
+{
+	char	*str;
+	size_t	len;
+
+	len = ft_strlen(line);
+	str = malloc(sizeof(char) * (len + 2));
+	if (!str)
+		return (NULL);
+	ft_strcpy(str, line);
+	str[len] = '\n';
+	str[len + 1] = '\0';
+	free(line);
+	return (str);
+}
+
 static void	ft_hd_performer(char *path, t_hd *hd)
 {
 	hd->buffer = readline("heredoc> ");
+	if (!hd->buffer)
+		return ;
+	hd->buffer = ft_add_backslash_en(hd->buffer);
 	if (!hd->buffer)
 		return ;
 	hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(hd->buffer) - 1);
@@ -27,32 +66,15 @@ static void	ft_hd_performer(char *path, t_hd *hd)
 		hd->buffer = readline("heredoc> ");
 		if (!hd->buffer)
 			return ;
+		hd->buffer = ft_add_backslash_en(hd->buffer);
+		if (!hd->buffer)
+			return ;
 		hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(hd->buffer) - 1);
 		hd->temp = ft_strjoin(hd->temp, hd->buffer);
 		if (!hd->temp)
 			return ;
 		free(hd->buffer);
 	}
-}
-
-static int	ope_and_write(char **arr, char *path)
-{
-	int	fd;
-	int	i;
-
-	i = 0;
-	fd = open("temporary.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd < 0)
-		ft_printerror("pipex", "temporary.txt");
-	while (arr[i] && ft_strncmp(arr[i], path, ft_strlen(path)))
-	{
-		write(fd, arr[i], ft_strlen(arr[i]));
-		write(fd, "\n", 1);
-		i++;
-	}
-	close(fd);
-	ft_arr_freer(arr);
-	return (fd);
 }
 
 static void	hd_managing(char *path, t_var *var)
