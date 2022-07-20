@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 15:25:22 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 17:23:25 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,15 @@ typedef struct s_exec
 	char	**env;
 }			t_exec;
 
+typedef struct s_hd
+{
+	char	**arr;
+	char	*buffer;
+	char	*temp;
+	int		cmp;
+	int		bytes_read;
+}				t_hd;
+
 // init
 int			init_shell(t_data *data);
 int			init_mode(int n);
@@ -216,7 +225,6 @@ void		pipex_pipes(size_t len, t_var *var);
 int			child_process(t_stack **stack, size_t i, t_var *var);
 void		child_process_exit(int code);
 t_var		get_args(char ac, char *av[]);
-t_var		hd_managing(int ac, char *av[]);
 int			ft_exec(char **cmd_args, t_var *var);
 void		ft_exec_error(int i, char **cmd_args);
 int			ft_exec_min(char *cmd);
@@ -229,6 +237,7 @@ t_stack		**ft_stack_splitter(t_stack *stack);
 char		**ft_lst_to_arr(t_stack *stack);
 char		*ft_lst_to_arrdup(t_token *token);
 int			ft_redir_parser(t_stack *av, t_var *var);
+int			here_doc_redir_fd(t_stack **av, t_var *var);
 void		redir_clear(t_node *node, t_stack **av);
 void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);

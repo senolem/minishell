@@ -6,13 +6,36 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/05 15:59:36 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:21:29 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	ope_and_write(char **arr, char *av[])
+static void	ft_hd_performer(char *path, t_hd *hd)
+{
+	hd->buffer = readline("heredoc> ");
+	if (!hd->buffer)
+		return ;
+	hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(hd->buffer) - 1);
+	hd->temp = ft_strjoin(hd->temp, hd->buffer);
+	if (!hd->temp)
+		return ;
+	free(hd->buffer);
+	while (hd->cmp && hd->buffer)
+	{
+		hd->buffer = readline("heredoc> ");
+		if (!hd->buffer)
+			return ;
+		hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(hd->buffer) - 1);
+		hd->temp = ft_strjoin(hd->temp, hd->buffer);
+		if (!hd->temp)
+			return ;
+		free(hd->buffer);
+	}
+}
+
+static int	ope_and_write(char **arr, char *path)
 {
 	int	fd;
 	int	i;
@@ -21,7 +44,7 @@ static int	ope_and_write(char **arr, char *av[])
 	fd = open("temporary.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 		ft_printerror("pipex", "temporary.txt");
-	while (ft_strstrbool(arr[i], av[2]))
+	while (arr[i] && ft_strncmp(arr[i], path, ft_strlen(path)))
 	{
 		write(fd, arr[i], ft_strlen(arr[i]));
 		write(fd, "\n", 1);
@@ -32,30 +55,47 @@ static int	ope_and_write(char **arr, char *av[])
 	return (fd);
 }
 
-t_var	hd_managing(int ac, char *av[])
+static void	hd_managing(char *path, t_var *var)
 {
-	t_var	var;
-	char	**arr;
-	char	*buffer;
-	char	*temp;
+	t_hd	hd;
 
-	temp = malloc(sizeof(char) * 1);
-	temp[0] = '\0';
-	while (ft_strstrbool(temp, av[2]))
+	hd.temp = malloc(sizeof(char) * 1);
+	hd.temp[0] = '\0';
+	ft_hd_performer(path, &hd);
+	hd.arr = ft_split(hd.temp, '\n');
+	if (!hd.arr)
+		ret_err(strerror(errno), NULL, 0);
+	var->fd[0] = ope_and_write(hd.arr, path);
+	var->fd[0] = open("temporary.txt", O_RDONLY);
+	if (var->fd[0] < 0)
+		ret_err(strerror(errno), NULL, 0);
+}
+
+int	here_doc_redir_fd(t_stack **av, t_var *var)
+{
+	t_node	*node;
+	char	*path;
+
+	node = (*av)->top;
+	while (node)
 	{
-		ft_fprintf(1, "heredoc> ");
-		buffer = get_next_line(0);
-		buffer[ft_strlen(buffer)] = '\0';
-		temp = ft_strjoin(temp, buffer);
-		free(buffer);
+		if (!ft_tokcmp(node->content, d_smaller_than_type))
+		{
+			if (node->next)
+				node = node->next;
+			else
+				return (ret_err("minishell: parse error", NULL, 1));
+			path = ft_lst_to_arrdup(node->content);
+			hd_managing(path, var);
+			if (var->fd[0] < 0)
+				ret_err(strerror(errno), NULL, 0);
+			redir_clear(node->prev, av);
+			redir_clear(node, av);
+			free(path);
+			return (0);
+		}
+		if (node->next)
+			node = node->next;
 	}
-	arr = ft_split(temp, '\n');
-	var.fd[0] = ope_and_write(arr, av);
-	var.fd[0] = open("temporary.txt", O_RDONLY);
-	if (var.fd[0] < 0)
-		ft_printerror("pipex", "temporary.txt");
-	var.fd[1] = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (var.fd[1] < 0)
-		ft_printerror("pipex", av[ac - 1]);
-	return (var);
+	return (1);
 }
