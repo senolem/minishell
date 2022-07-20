@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 11:05:12 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 15:28:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,32 +78,30 @@ int	ft_exec_not_found(char **env, char **cmd_args)
 	return (0);
 }
 
-int	ft_exec(char **cmd_args, t_var *var)
+int	ft_exec(char **args, t_var *var)
 {
-	int		i;
-	char	*cmd;
-	char	**env;
+	t_exec	e;
 
-	i = 0;
-	if (!cmd_args || !cmd_args[0])
+	e.i = 0;
+	if (!args || !args[0])
 		exit(0);
-	if (tilde_searcher(cmd_args))
-		tilde_replacer(cmd_args);
-	i = builtin_launch(cmd_args);
-	if (i != -99)
-		exit(i);
-	env = env_read(ENV_FILE);
-	cmd = ft_path_searcher(cmd_args[0]);
-	if (cmd)
-		i = ft_exec_found(env, cmd_args, cmd, var);
+	if (tilde_searcher(args))
+		tilde_replacer(args);
+	e.i = builtin_launch(args);
+	if (e.i != -99)
+		exit(e.i);
+	e.env = env_read(ENV_FILE);
+	e.cmd = ft_path_searcher(args[0]);
+	if (e.cmd)
+		e.i = ft_exec_found(e.env, args, e.cmd, var);
 	else
 	{
-		if (!access(cmd_args[0], X_OK) && ft_exec_min(cmd_args[0]) > 0)
-			i = ft_exec_found(env, ft_exec_args(cmd_args), "/bin/bash", var);
+		if (!access(args[0], X_OK) && ft_exec_min(args[0]) > 0)
+			e.i = ft_exec_found(e.env, ft_exec_args(args), "/bin/bash", var);
 		else
-			i = ft_exec_not_found(env, cmd_args);
+			e.i = ft_exec_not_found(e.env, args);
 	}
-	ft_exec_error(i, cmd_args);
-	ft_exec_free(&env, &cmd);
-	exit(i);
+	ft_exec_error(e.i, args);
+	ft_exec_free(&e.env, &e.cmd);
+	exit(e.i);
 }

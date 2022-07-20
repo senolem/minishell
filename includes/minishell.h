@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 11:37:27 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 15:25:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,13 @@ typedef struct s_redir
 	int	type;
 	int	fd;
 }			t_redir;
+
+typedef struct s_exec
+{
+	int		i;
+	char	*cmd;
+	char	**env;
+}			t_exec;
 
 // init
 int			init_shell(t_data *data);

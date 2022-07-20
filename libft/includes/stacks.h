@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stacks.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 13:10:47 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 10:16:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:01:50 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ void	ft_stack_remove_if(t_stack *begin_list, void *data_ref, int (*cmp)());
 int		ft_stacksize(t_stack *stack);
 char	**ft_create_chartab(t_stack *stack);
 t_stack	*ft_charr_to_stack_converter(char **arr);
+int		ft_stacklen(t_stack *stack);
+int		ft_stacktablen(t_stack **stack);
 
 #endif
