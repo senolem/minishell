@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:07:23 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/14 15:24:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 10:52:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int	builtin_launch(char **cmd_args)
 			i = builtin_unset(cmd_args);
 		return (i);
 	}
-	return (-1);
+	return (-99);
 }

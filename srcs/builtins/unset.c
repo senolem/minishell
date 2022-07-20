@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:22:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/13 17:32:19 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 10:47:12 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,15 @@ int	builtin_unset(char **str)
 	env = env_read(ENV_FILE);
 	while (str[++i])
 	{
+		if (unset_check(str[i]) == -1)
+		{
+			ft_arr_freer(env);
+			return (1);
+		}
 		tmp = ft_strjoin("!", str[i]);
-		if (unset_check(str[i]) && env_search(tmp, env) >= 0)
+		if (env_search(tmp, env) >= 0)
 			env = env_delete(tmp, &env);
-		else if (unset_check(str[i]) && env_search(str[i], env) >= 0)
+		else if (env_search(str[i], env) >= 0)
 			env = env_delete(str[i], &env);
 		free(tmp);
 	}

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/19 23:48:03 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/20 11:07:06 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	pipex_close(t_stack **stack, size_t i, t_var *var)
 
 int	child_process(t_stack **stack, size_t i, t_var *var)
 {
+	int		code;
 	pid_t	pid;
 	char	**args;
 
@@ -70,10 +71,10 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 		pipex(stack, i, var);
 		ft_exec(args, var);
 		ft_arr_freer(args);
-		exit(0);
 	}
 	else
-		waitpid(var->pid, NULL, 0);
+		waitpid(var->pid, &code, 0);
+	env_set_arg("?", ft_itoa(WEXITSTATUS(code)));
 	sig_toggle(0);
 	return (0);
 }
