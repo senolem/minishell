@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 16:09:30 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/21 10:30:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 	char	**args;
 
 	code = 0;
-	sig_toggle(1);
+	sig_toggle(2);
 	pid = fork();
 	if (pid)
 		var->pid = pid;
@@ -67,10 +67,12 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 		return (ret_err("minishell: fork: error", NULL, 1));
 	if (pid == 0)
 	{
+		sig_toggle(1);
 		args = ft_lst_to_arr(stack[i]);
 		pipex(stack, i, var);
 		ft_exec(args, var);
 		ft_arr_freer(args);
+		sig_toggle(0);
 	}
 	else
 		waitpid(var->pid, &code, 0);

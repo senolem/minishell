@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 11:33:39 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/21 10:43:21 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	init_env(void)
 int	init_shell(t_data *data)
 {
 	init_ignore();
-	init_mode(0);
+	sig_toggle(0);
 	init_env();
 	data->exit = 0;
 	return (0);
