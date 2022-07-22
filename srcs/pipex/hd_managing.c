@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 18:55:21 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/22 11:39:41 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,24 @@ static char	*ft_add_backslash_en(char *line)
 	char	*str;
 	size_t	len;
 
-	len = ft_strlen(line);
-	str = malloc(sizeof(char) * (len + 2));
-	if (!str)
-		return (NULL);
-	ft_strcpy(str, line);
-	str[len] = '\n';
-	str[len + 1] = '\0';
-	free(line);
-	return (str);
+	if (line[0] != '\0')
+	{
+		len = ft_strlen(line);
+		str = malloc(sizeof(char) * (len + 2));
+		if (!str)
+			return (NULL);
+		ft_strcpy(str, line);
+		str[len] = '\n';
+		str[len + 1] = '\0';
+		free(line);
+		return (str);
+	}
+	else
+	{
+		str = malloc(sizeof(char) * 1);
+		str[0] = '\0';
+		return (str);
+	}
 }
 // je dois gérér sigint et interactive mode
 static void	ft_hd_performer(char *path, t_hd *hd)
@@ -91,7 +100,7 @@ static void	hd_managing(char *path, t_var *var)
 	if (!hd.arr)
 	{
 		free(hd.temp);
-		return(ret_null(strerror(errno), NULL));
+		return (ret_null(strerror(errno), NULL));
 	}
 	var->fd[0] = ope_and_write(hd.arr, path);
 	var->fd[0] = open(TMP_FILE, O_RDONLY);
@@ -120,7 +129,7 @@ int	here_doc_redir_fd(t_stack **av, t_var *var)
 			path = ft_lst_to_arrdup(node->content);
 			hd_managing(path, var);
 			if (var->fd[0] < 0)
-				ret_err(strerror(errno), NULL, 0);
+				return (ret_err(strerror(errno), NULL, 0));
 			redir_clear(node->prev, av);
 			redir_clear(node, av);
 			free(path);
