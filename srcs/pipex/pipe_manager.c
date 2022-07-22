@@ -21,6 +21,13 @@ void	ft_last_action(t_var var, int ac, char *av[])
 	unlink(TMP_FILE);
 }
 */
+
+static void manager_exit(t_var *var, t_stack **arr)
+{
+	ft_intarr_freer(var->pipes);
+	ft_stacktab_clear(arr);
+}
+
 static void	init_fd(t_var *var)
 {
 	var->fd[0] = 0;
@@ -42,14 +49,19 @@ int	pipe_manager(t_stack *stack)
 	while (arr[++j])
 	{
 		if (ft_redir_parser(arr[j], &var) == 1)
+		{
+			manager_exit(&var, arr);
 			break ;
+		}
 		if (j != 0 && arr[j - 1] && ft_stacklen(arr[j - 1]) != 0)
 			init_fd(&var);
 		if (pipex_open(arr, j, &var) || child_process(arr, j, &var))
+		{
+			manager_exit(&var, arr);
 			return (1);
+		}
 		pipex_close(arr, j, &var);
 	}
-	ft_intarr_freer(var.pipes);
-	ft_stacktab_clear(arr);
+	manager_exit(&var, arr);
 	return (0);
 }

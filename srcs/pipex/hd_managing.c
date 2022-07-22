@@ -31,7 +31,6 @@ static int	ope_and_write(char **arr, char *path)
 		i++;
 	}
 	close(fd);
-	ft_arr_freer(arr);
 	return (fd);
 }
 
@@ -103,6 +102,7 @@ static void	hd_managing(char *path, t_var *var)
 		return (ret_null(strerror(errno), NULL));
 	}
 	var->fd[0] = ope_and_write(hd.arr, path);
+	ft_arr_freer(hd.arr);
 	var->fd[0] = open(TMP_FILE, O_RDONLY);
 	if (var->fd[0] < 0)
 	{

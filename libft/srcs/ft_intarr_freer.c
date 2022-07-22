@@ -25,6 +25,7 @@ void	ft_intarr_freer(int **arr)
 		arr[i] = NULL;
 		i++;
 	}
+	free(arr[i]);
 	free(arr);
 	arr = NULL;
 }
