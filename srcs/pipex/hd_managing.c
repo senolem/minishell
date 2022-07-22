@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/22 11:39:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:28:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ static void	ft_hd_performer(char *path, t_hd *hd)
 	hd->buffer = ft_add_backslash_en(hd->buffer);
 	if (!hd->buffer)
 		return ;
-	hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(hd->buffer) - 1);
+	hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(path));
+	ft_printf(hd->buffer);
 	hd->temp = ft_concat(hd->temp, hd->buffer);
 	if (!hd->temp)
 		return ;
@@ -80,7 +81,7 @@ static void	ft_hd_performer(char *path, t_hd *hd)
 		hd->buffer = ft_add_backslash_en(hd->buffer);
 		if (!hd->buffer)
 			return ;
-		hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(hd->buffer) - 1);
+		hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(path));
 		hd->temp = ft_concat(hd->temp, hd->buffer);
 		if (!hd->temp)
 			return ;
