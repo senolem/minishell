@@ -14,6 +14,10 @@
 
 static void	redir_clear_1_1(t_node *node, t_stack **av)
 {
+	t_token	*token;
+
+	token = node->content;
+	free(token->str);
 	if (node->next->next)
 		node->next->next->prev = node->next;
 	node->next->prev = NULL;
@@ -23,12 +27,20 @@ static void	redir_clear_1_1(t_node *node, t_stack **av)
 
 static void	redir_clear_1_2(t_node *node, t_stack **av)
 {
+	t_token	*token;
+
+	token = node->content;
+	free(token->str);
 	(*av)->top = NULL;
 	free(node);
 }
 
 static void	redir_clear_2_1(t_node *node, t_stack **av)
 {
+	t_token	*token;
+
+	token = node->content;
+	free(token->str);
 	node->prev->next = node->next;
 	node->next->prev = node->prev;
 	(*av)->top = node->prev;
@@ -37,6 +49,10 @@ static void	redir_clear_2_1(t_node *node, t_stack **av)
 
 static void	redir_clear_2_2(t_node *node, t_stack **av)
 {
+	t_token	*token;
+
+	token = node->content;
+	free(token->str);
 	node->prev->next = NULL;
 	(*av)->top = node->prev;
 	free(node);
@@ -44,18 +60,21 @@ static void	redir_clear_2_2(t_node *node, t_stack **av)
 
 void	redir_clear(t_node *node, t_stack **av)
 {
-	if (!node->prev)
+	if (node)
 	{
-		if (node->next)
-			redir_clear_1_1(node, av);
+		if (!node->prev)
+		{
+			if (node->next)
+				redir_clear_1_1(node, av);
+			else
+				redir_clear_1_2(node, av);
+		}
 		else
-			redir_clear_1_2(node, av);
-	}
-	else
-	{
-		if (node->next)
-			redir_clear_2_1(node, av);
-		else
-			redir_clear_2_2(node, av);
+		{
+			if (node->next)
+				redir_clear_2_1(node, av);
+			else
+				redir_clear_2_2(node, av);
+		}
 	}
 }

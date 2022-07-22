@@ -71,6 +71,8 @@ t_token	*ft_token_creator(char *line, size_t line_index)
 void	ft_tokenizer(char **arr)
 {
 	t_stack	*new;
+	t_token	*token;
+	t_node	*node;
 	size_t	i;
 
 	if (!arr || !*arr)
@@ -79,7 +81,9 @@ void	ft_tokenizer(char **arr)
 	new = ft_stacknew();
 	while (arr[i])
 	{
-		ft_stackadd_bottom(new, ft_newnode(ft_token_creator(arr[i], i)));
+		token = ft_token_creator(arr[i], i);
+		node = ft_newnode(token);
+		ft_stackadd_bottom(new, node);
 		i++;
 	}
 	ms_dollar_manager(new);

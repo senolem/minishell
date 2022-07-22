@@ -20,7 +20,10 @@ static int	ope_and_write(char **arr, char *path)
 	i = 0;
 	fd = open(TMP_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
+	{
 		ft_printerror("pipex", TMP_FILE);
+		return (-1);
+	}
 	while (arr[i] && ft_strncmp(arr[i], path, ft_strlen(arr[i])))
 	{
 		write(fd, arr[i], ft_strlen(arr[i]));
@@ -57,7 +60,7 @@ static void	ft_hd_performer(char *path, t_hd *hd)
 	if (!hd->buffer)
 		return ;
 	hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(hd->buffer) - 1);
-	hd->temp = ft_strjoin(hd->temp, hd->buffer);
+	hd->temp = ft_concat(hd->temp, hd->buffer);
 	if (!hd->temp)
 		return ;
 	free(hd->buffer);
@@ -70,7 +73,7 @@ static void	ft_hd_performer(char *path, t_hd *hd)
 		if (!hd->buffer)
 			return ;
 		hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(hd->buffer) - 1);
-		hd->temp = ft_strjoin(hd->temp, hd->buffer);
+		hd->temp = ft_concat(hd->temp, hd->buffer);
 		if (!hd->temp)
 			return ;
 		free(hd->buffer);
@@ -86,11 +89,18 @@ static void	hd_managing(char *path, t_var *var)
 	ft_hd_performer(path, &hd);
 	hd.arr = ft_split(hd.temp, '\n');
 	if (!hd.arr)
-		ret_err(strerror(errno), NULL, 0);
+	{
+		free(hd.temp);
+		return(ret_null(strerror(errno), NULL));
+	}
 	var->fd[0] = ope_and_write(hd.arr, path);
 	var->fd[0] = open(TMP_FILE, O_RDONLY);
 	if (var->fd[0] < 0)
-		ret_err(strerror(errno), NULL, 0);
+	{
+		free(hd.temp);
+		return (ret_null(strerror(errno), NULL));
+	}
+	free(hd.temp);
 }
 
 int	here_doc_redir_fd(t_stack **av, t_var *var)
