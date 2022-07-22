@@ -12,6 +12,19 @@
 
 #include "minishell.h"
 
+void	ft_stack_freer(t_stack *stack)
+{
+	t_node	*tmp;
+
+	tmp = stack->top;
+	while (tmp)
+	{
+		redir_clear(tmp, &stack);
+		tmp = stack->top;
+	}
+	free(stack);
+}
+
 char	*ft_concat(char *s1, char *s2)
 {
 	char	*dst;

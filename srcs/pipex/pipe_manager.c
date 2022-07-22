@@ -49,7 +49,7 @@ int	pipe_manager(t_stack *stack)
 			return (1);
 		pipex_close(arr, j, &var);
 	}
-	ft_stacktab_clear(arr);
 	ft_intarr_freer(var.pipes);
+	ft_stacktab_clear(arr);
 	return (0);
 }

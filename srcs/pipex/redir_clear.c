@@ -12,69 +12,57 @@
 
 #include "minishell.h"
 
-static void	redir_clear_1_1(t_node *node, t_stack **av)
-{
-	t_token	*token;
-
-	token = node->content;
-	free(token->str);
-	if (node->next->next)
-		node->next->next->prev = node->next;
-	node->next->prev = NULL;
-	(*av)->top = node->next;
-	free(node);
-}
-
-static void	redir_clear_1_2(t_node *node, t_stack **av)
-{
-	t_token	*token;
-
-	token = node->content;
-	free(token->str);
-	(*av)->top = NULL;
-	free(node);
-}
-
-static void	redir_clear_2_1(t_node *node, t_stack **av)
-{
-	t_token	*token;
-
-	token = node->content;
-	free(token->str);
-	node->prev->next = node->next;
-	node->next->prev = node->prev;
-	(*av)->top = node->prev;
-	free(node);
-}
-
-static void	redir_clear_2_2(t_node *node, t_stack **av)
-{
-	t_token	*token;
-
-	token = node->content;
-	free(token->str);
-	node->prev->next = NULL;
-	(*av)->top = node->prev;
-	free(node);
-}
-
 void	redir_clear(t_node *node, t_stack **av)
 {
-	if (node)
+	t_node	*top;
+	t_token	*token;
+	int		i;
+
+	t_token	*tmp2 = node->content;
+	i = -1;
+	top = (*av)->top;
+	while (top)
 	{
-		if (!node->prev)
-		{
-			if (node->next)
-				redir_clear_1_1(node, av);
-			else
-				redir_clear_1_2(node, av);
-		}
+		++i;
+		if (top == node)
+			break ;
+		top = top->next;
+	}
+	if (i == -1)
+		return ;
+	else if (i == 0)
+	{
+		token = top->content;
+		if (top->next)
+			(*av)->top = top->next;
 		else
-		{
-			if (node->next)
-				redir_clear_2_1(node, av);
-			else
-				redir_clear_2_2(node, av);
-		}
+			(*av)->top = NULL;
+		free(token->str);
+		free(token);
+		free(top);
+	}
+	else if (i == 1)
+	{
+		if (top->next)
+			(*av)->top = top->next;
+		else
+			(*av)->top = NULL;
+		if (top->next)
+			top->next->prev = NULL;
+		token = top->content;
+		free(token->str);
+		free(token);
+		free(top);
+	}
+	else if (i > 1)
+	{
+		if (top->next)
+			top->prev->next = top->next;
+		else
+			top->prev->next = NULL;
+		token = top->content;
+		free(token->str);
+		free(token);
+		free(top);
 	}
 }

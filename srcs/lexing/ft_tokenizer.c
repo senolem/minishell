@@ -90,5 +90,4 @@ void	ft_tokenizer(char **arr)
 	ms_dollar_quote_eraser(new);
 	ft_arr_freer(arr);
 	pipe_manager(new);
-	free(new);
 }

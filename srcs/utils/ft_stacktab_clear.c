@@ -19,7 +19,7 @@ void	ft_stacktab_clear(t_stack **tab)
 	i = 0;
 	while (tab[i])
 	{
-		ft_stackclear(tab[i], ft_nodedel);
+		ft_stack_freer(tab[i]);
 		i++;
 	}
 	free(tab);

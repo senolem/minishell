@@ -249,5 +249,6 @@ void		throw_error(t_data *data, char *msg, int err);
 int			ret_err(char *str, char *str2, int i);
 void		ret_null(char *str, char *str2);
 void		ft_stacktab_clear(t_stack **tab);
+void		ft_stack_freer(t_stack *stack);
 
 #endif
