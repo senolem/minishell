@@ -18,7 +18,6 @@ void	redir_clear(t_node *node, t_stack **av)
 	t_token	*token;
 	int		i;
 
-	t_token	*tmp2 = node->content;
 	i = -1;
 	top = (*av)->top;
 	while (top)
@@ -34,7 +33,10 @@ void	redir_clear(t_node *node, t_stack **av)
 	{
 		token = top->content;
 		if (top->next)
+		{
+			top->next->prev = NULL;
 			(*av)->top = top->next;
+		}
 		else
 			(*av)->top = NULL;
 		free(token->str);
