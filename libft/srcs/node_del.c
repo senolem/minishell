@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redir_clear.c                                      :+:      :+:    :+:   */
+/*   node_del.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 23:23:25 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/19 23:30:45 by albaur           ###   ########.fr       */
+/*   Created: 2022/07/22 21:12:55 by albaur            #+#    #+#             */
+/*   Updated: 2022/07/22 21:15:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "stacks.h"
 
 static void	clear_gt1(t_node *top)
 {
 	t_token	*token;
 
 	if (top->next)
+	{
 		top->prev->next = top->next;
+		top->next->prev = top->prev;
+	}
 	else
 		top->prev->next = NULL;
 	token = top->content;
@@ -26,16 +29,17 @@ static void	clear_gt1(t_node *top)
 	free(top);
 }
 
-static void	clear_eq1(t_stack **av, t_node *top)
+static void	clear_eq1(t_node *top)
 {
 	t_token	*token;
 	
 	if (top->next)
-		(*av)->top = top->next;
+	{
+		top->prev->next = top->next;
+		top->next->prev = top->prev;
+	}
 	else
-		(*av)->top = NULL;
-	if (top->next)
-	top->next->prev = NULL;
+		top->prev->next = NULL;
 	token = top->content;
 	free(token->str);
 	free(token);
@@ -59,7 +63,7 @@ static void	clear_eq0(t_stack **av, t_node *top)
 	free(top);
 }
 
-void	redir_clear(t_node *node, t_stack **av)
+void	node_del(t_node *node, t_stack **av)
 {
 	int		i;
 	t_node	*top;
@@ -78,7 +82,7 @@ void	redir_clear(t_node *node, t_stack **av)
 	else if (i == 0)
 		clear_eq0(av, top);
 	else if (i == 1)
-		clear_eq1(av, top);
+		clear_eq1(top);
 	else if (i > 1)
 		clear_gt1(top);
 }

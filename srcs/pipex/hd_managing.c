@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hd_managing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/22 16:28:33 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:12:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,8 @@ int	here_doc_redir_fd(t_stack **av, t_var *var)
 			hd_managing(path, var);
 			if (var->fd[0] < 0)
 				return (ret_err(strerror(errno), NULL, 0));
-			redir_clear(node->prev, av);
-			redir_clear(node, av);
+			node_del(node->prev, av);
+			node_del(node, av);
 			free(path);
 			return (0);
 		}

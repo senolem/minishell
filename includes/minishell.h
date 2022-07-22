@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 18:46:04 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:13:16 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,6 @@ char		**ft_lst_to_arr(t_stack *stack);
 char		*ft_lst_to_arrdup(t_token *token);
 int			ft_redir_parser(t_stack *av, t_var *var);
 int			here_doc_redir_fd(t_stack **av, t_var *var);
-void		redir_clear(t_node *node, t_stack **av);
 void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);
 

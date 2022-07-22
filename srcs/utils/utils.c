@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 16:22:29 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/15 21:57:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/22 21:12:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_stack_freer(t_stack *stack)
 	tmp = stack->top;
 	while (tmp)
 	{
-		redir_clear(tmp, &stack);
+		node_del(tmp, &stack);
 		tmp = stack->top;
 	}
 	stack = NULL;

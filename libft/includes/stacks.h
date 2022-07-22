@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 13:10:47 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 15:01:50 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/22 21:21:11 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef struct s_stack
 	struct s_node	*bottom;
 }					t_stack;
 
+typedef struct s_token
+{
+	char	*str;
+	int		type;
+	size_t	index;
+}				t_token;
+
 // Doubly linked list functions
 t_stack	*ft_stacknew(void);
 t_stack	*ft_stackadd_top(t_stack *stack, t_node *new);
@@ -47,5 +54,6 @@ char	**ft_create_chartab(t_stack *stack);
 t_stack	*ft_charr_to_stack_converter(char **arr);
 int		ft_stacklen(t_stack *stack);
 int		ft_stacktablen(t_stack **stack);
+void	node_del(t_node *node, t_stack **av);
 
 #endif

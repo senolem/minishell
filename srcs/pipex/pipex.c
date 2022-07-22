@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/21 10:30:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/22 21:22:37 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 
 void	pipex(t_stack **stack, size_t i, t_var *var)
 {
-	printf("fd[0] : %i\n", var->fd[0]);
-	printf("fd[1] : %i\n", var->fd[1]);
 	dup2(var->fd[1], STDOUT_FILENO);
 	dup2(var->fd[0], STDIN_FILENO);
 	if (stack[i + 1])

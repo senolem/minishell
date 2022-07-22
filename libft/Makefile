@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/10 17:55:49 by faventur          #+#    #+#              #
-#    Updated: 2022/07/20 15:01:17 by albaur           ###   ########.fr        #
+#    Updated: 2022/07/22 21:14:27 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_strtolol.c ft_arr_freer.c ft_arr_freer_index.c ft_puterror.c \
 	ft_printf.c ft_printf_basic.c ft_printf_utils.c ft_fprintf.c \
 	ft_fprintf_basic.c ft_fprintf_utils.c get_next_line.c ft_arrdup.c \
-	ft_arrlen.c ft_arr_display.c ft_arr_display_size.c ft_intarr_freer.c
+	ft_arrlen.c ft_arr_display.c ft_arr_display_size.c ft_intarr_freer.c \
+	node_del.c
 
 SRCSB	= get_next_line_bonus.c
 

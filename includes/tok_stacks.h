@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tok_stacks.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 10:18:14 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/06 17:01:19 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:21:49 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 # include "minishell.h"
 # include "stacks.h"
 # include "ft_btree.h"
-
-typedef struct s_token
-{
-	char	*str;
-	int		type;
-	size_t	index;
-}				t_token;
 
 // token types
 enum e_lexer_type
