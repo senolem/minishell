@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:25:59 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 15:21:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/22 22:56:39 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,27 @@
 
 void	child_process_exit(int code)
 {
-	int		shlvl;
-	int		ret;
-	char	*tmp;
-	char	*err;
-	char	*str;
+	t_exit	e;
 
-	str = ft_itoa(WEXITSTATUS(code));
-	err = env_get_arg("?EXIT");
-	ret = ft_atoi(err);
-	if (ret != 0)
+	e.str = ft_itoa(WEXITSTATUS(code));
+	e.err = env_get_arg("?EXIT");
+	e.ret = ft_atoi(e.err);
+	if (e.ret != 0)
 	{
-		shlvl = env_get_shlvl();
-		tmp = ft_itoa(shlvl - 1);
-		env_set_arg("SHLVL", tmp);
-		env_set_arg("?", str);
+		e.shlvl = env_get_shlvl();
+		e.tmp = ft_itoa(e.shlvl - 1);
+		env_set_arg("SHLVL", e.tmp);
+		env_set_arg("?", e.str);
 		env_set_arg("?EXIT", "0");
-		if (shlvl == 1)
+		if (e.shlvl == 1)
 			unlink(ENV_FILE);
-		free(str);
-		free(err);
-		free(tmp);
-		exit(ret);
+		free(e.str);
+		free(e.err);
+		free(e.tmp);
+		exit(e.ret);
 	}
 	else
-		env_set_arg("?", str);
-	free(str);
-	free(err);
+		env_set_arg("?", e.str);
+	free(e.str);
+	free(e.err);
 }

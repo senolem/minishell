@@ -6,33 +6,16 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 21:12:55 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/22 21:15:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/22 21:51:54 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stacks.h"
 
-static void	clear_gt1(t_node *top)
+static void	clear_gt0(t_node *top)
 {
 	t_token	*token;
 
-	if (top->next)
-	{
-		top->prev->next = top->next;
-		top->next->prev = top->prev;
-	}
-	else
-		top->prev->next = NULL;
-	token = top->content;
-	free(token->str);
-	free(token);
-	free(top);
-}
-
-static void	clear_eq1(t_node *top)
-{
-	t_token	*token;
-	
 	if (top->next)
 	{
 		top->prev->next = top->next;
@@ -77,12 +60,13 @@ void	node_del(t_node *node, t_stack **av)
 			break ;
 		top = top->next;
 	}
-	if (i == -1)
+	if (i == -1 || !top)
+	{
+		printf("node_del: error: couldn't find node");
 		return ;
+	}
 	else if (i == 0)
 		clear_eq0(av, top);
-	else if (i == 1)
-		clear_eq1(top);
-	else if (i > 1)
-		clear_gt1(top);
+	else if (i > 0)
+		clear_gt0(top);
 }

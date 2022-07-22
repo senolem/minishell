@@ -6,11 +6,12 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:39:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/22 21:12:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/22 21:55:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 static void	ft_stack_splitter_pt3(t_stack *stack)
 {
 	t_node	*current;

@@ -3,47 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:46:55 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/22 11:37:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/22 22:03:42 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	here_doc_sig_handler(int sig, siginfo_t *info, void *context)
-{
-	(void)info;
-	(void)context;
-	if (sig == SIGINT)
-	{
-		
-	}
-}
-
-void	sig_handler(int sig, siginfo_t *info, void *context)
-{
-	(void)info;
-	(void)context;
-	if (sig == SIGINT)
-	{
-		ft_putendl("");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-	else if (sig == SIGQUIT)
-		ft_putendl_fd("minishell: quit", 2);
-}
-
-void	sig_int_nl(int sig, siginfo_t *info, void *context)
-{
-	(void)sig;
-	(void)info;
-	(void)context;
-	ft_putendl("");
-}
 
 int	sig_toggle(int n)
 {
@@ -57,14 +24,14 @@ int	sig_toggle(int n)
 		sig_wait(SIGINT, sig_int_nl);
 		sig_wait(SIGQUIT, sig_handler);
 	}
-	if (n == 2)
+	else if (n == 2)
 	{
 		sig_ignore(SIGINT);
 		sig_ignore(SIGQUIT);
 		init_mode(1);
 		return (0);
 	}
-	if (n == 3)
+	else if (n == 3)
 	{
 		sig_wait(SIGINT, here_doc_sig_handler);
 		sig_ignore(SIGQUIT);

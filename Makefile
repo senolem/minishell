@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/22 21:14:40 by albaur           ###   ########.fr        #
+#    Updated: 2022/07/22 22:05:25 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ ENV_FILES 	= 	env_add env_delete env_arg ft_getenv env_get \
 SRCS_FILES	+=	$(addprefix $(ENV_PATH), $(ENV_FILES))
 
 SIG_PATH	=	signal/
-SIG_FILES 	= 	signal
+SIG_FILES 	= 	signal signal_handlers
 SRCS_FILES	+=	$(addprefix $(SIG_PATH), $(SIG_FILES))
 
 PIP_PATH	=	pipex/
