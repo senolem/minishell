@@ -22,6 +22,7 @@ void	ft_stack_freer(t_stack *stack)
 		redir_clear(tmp, &stack);
 		tmp = stack->top;
 	}
+	stack = NULL;
 	free(stack);
 }
 

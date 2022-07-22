@@ -15,27 +15,30 @@
 void	child_process_exit(int code)
 {
 	int		shlvl;
+	int		ret;
 	char	*tmp;
 	char	*err;
-	int		ret;
+	char	*str;
 
-	if (ft_atoi(env_get_arg("?EXIT")) != 0)
+	str = ft_itoa(WEXITSTATUS(code));
+	err = env_get_arg("?EXIT");
+	ret = ft_atoi(err);
+	if (ret != 0)
 	{
 		shlvl = env_get_shlvl();
 		tmp = ft_itoa(shlvl - 1);
-		err = env_get_arg("?EXIT");
-		ret = ft_atoi(err);
 		env_set_arg("SHLVL", tmp);
-		env_set_arg("?", ft_itoa(WEXITSTATUS(code)));
+		env_set_arg("?", str);
 		env_set_arg("?EXIT", "0");
 		if (shlvl == 1)
 			unlink(ENV_FILE);
-		free(tmp);
+		free(str);
 		free(err);
+		free(tmp);
 		exit(ret);
 	}
 	else
-	{
-		env_set_arg("?", ft_itoa(WEXITSTATUS(code)));
-	}
+		env_set_arg("?", str);
+	free(str);
+	free(err);
 }

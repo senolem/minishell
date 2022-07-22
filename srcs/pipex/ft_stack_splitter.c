@@ -27,8 +27,8 @@ static void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 		{
 			delenda = current;
 			current = current->next;
-			ft_stackdelone(stack, delenda, ft_nodedel);
 			current->prev->next = NULL;
+			redir_clear(delenda, &stack);
 			i++;
 			if (current && ft_tokcmp(current->content, pipe_type))
 				arr[i] = ft_stacknew();
