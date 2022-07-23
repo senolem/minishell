@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/21 10:43:21 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/23 11:58:08 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	init_ignore(void)
 	sig_ignore(SIGTTOU);
 	sig_ignore(SIGTERM);
 	sig_ignore(SIGHUP);
-	sig_toggle(0);
 }
 
 int	init_mode(int n)
@@ -71,10 +70,10 @@ static int	init_env(void)
 	if (!env)
 		return (0);
 	pwd = env_get("PWD", env);
-	pwd = ft_concat(pwd, "/minishell");
 	env_set("SHELL", "minishell", &env);
 	env_set("?", "0", &env);
 	env_set("?EXIT", "0", &env);
+	env_set("?MSDIR", pwd, &env);
 	env_write(ENV_FILE, env);
 	ft_arr_freer(env);
 	free(pwd);

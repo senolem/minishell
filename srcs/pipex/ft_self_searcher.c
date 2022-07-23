@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:32:58 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/18 13:16:29 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/23 09:22:33 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_self_searcher(char **env, char **cmd_args)
 	{
 		execve("/bin/bash", args, env);
 		ft_arr_freer(env);
-		sig_toggle(0);
 		free(insidepwd);
 		return (1);
 	}

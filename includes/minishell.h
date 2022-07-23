@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/22 22:04:49 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/23 12:28:43 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,7 @@ int			ft_redir_parser(t_stack *av, t_var *var);
 int			here_doc_redir_fd(t_stack **av, t_var *var);
 void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);
+void		check_ms_launch(t_stack *stack);
 
 // utils
 char		*ft_concat(char *s1, char *s2);
