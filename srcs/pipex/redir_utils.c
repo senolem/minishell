@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 12:19:04 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/22 21:12:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/23 18:02:39 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	redir_fd(t_stack **av, t_var *var, t_redir i)
 			path = ft_lst_to_arrdup(node->content);
 			var->fd[i.fd] = open(path, i.mode, 0644);
 			if (var->fd[i.fd] < 0)
-				return (ret_err(strerror(errno), NULL, 0));
+				return (ret_err(strerror(errno), NULL, 1));
 			node_del(node->prev, av);
 			node_del(node, av);
 			free(path);

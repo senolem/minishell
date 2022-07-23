@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/23 11:41:26 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:04:17 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int	here_doc_redir_fd(t_stack **av, t_var *var)
 			path = ft_lst_to_arrdup(node->content);
 			hd_managing(path, var);
 			if (var->fd[0] < 0)
-				return (ret_err(strerror(errno), NULL, 0));
+				return (ret_err(strerror(errno), NULL, 1));
 			node_del(node->prev, av);
 			node_del(node, av);
 			free(path);
