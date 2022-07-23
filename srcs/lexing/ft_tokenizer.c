@@ -6,11 +6,24 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:59:09 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 09:50:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:10:19 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+** The tokenizer() function creates a stack with every element of the
+** string array passed as a parameter, that is transformed into a
+** structure composed of a string and a type (what is called "process
+** of tokenization") by the ft_token_creator() function. Afterwards,
+** it calls the ms_dollar_manager() function which searches each
+** element of the stack for environment variable names to be
+** replaced, before calling the ms_dollar_quote_eraser() function
+** that rewrite each string without quotes.
+** The stack is then sent to the pipe_manager() function, in charge
+** of executing the commands.
+*/
 
 t_node	*token_parser(t_stack *stack, int type)
 {

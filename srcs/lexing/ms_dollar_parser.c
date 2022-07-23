@@ -6,24 +6,22 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:16:18 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/23 16:46:25 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:01:12 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * The dquote_dollar_counter() function counts the amount of characters
- * of the name of the environment variable preceded by the dollar ($)
- * symbol in the string passed as a parameter.
- * 
- * The dquote_dollar_parser() function allocates (with malloc(3)) and
- * returns a "fresh" null-terminated string representing the the name
- * of the environment variable found in the string passed as a
- * parameter.
- * 
- * The dquote_dollar_replacer() function checks if the environment
- * variable name passed as a parameter corresponds to an existant
- * variable and, if it's the case, replaces it with its content
- * in the new string.
+/*
+** The ms_dollar_parser() function allocates (with malloc(3)) and
+** returns a "fresh" null-terminated string with the name of the
+** environment variable found in the string passed as a parameter.
+** 
+** The ms_dollar_replacer() function checks if the environment
+** variable name passed as a parameter corresponds to an existant
+** variable and, if it's the case, replaces it with its content
+** in the new string.
+** The idea is that what is written before the $ symbol is copied,
+** then the content of the variable is written, followed by the
+** rest of the string.
 */
 
 #include "minishell.h"
