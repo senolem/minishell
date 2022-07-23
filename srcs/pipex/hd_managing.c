@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/23 18:23:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:48:33 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static int	ope_and_write(char **arr, char *path)
 		ft_printerror("pipex", TMP_FILE);
 		return (-1);
 	}
-	while (arr[i] && ft_strncmp(arr[i], path, ft_strlen(arr[i])))
+	while (arr[i] && ft_strncmp(arr[i], path, ft_strlen(path))
+		&& ft_strlen(arr[i]) - 1 != ft_strlen(path))
 	{
 		write(fd, arr[i], ft_strlen(arr[i]));
 		write(fd, "\n", 1);
@@ -125,7 +126,7 @@ int	here_doc_redir_fd(t_stack **av, t_var *var)
 			path = ft_lst_to_arrdup(node->content);
 			hd_managing(path, var);
 			if (var->fd[0] < 0)
-				return (ret_err(strerror(errno), NULL, 1));
+				return (ret_err("minishell:", strerror(errno), 1));
 			node_del(node->prev, av);
 			node_del(node, av);
 			free(path);
