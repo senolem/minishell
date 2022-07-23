@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/23 18:04:17 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:23:41 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	hd_managing(char *path, t_var *var)
 	if (!hd.arr)
 	{
 		free(hd.temp);
-		return (ret_null(strerror(errno), NULL));
+		return (ret_null("minishell:", strerror(errno)));
 	}
 	var->fd[0] = ope_and_write(hd.arr, path);
 	ft_arr_freer(hd.arr);
@@ -103,7 +103,7 @@ static void	hd_managing(char *path, t_var *var)
 	if (var->fd[0] < 0)
 	{
 		free(hd.temp);
-		return (ret_null(strerror(errno), NULL));
+		return (ret_null("minishell:", strerror(errno)));
 	}
 	free(hd.temp);
 }
