@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:16:18 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/06 11:41:09 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:18:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	ms_dollar_tailor(t_dollar *dollar)
 char	*ms_dollar_replacer(t_dollar *dollar)
 {
 	dollar->var = ft_getenv(dollar->varname);
+	ft_printf("var: %s\n", dollar->varname);
 	if (dollar->var)
 	{
 		ms_dollar_tailor(dollar);
@@ -107,7 +108,7 @@ void	ms_dollar_parser(t_token *token, ssize_t *index)
 	dollar.i = 0;
 	dollar.varname = malloc(sizeof(char) * (dollar.varname_len + 1));
 	*index -= dollar.varname_len;
-	while (dollar.line[*index] && !ms_dollar_check_charset(dollar.line[*index]))
+	while (dollar.line[*index] && ft_isalnum(dollar.line[*index]))
 		dollar.varname[dollar.i++] = dollar.line[(*index)++];
 	dollar.varname[dollar.i] = '\0';
 	token->str = ms_dollar_replacer(&dollar);
