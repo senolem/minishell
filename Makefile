@@ -14,7 +14,7 @@
 
 NAME = minishell
 CC = gcc
-CFLAGS = -g3 -Wall -Wextra -Werror -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
+CFLAGS = -g3 -Wall -Wextra -Werror
 LINKS = -lreadline -L${HOME}/goinfre/.brew/opt/readline/lib
 LIBLINKS = -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include
 SRC_PATH = srcs/

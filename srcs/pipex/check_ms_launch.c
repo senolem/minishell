@@ -28,6 +28,7 @@ void	check_ms_launch(t_stack *stack)
 		if (!ft_strnstrbool(str[i], "/minishell", ft_strlen(str[i])))
 		{
 			sig_toggle(2);
+			ft_arr_freer(str);
 			return ;
 		}
 		++i;
