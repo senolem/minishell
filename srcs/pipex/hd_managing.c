@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hd_managing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/22 21:12:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/23 11:41:26 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,30 +58,25 @@ static char	*ft_add_backslash_en(char *line)
 		return (str);
 	}
 }
-// je dois gérér sigint et interactive mode
+
 static void	ft_hd_performer(char *path, t_hd *hd)
 {
-	hd->buffer = readline("heredoc> ");
-	if (!hd->buffer)
-		return ;
-	hd->buffer = ft_add_backslash_en(hd->buffer);
-	if (!hd->buffer)
-		return ;
-	hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(path));
-	ft_printf(hd->buffer);
-	hd->temp = ft_concat(hd->temp, hd->buffer);
-	if (!hd->temp)
-		return ;
-	free(hd->buffer);
-	while (hd->cmp && hd->buffer)
+	sig_toggle(3);
+	while (42)
 	{
 		hd->buffer = readline("heredoc> ");
+		ft_printf("huh: %s\n", hd->buffer);
 		if (!hd->buffer)
 			return ;
 		hd->buffer = ft_add_backslash_en(hd->buffer);
 		if (!hd->buffer)
 			return ;
-		hd->cmp = ft_strncmp(hd->buffer, path, ft_strlen(path));
+		ft_printf("1: %s\n", hd->buffer);
+		hd->cmp = ft_strncmp(hd->buffer, path,
+				ft_strlen(hd->buffer) - 1);
+		if (!hd->buffer || (!hd->cmp
+				&& ft_strlen(hd->buffer) - 1 == ft_strlen(path)))
+			break ;
 		hd->temp = ft_concat(hd->temp, hd->buffer);
 		if (!hd->temp)
 			return ;
