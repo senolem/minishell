@@ -6,12 +6,12 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 09:41:15 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 11:25:41 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/23 16:24:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+// faut le raccorder au ms
 static void	echo_arr_display(char **arr, size_t i)
 {
 	while (arr[i + 1])

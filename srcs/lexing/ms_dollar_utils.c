@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_dollar_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:00:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/20 10:29:52 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/23 16:40:35 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ms_dollar_counter(t_dollar *dollar, ssize_t *index)
 	if (dollar->line[*index] == '$')
 		(*index)++;
 	while (dollar->line[*index]
-		&& !ms_dollar_check_charset(dollar->line[*index]))
+		&& ft_isalnum(dollar->line[*index]))
 	{
 		dollar->varname_len++;
 		(*index)++;
