@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 10:46:55 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/22 22:03:42 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/24 12:45:37 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ int	sig_toggle(int n)
 		init_mode(1);
 		return (0);
 	}
-	else if (n == 3)
+/*	else if (n == 3)
 	{
 		sig_wait(SIGINT, here_doc_sig_handler);
 		sig_ignore(SIGQUIT);
 		return (0);
 	}
+	*/
 	init_mode(n);
 	return (1);
 }
-
 void	sig_wait(int sig, void (*hdlr)(int, siginfo_t *, void *))
 {
 	struct sigaction	sa;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_ms_launch.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 12:28:03 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/23 12:44:55 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/24 12:24:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	check_ms_launch(t_stack *stack)
 
 	i = 0;
 	if (!stack)
-		return;
+		return ;
 	str = ft_lst_to_arr(stack);
 	if (!str)
-		return;
+		return ;
 	while (str[i])
 	{
 		if (!ft_strnstrbool(str[i], "/minishell", ft_strlen(str[i])))

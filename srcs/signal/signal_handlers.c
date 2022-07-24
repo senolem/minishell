@@ -6,12 +6,12 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:03:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/24 11:26:56 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/24 12:44:47 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 void	here_doc_sig_handler(int sig, siginfo_t *info, void *context)
 {
 	(void)info;
@@ -21,10 +21,10 @@ void	here_doc_sig_handler(int sig, siginfo_t *info, void *context)
 		env_set_arg("?heredoc", "sigint");
 		ft_putendl("");
 		rl_replace_line("", 0);
-		rl_done = 1;
+		rl_done = 0;
 	}
 }
-
+*/
 void	sig_handler(int sig, siginfo_t *info, void *context)
 {
 	(void)info;

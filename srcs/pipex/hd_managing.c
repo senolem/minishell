@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/24 11:40:04 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/24 12:45:11 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	ope_and_write(char **arr, char *path)
 		ft_printerror("pipex", TMP_FILE);
 		return (-1);
 	}
-	if (!rl_done)
-	{
+//	if (!rl_done)
+//	{
 		while (arr[i] && ft_strncmp(arr[i], path, ft_strlen(path))
 			&& ft_strlen(arr[i]) - 1 != ft_strlen(path))
 		{
@@ -33,7 +33,7 @@ static int	ope_and_write(char **arr, char *path)
 			write(fd, "\n", 1);
 			i++;
 		}
-	}
+//	}
 	close(fd);
 	return (fd);
 }
@@ -65,8 +65,7 @@ static char	*ft_add_backslash_en(char *line)
 
 static void	ft_hd_performer(char *path, t_hd *hd)
 {
-	sig_toggle(3);
-	rl_done = 0;
+//	sig_toggle(3);
 	ft_printf("0: %d\n", rl_done);
 	while (42)
 	{
@@ -83,8 +82,8 @@ static void	ft_hd_performer(char *path, t_hd *hd)
 		hd->cmp = ft_strncmp(hd->buffer, path,
 				ft_strlen(hd->buffer) - 1);
 		if (!hd->buffer || (!hd->cmp
-				&& ft_strlen(hd->buffer) - 1 == ft_strlen(path))
-			|| rl_done == 1)
+				&& ft_strlen(hd->buffer) - 1 == ft_strlen(path)))
+			//|| rl_done == 0)
 			break ;
 		hd->temp = ft_concat(hd->temp, hd->buffer);
 		if (!hd->temp)
