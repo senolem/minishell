@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/23 12:28:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/24 16:13:45 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_var
 	char	**av;
 	int		mode;
 	int		type;
+	size_t	stack_len;
 }			t_var;
 
 typedef struct s_searcher
@@ -139,6 +140,7 @@ typedef struct s_hd
 	char	*temp;
 	int		cmp;
 	int		bytes_read;
+	int		done;
 }				t_hd;
 
 typedef struct s_exit
@@ -149,6 +151,8 @@ typedef struct s_exit
 	char	*err;
 	char	*str;
 }				t_exit;
+
+t_hd	*g_hd;
 
 // init
 int			init_shell(t_data *data);

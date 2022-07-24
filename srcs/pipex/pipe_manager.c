@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/24 11:39:00 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:02:54 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ int	pipe_manager(t_stack *stack)
 	t_stack	**arr;
 	t_var	var;
 	size_t	j;
-	size_t	len;
 
 	j = -1;
 	init_fd(&var);
 	arr = ft_stack_splitter(stack);
-	len = ft_stacktablen(arr);
-	pipex_pipes(len, &var);
+	var.stack_len = ft_stacktablen(arr);
+	pipex_pipes(var.stack_len, &var);
 	while (arr[++j])
 	{
 		init_fd(&var);

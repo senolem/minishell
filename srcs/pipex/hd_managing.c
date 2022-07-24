@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/24 12:45:11 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:02:28 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	ope_and_write(char **arr, char *path)
 		ft_printerror("pipex", TMP_FILE);
 		return (-1);
 	}
-//	if (!rl_done)
-//	{
+	if (!g_hd->done)
+	{
 		while (arr[i] && ft_strncmp(arr[i], path, ft_strlen(path))
 			&& ft_strlen(arr[i]) - 1 != ft_strlen(path))
 		{
@@ -33,7 +33,7 @@ static int	ope_and_write(char **arr, char *path)
 			write(fd, "\n", 1);
 			i++;
 		}
-//	}
+	}
 	close(fd);
 	return (fd);
 }
@@ -65,25 +65,21 @@ static char	*ft_add_backslash_en(char *line)
 
 static void	ft_hd_performer(char *path, t_hd *hd)
 {
-//	sig_toggle(3);
-	ft_printf("0: %d\n", rl_done);
+	g_hd->done = 0;
+	sig_toggle(3);
 	while (42)
 	{
-		ft_printf("01: %d\n", rl_done);
 		hd->buffer = readline("heredoc> ");
-		ft_printf("02: %d\n", rl_done);
 		if (!hd->buffer)
 			return ;
-		ft_printf("03: %d\n", rl_done);
 		hd->buffer = ft_add_backslash_en(hd->buffer);
 		if (!hd->buffer)
 			return ;
-		ft_printf("1: %s %d\n", hd->buffer, rl_done);
 		hd->cmp = ft_strncmp(hd->buffer, path,
 				ft_strlen(hd->buffer) - 1);
 		if (!hd->buffer || (!hd->cmp
-				&& ft_strlen(hd->buffer) - 1 == ft_strlen(path)))
-			//|| rl_done == 0)
+				&& ft_strlen(hd->buffer) - 1 == ft_strlen(path))
+			|| g_hd->done == 1)
 			break ;
 		hd->temp = ft_concat(hd->temp, hd->buffer);
 		if (!hd->temp)
