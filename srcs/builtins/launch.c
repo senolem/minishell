@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:07:23 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 10:52:06 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/24 11:45:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	builtin_launch(char **cmd_args)
 			i = builtin_pwd(cmd_args);
 		else if (ft_strncmp("unset\0", cmd_args[0], 6) == 0)
 			i = builtin_unset(cmd_args);
+		else if (ft_strncmp("echo\0", cmd_args[0], 5) == 0)
+			i = builtin_echo(cmd_args);
 		return (i);
 	}
 	return (-99);
