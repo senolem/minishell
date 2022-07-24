@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:03:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/23 18:33:55 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/24 11:26:56 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 
 void	here_doc_sig_handler(int sig, siginfo_t *info, void *context)
 {
-	/*
-	(void)info;
-	(void)context;
-	if (sig == SIGINT)
-		exit(0);
-	*/
 	(void)info;
 	(void)context;
 	if (sig == SIGINT)
 	{
 		env_set_arg("?heredoc", "sigint");
 		ft_putendl("");
-//		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_done = 1;
 	}

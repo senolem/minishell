@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 21:43:57 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/22 21:57:13 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/24 11:39:00 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ int	pipe_manager(t_stack *stack)
 	pipex_pipes(len, &var);
 	while (arr[++j])
 	{
+		init_fd(&var);
 		if (ft_redir_parser(arr[j], &var) == 1)
 			break ;
-		if (j != 0 && arr[j - 1] && ft_stacklen(arr[j - 1]) != 0)
-			init_fd(&var);
 		if (pipex_open(arr, j, &var) || child_process(arr, j, &var))
 		{
 			manager_exit(&var, arr);
