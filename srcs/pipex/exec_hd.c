@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 14:22:20 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/25 14:24:37 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:28:58 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	exec_hd(char *path, t_hd *hd)
 {
-	pid_t pid;
-	int code;
+	pid_t	pid;
+	int		code;
 
 	code = 0;
 	pid = fork();

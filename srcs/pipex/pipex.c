@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:18:24 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/24 16:19:16 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/25 14:29:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	child_process(t_stack **stack, size_t i, t_var *var)
 	}
 	else if (pid > 0)
 		waitpid(var->pid, &code, 0);
-//		waitpid(var->pid, &code, WNOHANG);
 	sig_toggle(0);
 	child_process_exit(code);
 	return (0);

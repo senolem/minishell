@@ -6,16 +6,16 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 09:41:15 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/25 12:23:11 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:28:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-// faut le raccorder au ms
+
 static void	echo_arr_display(char **arr, size_t i)
 {
 	if (arr[i] == NULL)
-		return;
+		return ;
 	while (arr[i + 1])
 	{
 		ft_printf("%s ", arr[i]);
