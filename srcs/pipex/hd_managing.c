@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/25 15:26:56 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:25:51 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ static void	hd_managing(char *path, t_var *var)
 	hd.temp = malloc(sizeof(char) * 1);
 	hd.temp[0] = '\0';
 	exec_hd(path, &hd);
-	var->code = hd.code;
 	hd.arr = ft_split(hd.temp, '\n');
 	if (!hd.arr)
 	{
@@ -133,7 +132,7 @@ int	here_doc_redir_fd(t_stack **av, t_var *var)
 			node_del(node->prev, av);
 			node_del(node, av);
 			free(path);
-			return (var->code);
+			return (0);
 		}
 		if (node->next)
 			node = node->next;

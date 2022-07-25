@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/25 15:15:49 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:25:25 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,6 @@ typedef struct s_dollar
 	int		dq;
 }				t_dollar;
 
-typedef struct s_hd
-{
-	char	**arr;
-	char	*buffer;
-	char	*temp;
-	int		cmp;
-	int		bytes_read;
-	int		done;
-	int		code;
-} t_hd;
-
 typedef struct s_var
 {
 	pid_t	pid;
@@ -118,7 +107,6 @@ typedef struct s_var
 	int		mode;
 	int		type;
 	size_t	stack_len;
-	int		code;
 }			t_var;
 
 typedef struct s_searcher
@@ -144,6 +132,16 @@ typedef struct s_exec
 	char	*cmd;
 	char	**env;
 }			t_exec;
+
+typedef struct s_hd
+{
+	char	**arr;
+	char	*buffer;
+	char	*temp;
+	int		cmp;
+	int		bytes_read;
+	int		done;
+}				t_hd;
 
 typedef struct s_exit
 {
