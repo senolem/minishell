@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:03:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/25 14:15:48 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 16:39:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	here_doc_sig_handler(int sig, siginfo_t *info, void *context)
 	(void)context;
 	if (sig == SIGINT)
 	{
+		ft_putendl("");
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		exit(1);
