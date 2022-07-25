@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:00:30 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/23 16:40:35 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:10:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ms_dollar_check_charset(char c)
 {
-	if (ft_isspace(c) || c == '\'' || c == '\"')
+	if (ft_isalnum(c) || c == '?' || c == '_')
 		return (1);
 	return (0);
 }
@@ -25,7 +25,7 @@ void	ms_dollar_counter(t_dollar *dollar, ssize_t *index)
 	if (dollar->line[*index] == '$')
 		(*index)++;
 	while (dollar->line[*index]
-		&& ft_isalnum(dollar->line[*index]))
+		&& ms_dollar_check_charset(dollar->line[*index]))
 	{
 		dollar->varname_len++;
 		(*index)++;
@@ -74,8 +74,7 @@ ssize_t	ms_dollar_checker(t_token *token)
 	i = 0;
 	while (token->str[i])
 	{
-		if (token->str[i] == '$' && (ft_isalnum(token->str[i + 1])
-				|| token->str[i + 1] == '_' || token->str[i + 1] == '?'))
+		if (token->str[i] == '$' && ms_dollar_check_charset(token->str[i + 1]))
 			return (i);
 		i++;
 	}

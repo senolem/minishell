@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:16:18 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/23 17:01:12 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:07:36 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ms_dollar_parser(t_token *token, ssize_t *index)
 	dollar.i = 0;
 	dollar.varname = malloc(sizeof(char) * (dollar.varname_len + 1));
 	*index -= dollar.varname_len;
-	while (dollar.line[*index] && ft_isalnum(dollar.line[*index]))
+	while (dollar.line[*index] && ms_dollar_check_charset(dollar.line[*index]))
 		dollar.varname[dollar.i++] = dollar.line[(*index)++];
 	dollar.varname[dollar.i] = '\0';
 	token->str = ms_dollar_replacer(&dollar);
