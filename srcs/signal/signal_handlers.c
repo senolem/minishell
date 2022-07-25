@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:03:54 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/25 17:04:04 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 17:19:22 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	here_doc_sig_handler(int sig, siginfo_t *info, void *context)
 		ft_putendl("");
 		rl_replace_line("", 0);
 		rl_on_new_line();
+		env_set_arg("?HEREDOC", "1");
 		exit(1);
 	}
 }

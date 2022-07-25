@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/25 12:31:18 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 17:19:52 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static int	init_env(void)
 	env_set("SHELL", "minishell", &env);
 	env_set("?", "0", &env);
 	env_set("?EXIT", "0", &env);
+	env_set("?HEREDOC", "0", &env);
 	env_set("?MSDIR", pwd, &env);
 	env_set("_", tmp, &env);
 	env_write(ENV_FILE, env);

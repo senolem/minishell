@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/25 14:25:51 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 17:34:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	hd_managing(char *path, t_var *var)
 
 	hd.temp = malloc(sizeof(char) * 1);
 	hd.temp[0] = '\0';
-	exec_hd(path, &hd);
+	ft_hd_performer(path, &hd);
 	hd.arr = ft_split(hd.temp, '\n');
 	if (!hd.arr)
 	{

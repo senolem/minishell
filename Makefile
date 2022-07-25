@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/25 14:24:45 by albaur           ###   ########.fr        #
+#    Updated: 2022/07/25 17:35:42 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ PIP_FILES 	= 	pipe_manager ft_path_searcher hd_managing pipex \
 				pipe_utils ft_stack_splitter ft_lst_to_arr \
 				redir_utils ft_self_searcher ft_exec ft_exec_error \
 				ft_exec_args ft_tilde child_process_exit check_ms_launch \
-				set_last_input exec_hd
+				set_last_input
 SRCS_FILES	+=	$(addprefix $(PIP_PATH), $(PIP_FILES))
 
 PARS_PATH	=	parsing/
