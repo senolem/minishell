@@ -6,7 +6,7 @@
 #    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/23 12:30:46 by albaur           ###   ########.fr        #
+#    Updated: 2022/07/25 11:15:00 by albaur           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = minishell
 CC = gcc
-CFLAGS = -g3 -Wall -Wextra -Werror
+CFLAGS = -g3 -Wall -Wextra -Werror -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 LINKS = -lreadline -L${HOME}/goinfre/.brew/opt/readline/lib
 LIBLINKS = -I./includes -I./libft/includes -I ${HOME}/goinfre/.brew/opt/readline/include
 SRC_PATH = srcs/

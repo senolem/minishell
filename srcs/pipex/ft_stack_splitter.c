@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:39:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/22 21:55:41 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 12:05:43 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	ft_stack_splitter_pt3(t_stack *stack)
 			current = current->next;
 			node_del(delenda, &stack);
 		}
-		current = current->next;
+		if (current)
+			current = current->next;
 	}
 	stack->top = tmp;
 }
@@ -48,10 +49,14 @@ static void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 		if (!ft_tokcmp(current->content, pipe_type))
 		{
 			current = current->next;
-			i++;
 			if (current && ft_tokcmp(current->content, pipe_type))
+			{
+				i++;
 				arr[i] = ft_stacknew();
-			continue ;
+				continue ;
+			}
+			else if (!current)
+				break;
 		}
 		ft_stackadd_bottom(arr[i], current);
 		current = current->next;
