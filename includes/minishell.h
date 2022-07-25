@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/24 16:13:45 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:41:33 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ int			here_doc_redir_fd(t_stack **av, t_var *var);
 void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);
 void		check_ms_launch(t_stack *stack);
+void		set_last_input(char **args);
 
 // utils
 char		*ft_concat(char *s1, char *s2);

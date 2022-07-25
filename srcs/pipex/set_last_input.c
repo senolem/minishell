@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   set_last_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 09:41:15 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/25 12:23:11 by albaur           ###   ########.fr       */
+/*   Created: 2022/07/25 12:39:48 by albaur            #+#    #+#             */
+/*   Updated: 2022/07/25 12:41:17 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-// faut le raccorder au ms
-static void	echo_arr_display(char **arr, size_t i)
-{
-	if (arr[i] == NULL)
-		return;
-	while (arr[i + 1])
-	{
-		ft_printf("%s ", arr[i]);
-		i++;
-	}
-	ft_printf("%s", arr[i]);
-}
 
-int	builtin_echo(char **av)
+void	set_last_input(char **args)
 {
-	if (!av || !*av)
-		return (-1);
-	if (!ft_strcmp(av[1], "-n"))
-		echo_arr_display(av, 2);
-	else
-	{
-		echo_arr_display(av, 1);
-		ft_putchar('\n');
-	}
-	ft_arr_freer(av);
-	return (0);
+	size_t i;
+
+	i = 0;
+	while (args[i])
+		++i;
+	env_set_arg("_", args[i - 1]);
 }

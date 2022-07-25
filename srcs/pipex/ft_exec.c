@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 15:17:07 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 15:28:45 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 12:39:29 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	ft_exec(char **args, t_var *var)
 	e.i = 0;
 	if (!args || !args[0])
 		exit(0);
+	set_last_input(args);
 	if (tilde_searcher(args))
 		tilde_replacer(args);
 	e.i = builtin_launch(args);

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:27:38 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/23 11:58:08 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 12:31:18 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,22 @@ static int	init_env(void)
 	char		**env;
 	char		*pwd;
 	extern char	**environ;
+	char		*tmp;
 
 	env = ft_arrdup(environ);
 	if (!env)
 		return (0);
 	pwd = env_get("PWD", env);
+	tmp = ft_strjoin(pwd, "/minishell");
 	env_set("SHELL", "minishell", &env);
 	env_set("?", "0", &env);
 	env_set("?EXIT", "0", &env);
 	env_set("?MSDIR", pwd, &env);
+	env_set("_", tmp, &env);
 	env_write(ENV_FILE, env);
 	ft_arr_freer(env);
 	free(pwd);
+	free(tmp);
 	return (1);
 }
 
