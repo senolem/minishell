@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:43:28 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/20 12:16:36 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 12:50:15 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	builtin_exit(char **s)
 	if (ft_arrlen(s) == 1)
 	{
 		env_set_arg("?EXIT", "126");
+		builtin_exit_print();
 		exit(126);
 	}
 	else if (ft_arrlen(s) > 2)
