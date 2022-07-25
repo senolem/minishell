@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hd_managing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:53:59 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/24 16:02:28 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/25 17:34:41 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,9 @@ static char	*ft_add_backslash_en(char *line)
 	}
 }
 
-static void	ft_hd_performer(char *path, t_hd *hd)
+void	ft_hd_performer(char *path, t_hd *hd)
 {
 	g_hd->done = 0;
-	sig_toggle(3);
 	while (42)
 	{
 		hd->buffer = readline("heredoc> ");

@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:39:16 by faventur          #+#    #+#             */
-/*   Updated: 2022/07/25 12:05:43 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:29:09 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	ft_stack_splitter_pt2(t_stack *stack, t_stack **arr)
 				continue ;
 			}
 			else if (!current)
-				break;
+				break ;
 		}
 		ft_stackadd_bottom(arr[i], current);
 		current = current->next;

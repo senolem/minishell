@@ -6,7 +6,7 @@
 /*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/25 17:03:27 by faventur         ###   ########.fr       */
+/*   Updated: 2022/07/25 17:36:34 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,7 @@ char		**ft_lst_to_arr(t_stack *stack);
 char		*ft_lst_to_arrdup(t_token *token);
 int			ft_redir_parser(t_stack *av, t_var *var);
 int			here_doc_redir_fd(t_stack **av, t_var *var);
+void		ft_hd_performer(char *path, t_hd *hd);
 void		tilde_replacer(char **path);
 int			tilde_searcher(char	**path);
 void		check_ms_launch(t_stack *stack);

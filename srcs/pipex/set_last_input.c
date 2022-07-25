@@ -6,7 +6,7 @@
 /*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 12:39:48 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/25 12:41:17 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:29:45 by albaur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_last_input(char **args)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (args[i])
