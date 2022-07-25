@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: albaur <albaur@student.42.fr>              +#+  +:+       +#+         #
+#    By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/16 11:47:12 by faventur          #+#    #+#              #
-#    Updated: 2022/07/25 12:41:56 by albaur           ###   ########.fr        #
+#    Updated: 2022/07/25 15:40:19 by faventur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ PIP_FILES 	= 	pipe_manager ft_path_searcher hd_managing pipex \
 SRCS_FILES	+=	$(addprefix $(PIP_PATH), $(PIP_FILES))
 
 PARS_PATH	=	parsing/
-PARS_FILES 	= 	process_input check_utils
+PARS_FILES 	= 	process_input check_utils ft_parser
 SRCS_FILES	+=	$(addprefix $(PARS_PATH), $(PARS_FILES))
 
 UTIL_PATH	=	utils/

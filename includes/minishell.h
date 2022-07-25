@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albaur <albaur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: faventur <faventur@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:44:32 by albaur            #+#    #+#             */
-/*   Updated: 2022/07/25 12:41:33 by albaur           ###   ########.fr       */
+/*   Updated: 2022/07/25 17:03:27 by faventur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ int			ft_isoper(char c);
 int			oper_len_index(char *str, size_t *index);
 char		*ft_oper_writer_index(char *quote, char *str,
 				size_t *index, size_t *j);
+int			ft_parser(t_stack *stack);
 
 // env
 char		*ft_getenv(char *varname);
